@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>第 3 章 特权指令系统 | 计算机体系结构基础</title>
+  <meta name="description" content="第 3 章 特权指令系统 | 计算机体系结构基础" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="第 3 章 特权指令系统 | 计算机体系结构基础" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="第 3 章 特权指令系统 | 计算机体系结构基础" />
+  <meta name="github-repo" content="foxsen/archbase-book" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="第 3 章 特权指令系统 | 计算机体系结构基础" />
+  
+  <meta name="twitter:description" content="第 3 章 特权指令系统 | 计算机体系结构基础" />
+  
+
+<meta name="author" content="胡伟武 汪文祥 苏孟豪 张福新 王焕东 章隆兵 肖俊华 刘 苏 陈新科 吴瑞阳 李晓钰 高燕萍" />
+
+
+<meta name="date" content="2021-10-27" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="sec-ISA.html"/>
+<link rel="next" href="软硬件协同.html"/>
+<script src="libs/jquery/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block/empty-anchor.js"></script>
+<link href="libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections/anchor-sections.js"></script>
+<link href="libs/tabwid/tabwid.css" rel="stylesheet" />
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">计算机体系结构基础</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>丛书序言</a></li>
+<li class="chapter" data-level="" data-path="推荐序.html"><a href="推荐序.html"><i class="fa fa-check"></i>推荐序</a></li>
+<li class="chapter" data-level="" data-path="自序.html"><a href="自序.html"><i class="fa fa-check"></i>自序</a></li>
+<li class="chapter" data-level="" data-path="第三版序.html"><a href="第三版序.html"><i class="fa fa-check"></i>第三版序</a></li>
+<li class="chapter" data-level="" data-path="前言.html"><a href="前言.html"><i class="fa fa-check"></i>前言</a></li>
+<li class="chapter" data-level="" data-path="关于本书的在线版本.html"><a href="关于本书的在线版本.html"><i class="fa fa-check"></i>关于本书的在线版本</a></li>
+<li class="part"><span><b>I 引言</b></span></li>
+<li class="chapter" data-level="1" data-path="引言.html"><a href="引言.html"><i class="fa fa-check"></i><b>1</b> 引言</a><ul>
+<li class="chapter" data-level="1.1" data-path="引言.html"><a href="引言.html#计算机体系结构的研究内容"><i class="fa fa-check"></i><b>1.1</b> 计算机体系结构的研究内容</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="引言.html"><a href="引言.html#一以贯之"><i class="fa fa-check"></i><b>1.1.1</b> 一以贯之</a></li>
+<li class="chapter" data-level="1.1.2" data-path="引言.html"><a href="引言.html#什么是计算机"><i class="fa fa-check"></i><b>1.1.2</b> 什么是计算机</a></li>
+<li class="chapter" data-level="1.1.3" data-path="引言.html"><a href="引言.html#计算机的基本组成"><i class="fa fa-check"></i><b>1.1.3</b> 计算机的基本组成</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="引言.html"><a href="引言.html#衡量计算机的指标"><i class="fa fa-check"></i><b>1.2</b> 衡量计算机的指标</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="引言.html"><a href="引言.html#计算机的性能"><i class="fa fa-check"></i><b>1.2.1</b> 计算机的性能</a></li>
+<li class="chapter" data-level="1.2.2" data-path="引言.html"><a href="引言.html#计算机的价格"><i class="fa fa-check"></i><b>1.2.2</b> 计算机的价格</a></li>
+<li class="chapter" data-level="1.2.3" data-path="引言.html"><a href="引言.html#计算机的功耗"><i class="fa fa-check"></i><b>1.2.3</b> 计算机的功耗</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="引言.html"><a href="引言.html#计算机体系结构的发展"><i class="fa fa-check"></i><b>1.3</b> 计算机体系结构的发展</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="引言.html"><a href="引言.html#摩尔定律和工艺的发展"><i class="fa fa-check"></i><b>1.3.1</b> 摩尔定律和工艺的发展</a></li>
+<li class="chapter" data-level="1.3.2" data-path="引言.html"><a href="引言.html#计算机应用和体系结构"><i class="fa fa-check"></i><b>1.3.2</b> 计算机应用和体系结构</a></li>
+<li class="chapter" data-level="1.3.3" data-path="引言.html"><a href="引言.html#计算机体系结构发展"><i class="fa fa-check"></i><b>1.3.3</b> 计算机体系结构发展</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="引言.html"><a href="引言.html#体系结构设计的基本原则"><i class="fa fa-check"></i><b>1.4</b> 体系结构设计的基本原则</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="引言.html"><a href="引言.html#平衡性"><i class="fa fa-check"></i><b>1.4.1</b> 平衡性</a></li>
+<li class="chapter" data-level="1.4.2" data-path="引言.html"><a href="引言.html#局部性"><i class="fa fa-check"></i><b>1.4.2</b> 局部性</a></li>
+<li class="chapter" data-level="1.4.3" data-path="引言.html"><a href="引言.html#并行性"><i class="fa fa-check"></i><b>1.4.3</b> 并行性</a></li>
+<li class="chapter" data-level="1.4.4" data-path="引言.html"><a href="引言.html#虚拟化"><i class="fa fa-check"></i><b>1.4.4</b> 虚拟化</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="引言.html"><a href="引言.html#本章小结"><i class="fa fa-check"></i><b>1.5</b> 本章小结</a></li>
+<li class="chapter" data-level="1.6" data-path="引言.html"><a href="引言.html#习题"><i class="fa fa-check"></i><b>1.6</b> 习题</a></li>
+</ul></li>
+<li class="part"><span><b>II 指令系统结构</b></span></li>
+<li class="chapter" data-level="2" data-path="sec-ISA.html"><a href="sec-ISA.html"><i class="fa fa-check"></i><b>2</b> 指令系统</a><ul>
+<li class="chapter" data-level="2.1" data-path="sec-ISA.html"><a href="sec-ISA.html#指令系统简介"><i class="fa fa-check"></i><b>2.1</b> 指令系统简介</a></li>
+<li class="chapter" data-level="2.2" data-path="sec-ISA.html"><a href="sec-ISA.html#指令系统设计原则"><i class="fa fa-check"></i><b>2.2</b> 指令系统设计原则</a></li>
+<li class="chapter" data-level="2.3" data-path="sec-ISA.html"><a href="sec-ISA.html#指令系统发展历程"><i class="fa fa-check"></i><b>2.3</b> 指令系统发展历程</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="sec-ISA.html"><a href="sec-ISA.html#指令内容的演变"><i class="fa fa-check"></i><b>2.3.1</b> 指令内容的演变</a></li>
+<li class="chapter" data-level="2.3.2" data-path="sec-ISA.html"><a href="sec-ISA.html#存储管理的演变"><i class="fa fa-check"></i><b>2.3.2</b> 存储管理的演变</a></li>
+<li class="chapter" data-level="2.3.3" data-path="sec-ISA.html"><a href="sec-ISA.html#运行级别的演变"><i class="fa fa-check"></i><b>2.3.3</b> 运行级别的演变</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="sec-ISA.html"><a href="sec-ISA.html#指令系统组成"><i class="fa fa-check"></i><b>2.4</b> 指令系统组成</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="sec-ISA.html"><a href="sec-ISA.html#地址空间"><i class="fa fa-check"></i><b>2.4.1</b> 地址空间</a></li>
+<li class="chapter" data-level="2.4.2" data-path="sec-ISA.html"><a href="sec-ISA.html#操作数"><i class="fa fa-check"></i><b>2.4.2</b> 操作数</a></li>
+<li class="chapter" data-level="2.4.3" data-path="sec-ISA.html"><a href="sec-ISA.html#指令操作和编码"><i class="fa fa-check"></i><b>2.4.3</b> 指令操作和编码</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="sec-ISA.html"><a href="sec-ISA.html#risc指令集比较"><i class="fa fa-check"></i><b>2.5</b> RISC指令集比较</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="sec-ISA.html"><a href="sec-ISA.html#指令格式比较"><i class="fa fa-check"></i><b>2.5.1</b> 指令格式比较</a></li>
+<li class="chapter" data-level="2.5.2" data-path="sec-ISA.html"><a href="sec-ISA.html#寻址方式比较"><i class="fa fa-check"></i><b>2.5.2</b> 寻址方式比较</a></li>
+<li class="chapter" data-level="2.5.3" data-path="sec-ISA.html"><a href="sec-ISA.html#公共指令功能"><i class="fa fa-check"></i><b>2.5.3</b> 公共指令功能</a></li>
+<li class="chapter" data-level="2.5.4" data-path="sec-ISA.html"><a href="sec-ISA.html#不同指令系统的特色"><i class="fa fa-check"></i><b>2.5.4</b> 不同指令系统的特色</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="sec-ISA.html"><a href="sec-ISA.html#c语言的机器表示"><i class="fa fa-check"></i><b>2.6</b> C语言的机器表示</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="sec-ISA.html"><a href="sec-ISA.html#过程调用"><i class="fa fa-check"></i><b>2.6.1</b> 过程调用</a></li>
+<li class="chapter" data-level="2.6.2" data-path="sec-ISA.html"><a href="sec-ISA.html#流程控制语句"><i class="fa fa-check"></i><b>2.6.2</b> 流程控制语句</a></li>
+<li class="chapter" data-level="2.6.3" data-path="sec-ISA.html"><a href="sec-ISA.html#循环语句"><i class="fa fa-check"></i><b>2.6.3</b> 循环语句</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="sec-ISA.html"><a href="sec-ISA.html#本章小结-1"><i class="fa fa-check"></i><b>2.7</b> 本章小结</a></li>
+<li class="chapter" data-level="2.8" data-path="sec-ISA.html"><a href="sec-ISA.html#习题-1"><i class="fa fa-check"></i><b>2.8</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html"><i class="fa fa-check"></i><b>3</b> 特权指令系统</a><ul>
+<li class="chapter" data-level="3.1" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#特权指令系统简介"><i class="fa fa-check"></i><b>3.1</b> 特权指令系统简介</a></li>
+<li class="chapter" data-level="3.2" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#sec-exception"><i class="fa fa-check"></i><b>3.2</b> 异常与中断</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#异常分类"><i class="fa fa-check"></i><b>3.2.1</b> 异常分类</a></li>
+<li class="chapter" data-level="3.2.2" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#异常处理"><i class="fa fa-check"></i><b>3.2.2</b> 异常处理</a></li>
+<li class="chapter" data-level="3.2.3" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#中断"><i class="fa fa-check"></i><b>3.2.3</b> 中断</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#sec-memory-management"><i class="fa fa-check"></i><b>3.3</b> 存储管理</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#存储管理的原理"><i class="fa fa-check"></i><b>3.3.1</b> 存储管理的原理</a></li>
+<li class="chapter" data-level="3.3.2" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#tlb的结构和使用"><i class="fa fa-check"></i><b>3.3.2</b> TLB的结构和使用</a></li>
+<li class="chapter" data-level="3.3.3" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#sec-tlb-ex"><i class="fa fa-check"></i><b>3.3.3</b> TLB地址翻译相关异常的处理</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#本章小结-2"><i class="fa fa-check"></i><b>3.4</b> 本章小结</a></li>
+<li class="chapter" data-level="3.5" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#习题-2"><i class="fa fa-check"></i><b>3.5</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="软硬件协同.html"><a href="软硬件协同.html"><i class="fa fa-check"></i><b>4</b> 软硬件协同</a><ul>
+<li class="chapter" data-level="4.1" data-path="软硬件协同.html"><a href="软硬件协同.html#应用程序二进制接口"><i class="fa fa-check"></i><b>4.1</b> 应用程序二进制接口</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="软硬件协同.html"><a href="软硬件协同.html#寄存器约定"><i class="fa fa-check"></i><b>4.1.1</b> 寄存器约定</a></li>
+<li class="chapter" data-level="4.1.2" data-path="软硬件协同.html"><a href="软硬件协同.html#函数调用约定"><i class="fa fa-check"></i><b>4.1.2</b> 函数调用约定</a></li>
+<li class="chapter" data-level="4.1.3" data-path="软硬件协同.html"><a href="软硬件协同.html#进程虚拟地址空间"><i class="fa fa-check"></i><b>4.1.3</b> 进程虚拟地址空间</a></li>
+<li class="chapter" data-level="4.1.4" data-path="软硬件协同.html"><a href="软硬件协同.html#栈帧布局"><i class="fa fa-check"></i><b>4.1.4</b> 栈帧布局</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="软硬件协同.html"><a href="软硬件协同.html#六种常见的上下文切换场景"><i class="fa fa-check"></i><b>4.2</b> 六种常见的上下文切换场景</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="软硬件协同.html"><a href="软硬件协同.html#函数调用"><i class="fa fa-check"></i><b>4.2.1</b> 函数调用</a></li>
+<li class="chapter" data-level="4.2.2" data-path="软硬件协同.html"><a href="软硬件协同.html#异常和中断"><i class="fa fa-check"></i><b>4.2.2</b> 异常和中断</a></li>
+<li class="chapter" data-level="4.2.3" data-path="软硬件协同.html"><a href="软硬件协同.html#系统调用"><i class="fa fa-check"></i><b>4.2.3</b> 系统调用</a></li>
+<li class="chapter" data-level="4.2.4" data-path="软硬件协同.html"><a href="软硬件协同.html#进程"><i class="fa fa-check"></i><b>4.2.4</b> 进程</a></li>
+<li class="chapter" data-level="4.2.5" data-path="软硬件协同.html"><a href="软硬件协同.html#线程"><i class="fa fa-check"></i><b>4.2.5</b> 线程</a></li>
+<li class="chapter" data-level="4.2.6" data-path="软硬件协同.html"><a href="软硬件协同.html#虚拟机"><i class="fa fa-check"></i><b>4.2.6</b> 虚拟机</a></li>
+<li class="chapter" data-level="4.2.7" data-path="软硬件协同.html"><a href="软硬件协同.html#六种上下文切换场景的对比"><i class="fa fa-check"></i><b>4.2.7</b> 六种上下文切换场景的对比</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="软硬件协同.html"><a href="软硬件协同.html#同步机制"><i class="fa fa-check"></i><b>4.3</b> 同步机制</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="软硬件协同.html"><a href="软硬件协同.html#基于互斥的同步机制"><i class="fa fa-check"></i><b>4.3.1</b> 基于互斥的同步机制</a></li>
+<li class="chapter" data-level="4.3.2" data-path="软硬件协同.html"><a href="软硬件协同.html#非阻塞的同步机制"><i class="fa fa-check"></i><b>4.3.2</b> 非阻塞的同步机制</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="软硬件协同.html"><a href="软硬件协同.html#本章小结-3"><i class="fa fa-check"></i><b>4.4</b> 本章小结</a></li>
+<li class="chapter" data-level="4.5" data-path="软硬件协同.html"><a href="软硬件协同.html#习题-3"><i class="fa fa-check"></i><b>4.5</b> 习题</a></li>
+</ul></li>
+<li class="part"><span><b>III 计算机硬件结构</b></span></li>
+<li class="chapter" data-level="5" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html"><i class="fa fa-check"></i><b>5</b> 计算机组成原理和结构</a><ul>
+<li class="chapter" data-level="5.1" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#冯诺依曼结构"><i class="fa fa-check"></i><b>5.1</b> 冯·诺依曼结构</a></li>
+<li class="chapter" data-level="5.2" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#计算机的组成部件"><i class="fa fa-check"></i><b>5.2</b> 计算机的组成部件</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#运算器"><i class="fa fa-check"></i><b>5.2.1</b> 运算器</a></li>
+<li class="chapter" data-level="5.2.2" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#控制器"><i class="fa fa-check"></i><b>5.2.2</b> 控制器</a></li>
+<li class="chapter" data-level="5.2.3" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#存储器"><i class="fa fa-check"></i><b>5.2.3</b> 存储器</a></li>
+<li class="chapter" data-level="5.2.4" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#输入输出设备"><i class="fa fa-check"></i><b>5.2.4</b> 输入/输出设备</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#计算机系统硬件结构发展"><i class="fa fa-check"></i><b>5.3</b> 计算机系统硬件结构发展</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#cpu-gpu-北桥-南桥四片结构"><i class="fa fa-check"></i><b>5.3.1</b> CPU-GPU-北桥-南桥四片结构</a></li>
+<li class="chapter" data-level="5.3.2" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#cpu-北桥-南桥三片结构"><i class="fa fa-check"></i><b>5.3.2</b> CPU-北桥-南桥三片结构</a></li>
+<li class="chapter" data-level="5.3.3" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#cpu-弱北桥-南桥三片结构"><i class="fa fa-check"></i><b>5.3.3</b> CPU-弱北桥-南桥三片结构</a></li>
+<li class="chapter" data-level="5.3.4" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#cpu-南桥两片结构"><i class="fa fa-check"></i><b>5.3.4</b> CPU-南桥两片结构</a></li>
+<li class="chapter" data-level="5.3.5" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#soc单片结构"><i class="fa fa-check"></i><b>5.3.5</b> SoC单片结构</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#处理器和io设备间的通信"><i class="fa fa-check"></i><b>5.4</b> 处理器和IO设备间的通信</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#io寄存器寻址"><i class="fa fa-check"></i><b>5.4.1</b> IO寄存器寻址</a></li>
+<li class="chapter" data-level="5.4.2" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#处理器和io设备之间的同步"><i class="fa fa-check"></i><b>5.4.2</b> 处理器和IO设备之间的同步</a></li>
+<li class="chapter" data-level="5.4.3" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#存储器和io设备之间的数据传送"><i class="fa fa-check"></i><b>5.4.3</b> 存储器和IO设备之间的数据传送</a></li>
+<li class="chapter" data-level="5.4.4" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#龙芯3a30007a1000桥片系统中的cpugpudc通信"><i class="fa fa-check"></i><b>5.4.4</b> 龙芯3A3000+7A1000桥片系统中的CPU、GPU、DC通信</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#本章小结-4"><i class="fa fa-check"></i><b>5.5</b> 本章小结</a></li>
+<li class="chapter" data-level="5.6" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#习题-4"><i class="fa fa-check"></i><b>5.6</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html"><i class="fa fa-check"></i><b>6</b> 计算机总线接口技术</a><ul>
+<li class="chapter" data-level="6.1" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#总线概述"><i class="fa fa-check"></i><b>6.1</b> 总线概述</a></li>
+<li class="chapter" data-level="6.2" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#总线分类"><i class="fa fa-check"></i><b>6.2</b> 总线分类</a></li>
+<li class="chapter" data-level="6.3" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#片上总线"><i class="fa fa-check"></i><b>6.3</b> 片上总线</a></li>
+<li class="chapter" data-level="6.4" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#内存总线"><i class="fa fa-check"></i><b>6.4</b> 内存总线</a></li>
+<li class="chapter" data-level="6.5" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#系统总线"><i class="fa fa-check"></i><b>6.5</b> 系统总线</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#hypertransport总线"><i class="fa fa-check"></i><b>6.5.1</b> HyperTransport总线</a></li>
+<li class="chapter" data-level="6.5.2" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#ht包格式"><i class="fa fa-check"></i><b>6.5.2</b> HT包格式</a></li>
+<li class="chapter" data-level="6.5.3" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#设备总线"><i class="fa fa-check"></i><b>6.5.3</b> 设备总线</a></li>
+<li class="chapter" data-level="6.5.4" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#pcie总线"><i class="fa fa-check"></i><b>6.5.4</b> PCIE总线</a></li>
+<li class="chapter" data-level="6.5.5" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#pcie包格式"><i class="fa fa-check"></i><b>6.5.5</b> PCIE包格式</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#本章小结-5"><i class="fa fa-check"></i><b>6.6</b> 本章小结</a></li>
+<li class="chapter" data-level="6.7" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#习题-5"><i class="fa fa-check"></i><b>6.7</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html"><i class="fa fa-check"></i><b>7</b> 计算机启动过程分析</a><ul>
+<li class="chapter" data-level="7.1" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#处理器核初始化"><i class="fa fa-check"></i><b>7.1</b> 处理器核初始化</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#sec-cpu-reset"><i class="fa fa-check"></i><b>7.1.1</b> 处理器复位</a></li>
+<li class="chapter" data-level="7.1.2" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#调试接口初始化"><i class="fa fa-check"></i><b>7.1.2</b> 调试接口初始化</a></li>
+<li class="chapter" data-level="7.1.3" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#tlb初始化"><i class="fa fa-check"></i><b>7.1.3</b> TLB初始化</a></li>
+<li class="chapter" data-level="7.1.4" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#cache初始化"><i class="fa fa-check"></i><b>7.1.4</b> Cache初始化</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#总线接口初始化"><i class="fa fa-check"></i><b>7.2</b> 总线接口初始化</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#内存初始化"><i class="fa fa-check"></i><b>7.2.1</b> 内存初始化</a></li>
+<li class="chapter" data-level="7.2.2" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#io总线初始化"><i class="fa fa-check"></i><b>7.2.2</b> IO总线初始化</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#设备的探测及驱动加载"><i class="fa fa-check"></i><b>7.3</b> 设备的探测及驱动加载</a></li>
+<li class="chapter" data-level="7.4" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#多核启动过程"><i class="fa fa-check"></i><b>7.4</b> 多核启动过程</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#初始化时的多核协同"><i class="fa fa-check"></i><b>7.4.1</b> 初始化时的多核协同</a></li>
+<li class="chapter" data-level="7.4.2" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#操作系统启动时的多核唤醒"><i class="fa fa-check"></i><b>7.4.2</b> 操作系统启动时的多核唤醒</a></li>
+<li class="chapter" data-level="7.4.3" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#核间同步与通信"><i class="fa fa-check"></i><b>7.4.3</b> 核间同步与通信</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#本章小结-6"><i class="fa fa-check"></i><b>7.5</b> 本章小结</a></li>
+<li class="chapter" data-level="7.6" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#习题-6"><i class="fa fa-check"></i><b>7.6</b> 习题</a></li>
+</ul></li>
+<li class="part"><span><b>IV Part IV CPU的微结构</b></span></li>
+<li class="chapter" data-level="8" data-path="运算器设计.html"><a href="运算器设计.html"><i class="fa fa-check"></i><b>8</b> 运算器设计</a><ul>
+<li class="chapter" data-level="8.1" data-path="运算器设计.html"><a href="运算器设计.html#二进制与逻辑电路"><i class="fa fa-check"></i><b>8.1</b> 二进制与逻辑电路</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="运算器设计.html"><a href="运算器设计.html#sec-number-presentation"><i class="fa fa-check"></i><b>8.1.1</b> 计算机中数的表示</a></li>
+<li class="chapter" data-level="8.1.2" data-path="运算器设计.html"><a href="运算器设计.html#sec-MOS-principle"><i class="fa fa-check"></i><b>8.1.2</b> MOS晶体管工作原理</a></li>
+<li class="chapter" data-level="8.1.3" data-path="运算器设计.html"><a href="运算器设计.html#cmos逻辑电路"><i class="fa fa-check"></i><b>8.1.3</b> CMOS逻辑电路</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="运算器设计.html"><a href="运算器设计.html#简单运算器设计"><i class="fa fa-check"></i><b>8.2</b> 简单运算器设计</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="运算器设计.html"><a href="运算器设计.html#定点补码加法器"><i class="fa fa-check"></i><b>8.2.1</b> 定点补码加法器</a></li>
+<li class="chapter" data-level="8.2.2" data-path="运算器设计.html"><a href="运算器设计.html#减法运算实现"><i class="fa fa-check"></i><b>8.2.2</b> 减法运算实现</a></li>
+<li class="chapter" data-level="8.2.3" data-path="运算器设计.html"><a href="运算器设计.html#比较运算实现"><i class="fa fa-check"></i><b>8.2.3</b> 比较运算实现</a></li>
+<li class="chapter" data-level="8.2.4" data-path="运算器设计.html"><a href="运算器设计.html#移位器"><i class="fa fa-check"></i><b>8.2.4</b> 移位器</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="运算器设计.html"><a href="运算器设计.html#定点补码乘法器"><i class="fa fa-check"></i><b>8.3</b> 定点补码乘法器</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="运算器设计.html"><a href="运算器设计.html#补码乘法器"><i class="fa fa-check"></i><b>8.3.1</b> 补码乘法器</a></li>
+<li class="chapter" data-level="8.3.2" data-path="运算器设计.html"><a href="运算器设计.html#booth乘法器"><i class="fa fa-check"></i><b>8.3.2</b> Booth乘法器</a></li>
+<li class="chapter" data-level="8.3.3" data-path="运算器设计.html"><a href="运算器设计.html#华莱士树"><i class="fa fa-check"></i><b>8.3.3</b> 华莱士树</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="运算器设计.html"><a href="运算器设计.html#本章小结-7"><i class="fa fa-check"></i><b>8.4</b> 本章小结</a></li>
+<li class="chapter" data-level="8.5" data-path="运算器设计.html"><a href="运算器设计.html#习题-7"><i class="fa fa-check"></i><b>8.5</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="指令流水线.html"><a href="指令流水线.html"><i class="fa fa-check"></i><b>9</b> 指令流水线</a><ul>
+<li class="chapter" data-level="9.1" data-path="指令流水线.html"><a href="指令流水线.html#单周期处理器"><i class="fa fa-check"></i><b>9.1</b> 单周期处理器</a></li>
+<li class="chapter" data-level="9.2" data-path="指令流水线.html"><a href="指令流水线.html#sec-pipeline-cpu"><i class="fa fa-check"></i><b>9.2</b> 流水线处理器</a></li>
+<li class="chapter" data-level="9.3" data-path="指令流水线.html"><a href="指令流水线.html#sec-hazard"><i class="fa fa-check"></i><b>9.3</b> 指令相关和流水线冲突</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="指令流水线.html"><a href="指令流水线.html#数据相关引发的冲突及解决办法"><i class="fa fa-check"></i><b>9.3.1</b> 数据相关引发的冲突及解决办法</a></li>
+<li class="chapter" data-level="9.3.2" data-path="指令流水线.html"><a href="指令流水线.html#sec-control-hazard"><i class="fa fa-check"></i><b>9.3.2</b> 控制相关引发冲突及解决方法</a></li>
+<li class="chapter" data-level="9.3.3" data-path="指令流水线.html"><a href="指令流水线.html#结构相关引发冲突及解决办法"><i class="fa fa-check"></i><b>9.3.3</b> 结构相关引发冲突及解决办法</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="指令流水线.html"><a href="指令流水线.html#sec-precise-exception"><i class="fa fa-check"></i><b>9.4</b> 流水线与异常处理</a></li>
+<li class="chapter" data-level="9.5" data-path="指令流水线.html"><a href="指令流水线.html#提高流水线效率的技术"><i class="fa fa-check"></i><b>9.5</b> 提高流水线效率的技术</a><ul>
+<li class="chapter" data-level="9.5.1" data-path="指令流水线.html"><a href="指令流水线.html#多发射数据通路"><i class="fa fa-check"></i><b>9.5.1</b> 多发射数据通路</a></li>
+<li class="chapter" data-level="9.5.2" data-path="指令流水线.html"><a href="指令流水线.html#sec-dynamic"><i class="fa fa-check"></i><b>9.5.2</b> 动态调度</a></li>
+<li class="chapter" data-level="9.5.3" data-path="指令流水线.html"><a href="指令流水线.html#sec-branch-predict"><i class="fa fa-check"></i><b>9.5.3</b> 转移预测</a></li>
+<li class="chapter" data-level="9.5.4" data-path="指令流水线.html"><a href="指令流水线.html#高速缓存"><i class="fa fa-check"></i><b>9.5.4</b> 高速缓存</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="指令流水线.html"><a href="指令流水线.html#本章小结-8"><i class="fa fa-check"></i><b>9.6</b> 本章小结</a></li>
+<li class="chapter" data-level="9.7" data-path="指令流水线.html"><a href="指令流水线.html#习题-8"><i class="fa fa-check"></i><b>9.7</b> 习题</a></li>
+</ul></li>
+<li class="part"><span><b>V 并行处理结构</b></span></li>
+<li class="chapter" data-level="10" data-path="并行编程基础.html"><a href="并行编程基础.html"><i class="fa fa-check"></i><b>10</b> 并行编程基础</a><ul>
+<li class="chapter" data-level="10.1" data-path="并行编程基础.html"><a href="并行编程基础.html#程序的并行行为"><i class="fa fa-check"></i><b>10.1</b> 程序的并行行为</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="并行编程基础.html"><a href="并行编程基础.html#指令级并行性"><i class="fa fa-check"></i><b>10.1.1</b> 指令级并行性</a></li>
+<li class="chapter" data-level="10.1.2" data-path="并行编程基础.html"><a href="并行编程基础.html#数据级并行性"><i class="fa fa-check"></i><b>10.1.2</b> 数据级并行性</a></li>
+<li class="chapter" data-level="10.1.3" data-path="并行编程基础.html"><a href="并行编程基础.html#任务级并行性"><i class="fa fa-check"></i><b>10.1.3</b> 任务级并行性</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="并行编程基础.html"><a href="并行编程基础.html#并行编程模型"><i class="fa fa-check"></i><b>10.2</b> 并行编程模型</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="并行编程基础.html"><a href="并行编程基础.html#单任务数据并行模型"><i class="fa fa-check"></i><b>10.2.1</b> 单任务数据并行模型</a></li>
+<li class="chapter" data-level="10.2.2" data-path="并行编程基础.html"><a href="并行编程基础.html#多任务共享存储编程模型"><i class="fa fa-check"></i><b>10.2.2</b> 多任务共享存储编程模型</a></li>
+<li class="chapter" data-level="10.2.3" data-path="并行编程基础.html"><a href="并行编程基础.html#多任务消息传递编程模型"><i class="fa fa-check"></i><b>10.2.3</b> 多任务消息传递编程模型</a></li>
+<li class="chapter" data-level="10.2.4" data-path="并行编程基础.html"><a href="并行编程基础.html#共享存储与消息传递编程模型的编程复杂度"><i class="fa fa-check"></i><b>10.2.4</b> 共享存储与消息传递编程模型的编程复杂度</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="并行编程基础.html"><a href="并行编程基础.html#典型并行编程环境"><i class="fa fa-check"></i><b>10.3</b> 典型并行编程环境</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="并行编程基础.html"><a href="并行编程基础.html#数据并行simd编程"><i class="fa fa-check"></i><b>10.3.1</b> 数据并行SIMD编程</a></li>
+<li class="chapter" data-level="10.3.2" data-path="并行编程基础.html"><a href="并行编程基础.html#posix编程标准"><i class="fa fa-check"></i><b>10.3.2</b> POSIX编程标准</a></li>
+<li class="chapter" data-level="10.3.3" data-path="并行编程基础.html"><a href="并行编程基础.html#openmp标准"><i class="fa fa-check"></i><b>10.3.3</b> OpenMP标准</a></li>
+<li class="chapter" data-level="10.3.4" data-path="并行编程基础.html"><a href="并行编程基础.html#消息传递编程接口"><i class="fa fa-check"></i><b>10.3.4</b> 消息传递编程接口</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="并行编程基础.html"><a href="并行编程基础.html#习题-9"><i class="fa fa-check"></i><b>10.4</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="多核处理结构.html"><a href="多核处理结构.html"><i class="fa fa-check"></i><b>11</b> 多核处理结构</a><ul>
+<li class="chapter" data-level="11.1" data-path="多核处理结构.html"><a href="多核处理结构.html#多核处理器的发展演化"><i class="fa fa-check"></i><b>11.1</b> 多核处理器的发展演化</a></li>
+<li class="chapter" data-level="11.2" data-path="多核处理结构.html"><a href="多核处理结构.html#多核处理器的访存结构"><i class="fa fa-check"></i><b>11.2</b> 多核处理器的访存结构</a><ul>
+<li class="chapter" data-level="11.2.1" data-path="多核处理结构.html"><a href="多核处理结构.html#通用多核处理器的片上cache结构"><i class="fa fa-check"></i><b>11.2.1</b> 通用多核处理器的片上Cache结构</a></li>
+<li class="chapter" data-level="11.2.2" data-path="多核处理结构.html"><a href="多核处理结构.html#存储一致性模型"><i class="fa fa-check"></i><b>11.2.2</b> 存储一致性模型</a></li>
+<li class="chapter" data-level="11.2.3" data-path="多核处理结构.html"><a href="多核处理结构.html#cache一致性协议"><i class="fa fa-check"></i><b>11.2.3</b> Cache一致性协议</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="多核处理结构.html"><a href="多核处理结构.html#多核处理器的互连结构"><i class="fa fa-check"></i><b>11.3</b> 多核处理器的互连结构</a></li>
+<li class="chapter" data-level="11.4" data-path="多核处理结构.html"><a href="多核处理结构.html#多核处理器的同步机制"><i class="fa fa-check"></i><b>11.4</b> 多核处理器的同步机制</a></li>
+<li class="chapter" data-level="11.5" data-path="多核处理结构.html"><a href="多核处理结构.html#典型多核处理器"><i class="fa fa-check"></i><b>11.5</b> 典型多核处理器</a><ul>
+<li class="chapter" data-level="11.5.1" data-path="多核处理结构.html"><a href="多核处理结构.html#龙芯3a5000处理器"><i class="fa fa-check"></i><b>11.5.1</b> 龙芯3A5000处理器</a></li>
+<li class="chapter" data-level="11.5.2" data-path="多核处理结构.html"><a href="多核处理结构.html#intel-sandybridge架构"><i class="fa fa-check"></i><b>11.5.2</b> Intel SandyBridge架构</a></li>
+<li class="chapter" data-level="11.5.3" data-path="多核处理结构.html"><a href="多核处理结构.html#ibm-cell处理器"><i class="fa fa-check"></i><b>11.5.3</b> IBM Cell处理器</a></li>
+<li class="chapter" data-level="11.5.4" data-path="多核处理结构.html"><a href="多核处理结构.html#nvidia-gpu"><i class="fa fa-check"></i><b>11.5.4</b> NVIDIA GPU</a></li>
+<li class="chapter" data-level="11.5.5" data-path="多核处理结构.html"><a href="多核处理结构.html#tile64处理器"><i class="fa fa-check"></i><b>11.5.5</b> Tile64处理器</a></li>
+</ul></li>
+<li class="chapter" data-level="11.6" data-path="多核处理结构.html"><a href="多核处理结构.html#本章小结-9"><i class="fa fa-check"></i><b>11.6</b> 本章小结</a></li>
+<li class="chapter" data-level="11.7" data-path="多核处理结构.html"><a href="多核处理结构.html#习题-10"><i class="fa fa-check"></i><b>11.7</b> 习题</a></li>
+</ul></li>
+<li class="part"><span><b>VI 系统性能评价与分析</b></span></li>
+<li class="chapter" data-level="12" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html"><i class="fa fa-check"></i><b>12</b> 计算机系统性能评价与性能分析</a><ul>
+<li class="chapter" data-level="12.1" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#计算机系统性能评价指标"><i class="fa fa-check"></i><b>12.1</b> 计算机系统性能评价指标</a><ul>
+<li class="chapter" data-level="12.1.1" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#计算机系统常用性能评价指标"><i class="fa fa-check"></i><b>12.1.1</b> 计算机系统常用性能评价指标</a></li>
+<li class="chapter" data-level="12.1.2" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#并行系统的性能评价指标"><i class="fa fa-check"></i><b>12.1.2</b> 并行系统的性能评价指标</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#测试程序集"><i class="fa fa-check"></i><b>12.2</b> 测试程序集</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#微基准测试程序"><i class="fa fa-check"></i><b>12.2.1</b> 微基准测试程序</a></li>
+<li class="chapter" data-level="12.2.2" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#spec-cpu基准测试程序"><i class="fa fa-check"></i><b>12.2.2</b> SPEC CPU基准测试程序</a></li>
+<li class="chapter" data-level="12.2.3" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#并行系统基准测试程序"><i class="fa fa-check"></i><b>12.2.3</b> 并行系统基准测试程序</a></li>
+<li class="chapter" data-level="12.2.4" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#其他常见的基准测试程序集"><i class="fa fa-check"></i><b>12.2.4</b> 其他常见的基准测试程序集</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#性能分析方法"><i class="fa fa-check"></i><b>12.3</b> 性能分析方法</a><ul>
+<li class="chapter" data-level="12.3.1" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#分析建模的方法"><i class="fa fa-check"></i><b>12.3.1</b> 分析建模的方法</a></li>
+<li class="chapter" data-level="12.3.2" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#模拟建模的方法和模拟器"><i class="fa fa-check"></i><b>12.3.2</b> 模拟建模的方法和模拟器</a></li>
+<li class="chapter" data-level="12.3.3" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#性能测量的方法"><i class="fa fa-check"></i><b>12.3.3</b> 性能测量的方法</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#性能测试和分析实例"><i class="fa fa-check"></i><b>12.4</b> 性能测试和分析实例</a><ul>
+<li class="chapter" data-level="12.4.1" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#spec-cpu基准测试程序的分值对比"><i class="fa fa-check"></i><b>12.4.1</b> SPEC CPU基准测试程序的分值对比</a></li>
+<li class="chapter" data-level="12.4.2" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#微结构相关统计数据"><i class="fa fa-check"></i><b>12.4.2</b> 微结构相关统计数据</a></li>
+<li class="chapter" data-level="12.4.3" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#基础性能参数"><i class="fa fa-check"></i><b>12.4.3</b> 基础性能参数</a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#本章小结-10"><i class="fa fa-check"></i><b>12.5</b> 本章小结</a></li>
+<li class="chapter" data-level="12.6" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#习题-11"><i class="fa fa-check"></i><b>12.6</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="总结.html"><a href="总结.html"><i class="fa fa-check"></i>总结</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>参考文献</a></li>
+<li class="divider"></li>
+<li><a href="http://www.loongson.cn" target="blank">本书电子版由龙芯中科赞助提供</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">计算机体系结构基础</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="sec-privileged-ISA" class="section level1">
+<h1><span class="header-section-number">第 3 章</span> 特权指令系统</h1>
+<div id="特权指令系统简介" class="section level2">
+<h2><span class="header-section-number">3.1</span> 特权指令系统简介</h2>
+<p>在计算机系统层次结构中，应用层<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>在操作系统层之上，只能看到和使用指令系统的一个子集，即指令系统的用户态部分。每个应用程序都有自己的寄存器、内存空间以及可执行的指令。现代计算机的指令系统在用户态子集之外还定义了操作系统核心专用的特权态部分，我们称之为特权指令系统。</p>
+<p>特权指令系统的存在主要是为了让计算机变得更好用、更安全。操作系统通过特权指令系统管理计算机，使得应用程序形成独占CPU的假象，并使应用间相互隔离，互不干扰。应用程序只能在操作系统划定的范围内执行，一旦超出就会被CPU切换成操作系统代码运行。</p>
+<p>不同指令系统的特权态部分差别较大，但就其机制而言，可以分为以下几类：</p>
+<p>1）运行模式定义及其转换</p>
+<p>现代计算机的操作系统都实现了保护模式，至少需要用户态和核心态两种运行模式。应用运行在用户态模式下，操作系统运行在核心态模式下。因此，指令系统必须有相应的运行模式以做区分。比如MIPS定义了user、supervisor、kernel三种模式，X86定义了Ring0~Ring3四种模式，LoongArch定义了PLV0~PLV3四种模式。</p>
+<p>刚开机时，CPU初始化为操作系统核心态对应的运行模式，执行引导程序加载操作系统。操作系统做完一系列初始化后，控制CPU切换到操作系统用户态对应的运行模式去执行应用程序。应用程序执行过程中，如果出现用户态对应的运行模式无法处理的事件，则CPU会通过异常或中断回到核心态对应的运行模式，执行操作系统提供的服务程序。操作系统完成处理后再控制CPU返回用户态对应的运行模式，继续运行原来的应用程序或者调度另一个应用程序。在LoongArch指令系统中，CPU当前所处的运行模式由当前模式信息控制状态寄存器（CSR.CRMD）的PLV域的值确定，其值为0～3分别表示CPU正处于PLV0～PLV3四种运行模式（见图<a href="sec-privileged-ISA.html#fig:crmd">3.1</a>）。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:crmd"></span>
+<img src="images/chapter3/crmd.png" alt="LoongArch当前模式信息控制状态寄存器格式" width="100%" />
+<p class="caption">
+图 3.1: LoongArch当前模式信息控制状态寄存器格式
+</p>
+</div>
+<p>运行模式的转换过程与虚拟存储和异常中断紧密相关，共同构建出完备的保护模式。不少指令系统还支持虚拟机模式、调试模式等，使计算机系统更为易用。</p>
+<p>2）虚拟存储管理</p>
+<p>虚拟存储管理的基本思想是让软件（包括系统软件）运行在“虚地址”上，与真正访问存储的“实地址”（物理地址）相隔离。虚实地址的转换根据地址段属性的不同，有查表转换和直接映射两种方式。查表转换是应用程序使用的主要方式。不同的进程有自己独立的虚地址空间。CPU执行访存指令时，根据操作系统给出的映射表来完成虚地址空间到物理内存的转换。</p>
+<p>直接映射的方式与使用物理地址差别不大，主要给操作系统使用，因为在初始化之前负责虚存管理的代码本身不能运行在被管理的虚地址空间。通常用户态应用程序无法使用直接映射方式。</p>
+<p><a href="sec-privileged-ISA.html#sec-memory-management">3.3</a>节将对存储管理做更详细的介绍。</p>
+<p>3）异常与中断处理</p>
+<p>异常与中断是一种打断正常的软件执行流，切换到专门的处理函数的机制。它在各种运行模式的转换中起到关键的纽带作用。比如用户态代码执行过程中，当出现对特权空间的访问，或者访问了虚实地址映射表未定义的地址，或者需要调用操作系统服务等情况时，CPU通过发出异常来切换到核心态，进入操作系统定义的服务函数。操作系统完成处理后，返回发生异常的代码并同时切换到用户态。</p>
+<p><a href="sec-privileged-ISA.html#sec-exception">3.2</a>节将对异常与中断做更详细的介绍。</p>
+<p>4）控制状态寄存器</p>
+<p>控制状态寄存器位于一个独立的地址空间，是支撑前面3种机制的具体实现，不同的指令系统差别较大。下面以LoongArch指令系统为例，列出其控制状态寄存器的功能。</p>
+<template id="14601e05-78de-4709-ae32-3e2c20fca29b"><style>
+.tabwid table{
+  border-spacing:0px !important;
+  border-collapse:collapse;
+  line-height:1;
+  margin-left:auto;
+  margin-right:auto;
+  border-width: 0;
+  display: table;
+  margin-top: 1.275em;
+  margin-bottom: 1.275em;
+  border-color: transparent;
+}
+.tabwid_left table{
+  margin-left:0;
+}
+.tabwid_right table{
+  margin-right:0;
+}
+.tabwid td {
+    padding: 0;
+}
+.tabwid a {
+  text-decoration: none;
+}
+.tabwid thead {
+    background-color: transparent;
+}
+.tabwid tfoot {
+    background-color: transparent;
+}
+.tabwid table tr {
+background-color: transparent;
+}
+</style><div class="tabwid"><style>.cl-78d56dce{}.cl-78ca8594{font-family:'Noto Sans CJK SC';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-78ca85c6{font-family:'Noto Sans CJK SC';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-78ca99d0{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-78cb1c48{width:72pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-78cb1c70{width:288pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-78cb1c84{width:288pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-78cb1c8e{width:72pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-78d56dce'>
+<caption class="Table Caption">
+<p><span id="tab:la-csr">表 3.1: </span>LoongArch处理器的控制寄存器</p>
+</caption>
+<thead><tr style="overflow-wrap:break-word;"><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca8594">助记符</span></p></td><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca8594">编号</span></p></td><td class="cl-78cb1c84"><p class="cl-78ca99d0"><span class="cl-78ca8594">说明</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-78cb1c48"><p class="cl-78ca99d0"><span class="cl-78ca85c6">CRMD</span></p></td><td class="cl-78cb1c48"><p class="cl-78ca99d0"><span class="cl-78ca85c6">Ox0</span></p></td><td class="cl-78cb1c70"><p class="cl-78ca99d0"><span class="cl-78ca85c6">处理器当前运行模式及地址翻译模式、全局中断使能等配置信息。</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">PRMD</span></p></td><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">0x1</span></p></td><td class="cl-78cb1c84"><p class="cl-78ca99d0"><span class="cl-78ca85c6">触发当前普通异常的现场的运行模式及全局中断使能等配置信息</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">EUEN</span></p></td><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">0x2</span></p></td><td class="cl-78cb1c84"><p class="cl-78ca99d0"><span class="cl-78ca85c6">扩展部件的使能控制</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">MISC</span></p></td><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">0x3</span></p></td><td class="cl-78cb1c84"><p class="cl-78ca99d0"><span class="cl-78ca85c6">各权限等级下是否运行使用部分特权指令等杂项配置</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">ECFG</span></p></td><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">0x4</span></p></td><td class="cl-78cb1c84"><p class="cl-78ca99d0"><span class="cl-78ca85c6">局部中断使能、异常入口间距等配置信息</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">ESTAT</span></p></td><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">0x5</span></p></td><td class="cl-78cb1c84"><p class="cl-78ca99d0"><span class="cl-78ca85c6">记录异常和中断发生原因</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">ERA</span></p></td><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">0x6</span></p></td><td class="cl-78cb1c84"><p class="cl-78ca99d0"><span class="cl-78ca85c6">普通异常处理返回地址</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">BADV</span></p></td><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">0x7</span></p></td><td class="cl-78cb1c84"><p class="cl-78ca99d0"><span class="cl-78ca85c6">记录触发地址相关异常的访存虚地址</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">BADI</span></p></td><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">0x8</span></p></td><td class="cl-78cb1c84"><p class="cl-78ca99d0"><span class="cl-78ca85c6">记录触发异常指令的指令编码</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">EENTRY</span></p></td><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">0xC</span></p></td><td class="cl-78cb1c84"><p class="cl-78ca99d0"><span class="cl-78ca85c6">配置普通异常处理程序入口地址</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">TLBIDX</span></p></td><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">0x10</span></p></td><td  rowspan="11"class="cl-78cb1c84"><p class="cl-78ca99d0"><span class="cl-78ca85c6">存储管理（TLB）相关寄存器，将在第3节进行详细介绍</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">TLBEHI</span></p></td><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">0x11</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">TLBELO0</span></p></td><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">0x12</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">TLBELO1</span></p></td><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">0x13</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">ASID</span></p></td><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">0x18</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">STLBPS</span></p></td><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">0x1E</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">PGDL</span></p></td><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">0x19</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">PGDH</span></p></td><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">0x1A</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">PGD</span></p></td><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">0x1B</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">PWCL</span></p></td><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">0x1C</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">PWCH</span></p></td><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">0x1D</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">SAVEn</span></p></td><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">0x30+n</span></p></td><td class="cl-78cb1c84"><p class="cl-78ca99d0"><span class="cl-78ca85c6">保存临时数据</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">TID</span></p></td><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">0x40</span></p></td><td  rowspan="5"class="cl-78cb1c84"><p class="cl-78ca99d0"><span class="cl-78ca85c6">恒定频率计时器和定时器相关寄存器</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">TCFG</span></p></td><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">0x41</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">TVAL</span></p></td><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">0x42</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">CNTC</span></p></td><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">0x43</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">TICLR</span></p></td><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">0x44</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">LLBCTL</span></p></td><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">0x60</span></p></td><td class="cl-78cb1c84"><p class="cl-78ca99d0"><span class="cl-78ca85c6">LLBit的控制</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">TLBRENTRY</span></p></td><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">0x88</span></p></td><td  rowspan="8"class="cl-78cb1c84"><p class="cl-78ca99d0"><span class="cl-78ca85c6">TLB重填异常处理专用寄存器</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">TLRBBADV</span></p></td><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">0x89</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">TLBERA</span></p></td><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">0x8A</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">TLBRSAVE</span></p></td><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">0x8B</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">TLBRELO0</span></p></td><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">0x8C</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">TLBRELO1</span></p></td><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">0x8D</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">TLBREHI</span></p></td><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">0x8E</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">TLBRPRMD</span></p></td><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">0x8F</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">MERRCTL</span></p></td><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">0x90</span></p></td><td  rowspan="6"class="cl-78cb1c84"><p class="cl-78ca99d0"><span class="cl-78ca85c6">由Cache校验错所引发的机器错误异常的相关控制状态寄存器</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">MERRINFO1</span></p></td><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">0x91</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">MERRINFO2</span></p></td><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">0x92</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">MERRENTRY</span></p></td><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">0x93</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">MERRERA</span></p></td><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">0x94</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">MERRSAVE</span></p></td><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">0x95</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">DMW0~DMW3</span></p></td><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">0x180~0x183</span></p></td><td class="cl-78cb1c84"><p class="cl-78ca99d0"><span class="cl-78ca85c6">直接映射配置窗口0～3的配置寄存器</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">DBG</span></p></td><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">0x500</span></p></td><td  rowspan="3"class="cl-78cb1c84"><p class="cl-78ca99d0"><span class="cl-78ca85c6">调试相关的控制状态寄存器</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">DERA</span></p></td><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">0x501</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">DSAVE</span></p></td><td class="cl-78cb1c8e"><p class="cl-78ca99d0"><span class="cl-78ca85c6">0x502</span></p></td></tr></tbody></table></div></template>
+<div class="flextable-shadow-host" id="d5ca396a-0d58-43b9-a26f-f55b5fae75d3"></div>
+<script>
+var dest = document.getElementById("d5ca396a-0d58-43b9-a26f-f55b5fae75d3");
+var template = document.getElementById("14601e05-78de-4709-ae32-3e2c20fca29b");
+var caption = template.content.querySelector("caption");
+if(caption) {
+  caption.style.cssText = "display:block;text-align:center;";
+  var newcapt = document.createElement("p");
+  newcapt.appendChild(caption)
+  dest.parentNode.insertBefore(newcapt, dest.previousSibling);
+}
+var fantome = dest.attachShadow({mode: 'open'});
+var templateContent = template.content;
+fantome.appendChild(templateContent);
+</script>
+
+<p>控制状态寄存器虽然重要，但对其操作的频率通常远远低于通用寄存器，所以指令系统中通常不会设计针对控制状态寄存器的访存和复杂运算指令。不过大多数指令系统至少会定义若干在控制状态寄存器和通用寄存器之间进行数据搬运的指令，从而可以将数据移动到通用寄存器中进行相关处理，或者进一步将处理结果写回控制状态寄存器中。在LoongArch指令系统中，就定义了CSRRD和CSRWR指令来完成控制状态寄存器的读写操作。例如，指令“csrrd $t0, CSR_CRMD<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>”将控制状态寄存器CRMD的值读出，然后写入通用寄存器$t0中；指令“csrwr $t0, CSR_CRMD”将通用寄存器$t0中的值写入到控制状态寄存器CRMD中，同时将控制状态寄存器CRMD的旧值写入通用寄存器$t0中。</p>
+</div>
+<div id="sec-exception" class="section level2">
+<h2><span class="header-section-number">3.2</span> 异常与中断</h2>
+<p>计算机通常按照软件的执行流进行顺序执行和跳转，但有时会需要中断正常的执行流程去处理其他任务，可以触发这一过程的事件统称为异常。</p>
+<div id="异常分类" class="section level3">
+<h3><span class="header-section-number">3.2.1</span> 异常分类</h3>
+<p>从来源来看，异常可分为以下6种。</p>
+<p>1）外部事件：来自CPU核外部<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>的事件，来自处理器内部其他模块或者处理器外部的真实物理连线也称为中断。中断的存在使得CPU能够异步地处理多个事件。在操作系统中，为了避免轮询等待浪费CPU时间，与IO相关的任务通常都会用中断方式进行处理。中断事件的发生往往是软件不可控制的，因此需要一套健全的软硬件机制来防止中断对正常执行流带来影响。</p>
+<p>2）指令执行中的错误：执行中的指令的操作码或操作数不符合要求，例如不存在的指令、除法除以0、地址不对齐、用户态下调用核心态专有指令或非法地址空间访问等。这些错误使得当前指令无法继续执行，应当转到出错处进行处理。</p>
+<p>3）数据完整性问题：当使用ECC等硬件校验方式的存储器发生校验错误时，会产生异常。可纠正的错误可用于统计硬件的风险，不可纠正的错误则应视出错位置进行相应处理。</p>
+<p>4）地址转换异常：在存储管理单元需要对一个内存页进行地址转换，而硬件转换表中没有有效的转换对应项可用时，会产生地址转换异常。</p>
+<p>5）系统调用和陷入：由专有指令产生，其目的是产生操作系统可识别的异常，用于在保护模式下调用核心态的相关操作。</p>
+<p>6）需要软件修正的运算：常见的是浮点指令导致的异常，某些操作和操作数的组合硬件由于实现过于复杂而不愿意处理，寻求软件的帮助。</p>
+<p>下表列举了LoongArch指令系统中主要的异常。</p>
+<template id="b2fc6a81-dcbd-49db-9d3e-c820d4c6be29"><style>
+.tabwid table{
+  border-spacing:0px !important;
+  border-collapse:collapse;
+  line-height:1;
+  margin-left:auto;
+  margin-right:auto;
+  border-width: 0;
+  display: table;
+  margin-top: 1.275em;
+  margin-bottom: 1.275em;
+  border-color: transparent;
+}
+.tabwid_left table{
+  margin-left:0;
+}
+.tabwid_right table{
+  margin-right:0;
+}
+.tabwid td {
+    padding: 0;
+}
+.tabwid a {
+  text-decoration: none;
+}
+.tabwid thead {
+    background-color: transparent;
+}
+.tabwid tfoot {
+    background-color: transparent;
+}
+.tabwid table tr {
+background-color: transparent;
+}
+</style><div class="tabwid"><style>.cl-79050412{}.cl-78fb3a36{font-family:'Noto Sans CJK SC';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-78fb3a68{font-family:'Noto Sans CJK SC';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-78fb4bca{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-78fbb2e0{width:57.6pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-78fbb2fe{width:129.6pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-78fbb312{width:57.6pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-78fbb31c{width:129.6pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-79050412'>
+<caption class="Table Caption">
+<p><span id="tab:exception">表 3.2: </span>LoongArch指令系统的异常一览表</p>
+</caption>
+<thead><tr style="overflow-wrap:break-word;"><td  rowspan="2"class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a36">异常代号</span></p></td><td  colspan="2"class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a36">异常编号</span></p></td><td  rowspan="2"class="cl-78fbb31c"><p class="cl-78fb4bca"><span class="cl-78fb3a36">异常说明</span></p></td><td  rowspan="2"class="cl-78fbb31c"><p class="cl-78fb4bca"><span class="cl-78fb3a36">所属异常类别</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a36">Ecode</span></p></td><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a36">Esubcode</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-78fbb2e0"><p class="cl-78fb4bca"><span class="cl-78fb3a68">PIL</span></p></td><td class="cl-78fbb2e0"><p class="cl-78fb4bca"><span class="cl-78fb3a68">0x1</span></p></td><td class="cl-78fbb2e0"><p class="cl-78fb4bca"><span class="cl-78fb3a68"></span></p></td><td class="cl-78fbb2fe"><p class="cl-78fb4bca"><span class="cl-78fb3a68">load操作页无效异常</span></p></td><td class="cl-78fbb2fe"><p class="cl-78fb4bca"><span class="cl-78fb3a68">地址转换异常</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68">PIS</span></p></td><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68">0x2</span></p></td><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68"></span></p></td><td class="cl-78fbb31c"><p class="cl-78fb4bca"><span class="cl-78fb3a68">store操作页无效异常</span></p></td><td class="cl-78fbb31c"><p class="cl-78fb4bca"><span class="cl-78fb3a68">地址转换异常</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68">PIF</span></p></td><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68">0x3</span></p></td><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68"></span></p></td><td class="cl-78fbb31c"><p class="cl-78fb4bca"><span class="cl-78fb3a68">取指操作页无效异常</span></p></td><td class="cl-78fbb31c"><p class="cl-78fb4bca"><span class="cl-78fb3a68">地址转换异常</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68">PME</span></p></td><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68">0x4</span></p></td><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68"></span></p></td><td class="cl-78fbb31c"><p class="cl-78fb4bca"><span class="cl-78fb3a68">页修改异常</span></p></td><td class="cl-78fbb31c"><p class="cl-78fb4bca"><span class="cl-78fb3a68">地址转换异常</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68">PNR</span></p></td><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68">0x5</span></p></td><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68"></span></p></td><td class="cl-78fbb31c"><p class="cl-78fb4bca"><span class="cl-78fb3a68">页不可读异常</span></p></td><td class="cl-78fbb31c"><p class="cl-78fb4bca"><span class="cl-78fb3a68">地址转换异常</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68">PNX</span></p></td><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68">0x6</span></p></td><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68"></span></p></td><td class="cl-78fbb31c"><p class="cl-78fb4bca"><span class="cl-78fb3a68">页不可执行异常</span></p></td><td class="cl-78fbb31c"><p class="cl-78fb4bca"><span class="cl-78fb3a68">地址转换异常</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68">PPI</span></p></td><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68">0x7</span></p></td><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68"></span></p></td><td class="cl-78fbb31c"><p class="cl-78fb4bca"><span class="cl-78fb3a68">页权限等级不合规异常</span></p></td><td class="cl-78fbb31c"><p class="cl-78fb4bca"><span class="cl-78fb3a68">地址转换异常</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68">ADEF</span></p></td><td  rowspan="2"class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68">0x8</span></p></td><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68">0x0</span></p></td><td class="cl-78fbb31c"><p class="cl-78fb4bca"><span class="cl-78fb3a68">取指地址错异常</span></p></td><td class="cl-78fbb31c"><p class="cl-78fb4bca"><span class="cl-78fb3a68">指令执行中的错误</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68">ADEM</span></p></td><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68">0x1</span></p></td><td class="cl-78fbb31c"><p class="cl-78fb4bca"><span class="cl-78fb3a68">访存指令地址错异常</span></p></td><td class="cl-78fbb31c"><p class="cl-78fb4bca"><span class="cl-78fb3a68">指令执行中的错误</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68">ALE</span></p></td><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68">0x9</span></p></td><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68"></span></p></td><td class="cl-78fbb31c"><p class="cl-78fb4bca"><span class="cl-78fb3a68">地址非对齐异常</span></p></td><td class="cl-78fbb31c"><p class="cl-78fb4bca"><span class="cl-78fb3a68">指令执行中的错误</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68">BCE</span></p></td><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68">0xA</span></p></td><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68"></span></p></td><td class="cl-78fbb31c"><p class="cl-78fb4bca"><span class="cl-78fb3a68">边界约束检查错异常</span></p></td><td class="cl-78fbb31c"><p class="cl-78fb4bca"><span class="cl-78fb3a68">指令执行中的错误</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68">SYS</span></p></td><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68">0xB</span></p></td><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68"></span></p></td><td class="cl-78fbb31c"><p class="cl-78fb4bca"><span class="cl-78fb3a68">系统调用异常</span></p></td><td class="cl-78fbb31c"><p class="cl-78fb4bca"><span class="cl-78fb3a68">系统调用和陷入</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68">BRK</span></p></td><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68">0xC</span></p></td><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68"></span></p></td><td class="cl-78fbb31c"><p class="cl-78fb4bca"><span class="cl-78fb3a68">断点异常</span></p></td><td class="cl-78fbb31c"><p class="cl-78fb4bca"><span class="cl-78fb3a68">系统调用和陷入</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68">INE</span></p></td><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68">0xD</span></p></td><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68"></span></p></td><td class="cl-78fbb31c"><p class="cl-78fb4bca"><span class="cl-78fb3a68">指令不存在异常</span></p></td><td class="cl-78fbb31c"><p class="cl-78fb4bca"><span class="cl-78fb3a68">指令执行中的错误</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68">IPE</span></p></td><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68">0xE</span></p></td><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68"></span></p></td><td class="cl-78fbb31c"><p class="cl-78fb4bca"><span class="cl-78fb3a68">指令权限等级错异常</span></p></td><td class="cl-78fbb31c"><p class="cl-78fb4bca"><span class="cl-78fb3a68">指令执行中的错误</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68">FPD</span></p></td><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68">0xF</span></p></td><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68"></span></p></td><td class="cl-78fbb31c"><p class="cl-78fb4bca"><span class="cl-78fb3a68">浮点指令未使能异常</span></p></td><td class="cl-78fbb31c"><p class="cl-78fb4bca"><span class="cl-78fb3a68">系统调用和陷入</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68">SXD</span></p></td><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68">0x10</span></p></td><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68"></span></p></td><td class="cl-78fbb31c"><p class="cl-78fb4bca"><span class="cl-78fb3a68">128位向量扩展指令未使能异常</span></p></td><td class="cl-78fbb31c"><p class="cl-78fb4bca"><span class="cl-78fb3a68">系统调用和陷入</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68">ASXD</span></p></td><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68">0x11</span></p></td><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68"></span></p></td><td class="cl-78fbb31c"><p class="cl-78fb4bca"><span class="cl-78fb3a68">256位向量扩展指令未使能异常</span></p></td><td class="cl-78fbb31c"><p class="cl-78fb4bca"><span class="cl-78fb3a68">系统调用和陷入</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68">FPE</span></p></td><td  rowspan="2"class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68">0x12</span></p></td><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68">0x0</span></p></td><td class="cl-78fbb31c"><p class="cl-78fb4bca"><span class="cl-78fb3a68">基础浮点指令异常</span></p></td><td class="cl-78fbb31c"><p class="cl-78fb4bca"><span class="cl-78fb3a68">需要软件修正的运算</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68">VFPE</span></p></td><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68">0x1</span></p></td><td class="cl-78fbb31c"><p class="cl-78fb4bca"><span class="cl-78fb3a68">向量浮点指令异常</span></p></td><td class="cl-78fbb31c"><p class="cl-78fb4bca"><span class="cl-78fb3a68">需要软件修正的运算</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68">WPEF</span></p></td><td  rowspan="2"class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68">0x13</span></p></td><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68">0x0</span></p></td><td class="cl-78fbb31c"><p class="cl-78fb4bca"><span class="cl-78fb3a68">取指监测点异常</span></p></td><td class="cl-78fbb31c"><p class="cl-78fb4bca"><span class="cl-78fb3a68">系统调用和陷入</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68">WPEM</span></p></td><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68">0x1</span></p></td><td class="cl-78fbb31c"><p class="cl-78fb4bca"><span class="cl-78fb3a68">load/store操作监测点异常</span></p></td><td class="cl-78fbb31c"><p class="cl-78fb4bca"><span class="cl-78fb3a68">系统调用和陷入</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68">INT</span></p></td><td  rowspan="3"class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68"></span></p></td><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68"></span></p></td><td class="cl-78fbb31c"><p class="cl-78fb4bca"><span class="cl-78fb3a68">中断</span></p></td><td class="cl-78fbb31c"><p class="cl-78fb4bca"><span class="cl-78fb3a68">外部事件</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68">TLBR</span></p></td><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68"></span></p></td><td class="cl-78fbb31c"><p class="cl-78fb4bca"><span class="cl-78fb3a68">TLB重填异常</span></p></td><td class="cl-78fbb31c"><p class="cl-78fb4bca"><span class="cl-78fb3a68">地址转换异常</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68">MERR</span></p></td><td class="cl-78fbb312"><p class="cl-78fb4bca"><span class="cl-78fb3a68"></span></p></td><td class="cl-78fbb31c"><p class="cl-78fb4bca"><span class="cl-78fb3a68">机器错误异常</span></p></td><td class="cl-78fbb31c"><p class="cl-78fb4bca"><span class="cl-78fb3a68">数据完整性问题</span></p></td></tr></tbody></table></div></template>
+<div class="flextable-shadow-host" id="3ba0ddc7-e35f-4ef9-84e5-dd8ff7768e6f"></div>
+<script>
+var dest = document.getElementById("3ba0ddc7-e35f-4ef9-84e5-dd8ff7768e6f");
+var template = document.getElementById("b2fc6a81-dcbd-49db-9d3e-c820d4c6be29");
+var caption = template.content.querySelector("caption");
+if(caption) {
+  caption.style.cssText = "display:block;text-align:center;";
+  var newcapt = document.createElement("p");
+  newcapt.appendChild(caption)
+  dest.parentNode.insertBefore(newcapt, dest.previousSibling);
+}
+var fantome = dest.attachShadow({mode: 'open'});
+var templateContent = template.content;
+fantome.appendChild(templateContent);
+</script>
+
+</div>
+<div id="异常处理" class="section level3">
+<h3><span class="header-section-number">3.2.2</span> 异常处理</h3>
+<div id="异常处理流程" class="section level4">
+<h4><span class="header-section-number">3.2.2.1</span> 异常处理流程</h4>
+<p>异常处理的流程包括异常处理准备、确定异常来源、保存执行状态、处理异常、恢复执行状态并返回等。主要内容是确定并处理异常，同时正确维护上下文环境。异常处理是一个软硬件协同的过程，通常CPU硬件需要维护一系列控制状态寄存器（域）以用于软硬件之间的交互。LoongArch指令系统中与异常（含中断）处理相关的控制状态寄存器格式如图<a href="sec-privileged-ISA.html#fig:ex-csr">3.2</a>所示。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:ex-csr"></span>
+<img src="images/chapter3/csr.png" alt="LoongArch异常处理相关控制状态寄存器" width="100%" />
+<p class="caption">
+图 3.2: LoongArch异常处理相关控制状态寄存器
+</p>
+</div>
+<p>下面对异常处理流程的五个阶段进行介绍。</p>
+<p>1）异常处理准备。当异常发生时，CPU在转而执行异常处理前，硬件需要进行一系列准备工作。</p>
+<p>首先，需要记录被异常打断的指令的地址（记为EPTR）。这里涉及精确异常的概念，指发生任何异常时，被异常打断的指令之前的所有指令都执行完，而该指令之后的所有指令都像没执行一样。在实现精确异常的处理器中，异常处理程序可忽略因处理器流水线带来的异常发生位置问题。异常处理结束后将返回EPTR所在地址，重新执行被异常打断的指令<sup>[这只是通常的处理流程，但并非始终如此，存在某些异常处理场景，其结束后返回执行的并非最初被该异常打断的指令。例如，当执行SYSCALL指令而陷入系统调用异常处理时，肯定不能在处理结束后返回触发异常的SYSCALL指令，否则将陷入死循环。再譬如，当发生中断并陷入操作系统核心进行处理时，处理结束后，操作系统可能将其他进程或线程调度到该CPU上执行，显然此时返回执行的并不是最初被中断打断的那条指令。]，因此需要将EPTR记录下来。EPTR存放的位置因不同指令集而不同，LoongArch存于CSR.ERA</sup>[其实TLB重填异常发生时，这一信息将被记录在CSR.TLBRBERA中;机器错误异常发生时，这一信息将被记录在CSR.MERRERA中。更多细节请见下文中的说明。]，PowerPC存于SRR0/CSRR0，SPARC存于TPC[TL]，X86则用栈存放CS和EIP组合。</p>
+<p>其次，调整CPU的权限等级（通常调整至最高特权等级）并关闭中断响应。在LoongArch指令系统中，当异常发生时，硬件会将CSR.PLV置0以进入最高特权等级，并将CSR.CRMD的IE域置0以屏蔽所有中断输入。</p>
+<p>再次，硬件保存异常发生现场的部分信息。在LoongArch指令系统中，异常发生时会将CSR.CRMD中的PLV和IE域的旧值分别记录到CSR.PRMD的PPLV和PIE域中，供后续异常返回时使用。</p>
+<p>最后，记录异常的相关信息。异常处理程序将利用这些信息完成或加速异常的处理。最常见的如记录异常编号以用于确定异常来源。在LoongArch指令系统中，这一信息将被记录在CSR.ESTAT的Ecode和EsubCode域，前者存放异常的一级编号，后者存放异常的二级编号。除此以外，有些情况下还会将引发异常的指令的机器码记录在CSR.BADI中，或是将造成异常的访存虚地址记录在CSR.BADV中。</p>
+<p>2）确定异常来源。不同类型的异常需要各自对应的异常处理。处理器确定异常来源主要有两种方式：一种是将不同的异常进行编号，异常处理程序据此进行区分并跳转到指定的处理入口；另一种是为不同的异常指定不同的异常处理程序入口地址，这样每个入口处的异常处理程序自然知晓待处理的异常来源。X86由硬件进行异常和中断号的查询，根据编号查询预设好的中断描述符表（Interrupt Descriptor Table，简称IDT），得到不同异常处理的入口地址，并将CS/EIP等压栈。LoongArch将不同的异常进行编号，其异常处理程序入口地址采用“入口页号与页内偏移进行按位逻辑或”的计算方式，入口页号通过CSR.EENTRY配置，每个普通异常处理程序入口页内偏移是其异常编号乘以一个可配置间隔（通过CSR.ECFG的VS域配置）。通过合理配置EENTRY和ECFG控制状态寄存器中相关的域，可以使得不同异常处理程序入口地址不同。当然，也可以通过配置使得所有异常处理程序入口为同一个地址，但是实际使用中通常不这样处理。</p>
+<p>3）保存执行状态。在操作系统进行异常处理前，软件要先保存被打断的程序状态，通常至少需要将通用寄存器和程序状态字寄存器的值保存到栈中。</p>
+<p>4）处理异常。跳转到对应异常处理程序进行异常处理。</p>
+<p>5）恢复执行状态并返回。在异常处理返回前，软件需要先将前面第3个步骤中保存的执行状态从栈中恢复出来，在最后执行异常返回指令。之所以要采用专用的异常返回指令，是因为该指令需要原子地完成恢复权限等级、恢复中断使能状态、跳转至异常返回目标等多个操作。在LoongArch中，异常返回的指令是ERTN，该指令会将CSR.PRMD的PPLV和PIE域分别回填至CSR.CRMD的PLV和IE域，从而使得CPU的权限等级和全局中断响应状态恢复到异常发生时的状态，同时该指令还会将CSR.ERA中的值作为目标地址跳转过去。X86的IRET指令有类似效果。</p>
+</div>
+<div id="异常嵌套" class="section level4">
+<h4><span class="header-section-number">3.2.2.2</span> 异常嵌套</h4>
+<p>在异常处理的过程中，又有新的异常产生，这时就会出现异常嵌套的问题。当产生异常嵌套时，需要保存被打断的异常处理程序的状态，这会消耗一定的栈资源，因此无限的异常嵌套是无法容忍的。异常嵌套通常基于优先级，只有优先级更高的异常才能进行嵌套，低优先级或同优先级的异常只能等待当前异常处理完成，系统支持的优先级级数就是异常嵌套的最大层数。</p>
+<p>在LoongArch指令系统中，异常嵌套时被打断的异常处理程序的状态的保存和恢复主要交由软件处理，这就需要保证异常处理程序在完成当前上下文的保存操作之前，不会产生新的异常，或者产生的新异常不会修改当前需要保存的上下文。这两方面要求仅通过异常处理程序开发人员的精心设计是无法完全保证的，因为总有一些异常的产生原因是事先无法预知的，如中断、机器错、TLB重填等。为此需要设计硬件机制以保证这些情况发生时不至于产生嵌套异常，或即使产生嵌套异常也能保证软件可以获得所要保存上下文的正确内容。例如，可以在跳转到异常入口的过程中关闭全局中断使能以禁止中断异常发生，还可以在发生嵌套异常的时候将可能被破坏而软件又来不及保存的上下文信息由硬件暂存到指定的控制状态寄存器或内存区域。</p>
+</div>
+</div>
+<div id="中断" class="section level3">
+<h3><span class="header-section-number">3.2.3</span> 中断</h3>
+<p>异常处理的流程是通用的，但有两类异常出现的机会确实比其他类型大很多。一类是地址转换异常，当片内从虚地址到物理地址的地址转换表不包含访问地址时，就会产生缺页异常，在<a href="sec-privileged-ISA.html#sec-memory-management">3.3</a>节中我们将进行详细介绍。另一类常见的异常就是中断，中断在外部事件想要获得CPU注意时产生。由于外部事件的不可控性，中断处理所用的时间较为关键。在嵌入式系统中，CPU的主要作用之一就是处理外设相关事务，因此中断发生的数量很多且非常重要。本节以LoongArch指令系统为例介绍中断相关的重要内容。</p>
+<div id="中断传递机制" class="section level4">
+<h4><span class="header-section-number">3.2.3.1</span> 中断传递机制</h4>
+<p>中断从系统中各个中断源传递到处理器主要有两种形式：中断线和消息中断。</p>
+<p>用中断线传递是最简便直接的方式。当系统的中断源不多时，直接连到处理器引脚即可。若中断源较多，可使用中断控制器汇总后再与处理器引脚相连。由于连线会占用引脚资源，一般只在片上系统(System On Chip,简称SoC)中才会给每个外设连接单独的中断线，板级的中断线一般采用共享的方式。比如PCI上有四根中断线，供所有的设备共享。中断处理程序在定位到哪根中断线发生中断后，逐个调用注册在该中断线的设备中断服务。</p>
+<p>LoongArch指令系统支持中断线的中断传递机制，共定义了13个中断，分别是：1个核间中断（IPI），1个定时器中断（TI），1个性能监测计数溢出中断（PMI），8个外部硬中断（HWI0~HWI7），2个软中断（SWI0~SWI1）。其中所有中断线上的中断信号都采用电平中断，且都是高电平有效。当有中断发生时，这种高电平有效中断方式输入给处理器的中断线上将维持高电平状态直至中断被处理器响应处理。无论中断源来自处理器核外部还是内部，是硬件还是软件置位，这些中断信号都被不间断地采样并记录到CSR.ESTAT中IS域的对应比特位上。这些中断均为可屏蔽中断，除了CSR.CRMD中的全局中断使能位IE外，每个中断各自还有其局部中断使能控制位，在CSR.ECFG的LIE域中。当CSR.ESTAT中IS域的某位为1且对应的局部中断使能和全局中断使能均有效时，处理器就将响应该中断，并进入中断处理程序入口处开始执行。</p>
+<p>用中断线方式传递中断有一些限制。首先是扩展性不够强，在搭建较复杂的板级系统时会引入过多的共享，降低中断处理的效率。其次，中断处理过程需要通过查询中断控制器以及设备上的状态寄存器来确认中断和中断原因，中间有较长的延迟，同样不利于提高效率。在多处理器平台中，高性能外设（如万兆网卡）对中断处理的性能有更高的要求，需要实现多处理器的负载均衡、中断绑定等功能，传统的中断线方式难以做到。而这正好是消息中断的长处。</p>
+<p>消息中断以数据的方式在总线上传递。发中断就是向指定的地址写一个指定的数。相比总线外增加专门的中断线的“带外”（Side-Band)传输形式，消息中断在“带内”(In-Band）传输。增加中断时不需要改动消息传递的数据通路，因而有较高的扩展性和灵活性，也为更高程度的优化提供了可能。比如一个设备可以申请更多的中断号，使中断处理程序无须查询设备状态，只根据中断号就能知道应当做什么处理。</p>
+</div>
+<div id="向量化中断" class="section level4">
+<h4><span class="header-section-number">3.2.3.2</span> 向量化中断</h4>
+<p>LoongArch指令系统默认支持向量化中断<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a>，其13个线中断各自具有独立的中断处理程序入口地址。在LoongArch指令系统中，中断被视作一类特殊的异常进行处理，因此在具体计算中断处理程序入口地址时将SWI0～IPI这13个中断依次“视作”异常编号64～76的异常，用异常处理程序入口地址的统一计算方式进行计算。向量化中断的好处之一是省去了中断处理程序开头处识别具体中断源的开销，可以进一步加速中断的处理。</p>
+<p>X86指令系统支持的向量化中断方案更复杂一些，其在地址空间的指定位置处存放中断向量表（IVT，实模式下默认为0地址）或中断描述符表（IDT，保护模式），中断向量表中存放中断入口地址的段地址和偏移量，中断描述符表还包含权限等级和描述符类别的信息。X86的向量化中断机制最多可支持256个中断和异常，0~19号为系统预设的异常和NMI，20~31是Intel保留的编号，32号开始可用于外部中断，详细的实现可参考Intel相关手册。</p>
+</div>
+<div id="中断的优先级" class="section level4">
+<h4><span class="header-section-number">3.2.3.3</span> 中断的优先级</h4>
+<p>在支持多个中断源输入的指令系统中，需要规范在多个中断同时触发的情况下，处理器是否区别不同来源的中断的优先级。当采用非向量中断模式的时候，处理器通常不区别中断优先级，此时若需要对中断进行优先级处理，可以通过软件方式予以实现，其通常的实现方案是：</p>
+<p>1）软件随时维护一个中断优先级（IPL），每个中断源都被赋予特定的优先级。</p>
+<p>2）正常状态下，CPU运行在最低优先级，此时任何中断都可触发。</p>
+<p>3）当处于最高中断优先级时，任何中断都被禁止。</p>
+<p>4）更高优先级的中断发生时，可以抢占低优先级的中断处理过程。</p>
+<p>当采用向量中断模式的时候，处理器通常不可避免地需要依照一套既定的优先级规则来从多个已生效的中断源中选择一个，跳转到其对应的处理程序入口处。LoongArch指令系统实现的是向量中断，采用固定优先级仲裁机制，具体规则是硬件中断号越大优先级越高，即IPI的优先级最高，TI次之，…，SWI0的优先级最低。</p>
+</div>
+<div id="中断使能控制位的原子修改" class="section level4">
+<h4><span class="header-section-number">3.2.3.4</span> 中断使能控制位的原子修改</h4>
+<p>在中断处理程序中，经常会涉及中断使能控制位的修改，如关闭、开启全局中断使能。在大多数指令系统中，这些中断使能控制位位于控制状态寄存器中，因此软件在进行中断使能控制调整时，必须关注修改的原子性问题。以LoongArch指令系统为例，全局中断使能控制位IE位于CRMD控制寄存器的第2位。如果仅用CSRRD和CSRWR指令访问CRMD控制寄存器，那么需要通过下面的一段程序才能完成开启中断使能的功能：</p>
+<pre><code>    li      $t1, IE_BITMASK
+    csrrd   $t0, CSR_CRMD
+1:
+    andn    $t0, $t0, $t1
+    or      $t0, $t0, $t1
+2:
+    csrwr   $t0, CSR_CRMD</code></pre>
+<p>这段程序本身也可能被中断，若在标号1和2之间被中断且中断处理程序修改了CRMD控制寄存器的值，则在返回时该中断处理程序对CRMD控制寄存器的改写会被这段程序覆盖。若不想让这种情况发生，就需要保证这段程序不会被打断，更正式地说是保证这段程序的原子性。保证原子性的方法有很多种，例如添加专门的位原子修改指令、在程序执行时禁用中断、不允许中断处理程序修改SR，或者使用通用的方法保证程序段的原子性，即将被访问的控制寄存器作为临界区来考虑。LoongArch指令系统中定义了按位掩码修改控制寄存器的指令CSRXCHG。使用该指令时，上述开启全局中断使能的代码改写如下：</p>
+<pre><code>    li       $t0, IE_BITMASK
+    csrxchg  $t0, $t0, CSR_CRMD</code></pre>
+<p>上面的例子中，CRMD寄存器的IE位置1的操作仅通过csrxchg一条指令完成，所以自然确保了修改的原子性。</p>
+</div>
+</div>
+</div>
+<div id="sec-memory-management" class="section level2">
+<h2><span class="header-section-number">3.3</span> 存储管理</h2>
+<p>处理器的存储管理部件（Memory Management Unit，简称MMU）支持虚实地址转换、多进程空间等功能，是通用处理器体现“通用性”的重要单元，也是处理器和操作系统交互最紧密的部分。</p>
+<p>本节将介绍存储管理的作用、意义和一般性原理，并以Linux/LoongArch系统为例重点介绍存储管理中TLB的结构、操作方式以及TLB地址翻译过程中所涉及异常的处理。</p>
+<div id="存储管理的原理" class="section level3">
+<h3><span class="header-section-number">3.3.1</span> 存储管理的原理</h3>
+<p>存储管理构建虚拟的内存地址，并通过MMU进行虚拟地址到物理地址的转换。存储管理的作用和意义包括以下方面。</p>
+<p>1）隐藏和保护：用户态程序只能访问受限内存区域的数据，其他区域只能由核心态程序访问。引入存储管理后，不同程序仿佛在使用独立的内存区域，互相之间不会影响。此外，分页的存储管理方法对每个页都有单独的写保护，核心态的操作系统可防止用户程序随意修改自己的代码段。</p>
+<p>2）为程序分配连续的内存空间：MMU可以由分散的物理页构建连续的虚拟内存空间，以页为单元管理物理内存分配。</p>
+<p>3）扩展地址空间：在32位系统中，如果仅采用线性映射的虚实地址映射方式，则至多访问4GB物理内存空间，而通过MMU进行转换则可以访问更大的物理内存空间。</p>
+<p>4）节约物理内存：程序可以通过合理的映射来节约物理内存。当操作系统中有相同程序的多个副本在同时运行时，让这些副本使用相同的程序代码和只读数据是很直观的空间优化措施，而通过存储管理可以轻松完成这些。此外，在运行大型程序时，操作系统无须将该程序所需的所有内存都分配好，而是在确实需要使用特定页时再通过存储管理的相关异常处理来进行分配，这种方法不但节约了物理内存，还能提高程序初次加载的速度。</p>
+<p>页式存储管理是一种常见而高效的方式，操作系统将内存空间分为若干个固定大小的页，并维护虚拟页地址和物理页地址的映射关系（即页表）。页大小涉及页分配的粒度和页表所占空间，目前的操作系统常用4KB的页。此时，虚拟内存地址可表示为虚拟页地址和页内偏移两部分，在进行地址转换时通过查表的方式将虚拟页地址替换为物理页地址就可得到对应的物理内存地址。</p>
+<p>在32位系统中，采用4KB页时，单个完整页表需要1M项，对每个进程维护页表需要相当可观的空间代价，因此页表只能放在内存中。若每次进行地址转换时都需要先查询内存，则会对性能产生明显的影响。为了提高页表访问的速度，现代处理器中通常包含一个转换后援缓冲器（Translation Lookaside Buffer，简称TLB）来实现快速的虚实地址转换。TLB也称页表缓存或快表，借由局部性原理，存储当前处理器中最经常访问页的页表。一般TLB访问与Cache访问同时进行，而TLB也可以被视为页表的Cache。TLB中存储的内容包括虚拟地址、物理地址和保护位，可分别对应于Cache的Tag、Data和状态位。包含TLB的地址转换过程如图<a href="sec-privileged-ISA.html#fig:tlb-convert">3.3</a>所示。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:tlb-convert"></span>
+<img src="images/chapter3/tlb_convert.png" alt="包含TLB的地址转换过程" width="50%" />
+<p class="caption">
+图 3.3: 包含TLB的地址转换过程
+</p>
+</div>
+<p>处理器用地址空间标识符（Address Space Identifier，简称ASID）和虚拟页号（Virtual Page Number，简称VPN）在TLB中进行查找匹配，若命中则读出其中的物理页号（Physical Page Number，简称PPN）和标志位（Flag）。标志位用于判断该访问是否合法，一般包括是否可读、是否可写、是否可执行等，若非法则发出非法访问异常；物理页号用于和页内偏移（Offset）拼接组成物理地址。若未在TLB中命中，则需要将页表内容从内存中取出并填入TLB中，这一过程通常称为TLB重填（TLB Refill）。TLB重填可由硬件或软件进行，例如X86、ARM处理器采用硬件TLB重填，即由硬件完成页表遍历（Page Table Walker），将所需的页表项填入TLB中；而MIPS、LoongArch处理器默认采用软件TLB重填，即查找TLB发现不命中时，将触发TLB重填异常，由异常处理程序进行页表遍历并进行TLB填入。</p>
+<p>在计算机中，外存、内存、Cache、通用寄存器可以组织成速度由慢到快的存储层次。TLB在存储层次中的位置和作用与Cache类似，可视为页表这种特殊内存数据的专用Cache。</p>
+</div>
+<div id="tlb的结构和使用" class="section level3">
+<h3><span class="header-section-number">3.3.2</span> TLB的结构和使用</h3>
+<div id="地址空间和地址翻译模式" class="section level4">
+<h4><span class="header-section-number">3.3.2.1</span> 地址空间和地址翻译模式</h4>
+<p>在介绍LoongArch指令系统中TLB相关的存储管理的机制前，首先简要了解一下LoongArch中地址空间和地址翻译模式的基本内容。LoongArch处理器支持的内存物理地址空间范围表示为0 - 2<sup>PALEN</sup>-1。在LA32架构下，PALEN理论上是一个不超过36的正整数；在LA64架构下，PALEN理论上是一个不超过60的正整数。</p>
+<p>LoongArch指令系统中的虚拟地址空间是线性平整的。对于PLV0级来说，LA32架构下虚拟地址空间大小为2<sup>32</sup>字节，LA64架构下虚拟地址空间大小为2<sup>64</sup>字节。不过对于LA64架构来说，2<sup>64</sup>字节大小的虚拟地址空间并不都是合法的，可以认为存在一些虚拟地址的空洞。合法的虚拟地址空间与地址映射模式紧密相关。</p>
+<p>LoongArch指令系统的MMU支持两种虚实地址翻译模式：直接地址翻译模式和映射地址翻译模式。在直接地址翻译模式下，物理地址默认直接等于虚拟地址（高位不足补0、超出截断），此时可以认为整个虚拟地址空间都是合法的。当CSR.CRMD中的DA域为1且PG域为0时CPU处于直接地址翻译模式。CPU复位结束后将进入直接地址翻译模式。</p>
+<p>当CSR.CRMD中的DA域为0且PG域为1时CPU处于映射地址翻译模式。映射地址翻译模式又分为直接映射地址翻译模式（简称“直接映射模式”）和页表映射地址翻译模式（简称“页表映射模式”）两种。在映射地址翻译模式下，地址翻译时将优先看其能否按照直接映射模式进行地址翻译，无法进行后再通过页表映射模式进行翻译。</p>
+<p>直接映射模式通过直接映射配置窗口机制完成虚实地址翻译，简单来说就是将一大段连续的虚地址空间线性连续地映射至一段相同大小的物理地址空间。这里被翻译的一整段地址空间的大小通常远大于页表映射模式下所使用的页的大小，因此需要的配置信息更少。LoongArch中将一对直接映射关系称为一个直接映射配置窗口，共定义了四个直接映射配置窗口。四个窗口的配置信息存于CSR.DMW0~CSR.DMW3中，每个窗口的配置信息包含该窗口对应的地址范围、该窗口在哪些权限等级下可用以及该窗口上的访存操作的存储访问类型。</p>
+<p>LoongArch指令系统中的页表映射模式，顾名思义，通过页表映射完成虚实地址转换。在该模式下，合法虚拟地址的[63:PALEN]位必须与[PALEN-1]位相同，即虚地址第[PALEN-1]位之上的所有位是该位的符号扩展。</p>
+</div>
+<div id="tlb结构" class="section level4">
+<h4><span class="header-section-number">3.3.2.2</span> TLB结构</h4>
+<p>页表映射模式存储管理的核心部件是TLB。LoongArch指令系统下TLB分为两个部分，一个是所有表项的页大小相同的单一页大小TLB（Singular-Page-Size TLB，简称STLB），另一个是支持不同表项的页大小可以不同的多重页大小TLB（Multiple-Page-Size TLB，简称MTLB）。STLB的页大小可通过STLBPS控制寄存器进行配置。</p>
+<p>在虚实地址转换过程中，STLB和MTLB同时查找。相应地，软件需保证不会出现MTLB和STLB同时命中的情况，否则处理器行为将不可知。MTLB采用全相联查找表的组织形式，STLB采用多路组相联的组织形式。对于STLB，如果其有2<sup>INDEX</sup>组，且配置的页大小为2<sup>PS</sup>字节，那么硬件查询STLB的过程中，是将虚地址的<span class="math display">\[PS+INDEX:PS\]</span>位作为索引值来访问各路信息的。接下来介绍LoongArch64指令系统中TLB单个表项的结构，如图<a href="sec-privileged-ISA.html#fig:tlb-entry">3.4</a>所示。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:tlb-entry"></span>
+<img src="images/chapter3/tlb_entry.png" alt="LoongArch64指令系统中TLB表项结构" width="100%" />
+<p class="caption">
+图 3.4: LoongArch64指令系统中TLB表项结构
+</p>
+</div>
+<p>在TLB表项中，E表示该TLB表项是否存在，E为0的项在进行TLB查找时将被视为无效项；ASID标记该TLB表项属于哪个地址空间，只有CPU中当前的ASID（由CSR.ASID的ASID域决定）与该域相同时才能命中，ASID用于区分不同进程的页表；G位域表示全局域，为1时关闭ASID匹配，表示该TLB表项适用于所有的地址空间；PS表示该页表项中存放的页大小，数值是页大小的2的幂指数，有6比特宽，因此LoongArch指令系统的页大小理论上可以任意变化，处理器可以实现其中的一段范围；VPPN表示虚双页号，在LoongArch指令系统中，TLB的每项把两个连续的虚拟页映射为两个物理页；PPN为物理页号，这个域的实际有效宽度取决于该处理器支持的物理内存空间的大小；PLV表示该页表项对应的权限等级；RPLV为受限权限等级使能，当RPLV=0时，该页表项可以被任何权限等级不低于PLV的程序访问，否则，该页表项仅可以被权限等级等于PLV的程序访问；MAT控制落在该页表项所在地址空间上的访存操作的存储访问类型，如是否可通过Cache缓存等；NX为不可执行位，为1表示该页表项所在地址空间上不允许执行取指操作；NR为不可读位，为1表示该页表项所在地址空间上不允许执行load操作；D被称为“脏”（Dirty）位，为1表示该页表项所对应的地址范围内已有脏数据；V为有效位，为1表明该页表项是有效且被访问过的。</p>
+</div>
+<div id="tlb虚实地址翻译过程" class="section level4">
+<h4><span class="header-section-number">3.3.2.3</span> TLB虚实地址翻译过程</h4>
+<p>用TLB进行虚实地址翻译时，首先要进行TLB查找，将待查虚地址vaddr和CSR.ASID中ASID域的值asid一起与STLB中每一路的指定索引位置项以及MTLB中的所有项逐项进行比对。如果TLB表项的E位为1，且vaddr对应的虚双页号vppn与TLB表项的VPPN相等（该比较需要根据TLB表项对应的页大小，只比较地址中属于虚页号的部分），且TLB表项中的G位为1或者asid与TLB表项的ASID域的值相等，那么TLB查找命中该TLB表项。如果没有命中项，则触发TLB重填异常（TLBR）。如果查找到一个命中项，那么根据命中项的页大小和待查虚地址确定vaddr具体落在双页中的哪一页，从奇偶两个页表项取出对应页表项作为命中页表项。如果命中页表项的V等于0，说明该页表项无效，将触发页无效异常，具体将根据访问类型触发对应的load操作页无效异常（PIL）、store操作页无效异常（PIS）或取指操作页无效异常（PIF）。如果命中页表项的V值等于1，但是访问的权限等级不合规，将触发页权限等级不合规异常（PPI）。权限等级不合规体现为，该命中页表项的RPLV值等于0且CSR.CRMD中PLV域的值大于命中页表项中的PLV值，或是该命中页表项的RPLV=1且CSR.CRMD中PLV域的值不等于命中页表项中的PLV值。如果上述检查都合规，还要进一步根据访问类型进行检查。如果是一个load操作，但是命中页表项中的NR值等于1,将触发页不可读异常（PNR）；如果是一个store操作，但是命中页表项中的D值等于0,将触发页修改异常（PME）；如果是一个取指操作，但是命中页表项中的NX值等于1,将触发页不可执行异常（PNX）。如果找到了命中项且经检查上述异常都没有触发，那么命中项中的PPN值和MAT值将被取出，前者用于和vaddr中提取的页内偏移拼合成物理地址paddr，后者用于控制该访问操作的内存访问类型属性。</p>
+<p>当触发TLB重填异常时，除了更新CSR.CRMD外，CSR.CRMD中PLV、IE域的旧值将被记录到CSR.TLBRPRMD的相关域中，异常返回地址也将被记录到CSR.TLBRERA的PC域中<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a>，处理器还会将引发该异常的访存虚地址填入CSR.TLBRBAV的VAddr域并从该虚地址中提取虚双页号填入CSR.TLBREHI的VPPN域。当触发非TLB重填异常的其他TLB类异常时，除了像普通异常发生时一样更新CRMD、PRMD和ERA这些控制状态寄存器的相关域外，处理器还会将引发该异常的访存虚地址填入CSR.BADV的VAddr域并从该虚地址中提取虚双页号填入CSR.TLBEHI的VPPN域。</p>
+</div>
+<div id="tlb相关控制状态寄存器" class="section level4">
+<h4><span class="header-section-number">3.3.2.4</span> TLB相关控制状态寄存器</h4>
+<p>除了上面提到的TLB查找操作外，LoongArch指令系统中定义了一系列用于访问和控制TLB的控制状态寄存器，用于TLB内容的维护操作。</p>
+<p>LoongArch指令系统中用于访问和控制TLB的控制状态寄存器大致可以分为三类：第一类用于非TLB重填异常处理场景下的TLB访问和控制，包括TLBIDX、TLBEHI、TLBELO0、TLBELO1、ASID和BADV；第二类用于TLB重填异常处理场景，包括此场景下TLB访问控制专用的TLBREHI、TLBRELO0、TLBRELO1和TLBRBADV以及此场景下保存上下文专用的TLBRPRMD、TLBRERA和TLBRSAVE；第三类用于控制页表遍历过程，包括PGDL、PGDH、PGD、PWCL和PWCH。三类寄存器的具体格式如图<a href="sec-privileged-ISA.html#fig:tlb-reg">3.5</a>所示。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:tlb-reg"></span>
+<img src="images/chapter3/tlb_reg.png" alt="LoongArch指令系统TLB相关控制寄存器" width="100%" />
+<p class="caption">
+图 3.5: LoongArch指令系统TLB相关控制寄存器
+</p>
+</div>
+<p>上述寄存器中，第二类专用于TLB重填异常处理场景（CSR.TLBRERA的IsTLBR域值等于1）的控制寄存器，其设计目的是确保在非TLB重填异常处理程序执行过程中嵌套发生TLB重填异常处理后，原有异常处理程序的上下文不被破坏。例如，当发生TLB重填异常时，其异常处理返回地址将填入CSR.TLBRERA而非CSR.ERA，这样被嵌套的异常处理程序返回时所用的返回目标就不会被破坏。因硬件上只维护了这一套保存上下文专用的寄存器，所以需要确保在TLB重填异常处理过程中不再触发TLB重填异常，为此，处理器因TLB重填异常触发而陷入异常处理后，硬件会自动将虚实地址翻译模式调整为直接地址翻译模式，从而确保TLB重填异常处理程序第一条指令的取指和访存<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a>一定不会触发TLB重填异常，与此同时，软件设计人员也要保证后续TLB重填异常处理返回前的所有指令的执行不会触发TLB重填异常。</p>
+<p>在访问和控制TLB的控制状态寄存器中，ASID中的ASID域、TLBEHI中的VPPN域、TLBELO0和TLBELO1中的所有域、TLBIDX中的PS和E域所构成的集合对应了一个TLB表项中的内容（除了TLB表项中的G位域），ASID中的ASID域、TLBREHI中的VPPN和PS域、TLBRELO0和TLBRELO1中的所有域所构成的集合也对应了一个TLB表项中的内容（除了G位域和E位域）。这两套控制状态寄存器都用来完成TLB表项的读写操作，前一套用于非TLB重填异常处理场景，而后一套仅用于TLB重填异常处理场景。写TLB时把上述寄存器中各个域存放的值写到TLB某一表项（将TLBELO0和TLBELO1的G位域相与或者将TLBRELO0和TLBRELO1的G位域相与后写入TLB表项的G位域），读TLB时将TLB表项读到并写入上述寄存器中的对应域（将TLB表项的G位域的值同时填入TLBELO0和TLBELO1的G位域，或者同时填入TLBRELO0和TLBRELO1的G位域）。</p>
+<p>上述第三类寄存器的工作及使用方式将在后面<a href="sec-privileged-ISA.html#sec-tlb-ex">3.3.3</a>节中予以介绍。</p>
+</div>
+<div id="tlb访问和控制指令" class="section level4">
+<h4><span class="header-section-number">3.3.2.5</span> TLB访问和控制指令</h4>
+<p>为了对TLB进行维护，除了上面提到的TLB相关控制状态寄存器外，LoongArch指令系统中还定义了一系列TLB访问和控制指令，主要包括TLBRD、TLBWR、TLBFILL、TLBSRCH和INVTLB。</p>
+<p>TLBRD是读TLB的指令，其用CSR.TLBIDX中Index域的值作为索引读出指定TLB表项中的值并将其写入CSR.TLBEHI、CSR.TLBELO0、CSR.TLBELO1以及CSR.TLBIDX的对应域中。</p>
+<p>TLBWR是写TLB的指令，其用CSR.TLBIDX中Index域的值作为索引将CSR.TLBEHI、CSR.TLBELO0、CSR.TLBELO1以及CSR.TLBIDX相关域的值（当处于TLB重填异常处理场景时，这些值来自CSR.TLBREHI、CSR.TLBRELO0和CSR.TLBRELO1）写到对应的TLB表项中。</p>
+<p>TLBFILL是填入TLB的指令，其将CSR.TLBEHI、CSR.TLBELO0、CSR.TLBELO1以及CSR.TLBIDX相关域的值（当处于TLB重填异常处理场景时，这些值来自CSR.TLBREHI、CSR.TLBRELO0和CSR.TLBRELO1）填入TLB中的一个随机位置。该位置的具体确定过程是，首先根据被填入页表项的页大小来决定是写入STLB还是MTLB。当被填入的页表项的页大小与STLB所配置的页大小（由CSR.STLBPS中PS域的值决定）相等时将被填入STLB，否则将被填入MTLB。页表项被填入STLB的哪一路，或者被填入MTLB的哪一项，是由硬件随机选择的。</p>
+<p>TLBSRCH为TLB查找指令，其使用CSR.ASID中ASID域和CSR.TLBEHI中VPPN域的信息（当处于TLB重填异常处理场景时，这些值来自CSR.ASID和CSR.TLBREHI）去查询TLB。如果有命中项，那么将命中项的索引值写入CSR.TLBIDX的Index域，同时将其NE位置为0；如果没有命中项，那么将该寄存器的NE位置1。</p>
+<p>INVTLB指令用于无效TLB中符合条件的表项，即从通用寄存器rj和rk得到用于比较的ASID和虚地址信息，依照指令op立即数指示的无效规则，对TLB中的表项逐一进行判定，符合条件的TLB表项将被无效掉。</p>
+</div>
+</div>
+<div id="sec-tlb-ex" class="section level3">
+<h3><span class="header-section-number">3.3.3</span> TLB地址翻译相关异常的处理</h3>
+<p>上一节介绍了LoongArch指令系统中与TLB相关的硬件规范，这些设计为操作系统提供了必要的支持，而存储管理则需要CPU和操作系统紧密配合，CPU硬件在使用TLB进行地址翻译的过程中将产生相关异常，再由操作系统介入进行异常处理。本节将重点讲述这些异常处理的过程。</p>
+<div id="多级页表结构" class="section level4">
+<h4><span class="header-section-number">3.3.3.1</span> 多级页表结构</h4>
+<p>Linux操作系统通常采用多级页表结构。对于64位的LoongArch处理器，如果其有效虚地址位宽为48位，那么当Linux操作系统采用16KB页大小时，其页表为三级结构，如图<a href="sec-privileged-ISA.html#fig:page-table">3.6</a>所示。33位的虚双页号（VPPN）分为三个部分：最高11位作为一级页表（页目录表PGD）索引，一级页表中每一项保存一个二级页表（页目录表PMD）的起始地址；中间11位作为二级页表索引，二级页表中每一项保存一个三级页表（末级页表PTE）的起始地址；最低11位作为三级页表索引。每个三级页表包含2048个页表项，每个页表项管理一个物理页，大小为8字节，包括RPLV、NX、NR、PPN、W、P、G、MAT、PLV、D、V的信息。“P”和“W”两个域分别代表物理页是否存在，以及该页是否可写。这些信息虽然不填入TLB表项中，但用于页表遍历的处理过程。每个进程的PGD表基地址放在进程上下文中，内核进程进行切换时把PGD表的基地址写到CSR.PGDH的Base域中，用户进程进行切换时把PGD表的基地址写到CSR.PGDL的Base域中。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:page-table"></span>
+<img src="images/chapter3/page_table.png" alt="Linux/LoongArch三级页表结构" width="100%" />
+<p class="caption">
+图 3.6: Linux/LoongArch三级页表结构
+</p>
+</div>
+</div>
+<div id="tlb重填异常处理" class="section level4">
+<h4><span class="header-section-number">3.3.3.2</span> TLB重填异常处理</h4>
+<p>当TLB重填异常发生后，其异常处理程序的主要处理流程是根据CSR.TLBRBADV中VAddr域记录的虚地址信息以及从CSR.PGD中得到的页目录表PGD的基址信息，遍历发生TLB重填异常的进程的多级页表，从内存中取回页表项信息填入CSR.TLBRELO0和CSR.TLBRELO1的相应域中，最终用TLBFILL指令将页表项填入TLB。前面在讲述TLBFILL指令写操作过程时，提到此时写入TLB的信息除了来自CSR.TLBRELO0和CSR.TLBRELO1的各个域之外，还有来自CSR.ASID中ASID域和CSR.TLBREHI中VPPN域的信息。在TLB重填异常从发生到进行处理的过程中，软硬件都没有修改CSR.ASID中的ASID域，所以在执行TLBFILL指令时，CSR.ASID中的ASID域记录的就是发生TLB重填异常的进程对应的ASID。至于CSR.TLBREHI中的VPPN域，在TLB重填异常发生并进入异常入口时，已经被硬件填入了触发该异常的虚地址中的虚双页号信息。</p>
+<p>整个TLB重填异常处理过程中，遍历多级页表是一个较为复杂的操作，需要数十条普通访存、运算指令才能完成，而且如果遍历的页表级数增加，则需要更多的指令。LoongArch指令系统中定义了LDDIR和LDPTE指令以及与之配套的CSR.PWCL和CSR.PWCH来加速TLB重填异常处理中的页表遍历。LDDIR和LDPTE指令的功能简述如表<a href="sec-privileged-ISA.html#tab:lddir-ldpte">3.3</a>所示。</p>
+<template id="128f5640-6115-45bb-913f-f40240e6596a"><style>
+.tabwid table{
+  border-spacing:0px !important;
+  border-collapse:collapse;
+  line-height:1;
+  margin-left:auto;
+  margin-right:auto;
+  border-width: 0;
+  display: table;
+  margin-top: 1.275em;
+  margin-bottom: 1.275em;
+  border-color: transparent;
+}
+.tabwid_left table{
+  margin-left:0;
+}
+.tabwid_right table{
+  margin-right:0;
+}
+.tabwid td {
+    padding: 0;
+}
+.tabwid a {
+  text-decoration: none;
+}
+.tabwid thead {
+    background-color: transparent;
+}
+.tabwid tfoot {
+    background-color: transparent;
+}
+.tabwid table tr {
+background-color: transparent;
+}
+</style><div class="tabwid"><style>.cl-792670fc{}.cl-791d0bde{font-family:'Noto Sans CJK SC';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-791d0c1a{font-family:'Noto Sans CJK SC';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-791d2362{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-791d5e4a{width:108pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-791d5e72{width:324pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-791d5e7c{width:108pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-791d5e90{width:324pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-792670fc'>
+<caption class="Table Caption">
+<p><span id="tab:lddir-ldpte">表 3.3: </span>LoongArch软件页表遍历指令</p>
+</caption>
+<thead><tr style="overflow-wrap:break-word;"><td class="cl-791d5e7c"><p class="cl-791d2362"><span class="cl-791d0bde">指令</span></p></td><td class="cl-791d5e90"><p class="cl-791d2362"><span class="cl-791d0bde">描述</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-791d5e4a"><p class="cl-791d2362"><span class="cl-791d0c1a">LDDIR rd, rj, level</span></p></td><td class="cl-791d5e72"><p class="cl-791d2362"><span class="cl-791d0c1a">将rj寄存器中的值作为当前页目录表的基地址，同时根据CSR.TLBRBADV中VAddr域存放的TLB缺失地址以及PWCL、PWCH寄存器中定义的页目录表level索引的起始位置和位宽信息计算出当前目录页表的偏移量，两者相加作为访存地址，从内存中读取待访问页目录表/页表的基址，写入rd寄存器中。</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-791d5e7c"><p class="cl-791d2362"><span class="cl-791d0c1a">LDPTE rj, seq</span></p></td><td class="cl-791d5e90"><p class="cl-791d2362"><span class="cl-791d0c1a">将rj寄存器中的值作为末级页表的基地址，同时根据CSR.TLBRBADV中VAddr域存放的TLB缺失地址以及PWCL、PWCH寄存器中定义的末级页表索引的起始位置和位宽信息计算出末级页表的偏移量，两者相加作为访存地址，从内存中读取偶数号(seq=0)或奇数号(seq=1)页表项的内容，将其写入到TLBRELO0或TLBRELO1寄存器中。</span></p></td></tr></tbody></table></div></template>
+<div class="flextable-shadow-host" id="9dde0353-e263-4c0c-9726-2a7c798621a1"></div>
+<script>
+var dest = document.getElementById("9dde0353-e263-4c0c-9726-2a7c798621a1");
+var template = document.getElementById("128f5640-6115-45bb-913f-f40240e6596a");
+var caption = template.content.querySelector("caption");
+if(caption) {
+  caption.style.cssText = "display:block;text-align:center;";
+  var newcapt = document.createElement("p");
+  newcapt.appendChild(caption)
+  dest.parentNode.insertBefore(newcapt, dest.previousSibling);
+}
+var fantome = dest.attachShadow({mode: 'open'});
+var templateContent = template.content;
+fantome.appendChild(templateContent);
+</script>
+
+<p>CSR.PWCL和CSR.PWCH用来配置LDDIR和LDPTE指令所遍历页表的规格参数信息，其中CSR.PWCL中定义了每个页表项的宽度（PTEwidth域）以及末级页表索引的起始位置和位宽（PTbase和PTwidth域）、页目录表1索引的起始位置和位宽（Dir1_base和Dir1_width域）、页目录表2索引的起始位置和位宽（Dir2_base和Dir2_width域）,CSR.PWCH中定义了页目录表3索引的起始位置和位宽（Dir3_base和Dir3_width域）、页目录表4索引的起始位置和位宽（Dir4_base和Dir4_width域）。在Linux/LoongArch64中，当进行三级页表的遍历时，通常用Dir1_base和Dir1_width域来配置页目录表PMD索引的起始位置和位宽，用Dir3_base和Dir3_width域来配置页目录表PGD索引的起始位置和位宽，Dir2_base和Dir2_width域、Dir4_base和Dir4_width域空闲不用。</p>
+<p>使用上述指令，TLB重填异常处理程序如下。可见，遍历一个三级页表的处理过程只需要执行9条指令，且每增加一级页表只需增加一条LDDIR指令即可。</p>
+<pre><code>    csrwr   $t0, CSR_TLBRSAVE
+    csrrd   $t0, CSR_PGD
+    lddir   $t0, $t0, 3 #访问页目录表PGD
+    lddir   $t0, $t0, 1 #访问页目录表PMD
+    ldpte   $t0, 0      #取回偶数号页表项
+    ldpte   $t0, 1      #取回奇数号页表项
+    tlbfill
+    csrrd   $t0, CSR_TLBRSAVE
+    ertn</code></pre>
+</div>
+<div id="其它tlb地址翻译相关异常处理" class="section level4">
+<h4><span class="header-section-number">3.3.3.3</span> 其它TLB地址翻译相关异常处理</h4>
+<p>除了TLB重填异常外，LoongArch指令系统下常见的TLB类异常有取指操作页无效异常、load操作页无效异常、store操作页无效异常和页修改异常。这四种异常在Linux/LoongArch中处理的伪代码如下所示，其中取指操作页无效异常和load操作页无效异常的处理流程一致。伪代码中的load pte函数遍历页表并取得页表项，DO_FAULT函数在内存中分配物理页并把该页内容从对换区中取到内存，_PAGE_PRESENT、_PAGE_READ和_PAGE_WRITE分别表示相应的物理页是否在内存中、是否可读、是否可写。</p>
+<pre><code>TLB modified exception:
+
+(1)load pte;
+
+(2)if(_PAGE_WRITE) set VALID|DIRTY, reload tlb, tlbwr;
+
+else DO_FAULT(1);
+
+
+
+TLB load exception:
+
+(1)load pte;
+
+(2)if(_PAGE_PRESENT &amp;&amp; _PAGE_READ) set VALID, reload tlb, tlbwr;
+
+else DO_FAULT(0);
+
+
+
+TLB store exception:
+
+(1)load pte;
+
+(2)if(_PAGE_PRESENT &amp;&amp; _PAGE_WRITE) set VALID|DIRTY, reload tlb, tlbwr;
+
+else DO_FAULT(1);</code></pre>
+<p>下面通过一个例子来深入分析处理器、操作系统以及应用程序间的交互。图3.9是一个分配数组和对数组赋值的小程序。从程序员的角度看，这个程序很简单，但从结构和操作系统的角度看，这个程序的执行却涉及复杂的软硬件交互过程。</p>
+<pre><code>    array=(int *)malloc(0x1000);
+    for(i=0;i&lt;1024;i++) array[i]=0;</code></pre>
+<p>该用户程序首先调用内存分配函数malloc来分配大小为0x1000字节的空间，假设返回一个虚地址0x450000。操作系统在进程的vma_struct链表里记录地址范围0x450000~0x451000为已分配地址空间，并且是可读、可写的。但操作系统只是分配了一个地址范围，还没有真实分配内存的物理空间，也没有在页表里建立页表项，TLB里更没有——因为如果进程没有访问，就不用真为其分配物理空间。接下来的for循环对数组array进行赋值，用户程序写地址为0x450000的单元。store操作在完成地址运算后查找TLB，由于TLB里面没有这一表项，因此引起TLB重填异常。TLB重填异常处理程序从相应的页表位置取页表内容填入TLB，但此时这个地址空间的页表还没有有效的页表项信息。当异常处理返回用户程序重新开始访问时，TLB里面有了对应的虚地址，但是还没有物理地址。因为还没有分配具体的物理空间，所以引起store操作页无效异常。处理store操作页无效异常时，操作系统需要查找vma_struct这个结构，如果判断出这个地址已经分配，处于可写状态，这时操作系统才真正分配物理页面，并分配物理页表，将物理地址填入页表，更新TLB相应的表项。store操作页无效异常处理完成之后返回，store操作再次执行，这次就成功了，因为TLB里已经有了相应的表项，并且是有效、可写的。由于分配的页面恰好为4KB大小，且在同一页中，因此后续的地址访问都会在TLB中命中，不会再产生异常。产生两次异常而非一次完成所有操作的原因是保证TLB重填异常的处理速度。</p>
+</div>
+</div>
+</div>
+<div id="本章小结-2" class="section level2">
+<h2><span class="header-section-number">3.4</span> 本章小结</h2>
+<p>本章介绍了异常的类型和通用处理过程，并对中断这类特殊异常进行了探讨。在计算机系统中，处理器全速地执行指令，而异常与中断起到纽带的作用，使得运行级别、存储管理等机制有机结合，共同打造安全、高效、易用的系统。</p>
+<p>本章首先介绍存储管理的意义并引出对页表进行硬件加速的结构TLB；随后以LoongArch指令系统为例介绍TLB的结构和使用方法；最后介绍TLB异常的类型和处理方法。存储管理在计算机系统中得到了广泛的应用，为使存储管理系统流畅运行，硬件设计、软件设计需紧密配合，协同优化。</p>
+</div>
+<div id="习题-2" class="section level2">
+<h2><span class="header-section-number">3.5</span> 习题</h2>
+<ol style="list-style-type: decimal">
+<li>请说明LoongArch指令系统中为何要定义ERTN指令用于异常处理的返回。</li>
+<li>简述LoongArch与X86在异常处理过程中的区别。</li>
+<li>简述精确异常与非精确异常的区别，并在已有的处理器产品实现中找出一个非精确异常示例。</li>
+<li>在一台Linux/LoongArch机器上执行如下程序片段，假设数组a和b的起始地址都是8KB边界对齐的，操作系统仅支持4KB页大小。处理器中的TLB有32项，采用LRU替换算法。如果在该程序片段开始执行前数组a和b均从未被访问过，且程序片段执行过程中未发生中断，同时忽略程序代码和局部变量i所占地址空间的影响，请问执行该程序片段的过程中会发生多少次与TLB地址翻译相关的异常？</li>
+</ol>
+<p><img src="images/chapter3/memcpy_program.png" width="50%" style="display: block; margin: auto;" />
+5. 请用C语言伪代码形式描述一台64位LoongArch机器上的TLB进行访存虚实地址转换的过程（包含TLB地址翻译相关异常的判定过程）。（提示：①可以将TLB的每一项定义为一个结构体，将整个TLB视作一个结构体数组；②无须直接体现过程中电路的并发执行特性，只需要确保最终逻辑状态一致即可。）</p>
+<div style="page-break-after: always;"></div>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="2">
+<li id="fn2"><p>特指直接运行在CPU上的应用，把虚拟机及其上运行的应用作为整体看待。<a href="sec-privileged-ISA.html#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p>这里CSR_CRMD是一个宏定义，表示一个立即数，其值为CRMD控制状态寄存器的编号0x0。使用CSR_CRMD这样的宏定义是为了便于代码理解。<a href="sec-privileged-ISA.html#fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="fn4"><p>这里“CPU核”可以更为严格地理解为CPU核的指令流水线，即旨在强调这些事件并非直接由指令引发。以定时中断为例，它由一个物理上独立于CPU指令流水线而存在的定时器触发，但是这个定时器既可以放置在CPU核内部也可以放置在CPU核外部。<a href="sec-privileged-ISA.html#fnref4" class="footnote-back">↩︎</a></p></li>
+<li id="fn5"><p>尽管将ECFG控制状态寄存器中的VS域置0后，所有的异常处理程序入口地址将变为同一个，此时中断不再是向量中断形式，但这种模式并不是LoongArch指令系统推荐的方式。<a href="sec-privileged-ISA.html#fnref5" class="footnote-back">↩︎</a></p></li>
+<li id="fn6"><p>PC域不包含指令地址的最低两位，因为能触发TLB重填异常的指令的PC最低两位一定为0，所以这两位不需要记录。<a href="sec-privileged-ISA.html#fnref6" class="footnote-back">↩︎</a></p></li>
+<li id="fn7"><p>如果第一条指令即为访存指令<a href="sec-privileged-ISA.html#fnref7" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="sec-ISA.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="软硬件协同.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/clipboard.min.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/foxsen/archbase-book/edit/master/13-privileged-isa.Rmd",
+"text": "编辑"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown.pdf", "bookdown.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>第 6 章 计算机总线接口技术 | 计算机体系结构基础</title>
+  <meta name="description" content="第 6 章 计算机总线接口技术 | 计算机体系结构基础" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="第 6 章 计算机总线接口技术 | 计算机体系结构基础" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="第 6 章 计算机总线接口技术 | 计算机体系结构基础" />
+  <meta name="github-repo" content="foxsen/archbase-book" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="第 6 章 计算机总线接口技术 | 计算机体系结构基础" />
+  
+  <meta name="twitter:description" content="第 6 章 计算机总线接口技术 | 计算机体系结构基础" />
+  
+
+<meta name="author" content="胡伟武 汪文祥 苏孟豪 张福新 王焕东 章隆兵 肖俊华 刘 苏 陈新科 吴瑞阳 李晓钰 高燕萍" />
+
+
+<meta name="date" content="2021-10-27" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="计算机组成原理和结构.html"/>
+<link rel="next" href="计算机启动过程分析.html"/>
+<script src="libs/jquery/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block/empty-anchor.js"></script>
+<link href="libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections/anchor-sections.js"></script>
+<link href="libs/tabwid/tabwid.css" rel="stylesheet" />
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">计算机体系结构基础</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>丛书序言</a></li>
+<li class="chapter" data-level="" data-path="推荐序.html"><a href="推荐序.html"><i class="fa fa-check"></i>推荐序</a></li>
+<li class="chapter" data-level="" data-path="自序.html"><a href="自序.html"><i class="fa fa-check"></i>自序</a></li>
+<li class="chapter" data-level="" data-path="第三版序.html"><a href="第三版序.html"><i class="fa fa-check"></i>第三版序</a></li>
+<li class="chapter" data-level="" data-path="前言.html"><a href="前言.html"><i class="fa fa-check"></i>前言</a></li>
+<li class="chapter" data-level="" data-path="关于本书的在线版本.html"><a href="关于本书的在线版本.html"><i class="fa fa-check"></i>关于本书的在线版本</a></li>
+<li class="part"><span><b>I 引言</b></span></li>
+<li class="chapter" data-level="1" data-path="引言.html"><a href="引言.html"><i class="fa fa-check"></i><b>1</b> 引言</a><ul>
+<li class="chapter" data-level="1.1" data-path="引言.html"><a href="引言.html#计算机体系结构的研究内容"><i class="fa fa-check"></i><b>1.1</b> 计算机体系结构的研究内容</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="引言.html"><a href="引言.html#一以贯之"><i class="fa fa-check"></i><b>1.1.1</b> 一以贯之</a></li>
+<li class="chapter" data-level="1.1.2" data-path="引言.html"><a href="引言.html#什么是计算机"><i class="fa fa-check"></i><b>1.1.2</b> 什么是计算机</a></li>
+<li class="chapter" data-level="1.1.3" data-path="引言.html"><a href="引言.html#计算机的基本组成"><i class="fa fa-check"></i><b>1.1.3</b> 计算机的基本组成</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="引言.html"><a href="引言.html#衡量计算机的指标"><i class="fa fa-check"></i><b>1.2</b> 衡量计算机的指标</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="引言.html"><a href="引言.html#计算机的性能"><i class="fa fa-check"></i><b>1.2.1</b> 计算机的性能</a></li>
+<li class="chapter" data-level="1.2.2" data-path="引言.html"><a href="引言.html#计算机的价格"><i class="fa fa-check"></i><b>1.2.2</b> 计算机的价格</a></li>
+<li class="chapter" data-level="1.2.3" data-path="引言.html"><a href="引言.html#计算机的功耗"><i class="fa fa-check"></i><b>1.2.3</b> 计算机的功耗</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="引言.html"><a href="引言.html#计算机体系结构的发展"><i class="fa fa-check"></i><b>1.3</b> 计算机体系结构的发展</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="引言.html"><a href="引言.html#摩尔定律和工艺的发展"><i class="fa fa-check"></i><b>1.3.1</b> 摩尔定律和工艺的发展</a></li>
+<li class="chapter" data-level="1.3.2" data-path="引言.html"><a href="引言.html#计算机应用和体系结构"><i class="fa fa-check"></i><b>1.3.2</b> 计算机应用和体系结构</a></li>
+<li class="chapter" data-level="1.3.3" data-path="引言.html"><a href="引言.html#计算机体系结构发展"><i class="fa fa-check"></i><b>1.3.3</b> 计算机体系结构发展</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="引言.html"><a href="引言.html#体系结构设计的基本原则"><i class="fa fa-check"></i><b>1.4</b> 体系结构设计的基本原则</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="引言.html"><a href="引言.html#平衡性"><i class="fa fa-check"></i><b>1.4.1</b> 平衡性</a></li>
+<li class="chapter" data-level="1.4.2" data-path="引言.html"><a href="引言.html#局部性"><i class="fa fa-check"></i><b>1.4.2</b> 局部性</a></li>
+<li class="chapter" data-level="1.4.3" data-path="引言.html"><a href="引言.html#并行性"><i class="fa fa-check"></i><b>1.4.3</b> 并行性</a></li>
+<li class="chapter" data-level="1.4.4" data-path="引言.html"><a href="引言.html#虚拟化"><i class="fa fa-check"></i><b>1.4.4</b> 虚拟化</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="引言.html"><a href="引言.html#本章小结"><i class="fa fa-check"></i><b>1.5</b> 本章小结</a></li>
+<li class="chapter" data-level="1.6" data-path="引言.html"><a href="引言.html#习题"><i class="fa fa-check"></i><b>1.6</b> 习题</a></li>
+</ul></li>
+<li class="part"><span><b>II 指令系统结构</b></span></li>
+<li class="chapter" data-level="2" data-path="sec-ISA.html"><a href="sec-ISA.html"><i class="fa fa-check"></i><b>2</b> 指令系统</a><ul>
+<li class="chapter" data-level="2.1" data-path="sec-ISA.html"><a href="sec-ISA.html#指令系统简介"><i class="fa fa-check"></i><b>2.1</b> 指令系统简介</a></li>
+<li class="chapter" data-level="2.2" data-path="sec-ISA.html"><a href="sec-ISA.html#指令系统设计原则"><i class="fa fa-check"></i><b>2.2</b> 指令系统设计原则</a></li>
+<li class="chapter" data-level="2.3" data-path="sec-ISA.html"><a href="sec-ISA.html#指令系统发展历程"><i class="fa fa-check"></i><b>2.3</b> 指令系统发展历程</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="sec-ISA.html"><a href="sec-ISA.html#指令内容的演变"><i class="fa fa-check"></i><b>2.3.1</b> 指令内容的演变</a></li>
+<li class="chapter" data-level="2.3.2" data-path="sec-ISA.html"><a href="sec-ISA.html#存储管理的演变"><i class="fa fa-check"></i><b>2.3.2</b> 存储管理的演变</a></li>
+<li class="chapter" data-level="2.3.3" data-path="sec-ISA.html"><a href="sec-ISA.html#运行级别的演变"><i class="fa fa-check"></i><b>2.3.3</b> 运行级别的演变</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="sec-ISA.html"><a href="sec-ISA.html#指令系统组成"><i class="fa fa-check"></i><b>2.4</b> 指令系统组成</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="sec-ISA.html"><a href="sec-ISA.html#地址空间"><i class="fa fa-check"></i><b>2.4.1</b> 地址空间</a></li>
+<li class="chapter" data-level="2.4.2" data-path="sec-ISA.html"><a href="sec-ISA.html#操作数"><i class="fa fa-check"></i><b>2.4.2</b> 操作数</a></li>
+<li class="chapter" data-level="2.4.3" data-path="sec-ISA.html"><a href="sec-ISA.html#指令操作和编码"><i class="fa fa-check"></i><b>2.4.3</b> 指令操作和编码</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="sec-ISA.html"><a href="sec-ISA.html#risc指令集比较"><i class="fa fa-check"></i><b>2.5</b> RISC指令集比较</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="sec-ISA.html"><a href="sec-ISA.html#指令格式比较"><i class="fa fa-check"></i><b>2.5.1</b> 指令格式比较</a></li>
+<li class="chapter" data-level="2.5.2" data-path="sec-ISA.html"><a href="sec-ISA.html#寻址方式比较"><i class="fa fa-check"></i><b>2.5.2</b> 寻址方式比较</a></li>
+<li class="chapter" data-level="2.5.3" data-path="sec-ISA.html"><a href="sec-ISA.html#公共指令功能"><i class="fa fa-check"></i><b>2.5.3</b> 公共指令功能</a></li>
+<li class="chapter" data-level="2.5.4" data-path="sec-ISA.html"><a href="sec-ISA.html#不同指令系统的特色"><i class="fa fa-check"></i><b>2.5.4</b> 不同指令系统的特色</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="sec-ISA.html"><a href="sec-ISA.html#c语言的机器表示"><i class="fa fa-check"></i><b>2.6</b> C语言的机器表示</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="sec-ISA.html"><a href="sec-ISA.html#过程调用"><i class="fa fa-check"></i><b>2.6.1</b> 过程调用</a></li>
+<li class="chapter" data-level="2.6.2" data-path="sec-ISA.html"><a href="sec-ISA.html#流程控制语句"><i class="fa fa-check"></i><b>2.6.2</b> 流程控制语句</a></li>
+<li class="chapter" data-level="2.6.3" data-path="sec-ISA.html"><a href="sec-ISA.html#循环语句"><i class="fa fa-check"></i><b>2.6.3</b> 循环语句</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="sec-ISA.html"><a href="sec-ISA.html#本章小结-1"><i class="fa fa-check"></i><b>2.7</b> 本章小结</a></li>
+<li class="chapter" data-level="2.8" data-path="sec-ISA.html"><a href="sec-ISA.html#习题-1"><i class="fa fa-check"></i><b>2.8</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html"><i class="fa fa-check"></i><b>3</b> 特权指令系统</a><ul>
+<li class="chapter" data-level="3.1" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#特权指令系统简介"><i class="fa fa-check"></i><b>3.1</b> 特权指令系统简介</a></li>
+<li class="chapter" data-level="3.2" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#sec-exception"><i class="fa fa-check"></i><b>3.2</b> 异常与中断</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#异常分类"><i class="fa fa-check"></i><b>3.2.1</b> 异常分类</a></li>
+<li class="chapter" data-level="3.2.2" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#异常处理"><i class="fa fa-check"></i><b>3.2.2</b> 异常处理</a></li>
+<li class="chapter" data-level="3.2.3" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#中断"><i class="fa fa-check"></i><b>3.2.3</b> 中断</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#sec-memory-management"><i class="fa fa-check"></i><b>3.3</b> 存储管理</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#存储管理的原理"><i class="fa fa-check"></i><b>3.3.1</b> 存储管理的原理</a></li>
+<li class="chapter" data-level="3.3.2" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#tlb的结构和使用"><i class="fa fa-check"></i><b>3.3.2</b> TLB的结构和使用</a></li>
+<li class="chapter" data-level="3.3.3" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#sec-tlb-ex"><i class="fa fa-check"></i><b>3.3.3</b> TLB地址翻译相关异常的处理</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#本章小结-2"><i class="fa fa-check"></i><b>3.4</b> 本章小结</a></li>
+<li class="chapter" data-level="3.5" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#习题-2"><i class="fa fa-check"></i><b>3.5</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="软硬件协同.html"><a href="软硬件协同.html"><i class="fa fa-check"></i><b>4</b> 软硬件协同</a><ul>
+<li class="chapter" data-level="4.1" data-path="软硬件协同.html"><a href="软硬件协同.html#应用程序二进制接口"><i class="fa fa-check"></i><b>4.1</b> 应用程序二进制接口</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="软硬件协同.html"><a href="软硬件协同.html#寄存器约定"><i class="fa fa-check"></i><b>4.1.1</b> 寄存器约定</a></li>
+<li class="chapter" data-level="4.1.2" data-path="软硬件协同.html"><a href="软硬件协同.html#函数调用约定"><i class="fa fa-check"></i><b>4.1.2</b> 函数调用约定</a></li>
+<li class="chapter" data-level="4.1.3" data-path="软硬件协同.html"><a href="软硬件协同.html#进程虚拟地址空间"><i class="fa fa-check"></i><b>4.1.3</b> 进程虚拟地址空间</a></li>
+<li class="chapter" data-level="4.1.4" data-path="软硬件协同.html"><a href="软硬件协同.html#栈帧布局"><i class="fa fa-check"></i><b>4.1.4</b> 栈帧布局</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="软硬件协同.html"><a href="软硬件协同.html#六种常见的上下文切换场景"><i class="fa fa-check"></i><b>4.2</b> 六种常见的上下文切换场景</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="软硬件协同.html"><a href="软硬件协同.html#函数调用"><i class="fa fa-check"></i><b>4.2.1</b> 函数调用</a></li>
+<li class="chapter" data-level="4.2.2" data-path="软硬件协同.html"><a href="软硬件协同.html#异常和中断"><i class="fa fa-check"></i><b>4.2.2</b> 异常和中断</a></li>
+<li class="chapter" data-level="4.2.3" data-path="软硬件协同.html"><a href="软硬件协同.html#系统调用"><i class="fa fa-check"></i><b>4.2.3</b> 系统调用</a></li>
+<li class="chapter" data-level="4.2.4" data-path="软硬件协同.html"><a href="软硬件协同.html#进程"><i class="fa fa-check"></i><b>4.2.4</b> 进程</a></li>
+<li class="chapter" data-level="4.2.5" data-path="软硬件协同.html"><a href="软硬件协同.html#线程"><i class="fa fa-check"></i><b>4.2.5</b> 线程</a></li>
+<li class="chapter" data-level="4.2.6" data-path="软硬件协同.html"><a href="软硬件协同.html#虚拟机"><i class="fa fa-check"></i><b>4.2.6</b> 虚拟机</a></li>
+<li class="chapter" data-level="4.2.7" data-path="软硬件协同.html"><a href="软硬件协同.html#六种上下文切换场景的对比"><i class="fa fa-check"></i><b>4.2.7</b> 六种上下文切换场景的对比</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="软硬件协同.html"><a href="软硬件协同.html#同步机制"><i class="fa fa-check"></i><b>4.3</b> 同步机制</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="软硬件协同.html"><a href="软硬件协同.html#基于互斥的同步机制"><i class="fa fa-check"></i><b>4.3.1</b> 基于互斥的同步机制</a></li>
+<li class="chapter" data-level="4.3.2" data-path="软硬件协同.html"><a href="软硬件协同.html#非阻塞的同步机制"><i class="fa fa-check"></i><b>4.3.2</b> 非阻塞的同步机制</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="软硬件协同.html"><a href="软硬件协同.html#本章小结-3"><i class="fa fa-check"></i><b>4.4</b> 本章小结</a></li>
+<li class="chapter" data-level="4.5" data-path="软硬件协同.html"><a href="软硬件协同.html#习题-3"><i class="fa fa-check"></i><b>4.5</b> 习题</a></li>
+</ul></li>
+<li class="part"><span><b>III 计算机硬件结构</b></span></li>
+<li class="chapter" data-level="5" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html"><i class="fa fa-check"></i><b>5</b> 计算机组成原理和结构</a><ul>
+<li class="chapter" data-level="5.1" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#冯诺依曼结构"><i class="fa fa-check"></i><b>5.1</b> 冯·诺依曼结构</a></li>
+<li class="chapter" data-level="5.2" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#计算机的组成部件"><i class="fa fa-check"></i><b>5.2</b> 计算机的组成部件</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#运算器"><i class="fa fa-check"></i><b>5.2.1</b> 运算器</a></li>
+<li class="chapter" data-level="5.2.2" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#控制器"><i class="fa fa-check"></i><b>5.2.2</b> 控制器</a></li>
+<li class="chapter" data-level="5.2.3" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#存储器"><i class="fa fa-check"></i><b>5.2.3</b> 存储器</a></li>
+<li class="chapter" data-level="5.2.4" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#输入输出设备"><i class="fa fa-check"></i><b>5.2.4</b> 输入/输出设备</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#计算机系统硬件结构发展"><i class="fa fa-check"></i><b>5.3</b> 计算机系统硬件结构发展</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#cpu-gpu-北桥-南桥四片结构"><i class="fa fa-check"></i><b>5.3.1</b> CPU-GPU-北桥-南桥四片结构</a></li>
+<li class="chapter" data-level="5.3.2" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#cpu-北桥-南桥三片结构"><i class="fa fa-check"></i><b>5.3.2</b> CPU-北桥-南桥三片结构</a></li>
+<li class="chapter" data-level="5.3.3" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#cpu-弱北桥-南桥三片结构"><i class="fa fa-check"></i><b>5.3.3</b> CPU-弱北桥-南桥三片结构</a></li>
+<li class="chapter" data-level="5.3.4" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#cpu-南桥两片结构"><i class="fa fa-check"></i><b>5.3.4</b> CPU-南桥两片结构</a></li>
+<li class="chapter" data-level="5.3.5" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#soc单片结构"><i class="fa fa-check"></i><b>5.3.5</b> SoC单片结构</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#处理器和io设备间的通信"><i class="fa fa-check"></i><b>5.4</b> 处理器和IO设备间的通信</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#io寄存器寻址"><i class="fa fa-check"></i><b>5.4.1</b> IO寄存器寻址</a></li>
+<li class="chapter" data-level="5.4.2" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#处理器和io设备之间的同步"><i class="fa fa-check"></i><b>5.4.2</b> 处理器和IO设备之间的同步</a></li>
+<li class="chapter" data-level="5.4.3" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#存储器和io设备之间的数据传送"><i class="fa fa-check"></i><b>5.4.3</b> 存储器和IO设备之间的数据传送</a></li>
+<li class="chapter" data-level="5.4.4" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#龙芯3a30007a1000桥片系统中的cpugpudc通信"><i class="fa fa-check"></i><b>5.4.4</b> 龙芯3A3000+7A1000桥片系统中的CPU、GPU、DC通信</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#本章小结-4"><i class="fa fa-check"></i><b>5.5</b> 本章小结</a></li>
+<li class="chapter" data-level="5.6" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#习题-4"><i class="fa fa-check"></i><b>5.6</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html"><i class="fa fa-check"></i><b>6</b> 计算机总线接口技术</a><ul>
+<li class="chapter" data-level="6.1" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#总线概述"><i class="fa fa-check"></i><b>6.1</b> 总线概述</a></li>
+<li class="chapter" data-level="6.2" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#总线分类"><i class="fa fa-check"></i><b>6.2</b> 总线分类</a></li>
+<li class="chapter" data-level="6.3" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#片上总线"><i class="fa fa-check"></i><b>6.3</b> 片上总线</a></li>
+<li class="chapter" data-level="6.4" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#内存总线"><i class="fa fa-check"></i><b>6.4</b> 内存总线</a></li>
+<li class="chapter" data-level="6.5" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#系统总线"><i class="fa fa-check"></i><b>6.5</b> 系统总线</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#hypertransport总线"><i class="fa fa-check"></i><b>6.5.1</b> HyperTransport总线</a></li>
+<li class="chapter" data-level="6.5.2" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#ht包格式"><i class="fa fa-check"></i><b>6.5.2</b> HT包格式</a></li>
+<li class="chapter" data-level="6.5.3" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#设备总线"><i class="fa fa-check"></i><b>6.5.3</b> 设备总线</a></li>
+<li class="chapter" data-level="6.5.4" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#pcie总线"><i class="fa fa-check"></i><b>6.5.4</b> PCIE总线</a></li>
+<li class="chapter" data-level="6.5.5" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#pcie包格式"><i class="fa fa-check"></i><b>6.5.5</b> PCIE包格式</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#本章小结-5"><i class="fa fa-check"></i><b>6.6</b> 本章小结</a></li>
+<li class="chapter" data-level="6.7" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#习题-5"><i class="fa fa-check"></i><b>6.7</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html"><i class="fa fa-check"></i><b>7</b> 计算机启动过程分析</a><ul>
+<li class="chapter" data-level="7.1" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#处理器核初始化"><i class="fa fa-check"></i><b>7.1</b> 处理器核初始化</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#sec-cpu-reset"><i class="fa fa-check"></i><b>7.1.1</b> 处理器复位</a></li>
+<li class="chapter" data-level="7.1.2" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#调试接口初始化"><i class="fa fa-check"></i><b>7.1.2</b> 调试接口初始化</a></li>
+<li class="chapter" data-level="7.1.3" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#tlb初始化"><i class="fa fa-check"></i><b>7.1.3</b> TLB初始化</a></li>
+<li class="chapter" data-level="7.1.4" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#cache初始化"><i class="fa fa-check"></i><b>7.1.4</b> Cache初始化</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#总线接口初始化"><i class="fa fa-check"></i><b>7.2</b> 总线接口初始化</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#内存初始化"><i class="fa fa-check"></i><b>7.2.1</b> 内存初始化</a></li>
+<li class="chapter" data-level="7.2.2" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#io总线初始化"><i class="fa fa-check"></i><b>7.2.2</b> IO总线初始化</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#设备的探测及驱动加载"><i class="fa fa-check"></i><b>7.3</b> 设备的探测及驱动加载</a></li>
+<li class="chapter" data-level="7.4" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#多核启动过程"><i class="fa fa-check"></i><b>7.4</b> 多核启动过程</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#初始化时的多核协同"><i class="fa fa-check"></i><b>7.4.1</b> 初始化时的多核协同</a></li>
+<li class="chapter" data-level="7.4.2" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#操作系统启动时的多核唤醒"><i class="fa fa-check"></i><b>7.4.2</b> 操作系统启动时的多核唤醒</a></li>
+<li class="chapter" data-level="7.4.3" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#核间同步与通信"><i class="fa fa-check"></i><b>7.4.3</b> 核间同步与通信</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#本章小结-6"><i class="fa fa-check"></i><b>7.5</b> 本章小结</a></li>
+<li class="chapter" data-level="7.6" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#习题-6"><i class="fa fa-check"></i><b>7.6</b> 习题</a></li>
+</ul></li>
+<li class="part"><span><b>IV Part IV CPU的微结构</b></span></li>
+<li class="chapter" data-level="8" data-path="运算器设计.html"><a href="运算器设计.html"><i class="fa fa-check"></i><b>8</b> 运算器设计</a><ul>
+<li class="chapter" data-level="8.1" data-path="运算器设计.html"><a href="运算器设计.html#二进制与逻辑电路"><i class="fa fa-check"></i><b>8.1</b> 二进制与逻辑电路</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="运算器设计.html"><a href="运算器设计.html#sec-number-presentation"><i class="fa fa-check"></i><b>8.1.1</b> 计算机中数的表示</a></li>
+<li class="chapter" data-level="8.1.2" data-path="运算器设计.html"><a href="运算器设计.html#sec-MOS-principle"><i class="fa fa-check"></i><b>8.1.2</b> MOS晶体管工作原理</a></li>
+<li class="chapter" data-level="8.1.3" data-path="运算器设计.html"><a href="运算器设计.html#cmos逻辑电路"><i class="fa fa-check"></i><b>8.1.3</b> CMOS逻辑电路</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="运算器设计.html"><a href="运算器设计.html#简单运算器设计"><i class="fa fa-check"></i><b>8.2</b> 简单运算器设计</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="运算器设计.html"><a href="运算器设计.html#定点补码加法器"><i class="fa fa-check"></i><b>8.2.1</b> 定点补码加法器</a></li>
+<li class="chapter" data-level="8.2.2" data-path="运算器设计.html"><a href="运算器设计.html#减法运算实现"><i class="fa fa-check"></i><b>8.2.2</b> 减法运算实现</a></li>
+<li class="chapter" data-level="8.2.3" data-path="运算器设计.html"><a href="运算器设计.html#比较运算实现"><i class="fa fa-check"></i><b>8.2.3</b> 比较运算实现</a></li>
+<li class="chapter" data-level="8.2.4" data-path="运算器设计.html"><a href="运算器设计.html#移位器"><i class="fa fa-check"></i><b>8.2.4</b> 移位器</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="运算器设计.html"><a href="运算器设计.html#定点补码乘法器"><i class="fa fa-check"></i><b>8.3</b> 定点补码乘法器</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="运算器设计.html"><a href="运算器设计.html#补码乘法器"><i class="fa fa-check"></i><b>8.3.1</b> 补码乘法器</a></li>
+<li class="chapter" data-level="8.3.2" data-path="运算器设计.html"><a href="运算器设计.html#booth乘法器"><i class="fa fa-check"></i><b>8.3.2</b> Booth乘法器</a></li>
+<li class="chapter" data-level="8.3.3" data-path="运算器设计.html"><a href="运算器设计.html#华莱士树"><i class="fa fa-check"></i><b>8.3.3</b> 华莱士树</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="运算器设计.html"><a href="运算器设计.html#本章小结-7"><i class="fa fa-check"></i><b>8.4</b> 本章小结</a></li>
+<li class="chapter" data-level="8.5" data-path="运算器设计.html"><a href="运算器设计.html#习题-7"><i class="fa fa-check"></i><b>8.5</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="指令流水线.html"><a href="指令流水线.html"><i class="fa fa-check"></i><b>9</b> 指令流水线</a><ul>
+<li class="chapter" data-level="9.1" data-path="指令流水线.html"><a href="指令流水线.html#单周期处理器"><i class="fa fa-check"></i><b>9.1</b> 单周期处理器</a></li>
+<li class="chapter" data-level="9.2" data-path="指令流水线.html"><a href="指令流水线.html#sec-pipeline-cpu"><i class="fa fa-check"></i><b>9.2</b> 流水线处理器</a></li>
+<li class="chapter" data-level="9.3" data-path="指令流水线.html"><a href="指令流水线.html#sec-hazard"><i class="fa fa-check"></i><b>9.3</b> 指令相关和流水线冲突</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="指令流水线.html"><a href="指令流水线.html#数据相关引发的冲突及解决办法"><i class="fa fa-check"></i><b>9.3.1</b> 数据相关引发的冲突及解决办法</a></li>
+<li class="chapter" data-level="9.3.2" data-path="指令流水线.html"><a href="指令流水线.html#sec-control-hazard"><i class="fa fa-check"></i><b>9.3.2</b> 控制相关引发冲突及解决方法</a></li>
+<li class="chapter" data-level="9.3.3" data-path="指令流水线.html"><a href="指令流水线.html#结构相关引发冲突及解决办法"><i class="fa fa-check"></i><b>9.3.3</b> 结构相关引发冲突及解决办法</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="指令流水线.html"><a href="指令流水线.html#sec-precise-exception"><i class="fa fa-check"></i><b>9.4</b> 流水线与异常处理</a></li>
+<li class="chapter" data-level="9.5" data-path="指令流水线.html"><a href="指令流水线.html#提高流水线效率的技术"><i class="fa fa-check"></i><b>9.5</b> 提高流水线效率的技术</a><ul>
+<li class="chapter" data-level="9.5.1" data-path="指令流水线.html"><a href="指令流水线.html#多发射数据通路"><i class="fa fa-check"></i><b>9.5.1</b> 多发射数据通路</a></li>
+<li class="chapter" data-level="9.5.2" data-path="指令流水线.html"><a href="指令流水线.html#sec-dynamic"><i class="fa fa-check"></i><b>9.5.2</b> 动态调度</a></li>
+<li class="chapter" data-level="9.5.3" data-path="指令流水线.html"><a href="指令流水线.html#sec-branch-predict"><i class="fa fa-check"></i><b>9.5.3</b> 转移预测</a></li>
+<li class="chapter" data-level="9.5.4" data-path="指令流水线.html"><a href="指令流水线.html#高速缓存"><i class="fa fa-check"></i><b>9.5.4</b> 高速缓存</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="指令流水线.html"><a href="指令流水线.html#本章小结-8"><i class="fa fa-check"></i><b>9.6</b> 本章小结</a></li>
+<li class="chapter" data-level="9.7" data-path="指令流水线.html"><a href="指令流水线.html#习题-8"><i class="fa fa-check"></i><b>9.7</b> 习题</a></li>
+</ul></li>
+<li class="part"><span><b>V 并行处理结构</b></span></li>
+<li class="chapter" data-level="10" data-path="并行编程基础.html"><a href="并行编程基础.html"><i class="fa fa-check"></i><b>10</b> 并行编程基础</a><ul>
+<li class="chapter" data-level="10.1" data-path="并行编程基础.html"><a href="并行编程基础.html#程序的并行行为"><i class="fa fa-check"></i><b>10.1</b> 程序的并行行为</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="并行编程基础.html"><a href="并行编程基础.html#指令级并行性"><i class="fa fa-check"></i><b>10.1.1</b> 指令级并行性</a></li>
+<li class="chapter" data-level="10.1.2" data-path="并行编程基础.html"><a href="并行编程基础.html#数据级并行性"><i class="fa fa-check"></i><b>10.1.2</b> 数据级并行性</a></li>
+<li class="chapter" data-level="10.1.3" data-path="并行编程基础.html"><a href="并行编程基础.html#任务级并行性"><i class="fa fa-check"></i><b>10.1.3</b> 任务级并行性</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="并行编程基础.html"><a href="并行编程基础.html#并行编程模型"><i class="fa fa-check"></i><b>10.2</b> 并行编程模型</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="并行编程基础.html"><a href="并行编程基础.html#单任务数据并行模型"><i class="fa fa-check"></i><b>10.2.1</b> 单任务数据并行模型</a></li>
+<li class="chapter" data-level="10.2.2" data-path="并行编程基础.html"><a href="并行编程基础.html#多任务共享存储编程模型"><i class="fa fa-check"></i><b>10.2.2</b> 多任务共享存储编程模型</a></li>
+<li class="chapter" data-level="10.2.3" data-path="并行编程基础.html"><a href="并行编程基础.html#多任务消息传递编程模型"><i class="fa fa-check"></i><b>10.2.3</b> 多任务消息传递编程模型</a></li>
+<li class="chapter" data-level="10.2.4" data-path="并行编程基础.html"><a href="并行编程基础.html#共享存储与消息传递编程模型的编程复杂度"><i class="fa fa-check"></i><b>10.2.4</b> 共享存储与消息传递编程模型的编程复杂度</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="并行编程基础.html"><a href="并行编程基础.html#典型并行编程环境"><i class="fa fa-check"></i><b>10.3</b> 典型并行编程环境</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="并行编程基础.html"><a href="并行编程基础.html#数据并行simd编程"><i class="fa fa-check"></i><b>10.3.1</b> 数据并行SIMD编程</a></li>
+<li class="chapter" data-level="10.3.2" data-path="并行编程基础.html"><a href="并行编程基础.html#posix编程标准"><i class="fa fa-check"></i><b>10.3.2</b> POSIX编程标准</a></li>
+<li class="chapter" data-level="10.3.3" data-path="并行编程基础.html"><a href="并行编程基础.html#openmp标准"><i class="fa fa-check"></i><b>10.3.3</b> OpenMP标准</a></li>
+<li class="chapter" data-level="10.3.4" data-path="并行编程基础.html"><a href="并行编程基础.html#消息传递编程接口"><i class="fa fa-check"></i><b>10.3.4</b> 消息传递编程接口</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="并行编程基础.html"><a href="并行编程基础.html#习题-9"><i class="fa fa-check"></i><b>10.4</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="多核处理结构.html"><a href="多核处理结构.html"><i class="fa fa-check"></i><b>11</b> 多核处理结构</a><ul>
+<li class="chapter" data-level="11.1" data-path="多核处理结构.html"><a href="多核处理结构.html#多核处理器的发展演化"><i class="fa fa-check"></i><b>11.1</b> 多核处理器的发展演化</a></li>
+<li class="chapter" data-level="11.2" data-path="多核处理结构.html"><a href="多核处理结构.html#多核处理器的访存结构"><i class="fa fa-check"></i><b>11.2</b> 多核处理器的访存结构</a><ul>
+<li class="chapter" data-level="11.2.1" data-path="多核处理结构.html"><a href="多核处理结构.html#通用多核处理器的片上cache结构"><i class="fa fa-check"></i><b>11.2.1</b> 通用多核处理器的片上Cache结构</a></li>
+<li class="chapter" data-level="11.2.2" data-path="多核处理结构.html"><a href="多核处理结构.html#存储一致性模型"><i class="fa fa-check"></i><b>11.2.2</b> 存储一致性模型</a></li>
+<li class="chapter" data-level="11.2.3" data-path="多核处理结构.html"><a href="多核处理结构.html#cache一致性协议"><i class="fa fa-check"></i><b>11.2.3</b> Cache一致性协议</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="多核处理结构.html"><a href="多核处理结构.html#多核处理器的互连结构"><i class="fa fa-check"></i><b>11.3</b> 多核处理器的互连结构</a></li>
+<li class="chapter" data-level="11.4" data-path="多核处理结构.html"><a href="多核处理结构.html#多核处理器的同步机制"><i class="fa fa-check"></i><b>11.4</b> 多核处理器的同步机制</a></li>
+<li class="chapter" data-level="11.5" data-path="多核处理结构.html"><a href="多核处理结构.html#典型多核处理器"><i class="fa fa-check"></i><b>11.5</b> 典型多核处理器</a><ul>
+<li class="chapter" data-level="11.5.1" data-path="多核处理结构.html"><a href="多核处理结构.html#龙芯3a5000处理器"><i class="fa fa-check"></i><b>11.5.1</b> 龙芯3A5000处理器</a></li>
+<li class="chapter" data-level="11.5.2" data-path="多核处理结构.html"><a href="多核处理结构.html#intel-sandybridge架构"><i class="fa fa-check"></i><b>11.5.2</b> Intel SandyBridge架构</a></li>
+<li class="chapter" data-level="11.5.3" data-path="多核处理结构.html"><a href="多核处理结构.html#ibm-cell处理器"><i class="fa fa-check"></i><b>11.5.3</b> IBM Cell处理器</a></li>
+<li class="chapter" data-level="11.5.4" data-path="多核处理结构.html"><a href="多核处理结构.html#nvidia-gpu"><i class="fa fa-check"></i><b>11.5.4</b> NVIDIA GPU</a></li>
+<li class="chapter" data-level="11.5.5" data-path="多核处理结构.html"><a href="多核处理结构.html#tile64处理器"><i class="fa fa-check"></i><b>11.5.5</b> Tile64处理器</a></li>
+</ul></li>
+<li class="chapter" data-level="11.6" data-path="多核处理结构.html"><a href="多核处理结构.html#本章小结-9"><i class="fa fa-check"></i><b>11.6</b> 本章小结</a></li>
+<li class="chapter" data-level="11.7" data-path="多核处理结构.html"><a href="多核处理结构.html#习题-10"><i class="fa fa-check"></i><b>11.7</b> 习题</a></li>
+</ul></li>
+<li class="part"><span><b>VI 系统性能评价与分析</b></span></li>
+<li class="chapter" data-level="12" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html"><i class="fa fa-check"></i><b>12</b> 计算机系统性能评价与性能分析</a><ul>
+<li class="chapter" data-level="12.1" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#计算机系统性能评价指标"><i class="fa fa-check"></i><b>12.1</b> 计算机系统性能评价指标</a><ul>
+<li class="chapter" data-level="12.1.1" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#计算机系统常用性能评价指标"><i class="fa fa-check"></i><b>12.1.1</b> 计算机系统常用性能评价指标</a></li>
+<li class="chapter" data-level="12.1.2" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#并行系统的性能评价指标"><i class="fa fa-check"></i><b>12.1.2</b> 并行系统的性能评价指标</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#测试程序集"><i class="fa fa-check"></i><b>12.2</b> 测试程序集</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#微基准测试程序"><i class="fa fa-check"></i><b>12.2.1</b> 微基准测试程序</a></li>
+<li class="chapter" data-level="12.2.2" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#spec-cpu基准测试程序"><i class="fa fa-check"></i><b>12.2.2</b> SPEC CPU基准测试程序</a></li>
+<li class="chapter" data-level="12.2.3" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#并行系统基准测试程序"><i class="fa fa-check"></i><b>12.2.3</b> 并行系统基准测试程序</a></li>
+<li class="chapter" data-level="12.2.4" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#其他常见的基准测试程序集"><i class="fa fa-check"></i><b>12.2.4</b> 其他常见的基准测试程序集</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#性能分析方法"><i class="fa fa-check"></i><b>12.3</b> 性能分析方法</a><ul>
+<li class="chapter" data-level="12.3.1" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#分析建模的方法"><i class="fa fa-check"></i><b>12.3.1</b> 分析建模的方法</a></li>
+<li class="chapter" data-level="12.3.2" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#模拟建模的方法和模拟器"><i class="fa fa-check"></i><b>12.3.2</b> 模拟建模的方法和模拟器</a></li>
+<li class="chapter" data-level="12.3.3" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#性能测量的方法"><i class="fa fa-check"></i><b>12.3.3</b> 性能测量的方法</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#性能测试和分析实例"><i class="fa fa-check"></i><b>12.4</b> 性能测试和分析实例</a><ul>
+<li class="chapter" data-level="12.4.1" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#spec-cpu基准测试程序的分值对比"><i class="fa fa-check"></i><b>12.4.1</b> SPEC CPU基准测试程序的分值对比</a></li>
+<li class="chapter" data-level="12.4.2" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#微结构相关统计数据"><i class="fa fa-check"></i><b>12.4.2</b> 微结构相关统计数据</a></li>
+<li class="chapter" data-level="12.4.3" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#基础性能参数"><i class="fa fa-check"></i><b>12.4.3</b> 基础性能参数</a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#本章小结-10"><i class="fa fa-check"></i><b>12.5</b> 本章小结</a></li>
+<li class="chapter" data-level="12.6" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#习题-11"><i class="fa fa-check"></i><b>12.6</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="总结.html"><a href="总结.html"><i class="fa fa-check"></i>总结</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>参考文献</a></li>
+<li class="divider"></li>
+<li><a href="http://www.loongson.cn" target="blank">本书电子版由龙芯中科赞助提供</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">计算机体系结构基础</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="计算机总线接口技术" class="section level1">
+<h1><span class="header-section-number">第 6 章</span> 计算机总线接口技术</h1>
+<p>通过上一章的学习，我们知道一个完整的计算机系统包含多种组成部件。这些组成部件，一般不是由单个公司独立生产的，而是由不同的公司共同生产完成的，每个公司往往只能生产这些部件中的一种或者少数几种。按照经济学原理，分工是促进社会生产力发展的重要原因和方法。现代计算机的飞速发展也同样得益于社会化的分工。分工就要求人们相互协调，共同遵循一定的规则规范。计算机的生产也是如此，计算机内部包含的多个部件往往是由不同的公司生产的。为了让这些不同的部件组合在一起可以正常工作，必须制定一套大家共同遵守的规格和协议，这就是接口或者总线。按照中文的含义，接口是指两个对象连接的部分，而总线是指对象之间传输信息的通道。本文对接口和总线的概念不做语义上的区分，因为使用某种接口，必然需要使用与之相对应的总线；而总线也必然离不开接口，否则就无法使用。本文使用总线时，也包含与之相对应的接口；使用接口时，也包含与之相对应的总线。比如，提到USB时，既包含USB总线，也包含USB接口。</p>
+<p>总线的应用和标准化，降低了计算机设计和应用的复杂度。有了标准化的接口，厂家生产出来的产品只需要接口符合规范，就可以直接与其他厂家生产的产品配合使用，而不必设计所有的硬件。比如，希捷公司可以只负责生产硬盘，金士顿公司可以只负责生产内存条。总线的标准化，促进了计算机行业的分工合作，也极大地促进了计算机产业的发展。同时，标准化的总线也降低了计算机使用的成本，提高了用户使用的方便性。如果不同厂家生产的产品接口规格都不一样，那么用户使用起来就会非常不方便。例如，在手机还没有发展到智能机的时代，人们可能需要一个用来打电话的手机，一个听音乐的MP3，以及一个拍照的卡片相机。由于没有统一的标准，这些电子产品的充电接口往往是不一样的。在外出或者出差的时候，人们就需要携带各种各样的充电器，非常不方便。</p>
+<p>总线技术涉及计算机的很多方面，除了物理链路外，还会涉及体系结构方面的内容。总线是不断演进发展的，目前应用的总线大都是在前代总线的基础上改进优化而来的，而且还在不断地改进。</p>
+<p>本章首先对总线的概念进行一个简单介绍，然后对当代计算机使用的总线进行简单分类，并按照一种分类原则分别介绍几种常用总线。通过本章的学习，读者可以对计算机的常见总线有一个基本的了解。</p>
+<div id="总线概述" class="section level2">
+<h2><span class="header-section-number">6.1</span> 总线概述</h2>
+<p>总线的本质作用是完成数据交换。总线用于将两个或两个以上的部件连接起来，使得它们之间可以进行数据交换，或者说通信。总线含义很广，它不仅仅是指用于数据交换的通道，有时也包含了软件硬件架构。比如PCI总线、USB总线，它们不仅仅是指主板上的某个接口，还包含了与之相对应的整套硬件模型、软件架构。</p>
+<p>总线的含义可以分为以下几个层级：</p>
+<p>1）机械层。接口的外形、尺寸、信号排列、连接线的长度范围等。</p>
+<p>2）电气层。信号描述、电源电压、电平标准、信号质量等。</p>
+<p>3）协议层。信号时序、握手规范、命令格式、出错处理等。</p>
+<p>4）架构层。硬件模型、软件架构等。</p>
+<p>不同的总线包含的内容也有所不同，有的总线包含以上所有的层级，有的总线可能只包含部分层级。</p>
+</div>
+<div id="总线分类" class="section level2">
+<h2><span class="header-section-number">6.2</span> 总线分类</h2>
+<p>可以从多个角度对总线进行分类。</p>
+<p>按照数据传递的方向，总线可以分为单向总线和双向总线。单向总线是指数据只能从一端传递到另一端，而不能反向传递。单向总线也称为单工总线。双向总线是指数据可以在两个方向上传递，既可以从A端传递到B端，也可以从B端传递到A端。双向总线也称为双工总线。双工总线又可分为半双工总线和全双工总线。半双工总线是指在一个时间段内，数据只能从一个方向传送到另一个方向，数据不能同时在两个方向传递。全双工总线是指数据可以同时在两个方向传递。全双工总线包含两组数据线，分别用于两个方向的数据传输。</p>
+<p>按照总线使用的信号类型，总线可以分为并行总线和串行总线。并行总线包含多位传输线，在同一时刻可以传输多位数据，而串行总线只使用一位传输线，同一时刻只传输一位数据。并行总线的优点在于相同频率下总线的带宽更大，但正因为采用了同一时刻并行传输多位数据的方法，必须保证多位数据在同一时刻到达。这样就会对总线的宽度和频率产生限制，同时也对主板设计提出了更高的要求。与并行总线相反，一般串行总线只使用一位传输线，同一时刻只能传输一位数据，而且使用编码的方式将时钟频率信息编码在传输的数据之中。因此，串行总线的传输频率可以大大提升。PCI总线、DDR总线等都是传统的并行总线，而USB、SATA、PCIE等都是串行总线。以串行总线传输方式为基础，使用多条串行总线进行数据传输的方式正在被广泛采用。以PCIE协议为例，PCIE的接口规范中，可以使用x1、x4、x8、x16等不同宽度的接口，其中，x16就是采用16对串行总线进行数据传输。多位串行总线与并行总线的根本差别在于，多位串行总线的每一个数据通道都是相对独立传输的，它们独立进行编解码，在接收端恢复数据之后再进行并行数据之间的对齐。而并行总线使用同一个时钟对所有的数据线进行同时采样，因此对数据传输线之间的对齐有非常严格的要求。</p>
+<p>按照总线在计算机系统中所处的物理位置，总线可以分为片上总线、内存总线、系统总线和设备总线。下面将按照这个划分，分别举例介绍每种总线。</p>
+</div>
+<div id="片上总线" class="section level2">
+<h2><span class="header-section-number">6.3</span> 片上总线</h2>
+<p>片上总线是指芯片片内互连使用的总线。芯片在设计时，常常要分为多个功能模块，这些功能模块之间的连接即采用片上互连总线。例如，一个高性能通用处理器在设计时，常常会划分为处理器核、共享高速缓存、内存控制器等多个模块，而一个SoC（System on Chip，片上系统）芯片所包含的模块就更多了。图<a href="计算机总线接口技术.html#fig:jz-m200">6.1</a>是一个嵌入式SoC芯片的内部结构，可以看到里面包含了很多功能模块，这些模块之间的连接就需要用到片上互连总线。这些模块形成了IP(Intellectual Property)，一家公司在设计芯片时常常需要集成其他公司的IP。这些IP的接口使用大家共同遵守的标准时，才能方便使用。因此，芯片的片上互连总线也形成了一定的标准。目前业界公开的主流片上互连总线是ARM公司的AMBA系列总线。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:jz-m200"></span>
+<img src="images/chapter6/jz_m200.png" alt="君正M200芯片的结构图" width="100%" />
+<p class="caption">
+图 6.1: 君正M200芯片的结构图
+</p>
+</div>
+<p>AMBA（Advanced Microcontroller Bus Architecture，高级微控制器总线架构）系列总线包括AXI、AHB、ASB、APB等总线。下面对AMBA总线的一些特点进行概括说明，这些总线的详细内容可以参阅相关总线协议。</p>
+<p><strong>1.AXI总线</strong></p>
+<p>AXI（Advanced eXtensible Interface，高级可扩展接口）总线是一种高性能、高带宽、低延迟的片上总线。它的地址/控制和数据总线是分离的，支持不对齐的数据传输，同时在突发传输中只需要发送首地址即可。它使用分离的读写数据通道并支持乱序访问。AXI是AMBA 3.0规范中引入的一个新的高性能协议，目标是满足超高性能和复杂的片上系统（SoC）的设计需求。</p>
+<p>AXI总线主设备的主要信号定义如表<a href="计算机总线接口技术.html#tab:axi">6.1</a>所示。可以看到，AXI总线主要分为5个独立的通道，分别为写请求、写数据、写响应、读请求、读响应。每个通道采用握手协议独立传输。</p>
+<template id="10ee6fa2-4e08-4e7f-bd41-ab4b0ec0df81"><style>
+.tabwid table{
+  border-spacing:0px !important;
+  border-collapse:collapse;
+  line-height:1;
+  margin-left:auto;
+  margin-right:auto;
+  border-width: 0;
+  display: table;
+  margin-top: 1.275em;
+  margin-bottom: 1.275em;
+  border-color: transparent;
+}
+.tabwid_left table{
+  margin-left:0;
+}
+.tabwid_right table{
+  margin-right:0;
+}
+.tabwid td {
+    padding: 0;
+}
+.tabwid a {
+  text-decoration: none;
+}
+.tabwid thead {
+    background-color: transparent;
+}
+.tabwid tfoot {
+    background-color: transparent;
+}
+.tabwid table tr {
+background-color: transparent;
+}
+</style><div class="tabwid"><style>.cl-7a9c326e{}.cl-7a938baa{font-family:'Noto Sans CJK SC';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-7a938bdc{font-family:'Noto Sans CJK SC';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-7a939dfc{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-7a93eda2{width:102.2pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7a93edca{width:133.5pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7a93edd4{width:33.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7a93ede8{width:33.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7a93edf2{width:102.2pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7a93edfc{width:133.5pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7a93ee06{width:33.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7a93ee10{width:102.2pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7a93ee24{width:133.5pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7a93ee2e{width:102.2pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7a93ee42{width:33.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7a93ee4c{width:133.5pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7a93ee56{width:102.2pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7a93ee6a{width:33.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7a93ee74{width:133.5pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-7a9c326e'>
+<caption class="Table Caption">
+<p><span id="tab:axi">表 6.1: </span>AXI总线主要信号定义</p>
+</caption>
+<thead><tr style="overflow-wrap:break-word;"><td class="cl-7a93ee10"><p class="cl-7a939dfc"><span class="cl-7a938baa">引脚名称</span></p></td><td class="cl-7a93ee06"><p class="cl-7a939dfc"><span class="cl-7a938baa">方向</span></p></td><td class="cl-7a93ee24"><p class="cl-7a939dfc"><span class="cl-7a938baa">描述</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-7a93eda2"><p class="cl-7a939dfc"><span class="cl-7a938bdc">AWID[n:0]</span></p></td><td class="cl-7a93edd4"><p class="cl-7a939dfc"><span class="cl-7a938bdc">输出</span></p></td><td class="cl-7a93edca"><p class="cl-7a939dfc"><span class="cl-7a938bdc">写请求标识号</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7a93ee2e"><p class="cl-7a939dfc"><span class="cl-7a938bdc">AWADDR[m:0]</span></p></td><td class="cl-7a93ee42"><p class="cl-7a939dfc"><span class="cl-7a938bdc">输出</span></p></td><td class="cl-7a93ee4c"><p class="cl-7a939dfc"><span class="cl-7a938bdc">写请求地址</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7a93ee2e"><p class="cl-7a939dfc"><span class="cl-7a938bdc">AWSIZE[2:0]</span></p></td><td class="cl-7a93ee42"><p class="cl-7a939dfc"><span class="cl-7a938bdc">输出</span></p></td><td class="cl-7a93ee4c"><p class="cl-7a939dfc"><span class="cl-7a938bdc">写请求数据宽度</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7a93ee2e"><p class="cl-7a939dfc"><span class="cl-7a938bdc">AWLEN[3:0]</span></p></td><td class="cl-7a93ee42"><p class="cl-7a939dfc"><span class="cl-7a938bdc">输出</span></p></td><td class="cl-7a93ee4c"><p class="cl-7a939dfc"><span class="cl-7a938bdc">写请求数据长度</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7a93ee2e"><p class="cl-7a939dfc"><span class="cl-7a938bdc">AWBURST[1:0]</span></p></td><td class="cl-7a93ee42"><p class="cl-7a939dfc"><span class="cl-7a938bdc">输出</span></p></td><td class="cl-7a93ee4c"><p class="cl-7a939dfc"><span class="cl-7a938bdc">写请求类型</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7a93ee10"><p class="cl-7a939dfc"><span class="cl-7a938bdc">AWAVALID</span></p></td><td class="cl-7a93ee06"><p class="cl-7a939dfc"><span class="cl-7a938bdc">输出</span></p></td><td class="cl-7a93ee24"><p class="cl-7a939dfc"><span class="cl-7a938bdc">写请求有效信号</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7a93ee10"><p class="cl-7a939dfc"><span class="cl-7a938bdc">AWREADY</span></p></td><td class="cl-7a93ee06"><p class="cl-7a939dfc"><span class="cl-7a938bdc">输入</span></p></td><td class="cl-7a93ee24"><p class="cl-7a939dfc"><span class="cl-7a938bdc">写请求接收准备好信号</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7a93ee2e"><p class="cl-7a939dfc"><span class="cl-7a938bdc">WID[n:0]</span></p></td><td class="cl-7a93ee42"><p class="cl-7a939dfc"><span class="cl-7a938bdc">输出</span></p></td><td class="cl-7a93ee4c"><p class="cl-7a939dfc"><span class="cl-7a938bdc">写数据标识号，与写请求标识号对应</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7a93ee56"><p class="cl-7a939dfc"><span class="cl-7a938bdc">WDATA[j:0]</span></p></td><td class="cl-7a93ee6a"><p class="cl-7a939dfc"><span class="cl-7a938bdc">输出</span></p></td><td class="cl-7a93ee74"><p class="cl-7a939dfc"><span class="cl-7a938bdc">写数据</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7a93edf2"><p class="cl-7a939dfc"><span class="cl-7a938bdc">WSTRB[k:0]</span></p></td><td class="cl-7a93ede8"><p class="cl-7a939dfc"><span class="cl-7a938bdc">输出</span></p></td><td class="cl-7a93edfc"><p class="cl-7a939dfc"><span class="cl-7a938bdc">写数据屏蔽信号，1位对应8个数据位</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7a93ee10"><p class="cl-7a939dfc"><span class="cl-7a938bdc">WVALID</span></p></td><td class="cl-7a93ee06"><p class="cl-7a939dfc"><span class="cl-7a938bdc">输出</span></p></td><td class="cl-7a93ee24"><p class="cl-7a939dfc"><span class="cl-7a938bdc">写数据有效信号</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7a93ee10"><p class="cl-7a939dfc"><span class="cl-7a938bdc">WREADY</span></p></td><td class="cl-7a93ee06"><p class="cl-7a939dfc"><span class="cl-7a938bdc">输入</span></p></td><td class="cl-7a93ee24"><p class="cl-7a939dfc"><span class="cl-7a938bdc">写数据接收准备好信号</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7a93ee2e"><p class="cl-7a939dfc"><span class="cl-7a938bdc">BID[n:0]</span></p></td><td class="cl-7a93ee42"><p class="cl-7a939dfc"><span class="cl-7a938bdc">输入</span></p></td><td class="cl-7a93ee4c"><p class="cl-7a939dfc"><span class="cl-7a938bdc">写响应标识号，与写请求标识号对应</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7a93ee2e"><p class="cl-7a939dfc"><span class="cl-7a938bdc">BRESP[1:0]</span></p></td><td class="cl-7a93ee42"><p class="cl-7a939dfc"><span class="cl-7a938bdc">输入</span></p></td><td class="cl-7a93ee4c"><p class="cl-7a939dfc"><span class="cl-7a938bdc">写响应状态</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7a93ee10"><p class="cl-7a939dfc"><span class="cl-7a938bdc">WVALID</span></p></td><td class="cl-7a93ee06"><p class="cl-7a939dfc"><span class="cl-7a938bdc">输入</span></p></td><td class="cl-7a93ee24"><p class="cl-7a939dfc"><span class="cl-7a938bdc">写响应有效信号</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7a93ee10"><p class="cl-7a939dfc"><span class="cl-7a938bdc">WREADY</span></p></td><td class="cl-7a93ee06"><p class="cl-7a939dfc"><span class="cl-7a938bdc">输出</span></p></td><td class="cl-7a93ee24"><p class="cl-7a939dfc"><span class="cl-7a938bdc">写响应接收准备好信号</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7a93ee2e"><p class="cl-7a939dfc"><span class="cl-7a938bdc">ARID[n:0]</span></p></td><td class="cl-7a93ee42"><p class="cl-7a939dfc"><span class="cl-7a938bdc">输出</span></p></td><td class="cl-7a93ee4c"><p class="cl-7a939dfc"><span class="cl-7a938bdc">读请求标识号</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7a93ee2e"><p class="cl-7a939dfc"><span class="cl-7a938bdc">ARADDR[m:0]</span></p></td><td class="cl-7a93ee42"><p class="cl-7a939dfc"><span class="cl-7a938bdc">输出</span></p></td><td class="cl-7a93ee4c"><p class="cl-7a939dfc"><span class="cl-7a938bdc">读请求地址</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7a93ee2e"><p class="cl-7a939dfc"><span class="cl-7a938bdc">ARSIZE[2:0]</span></p></td><td class="cl-7a93ee42"><p class="cl-7a939dfc"><span class="cl-7a938bdc">输出</span></p></td><td class="cl-7a93ee4c"><p class="cl-7a939dfc"><span class="cl-7a938bdc">读请求数据宽度</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7a93ee2e"><p class="cl-7a939dfc"><span class="cl-7a938bdc">ARLEN[3:0]</span></p></td><td class="cl-7a93ee42"><p class="cl-7a939dfc"><span class="cl-7a938bdc">输出</span></p></td><td class="cl-7a93ee4c"><p class="cl-7a939dfc"><span class="cl-7a938bdc">读请求数据长度</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7a93ee2e"><p class="cl-7a939dfc"><span class="cl-7a938bdc">ARBURST[1:0]</span></p></td><td class="cl-7a93ee42"><p class="cl-7a939dfc"><span class="cl-7a938bdc">输出</span></p></td><td class="cl-7a93ee4c"><p class="cl-7a939dfc"><span class="cl-7a938bdc">读请求类型</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7a93ee10"><p class="cl-7a939dfc"><span class="cl-7a938bdc">ARAVALID</span></p></td><td class="cl-7a93ee06"><p class="cl-7a939dfc"><span class="cl-7a938bdc">输出</span></p></td><td class="cl-7a93ee24"><p class="cl-7a939dfc"><span class="cl-7a938bdc">读请求有效信号</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7a93ee10"><p class="cl-7a939dfc"><span class="cl-7a938bdc">ARREADY</span></p></td><td class="cl-7a93ee06"><p class="cl-7a939dfc"><span class="cl-7a938bdc">输入</span></p></td><td class="cl-7a93ee24"><p class="cl-7a939dfc"><span class="cl-7a938bdc">读请求接收准备好信号</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7a93ee2e"><p class="cl-7a939dfc"><span class="cl-7a938bdc">RID[n:0]</span></p></td><td class="cl-7a93ee42"><p class="cl-7a939dfc"><span class="cl-7a938bdc">输入</span></p></td><td class="cl-7a93ee4c"><p class="cl-7a939dfc"><span class="cl-7a938bdc">读数据标识号，与读请求标识号对应</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7a93ee56"><p class="cl-7a939dfc"><span class="cl-7a938bdc">RDATA[j:0]</span></p></td><td class="cl-7a93ee6a"><p class="cl-7a939dfc"><span class="cl-7a938bdc">输入</span></p></td><td class="cl-7a93ee74"><p class="cl-7a939dfc"><span class="cl-7a938bdc">读数据</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7a93ee2e"><p class="cl-7a939dfc"><span class="cl-7a938bdc">RRESP[1:0]</span></p></td><td class="cl-7a93ee42"><p class="cl-7a939dfc"><span class="cl-7a938bdc">输入</span></p></td><td class="cl-7a93ee4c"><p class="cl-7a939dfc"><span class="cl-7a938bdc">读响应状态</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7a93ee10"><p class="cl-7a939dfc"><span class="cl-7a938bdc">RVALID</span></p></td><td class="cl-7a93ee06"><p class="cl-7a939dfc"><span class="cl-7a938bdc">输入</span></p></td><td class="cl-7a93ee24"><p class="cl-7a939dfc"><span class="cl-7a938bdc">读数据有效信号</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7a93ee10"><p class="cl-7a939dfc"><span class="cl-7a938bdc">RREADY</span></p></td><td class="cl-7a93ee06"><p class="cl-7a939dfc"><span class="cl-7a938bdc">输出</span></p></td><td class="cl-7a93ee24"><p class="cl-7a939dfc"><span class="cl-7a938bdc">写读数据接收准备好信号</span></p></td></tr></tbody></table></div></template>
+<div class="flextable-shadow-host" id="584b815e-f9e6-44d9-8c72-497f2ba76c9c"></div>
+<script>
+var dest = document.getElementById("584b815e-f9e6-44d9-8c72-497f2ba76c9c");
+var template = document.getElementById("10ee6fa2-4e08-4e7f-bd41-ab4b0ec0df81");
+var caption = template.content.querySelector("caption");
+if(caption) {
+  caption.style.cssText = "display:block;text-align:center;";
+  var newcapt = document.createElement("p");
+  newcapt.appendChild(caption)
+  dest.parentNode.insertBefore(newcapt, dest.previousSibling);
+}
+var fantome = dest.attachShadow({mode: 'open'});
+var templateContent = template.content;
+fantome.appendChild(templateContent);
+</script>
+
+<p>AXI协议包括以下特点：</p>
+<p>1）单向通道体系结构。信息流只以单方向传输，符合片内设计的要求。</p>
+<p>2）支持多项数据交换。AXI协议支持的数据宽度很宽，最大可到1024位。通过并行执行突发（Burst）操作，极大地提高了数据吞吐能力，可在更短的时间内完成任务。</p>
+<p>3）独立的地址和数据通道。地址和数据通道分开便于对每一个通道进行单独优化，可以根据需要很容易地插入流水级，有利于实现高时钟频率。</p>
+<p>（1） AXI架构</p>
+<p>AXI协议是一个主从协议，每套总线的主设备和从设备是固定好的。只有主设备才可以发起读写命令。一套主从总线包含五个通道：写地址通道、写数据通道、写响应通道、读地址通道、读返回通道。读/写地址通道用来传送读写目标地址、数据宽度、传输长度和其他控制信息。写数据通道用来由主设备向从设备传送写数据，AXI支持带掩码的写操作，可以指定有效数据所在的字节。写响应通道用来传送写完成信息。读返回通道用来传送从设备读出的数据以及响应信息。</p>
+<p>AXI协议的一次完整读写过程称为一个总线事务（Transaction），传输一个周期的数据称为一次传输（Transfer）。AXI协议允许地址控制信息在数据传输之前发生，并且支持多个并发访问同时进行，它还允许读写事务的乱序完成。图<a href="计算机总线接口技术.html#fig:read-structure">6.2</a>和<a href="计算机总线接口技术.html#fig:write-structure">6.3</a>分别说明了读写事务是如何通过读写通道进行的。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:read-structure"></span>
+<img src="images/chapter6/read_structure.png" alt="读事务架构" width="50%" />
+<p class="caption">
+图 6.2: 读事务架构
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:write-structure"></span>
+<img src="images/chapter6/write_structure.png" alt="写事务架构" width="50%" />
+<p class="caption">
+图 6.3: 写事务架构
+</p>
+</div>
+<p>AXI使用双向握手协议，每次传输都需要主从双方给出确认信号。数据的来源方设置有效（Valid）信号，数据的接收方设置准备好（Ready）信号。只有当有效信号和准备好信号同时有效时，数据才会传输。读请求通道和写数据通道还各包含一个结束（Last）信号来指示一次突发传输的最后一个传输周期。</p>
+<p>（2）互连架构</p>
+<p>在一个使用AXI总线的处理器系统中，一般都会包含多个主设备和从设备。这些设备之间使用互连总线进行连接，如图<a href="计算机总线接口技术.html#fig:axi-interface">6.4</a>所示。在该互连结构中，任意一个主设备都可以访问所有的从设备。比如，主设备2可以访问从设备1、2、3、4。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:axi-interface"></span>
+<img src="images/chapter6/axi.png" alt="AXI设备的接口和互连" width="50%" />
+<p class="caption">
+图 6.4: AXI设备的接口和互连
+</p>
+</div>
+<p>为了减少互连结构的信号线个数，AXI的互连结构可以共享地址和数据通道，或者共享地址通道但使用多个数据通道。当需要连接的主从设备个数较多时，为了减少互连结构的信号线个数，AXI协议还可以很方便地支持多层次的互连结构。</p>
+<p>（3）高频设计</p>
+<p>AXI协议的每个传输通道都只是单向的信息传递，并且AXI协议对多个通道之间的数据传输没有规定特定的顺序关系，多个通道之间没有同步关系。因此，设计者可以很容易地在通道中插入寄存器缓冲，这对于高频设计是很重要的。</p>
+<p>（4）基本事务</p>
+<p>下面简要介绍AXI的读写事务。AXI协议的主要特点是使用VALID和READY握手机制进行传输。地址和数据信息都只在VALID和READY信号同时为高的情况下才进行传输。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:burst-read"></span>
+<img src="images/chapter6/burst_read.png" alt="突发读事务" width="100%" />
+<p class="caption">
+图 6.5: 突发读事务
+</p>
+</div>
+<p>图<a href="计算机总线接口技术.html#fig:burst-read">6.5</a>显示了一个突发读事务的传输，其中请求由主设备发往从设备，响应由从设备发往主设备。地址信息在T2传输后，主设备从T4时刻开始给出读数据READY信号，从设备保持读数据VALID信号为低，直到读数据准备好后，才在T6时刻将读数据VALID信号拉高，主设备在T6时刻接收读数据。当所有读数据传输完成后，在T13时刻，从设备将RLAST信号拉高表示该周期是最后一个数据传输。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:overlapped-read"></span>
+<img src="images/chapter6/overlapped_read.png" alt="重叠的读事务" width="100%" />
+<p class="caption">
+图 6.6: 重叠的读事务
+</p>
+</div>
+<p>图<a href="计算机总线接口技术.html#fig:overlapped-read">6.6</a>显示了一个重叠的读事务。在T4时刻，事务A的读数据还没有完成传输，从设备就已经接收了读事务B的地址信息。重叠事务使得从设备可以在前面的数据没有传输完成时就开始处理后面的事务，从而降低后面事务的完成时间。AXI总线上，通过ID对不同的事务加以区别。同一个读事务的请求与响应中，ARID与RID相同；同一个写事务的请求与响应中，AWID、WID与BID相同。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:write-transaction"></span>
+<img src="images/chapter6/write_transaction.png" alt="写事务" width="100%" />
+<p class="caption">
+图 6.7: 写事务
+</p>
+</div>
+<p>图<a href="计算机总线接口技术.html#fig:write-transaction">6.7</a>是一个写事务的示例。主从设备在T2时刻传输写地址信息，接着主设备将写数据发送给从设备，在T9时刻，所有的写数据传输完毕，从设备在T10时刻给出写完成响应信号。</p>
+<p>（5）读写事务顺序</p>
+<p>AXI协议支持读写事务乱序完成。每一个读写事务都有一个ID标签，该标签通过AXI信号的ID域进行传输。同ID的读事务或者同ID的写事务必须按照接收的顺序按序完成，不同ID的事务可以乱序完成。以图<a href="计算机总线接口技术.html#fig:overlapped-read">6.6</a>为例，图中事务A的请求发生在事务B的请求之前，从设备响应时事务A的数据同样发生在事务B的数据之前，这就是顺序完成。如果事务A与事务B使用了不同的ID，那么从设备就可以先返回事务B的数据再返回事务A的数据。</p>
+<p>（6）AXI协议的其他特点</p>
+<p>AXI协议使用分离的读写地址通道，读事务和写事务都包含一个独立的地址通道，用来传输地址和其他控制信息。</p>
+<p>AXI协议支持下列传输机制：</p>
+<p>1）不同的突发传输类型。AXI支持回绕（Wrapping）、顺序（Incrementing）和固定（Fix）三种传输方式。回绕传输适合高速缓存行传输，顺序传输适合较长的内存访问，固定传输则适合对外设FIFO的访问。</p>
+<p>2）传输长度可变。AXI协议支持1到16甚至更多个传输周期。</p>
+<p>3）传输数据宽度可变。支持8~1024位数据宽度。</p>
+<p>4）支持原子操作。</p>
+<p>5）支持安全和特权访问。</p>
+<p>6）支持错误报告。</p>
+<p>7）支持不对齐访问。</p>
+<p><strong>2.AHB、ASB、APB总线</strong></p>
+<p>AHB、ASB、APB总线是在AXI总线之前推出的系统总线，本书只对它们进行简要总结，详细内容可参阅相关协议文档。</p>
+<p>AHB（Advanced High-performance Bus）总线是高性能系统总线，它的读写操作共用命令和响应通道，具有突发传输、事务分割、流水线操作、单周期总线主设备切换、非三态实现以及宽数据总线等特点。AHB协议允许8~1024位的数据总线宽度，但推荐的数据宽度最小为32位，最大为256位。</p>
+<p>ASB（Advanced System Bus）是第一代AMBA系统总线，同AHB相比，它支持的数据宽度要小一些，典型数据宽度为8位、16位、32位。它的主要特征有：流水线方式，数据突发传送，多总线主设备，内部有三态实现。</p>
+<p>APB（Advanced Peripheral Bus）是本地二级总线（Local Secondary Bus），通过桥和AHB/ASB相连。它主要是为了满足不需要高性能流水线接口或不需要高带宽接口的设备间的互连。其主要优点是接口简单、易实现。</p>
+<p>基于AMBA总线的计算机系统的结构如图<a href="计算机总线接口技术.html#fig:ahb-apb">6.8</a>和图<a href="计算机总线接口技术.html#fig:axi-interconnect">6.9</a>所示。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:ahb-apb"></span>
+<img src="images/chapter6/ahb_apb.png" alt="使用AHB和APB连接的微控制器系统" width="50%" />
+<p class="caption">
+图 6.8: 使用AHB和APB连接的微控制器系统
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:axi-interconnect"></span>
+<img src="images/chapter6/axi_interconnect.png" alt="使用AXI总线互连的通用高性能处理器" width="50%" />
+<p class="caption">
+图 6.9: 使用AXI总线互连的通用高性能处理器
+</p>
+</div>
+<p>片上互连总线的最大特点是高并行性。由于片内走线的距离短，线宽细，因此可以实现高并行性。片上互连总线的设计需要考虑总线的通用性、可扩展性、性能以及总线接口逻辑的设计简单性等方面。</p>
+</div>
+<div id="内存总线" class="section level2">
+<h2><span class="header-section-number">6.4</span> 内存总线</h2>
+<p>内存总线用于连接处理器和主存储器。</p>
+<p>前面章节我们介绍了目前使用的主存储器——DRAM芯片，以及内存条、内存控制器的一些概念。内存控制器和内存芯片（或者说内存条）的接口就是内存总线。内存总线规范是由JEDEC（Joint Electron Device Engineering Council）组织制定的，它包含了一般总线的三个层级：机械层、电气层和协议层。</p>
+<p>在机械层，JEDEC规定了内存芯片的封装方式、封装大小和引脚排布，内存条生产厂家可以据此设计内存条PCB板，可以使用不同DRAM厂家的芯片。同时，JEDEC也制定了内存条和计算机主板连接的规范，也就是内存插槽规范，规定了内存条的引脚个数、排布和内存条的长度、厚度、机械形式。这样不同厂家的内存条就可以在同一块主板上使用。图<a href="计算机总线接口技术.html#fig:ddr3">6.10</a>是台式机使用的DDR3内存条和对应的内存插槽的图片。DDR3内存条使用双列直插式设计，每列分布了120个引脚，共240个引脚。中间的缺口不是位于内存条的正中心，目的是为了防止将内存条插反。图<a href="计算机总线接口技术.html#fig:ddr2">6.11</a>是台式机使用的DDR2内存条的图片。DDR3内存条和DDR2内存条的长度相同，但内存条上的缺口位置是不同的，可以防止DDR2和DDR3内存条之间误插。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:ddr3"></span>
+<img src="images/chapter6/ddr3.png" alt="台式机的DDR3内存条和内存插槽" width="100%" />
+<p class="caption">
+图 6.10: 台式机的DDR3内存条和内存插槽
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:ddr2"></span>
+<img src="images/chapter6/ddr2.png" alt="台式机的DDR2内存条" width="100%" />
+<p class="caption">
+图 6.11: 台式机的DDR2内存条
+</p>
+</div>
+<p>在电气层，JEDEC组织规定了DRAM芯片的电气特性。例如，DDR2内存使用1.8V电压，而DDR3内存使用1.5V电压。另外，规范还规定输入电压高低电平的标准、信号斜率、时钟抖动的范围等信号电气特性。</p>
+<p>在协议层，JEDEC组织规定了DRAM芯片的操作时序。协议规定了DRAM芯片的上电和初始化过程、DRAM工作的几种状态、状态之间的转换，以及低功耗控制等内容。比如，DRAM初始化完成后，进入空闲态，通过激活（Activate）命令进入“打开一行”的激活态，只有在激活态，才可以读写DRAM的数据，单纯的读写操作后，DRAM仍会处于激活态，等待下一次读写。如果想要读写其他行，需要首先发送预充（Precharge）命令将DRAM转回空闲态，然后再发送激活命令。这些命令不是在任意时刻都可以发送的，需要满足协议规定的时序要求。图<a href="计算机总线接口技术.html#fig:ddr2-state">6.12</a>给出了DDR2内存的状态转换图。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:ddr2-state"></span>
+<img src="images/chapter6/ddr2_state.png" alt="DDR2内存各状态转换图" width="100%" />
+<p class="caption">
+图 6.12: DDR2内存各状态转换图
+</p>
+</div>
+<template id="ccbfafe7-125c-4370-b518-909ab3e632c6"><style>
+.tabwid table{
+  border-spacing:0px !important;
+  border-collapse:collapse;
+  line-height:1;
+  margin-left:auto;
+  margin-right:auto;
+  border-width: 0;
+  display: table;
+  margin-top: 1.275em;
+  margin-bottom: 1.275em;
+  border-color: transparent;
+}
+.tabwid_left table{
+  margin-left:0;
+}
+.tabwid_right table{
+  margin-right:0;
+}
+.tabwid td {
+    padding: 0;
+}
+.tabwid a {
+  text-decoration: none;
+}
+.tabwid thead {
+    background-color: transparent;
+}
+.tabwid tfoot {
+    background-color: transparent;
+}
+.tabwid table tr {
+background-color: transparent;
+}
+</style><div class="tabwid"><style>.cl-7ada0166{}.cl-7ad19454{font-family:'Noto Sans CJK SC';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-7ad19486{font-family:'Noto Sans CJK SC';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-7ad1aba6{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-7ad200b0{width:126.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7ad200d8{width:86.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7ad200ec{width:128.9pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7ad200f6{width:67.5pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7ad2010a{width:126.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7ad20114{width:128.9pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7ad2011e{width:86.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7ad20128{width:67.5pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7ad20132{width:86.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7ad2013c{width:67.5pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7ad20150{width:126.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7ad2015a{width:128.9pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7ad20164{width:86.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7ad20178{width:67.5pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7ad20182{width:126.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7ad2018c{width:128.9pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-7ada0166'>
+<caption class="Table Caption">
+<p><span id="tab:ddr3-udimm">表 6.2: </span>双面DDR3 UDIMM内存条的接口信号列表</p>
+</caption>
+<thead><tr style="overflow-wrap:break-word;"><td class="cl-7ad20132"><p class="cl-7ad1aba6"><span class="cl-7ad19454">引脚名称</span></p></td><td class="cl-7ad20150"><p class="cl-7ad1aba6"><span class="cl-7ad19454">描述</span></p></td><td class="cl-7ad2013c"><p class="cl-7ad1aba6"><span class="cl-7ad19454">引脚名称</span></p></td><td class="cl-7ad2015a"><p class="cl-7ad1aba6"><span class="cl-7ad19454">描述</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-7ad200d8"><p class="cl-7ad1aba6"><span class="cl-7ad19486">A0-A15</span></p></td><td class="cl-7ad200b0"><p class="cl-7ad1aba6"><span class="cl-7ad19486">SDRAM地址线</span></p></td><td class="cl-7ad200f6"><p class="cl-7ad1aba6"><span class="cl-7ad19486">SCL</span></p></td><td class="cl-7ad200ec"><p class="cl-7ad1aba6"><span class="cl-7ad19486">EEPROM I2C总线时钟</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7ad20164"><p class="cl-7ad1aba6"><span class="cl-7ad19486">BA0-BA3</span></p></td><td class="cl-7ad20182"><p class="cl-7ad1aba6"><span class="cl-7ad19486">SDRAM bank地址</span></p></td><td class="cl-7ad20178"><p class="cl-7ad1aba6"><span class="cl-7ad19486">SDA</span></p></td><td class="cl-7ad2018c"><p class="cl-7ad1aba6"><span class="cl-7ad19486">EEPROM I2C总线数据线</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7ad2011e"><p class="cl-7ad1aba6"><span class="cl-7ad19486">RAS#</span></p></td><td class="cl-7ad2010a"><p class="cl-7ad1aba6"><span class="cl-7ad19486">SDRAM行地址选通</span></p></td><td class="cl-7ad20128"><p class="cl-7ad1aba6"><span class="cl-7ad19486">SA0-SA2</span></p></td><td class="cl-7ad20114"><p class="cl-7ad1aba6"><span class="cl-7ad19486">EEPROM I2C从设备地址</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7ad2011e"><p class="cl-7ad1aba6"><span class="cl-7ad19486">CAS#</span></p></td><td class="cl-7ad2010a"><p class="cl-7ad1aba6"><span class="cl-7ad19486">SDRAM列地址选通</span></p></td><td class="cl-7ad20128"><p class="cl-7ad1aba6"><span class="cl-7ad19486">VDD</span></p></td><td class="cl-7ad20114"><p class="cl-7ad1aba6"><span class="cl-7ad19486">SDRAMCore电源</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7ad2011e"><p class="cl-7ad1aba6"><span class="cl-7ad19486">WE#</span></p></td><td class="cl-7ad2010a"><p class="cl-7ad1aba6"><span class="cl-7ad19486">SDRAM写使能</span></p></td><td class="cl-7ad20128"><p class="cl-7ad1aba6"><span class="cl-7ad19486">VDDQ</span></p></td><td class="cl-7ad20114"><p class="cl-7ad1aba6"><span class="cl-7ad19486">SDRAM IO输出电源</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7ad2011e"><p class="cl-7ad1aba6"><span class="cl-7ad19486">S0#-S1#</span></p></td><td class="cl-7ad2010a"><p class="cl-7ad1aba6"><span class="cl-7ad19486">SDRAM片选信号</span></p></td><td class="cl-7ad20128"><p class="cl-7ad1aba6"><span class="cl-7ad19486">VrefDQ</span></p></td><td class="cl-7ad20114"><p class="cl-7ad1aba6"><span class="cl-7ad19486">SDRAM IO参考电源</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7ad2011e"><p class="cl-7ad1aba6"><span class="cl-7ad19486">CKE0-CKE1</span></p></td><td class="cl-7ad2010a"><p class="cl-7ad1aba6"><span class="cl-7ad19486">SDRAM时钟使能信号</span></p></td><td class="cl-7ad20128"><p class="cl-7ad1aba6"><span class="cl-7ad19486">VrefCA</span></p></td><td class="cl-7ad20114"><p class="cl-7ad1aba6"><span class="cl-7ad19486">SDRAM命令地址参考电源</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7ad2011e"><p class="cl-7ad1aba6"><span class="cl-7ad19486">ODT0-ODT1</span></p></td><td class="cl-7ad2010a"><p class="cl-7ad1aba6"><span class="cl-7ad19486">SDRAM终端匹配电阻控制信号</span></p></td><td class="cl-7ad20128"><p class="cl-7ad1aba6"><span class="cl-7ad19486">Vss</span></p></td><td class="cl-7ad20114"><p class="cl-7ad1aba6"><span class="cl-7ad19486">电源地信号</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7ad2011e"><p class="cl-7ad1aba6"><span class="cl-7ad19486">DQ0-DQ63</span></p></td><td class="cl-7ad2010a"><p class="cl-7ad1aba6"><span class="cl-7ad19486">DIMM内存数据线</span></p></td><td class="cl-7ad20128"><p class="cl-7ad1aba6"><span class="cl-7ad19486">VDDSPD</span></p></td><td class="cl-7ad20114"><p class="cl-7ad1aba6"><span class="cl-7ad19486">EEPROM电源</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7ad2011e"><p class="cl-7ad1aba6"><span class="cl-7ad19486">CB0-CB7</span></p></td><td class="cl-7ad2010a"><p class="cl-7ad1aba6"><span class="cl-7ad19486">DIMM ECC数据线</span></p></td><td class="cl-7ad20128"><p class="cl-7ad1aba6"><span class="cl-7ad19486">NC</span></p></td><td class="cl-7ad20114"><p class="cl-7ad1aba6"><span class="cl-7ad19486">空闲引脚</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7ad2011e"><p class="cl-7ad1aba6"><span class="cl-7ad19486">DQS0-DQS8</span></p></td><td class="cl-7ad2010a"><p class="cl-7ad1aba6"><span class="cl-7ad19486">SDRAM数据选通线</span></p></td><td class="cl-7ad20128"><p class="cl-7ad1aba6"><span class="cl-7ad19486">TEST</span></p></td><td class="cl-7ad20114"><p class="cl-7ad1aba6"><span class="cl-7ad19486">测试引脚</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7ad20132"><p class="cl-7ad1aba6"><span class="cl-7ad19486"></span></p></td><td class="cl-7ad20150"><p class="cl-7ad1aba6"><span class="cl-7ad19486">（差分对的正沿）</span></p></td><td class="cl-7ad2013c"><p class="cl-7ad1aba6"><span class="cl-7ad19486"></span></p></td><td class="cl-7ad2015a"><p class="cl-7ad1aba6"><span class="cl-7ad19486"></span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7ad2011e"><p class="cl-7ad1aba6"><span class="cl-7ad19486">DQS0-DQS8</span></p></td><td class="cl-7ad2010a"><p class="cl-7ad1aba6"><span class="cl-7ad19486">SDRAM数据选通线</span></p></td><td class="cl-7ad20128"><p class="cl-7ad1aba6"><span class="cl-7ad19486">RESET#</span></p></td><td class="cl-7ad20114"><p class="cl-7ad1aba6"><span class="cl-7ad19486">复位引脚</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7ad20132"><p class="cl-7ad1aba6"><span class="cl-7ad19486"></span></p></td><td class="cl-7ad20150"><p class="cl-7ad1aba6"><span class="cl-7ad19486">（差分对的负沿）</span></p></td><td class="cl-7ad2013c"><p class="cl-7ad1aba6"><span class="cl-7ad19486"></span></p></td><td class="cl-7ad2015a"><p class="cl-7ad1aba6"><span class="cl-7ad19486"></span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7ad20164"><p class="cl-7ad1aba6"><span class="cl-7ad19486">DM0-DM8</span></p></td><td class="cl-7ad20182"><p class="cl-7ad1aba6"><span class="cl-7ad19486">SDRAM数据Mask线</span></p></td><td class="cl-7ad20178"><p class="cl-7ad1aba6"><span class="cl-7ad19486">EVENT#</span></p></td><td class="cl-7ad2018c"><p class="cl-7ad1aba6"><span class="cl-7ad19486">温度传感器引脚（可选）</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7ad2011e"><p class="cl-7ad1aba6"><span class="cl-7ad19486">CK0-CK8</span></p></td><td class="cl-7ad2010a"><p class="cl-7ad1aba6"><span class="cl-7ad19486">SDRAM时钟信号线</span></p></td><td class="cl-7ad20128"><p class="cl-7ad1aba6"><span class="cl-7ad19486">VTT</span></p></td><td class="cl-7ad20114"><p class="cl-7ad1aba6"><span class="cl-7ad19486">SDRAM IO终端匹配电阻电源</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7ad20132"><p class="cl-7ad1aba6"><span class="cl-7ad19486"></span></p></td><td class="cl-7ad20150"><p class="cl-7ad1aba6"><span class="cl-7ad19486">（差分对的正沿）</span></p></td><td class="cl-7ad2013c"><p class="cl-7ad1aba6"><span class="cl-7ad19486"></span></p></td><td class="cl-7ad2015a"><p class="cl-7ad1aba6"><span class="cl-7ad19486"></span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7ad2011e"><p class="cl-7ad1aba6"><span class="cl-7ad19486">CK0-CK8</span></p></td><td class="cl-7ad2010a"><p class="cl-7ad1aba6"><span class="cl-7ad19486">SDRAM时钟信号线</span></p></td><td class="cl-7ad20128"><p class="cl-7ad1aba6"><span class="cl-7ad19486">RSVD</span></p></td><td class="cl-7ad20114"><p class="cl-7ad1aba6"><span class="cl-7ad19486">保留</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7ad20132"><p class="cl-7ad1aba6"><span class="cl-7ad19486"></span></p></td><td class="cl-7ad20150"><p class="cl-7ad1aba6"><span class="cl-7ad19486">（差分对的负沿）</span></p></td><td class="cl-7ad2013c"><p class="cl-7ad1aba6"><span class="cl-7ad19486"></span></p></td><td class="cl-7ad2015a"><p class="cl-7ad1aba6"><span class="cl-7ad19486"></span></p></td></tr></tbody></table></div></template>
+<div class="flextable-shadow-host" id="82ff3705-0b06-4cab-b7b3-bdd4011169a8"></div>
+<script>
+var dest = document.getElementById("82ff3705-0b06-4cab-b7b3-bdd4011169a8");
+var template = document.getElementById("ccbfafe7-125c-4370-b518-909ab3e632c6");
+var caption = template.content.querySelector("caption");
+if(caption) {
+  caption.style.cssText = "display:block;text-align:center;";
+  var newcapt = document.createElement("p");
+  newcapt.appendChild(caption)
+  dest.parentNode.insertBefore(newcapt, dest.previousSibling);
+}
+var fantome = dest.attachShadow({mode: 'open'});
+var templateContent = template.content;
+fantome.appendChild(templateContent);
+</script>
+
+<p>DDR3内存条的接口信号见表<a href="计算机总线接口技术.html#tab:ddr3-udimm">6.2</a>。内存条将多个DDR3 SDRAM存储芯片简单地并列在一起，因此表中所列的信号主要是DDR3 SDRAM的信号。此外，表中还包含了一组I2C总线信号（SCL、SDA）和I2C地址信号（SA0~SA2）用来支持内存条的软件识别。内存条将自身的一些设计信息（包括SDRAM类型、SDRAM的速度等级、数据宽度、容量以及机械尺寸标准等信息）保存在一个EEPROM中，该EEPROM可以通过I2C总线访问，称为SPD（Serial Present Detect）。计算机系统可以通过I2C总线来读取内存条的信息，从而自动匹配合适的控制参数并获取正确的系统内存容量。组装电脑时，用户可以选用不同容量、品牌的内存条而无须修改软件或主板，就离不开SPD的作用。值得一提的是，表中给出的信号是按照双面内存条带ECC功能列出来的，如果只有单面，或者不带ECC校验功能，只需将相应的引脚位置悬空。</p>
+<p>DRAM存储单元是按照Bank、行、列来组织的，因此对DRAM的寻址是通过bank地址、行地址和列地址来进行的。此外，计算机系统中可以将多组DRAM串接在一起，不同组之间通过片选（CS）信号来区分。在计算机系统中，程序的地址空间是线性的，处理器发出的内存访问地址也是线性的，由内存控制器负责将地址转换为对应于DRAM的片选、Bank地址、行地址、列地址。</p>
+<p>DDR3 SDRAM读操作时序如图<a href="计算机总线接口技术.html#fig:ddr3-read">6.13</a>所示。图中命令（Command，简称CMD）由RAS_n、CAS_n和WE_n三个信号组成。当RAS_n为高电平，CAS_n为低电平，WE_n为高电平时，表示一个读命令。该图中，列地址信号延迟 (CL) 等于5个时钟周期，读延迟 (RL)等于5个时钟周期，突发长度（Burst Length,BL）等于8。控制器发出读命令后，经过5个时钟周期，SDRAM开始驱动DQS和DQ总线输出数据。DQ数据信号和DQS信号是边沿对齐的。在DQS的起始、DQ传输数据之前，DQS信号会有一个时钟周期长度的低电平，称为读前导（Read Preamble）。读前导的作用是给内存控制器提供一个缓冲时间，以开启一个信号采样窗口，将有用的读数据采集到内部寄存器，同时又不会采集到数据线上的噪声数据。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:ddr3-read"></span>
+<img src="images/chapter6/ddr3_read.png" alt="DDR3 SDRAM读时序" width="100%" />
+<p class="caption">
+图 6.13: DDR3 SDRAM读时序
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:ddr3-write"></span>
+<img src="images/chapter6/ddr3_write.png" alt="DDR3 SDRAM写时序" width="100%" />
+<p class="caption">
+图 6.14: DDR3 SDRAM写时序
+</p>
+</div>
+<p>DDR3 SDRAM写操作的协议如图<a href="计算机总线接口技术.html#fig:ddr3-write">6.14</a>所示。当RAS_n为高电平，CAS_n为高电平，WE_n为低电平时，表示一个写操作。读写操作命令的区别是WE_n信号的电平不同，读操作时该信号为高，写操作时该信号为低。写操作使用额外的数据掩码（Data Mask，DM）信号来标识数据是否有效。当DM为高时，对应时钟沿的数据并不写入SDRAM，当DM为低时，对应时钟沿的数据才写入SDRAM。DM信号与DQ信号同步。在写操作时，DQS信号和DQ信号是由内存控制器驱动的。同样，在DQS的起始、DQ传输数据之前，DQS信号也存在一个写前导（Write Preamble）。DDR3 SDRAM的写前导为一个周期的时钟信号，DDR2 SDRAM的写前导为半个时钟周期的低电平信号。</p>
+<p>前面讲过SDRAM的基本操作包括激活（Activate）、读写（Read/Write）和预充电（Precharge）。当SDRAM接收到一个操作后，它需要在固定的时钟周期之后开始进行相应的动作，并且这些动作是需要经过一定的时间才能完成的。因此，对DRAM不同操作命令之间是有时间限制的。例如，对于DDR3-1600内存来说，当软件访问的两个地址正好位于内存的同一个Bank的不同行时，内存控制器需要首先针对第一个访问地址发出激活操作，经过13.75ns的时间，才可以发出读写操作。如果第一个访问是读操作，则需要经过至少7.5ns（此外还需满足tRASmin的要求，这里进行简化说明）的时间才可以发送预充电操作。预充电操作发送后，需要经过13.75ns的时间才可以针对第二个访问的行地址发送新的激活操作，然后经过13.75ns的时间，发送读写操作。因此，对SDRAM的同一个Bank的不同行进行读写存在较大的访问延迟。为了掩盖访问延迟，SDRAM允许针对不同Bank的操作并发执行。上述访问过程如图<a href="计算机总线接口技术.html#fig:sdram-timing">6.15</a>所示。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:sdram-timing"></span>
+<img src="images/chapter6/sdram_timing.png" alt="SDRAM的访问时序图" width="100%" />
+<p class="caption">
+图 6.15: SDRAM的访问时序图
+</p>
+</div>
+<p>提高内存总线访问效率的两个主要手段是充分利用行缓冲局部性和Bank级并行度。行缓冲局部性是说，当两个访存命令命中SDRAM的同一行时，两个命令可以连续快速发送；Bank级并行度是说，针对SDRAM的不同Bank的操作可以并发执行，从而降低后一个操作的访存延迟。下面以一个简单的例子来说明对SDRAM的不同访问序列的延迟的差别。</p>
+<p>假定处理器发出了三个访存读命令，地址分别命中SDRAM的第0个Bank的第0行（列地址为0）、第0个Bank的第1行和第0个Bank的第0行（与第一个命令的列地址不同，假定列地址为1）。如果我们不改变访问的顺序，直接将这三个命令转换为对应SDRAM的操作发送给内存。则需要的时间如图<a href="计算机总线接口技术.html#fig:command-before">6.16</a>所示。图中，&lt;B0,R0&gt;表示第0个Bank的第0行，&lt;B0,R1&gt;表示第0个Bank的第1行。每一个读命令都会转换出对应于SDRAM的&lt;激活，读数据，预充电&gt;序列。假定使用的是DDR2-800E规格的内存，它对应的时序参数为：tRCD=15ns，tRP=15ns,tRASmin=45ns,tRC=60ns,tRL=15ns,tRTP=7.5ns,tCCD=10ns(4个时钟周期)。则读数据分别在第30ns（tRCD+tRL）、90ns(tRC+tRCD+tRL)和150ns（tRC+tRC+tRCD+tRL）返回给处理器。</p>
+<p>假定我们改变命令发给内存的顺序，我们将第3个命令放到第1个命令之后发送，将第2个命令最后发送，则得到的访存序列如图<a href="计算机总线接口技术.html#fig:command-after">6.17</a>所示。在该图中，针对第0个Bank第0行第1列的命令不需要发送预充电和激活操作，而是在针对第0个Bank第0行第0列的命令之后直接发送。则处理器得到读数据的时间变为第30ns、第40ns和第90ns。相比上一种访存序列，第3个访存命令的读数据的访存延迟降低了110ns（40ns相比于150ns）。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:command-before"></span>
+<img src="images/chapter6/command_before.png" alt="调度前的命令序列" width="100%" />
+<p class="caption">
+图 6.16: 调度前的命令序列
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:command-after"></span>
+<img src="images/chapter6/command_after.png" alt="调度后的命令序列" width="100%" />
+<p class="caption">
+图 6.17: 调度后的命令序列
+</p>
+</div>
+<p>对内存总线的控制是由内存控制器实现的。内存控制器负责管理内存条的初始化、读写、低功耗控制等操作。内存控制器接收处理器发出的读写命令，将其转化为内存芯片可以识别的DRAM操作，并负责处理时序相关问题，最终返回数据（对于读命令）或者返回一个响应（对于写命令）给处理器。内存控制器一般还包括命令调度功能，以提高内存总线的访问效率。对于处理器来说，它只需要发送读写命令给内存控制器就可以了，而不必关心内存的状态以及内存是如何被读写的。</p>
+</div>
+<div id="系统总线" class="section level2">
+<h2><span class="header-section-number">6.5</span> 系统总线</h2>
+<p>系统总线通常用于处理器与桥片的连接，同时也作为多处理器间的连接以构成多路系统。</p>
+<p>英特尔处理器所广泛采用的QPI（Quick Path Interconnect）接口及在QPI之前的FSB（Front Side Bus），还有AMD处理器所广泛采用的HT（HyperTransport）接口都属于系统总线。</p>
+<p>系统总线是处理器与其他芯片进行数据交换的主要通道，系统总线的数据传输能力对计算机整体性能影响很大。如果没有足够带宽的系统总线，计算机系统的外设访问速度会明显受限，类似于显示、存储、网络等设备的交互都会受到影响。随着计算机系统技术的不断进步，微处理器与其他芯片间的数据传输性能成为制约系统性能进一步提升的一个重要因素。为了提升片间传输性能，系统总线渐渐由并行总线发展为高速串行总线。下面以HyperTransport总线为例介绍系统总线。</p>
+<div id="hypertransport总线" class="section level3">
+<h3><span class="header-section-number">6.5.1</span> HyperTransport总线</h3>
+<p>HyperTransport总线（简称HT总线）是AMD公司提出的一种高速系统总线，用于连接微处理器与配套桥片，以及多个处理器之间的互连。HT总线提出后，先后发展了HT1.0、HT2.0、HT3.0等几代标准，目前最新的标准为HT3.1。</p>
+<p>图<a href="计算机总线接口技术.html#fig:ht-two-chips">6.18</a>是采用HT总线连接处理器与桥片的结构示意图。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:ht-two-chips"></span>
+<img src="images/chapter6/ht_two_chips.png" alt="CPU-南桥两片结构" width="50%" />
+<p class="caption">
+图 6.18: CPU-南桥两片结构
+</p>
+</div>
+<p>与并行总线不同的是，串行总线通常采用点对点传输形式，体现在计算机体系结构上，就是一组串行总线只能连接两个芯片。以龙芯3A2000/3A3000为例，在四路互连系统中，一共采用了7组HT互连总线，其中6组用于四个处理器间的全相联连接，1组用于处理器与桥片的连接，如图<a href="计算机总线接口技术.html#fig:loongson-4way">6.19</a>所示。而作为对比，PCI总线则可以在同一组信号上连接多个不同的设备，如图<a href="计算机总线接口技术.html#fig:pci-interconnect">6.20</a>所示。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:loongson-4way"></span>
+<img src="images/chapter6/loongson_4way.png" alt="龙芯3A2000/3A3000四路系统结构示意图" width="50%" />
+<p class="caption">
+图 6.19: 龙芯3A2000/3A3000四路系统结构示意图
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:pci-interconnect"></span>
+<img src="images/chapter6/pci_interconnect.png" alt="PCI总线设备连接" width="50%" />
+<p class="caption">
+图 6.20: PCI总线设备连接
+</p>
+</div>
+<p>HT总线的软件架构与PCI总线协议基本相同，都采用配置空间、IO空间和Memory空间的划分，通过对配置寄存器的设置，采用正向译码的方向对设备空间进行访问。基于PCI总线设计的设备驱动程序能够直接使用在HT总线的设备上。</p>
+<p>但在电气特性及信号定义上，HT总线与PCI总线却大相径庭，HT由两组定义类似但方向不同的信号组成。其主要信号定义如表<a href="计算机总线接口技术.html#tab:ht-signals">6.3</a>所示。</p>
+<template id="9435d49e-4e9d-4968-9e95-ee5b5f1e62be"><style>
+.tabwid table{
+  border-spacing:0px !important;
+  border-collapse:collapse;
+  line-height:1;
+  margin-left:auto;
+  margin-right:auto;
+  border-width: 0;
+  display: table;
+  margin-top: 1.275em;
+  margin-bottom: 1.275em;
+  border-color: transparent;
+}
+.tabwid_left table{
+  margin-left:0;
+}
+.tabwid_right table{
+  margin-right:0;
+}
+.tabwid td {
+    padding: 0;
+}
+.tabwid a {
+  text-decoration: none;
+}
+.tabwid thead {
+    background-color: transparent;
+}
+.tabwid tfoot {
+    background-color: transparent;
+}
+.tabwid table tr {
+background-color: transparent;
+}
+</style><div class="tabwid"><style>.cl-7b0e081c{}.cl-7b058390{font-family:'Noto Sans CJK SC';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-7b0583b8{font-family:'Noto Sans CJK SC';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-7b0598da{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-7b05d75a{width:179.4pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7b05d778{width:159.2pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7b05d78c{width:33.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7b05d796{width:179.4pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7b05d7a0{width:159.2pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7b05d7b4{width:33.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7b05d7be{width:179.4pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7b05d7c8{width:33.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7b05d7d2{width:159.2pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7b05d7dc{width:179.4pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7b05d7f0{width:33.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7b05d7fa{width:159.2pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-7b0e081c'>
+<caption class="Table Caption">
+<p><span id="tab:ht-signals">表 6.3: </span>HT总线主要信号定义</p>
+</caption>
+<thead><tr style="overflow-wrap:break-word;"><td class="cl-7b05d7dc"><p class="cl-7b0598da"><span class="cl-7b058390">引脚名称</span></p></td><td class="cl-7b05d7f0"><p class="cl-7b0598da"><span class="cl-7b058390">方向</span></p></td><td class="cl-7b05d7fa"><p class="cl-7b0598da"><span class="cl-7b058390">描述</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-7b05d75a"><p class="cl-7b0598da"><span class="cl-7b0583b8">TX_CLKp/TX_CLKn</span></p></td><td class="cl-7b05d78c"><p class="cl-7b0598da"><span class="cl-7b0583b8">输出</span></p></td><td class="cl-7b05d778"><p class="cl-7b0598da"><span class="cl-7b0583b8">发送端时钟信号</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7b05d796"><p class="cl-7b0598da"><span class="cl-7b0583b8">TX_CTLp/TX_CTLn</span></p></td><td class="cl-7b05d7b4"><p class="cl-7b0598da"><span class="cl-7b0583b8">输出</span></p></td><td class="cl-7b05d7a0"><p class="cl-7b0598da"><span class="cl-7b0583b8">发送端控制信号，用于区分命令包与数据包</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7b05d7be"><p class="cl-7b0598da"><span class="cl-7b0583b8">TX_CADp[n:0]/TX_CADn[n:0]</span></p></td><td class="cl-7b05d7c8"><p class="cl-7b0598da"><span class="cl-7b0583b8">输出</span></p></td><td class="cl-7b05d7d2"><p class="cl-7b0598da"><span class="cl-7b0583b8">发送端命令地址数据复用信号，用于传输各种包</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7b05d796"><p class="cl-7b0598da"><span class="cl-7b0583b8">RX_CLKp/RX_CLKn</span></p></td><td class="cl-7b05d7b4"><p class="cl-7b0598da"><span class="cl-7b0583b8">输入</span></p></td><td class="cl-7b05d7a0"><p class="cl-7b0598da"><span class="cl-7b0583b8">接收端时钟</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7b05d796"><p class="cl-7b0598da"><span class="cl-7b0583b8">RX_CTLp/RX_CTLn</span></p></td><td class="cl-7b05d7b4"><p class="cl-7b0598da"><span class="cl-7b0583b8">输入</span></p></td><td class="cl-7b05d7a0"><p class="cl-7b0598da"><span class="cl-7b0583b8">接收端控制信号，用于区分命令包与数据包</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7b05d7be"><p class="cl-7b0598da"><span class="cl-7b0583b8">RX_CADp[n:0]/RX_CADn[n:0]</span></p></td><td class="cl-7b05d7c8"><p class="cl-7b0598da"><span class="cl-7b0583b8">输入</span></p></td><td class="cl-7b05d7d2"><p class="cl-7b0598da"><span class="cl-7b0583b8">接收端命令地址数据复用信号，用于传输各种包</span></p></td></tr></tbody></table></div></template>
+<div class="flextable-shadow-host" id="0f359158-add1-4e49-9a55-7cfd4ee3a473"></div>
+<script>
+var dest = document.getElementById("0f359158-add1-4e49-9a55-7cfd4ee3a473");
+var template = document.getElementById("9435d49e-4e9d-4968-9e95-ee5b5f1e62be");
+var caption = template.content.querySelector("caption");
+if(caption) {
+  caption.style.cssText = "display:block;text-align:center;";
+  var newcapt = document.createElement("p");
+  newcapt.appendChild(caption)
+  dest.parentNode.insertBefore(newcapt, dest.previousSibling);
+}
+var fantome = dest.attachShadow({mode: 'open'});
+var templateContent = template.content;
+fantome.appendChild(templateContent);
+</script>
+
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:ht-interconnect"></span>
+<img src="images/chapter6/ht_interconnect.png" alt="HT总线连接" width="50%" />
+<p class="caption">
+图 6.21: HT总线连接
+</p>
+</div>
+<p>可以看到，图<a href="计算机总线接口技术.html#fig:ht-interconnect">6.21</a>中两个芯片通过定义相同的信号进行相互传输。与上一节介绍的DDR内存总线所不同的是，HT总线上，用于数据传输的信号并非双向信号，而是由两组方向相反的单向信号各自传输。这种传输方式即通常所说的全双工传输。发送和接收两个方向的传输可以同时进行，互不干扰。而采用双向信号的总线，例如DDR内存总线或者PCI总线，只能进行半双工传输，其发送和接收不能同时进行。而且在较高频率下，发送和接收两种模式需要进行切换时，为了保证其数据传输的完整性，还需要在切换过程中增加专门的空闲周期，这样更加影响了总线传输效率。</p>
+<p>PCI接口信号定义如图<a href="计算机总线接口技术.html#fig:pci-signals">6.22</a>所示。PCI总线上使用起始信号（FRAME#）及相应的准备好信号（TRDY#、IRDY#）、停止信号（STOP#）来进行总线的握手，控制总线传输。与PCI总线不同，HT总线信号定义看起来非常简单，没有类似PCI总线的握手信号。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:pci-signals"></span>
+<img src="images/chapter6/pci_signals.png" alt="PCI总线信号定义" width="100%" />
+<p class="caption">
+图 6.22: PCI总线信号定义
+</p>
+</div>
+<p>实际上HT总线的读写请求是通过包的形式传输的，将预先定义好的读写包通过几个连续的时钟周期进行发送，再由接收端进行解析处理。同时，HT总线采用了流控机制替代了握手机制。</p>
+<p>流控机制的原理并不复杂。简单来说，在总线初始化完成后，总线双方的发送端将自身的接收端能够接收的请求或响应数通过一种专用的流控包通知对方。总线双方各自维护一组计数器用于记录该信息。每需要发出请求或响应时，先检查对应的计数器是否为0。如果为0，表示另一方无法再接收这种请求或响应，发送方需要等待；如果不为0，则将对应的计数器值减1，再发出请求或响应。而接收端每处理完一个请求或响应后，会再通过流控包通知对方，对方根据这个信息来增加内部对应的计数器。正是通过这种方式，有效消除了总线上的握手，提升了总线传输的频率和效率。</p>
+<p>这种传输模式对提升总线频率很有好处。PCI总线发展到PCI-X时，频率能够达到133MHz，宽度最高为64位，总线峰值带宽为1064MB/s。而HT总线发展到3.1版本时，频率能够达到3.2GHz，使用双沿传输，数据速率达到6.4Gb/s，以常见的16位总线来说，单向峰值带宽为12.8GB/s，双向峰值带宽为25.6GB/s。即使去除地址命令传输周期，其有效带宽也比PCI总线提升了一个数量级以上。</p>
+</div>
+<div id="ht包格式" class="section level3">
+<h3><span class="header-section-number">6.5.2</span> HT包格式</h3>
+<p>HT总线的传输以包为单位。按照传输的类型，首先分为控制包和数据包两种。控制包和数据包使用CTL信号区分，当CTL信号为高时，表示正在传输一个控制包，当CTL信号为低时，表示正在传输一个数据包。数据包依附于最近的一个带数据的控制包。</p>
+<p>控制包根据传输的内容，再分为三种不同的包格式，分别为信息包、请求包和响应包。</p>
+<p>信息包的作用是为互连的两端传递底层信息，本身不需要流控。这意味着对于信息包，无论何时都是可以被接收并处理的。流控信息就是一种典型的信息包。信息包的格式如表<a href="计算机总线接口技术.html#tab:ht-packet-format">6.4</a>所示。</p>
+<p>其中，“命令”域用于区分不同的包。对不同的命令，包的其他位置表示的内容之间有所不同。</p>
+<p>HT也是采用DDR传输，即双倍数据率传输，在时钟的上升、下降沿各传一组数据。每种包大小都是4字节的倍数。图<a href="计算机总线接口技术.html#fig:ht-transfer">6.23</a>是在总线上传输的时序示意图，以8位的CAD总线为为例。在CTL为高电平的时候，表示传输的是控制包，而CTL为低时，表示传输的是数据包。图中CAD信息上的数字对应包格式表中的具体拍数。</p>
+<template id="017d761d-f86b-45bc-a3a2-0713fcb7a416"><style>
+.tabwid table{
+  border-spacing:0px !important;
+  border-collapse:collapse;
+  line-height:1;
+  margin-left:auto;
+  margin-right:auto;
+  border-width: 0;
+  display: table;
+  margin-top: 1.275em;
+  margin-bottom: 1.275em;
+  border-color: transparent;
+}
+.tabwid_left table{
+  margin-left:0;
+}
+.tabwid_right table{
+  margin-right:0;
+}
+.tabwid td {
+    padding: 0;
+}
+.tabwid a {
+  text-decoration: none;
+}
+.tabwid thead {
+    background-color: transparent;
+}
+.tabwid tfoot {
+    background-color: transparent;
+}
+.tabwid table tr {
+background-color: transparent;
+}
+</style><div class="tabwid"><style>.cl-7b363f94{}.cl-7b2df370{font-family:'Noto Sans CJK SC';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-7b2e06d0{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-7b2e5090{width:43.2pt;background-color:rgba(190, 190, 190, 1.00);vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7b2e50b8{width:72pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7b2e50c2{width:43.2pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7b2e50cc{width:43.2pt;background-color:rgba(190, 190, 190, 1.00);vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7b2e50e0{width:72pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7b2e50ea{width:43.2pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-7b363f94'>
+<caption class="Table Caption">
+<p><span id="tab:ht-packet-format">表 6.4: </span>HT信息包格式</p>
+</caption>
+<thead><tr style="overflow-wrap:break-word;"><td class="cl-7b2e50e0"><p class="cl-7b2e06d0"><span class="cl-7b2df370">字节\数据位</span></p></td><td class="cl-7b2e50ea"><p class="cl-7b2e06d0"><span class="cl-7b2df370">7</span></p></td><td class="cl-7b2e50ea"><p class="cl-7b2e06d0"><span class="cl-7b2df370">6</span></p></td><td class="cl-7b2e50ea"><p class="cl-7b2e06d0"><span class="cl-7b2df370">5</span></p></td><td class="cl-7b2e50ea"><p class="cl-7b2e06d0"><span class="cl-7b2df370">4</span></p></td><td class="cl-7b2e50ea"><p class="cl-7b2e06d0"><span class="cl-7b2df370">3</span></p></td><td class="cl-7b2e50ea"><p class="cl-7b2e06d0"><span class="cl-7b2df370">2</span></p></td><td class="cl-7b2e50ea"><p class="cl-7b2e06d0"><span class="cl-7b2df370">1</span></p></td><td class="cl-7b2e50ea"><p class="cl-7b2e06d0"><span class="cl-7b2df370">0</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-7b2e50b8"><p class="cl-7b2e06d0"><span class="cl-7b2df370">0</span></p></td><td  colspan="2"class="cl-7b2e5090"><p class="cl-7b2e06d0"><span class="cl-7b2df370">命令相关内容</span></p></td><td  colspan="6"class="cl-7b2e50c2"><p class="cl-7b2e06d0"><span class="cl-7b2df370">命令</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7b2e50e0"><p class="cl-7b2e06d0"><span class="cl-7b2df370">1</span></p></td><td  colspan="8"class="cl-7b2e50cc"><p class="cl-7b2e06d0"><span class="cl-7b2df370">命令相关内容</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7b2e50e0"><p class="cl-7b2e06d0"><span class="cl-7b2df370">2</span></p></td><td  colspan="8"class="cl-7b2e50cc"><p class="cl-7b2e06d0"><span class="cl-7b2df370">命令相关内容</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7b2e50e0"><p class="cl-7b2e06d0"><span class="cl-7b2df370">3</span></p></td><td  colspan="8"class="cl-7b2e50cc"><p class="cl-7b2e06d0"><span class="cl-7b2df370">命令相关内容</span></p></td></tr></tbody></table></div></template>
+<div class="flextable-shadow-host" id="4fbe710f-0524-4c51-96fb-96d3260c4a5d"></div>
+<script>
+var dest = document.getElementById("4fbe710f-0524-4c51-96fb-96d3260c4a5d");
+var template = document.getElementById("017d761d-f86b-45bc-a3a2-0713fcb7a416");
+var caption = template.content.querySelector("caption");
+if(caption) {
+  caption.style.cssText = "display:block;text-align:center;";
+  var newcapt = document.createElement("p");
+  newcapt.appendChild(caption)
+  dest.parentNode.insertBefore(newcapt, dest.previousSibling);
+}
+var fantome = dest.attachShadow({mode: 'open'});
+var templateContent = template.content;
+fantome.appendChild(templateContent);
+</script>
+
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:ht-transfer"></span>
+<img src="images/chapter6/ht_transfer.png" alt="HT总线传输示意图" width="100%" />
+<p class="caption">
+图 6.23: HT总线传输示意图
+</p>
+</div>
+<p>表<a href="计算机总线接口技术.html#tab:ht-request">6.5</a>为请求包的格式。因为需要传输地址信息，请求包最少需要8字节。当使用64位地址时，请求包可以扩展至12字节。大部分请求包地址的[7:2]是存放在第3拍。因为数据的最小单位为4字节，地址的[1:0]不需要进行传输。当传输的数据少于4字节时，利用数据包的屏蔽位进行处理。</p>
+<template id="cf4fb3f9-6875-408f-a590-1150250fe115"><style>
+.tabwid table{
+  border-spacing:0px !important;
+  border-collapse:collapse;
+  line-height:1;
+  margin-left:auto;
+  margin-right:auto;
+  border-width: 0;
+  display: table;
+  margin-top: 1.275em;
+  margin-bottom: 1.275em;
+  border-color: transparent;
+}
+.tabwid_left table{
+  margin-left:0;
+}
+.tabwid_right table{
+  margin-right:0;
+}
+.tabwid td {
+    padding: 0;
+}
+.tabwid a {
+  text-decoration: none;
+}
+.tabwid thead {
+    background-color: transparent;
+}
+.tabwid tfoot {
+    background-color: transparent;
+}
+.tabwid table tr {
+background-color: transparent;
+}
+</style><div class="tabwid"><style>.cl-7b5ff3b6{}.cl-7b5755e4{font-family:'Noto Sans CJK SC';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-7b576b9c{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-7b57b692{width:43.2pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7b57b6b0{width:72pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7b57b6ba{width:72pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7b57b6ce{width:43.2pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7b57b6d8{width:43.2pt;background-color:rgba(190, 190, 190, 1.00);vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-7b5ff3b6'>
+<caption class="Table Caption">
+<p><span id="tab:ht-request">表 6.5: </span>HT请求包格式</p>
+</caption>
+<thead><tr style="overflow-wrap:break-word;"><td class="cl-7b57b6ba"><p class="cl-7b576b9c"><span class="cl-7b5755e4">字节\数据位</span></p></td><td class="cl-7b57b6ce"><p class="cl-7b576b9c"><span class="cl-7b5755e4">7</span></p></td><td class="cl-7b57b6ce"><p class="cl-7b576b9c"><span class="cl-7b5755e4">6</span></p></td><td class="cl-7b57b6ce"><p class="cl-7b576b9c"><span class="cl-7b5755e4">5</span></p></td><td class="cl-7b57b6ce"><p class="cl-7b576b9c"><span class="cl-7b5755e4">4</span></p></td><td class="cl-7b57b6ce"><p class="cl-7b576b9c"><span class="cl-7b5755e4">3</span></p></td><td class="cl-7b57b6ce"><p class="cl-7b576b9c"><span class="cl-7b5755e4">2</span></p></td><td class="cl-7b57b6ce"><p class="cl-7b576b9c"><span class="cl-7b5755e4">1</span></p></td><td class="cl-7b57b6ce"><p class="cl-7b576b9c"><span class="cl-7b5755e4">0</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-7b57b6b0"><p class="cl-7b576b9c"><span class="cl-7b5755e4">0</span></p></td><td  colspan="2"class="cl-7b57b692"><p class="cl-7b576b9c"><span class="cl-7b5755e4">顺序标识</span></p></td><td  colspan="6"class="cl-7b57b692"><p class="cl-7b576b9c"><span class="cl-7b5755e4">命令</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7b57b6ba"><p class="cl-7b576b9c"><span class="cl-7b5755e4">1</span></p></td><td class="cl-7b57b6ce"><p class="cl-7b576b9c"><span class="cl-7b5755e4"></span></p></td><td  colspan="2"class="cl-7b57b6ce"><p class="cl-7b576b9c"><span class="cl-7b5755e4">顺序标识</span></p></td><td  colspan="5"class="cl-7b57b6ce"><p class="cl-7b576b9c"><span class="cl-7b5755e4">设备标识</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7b57b6ba"><p class="cl-7b576b9c"><span class="cl-7b5755e4">2</span></p></td><td  colspan="8"class="cl-7b57b6ce"><p class="cl-7b576b9c"><span class="cl-7b5755e4">命令相关内容</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7b57b6ba"><p class="cl-7b576b9c"><span class="cl-7b5755e4">3</span></p></td><td  colspan="8"class="cl-7b57b6d8"><p class="cl-7b576b9c"><span class="cl-7b5755e4">命令相关内容</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7b57b6ba"><p class="cl-7b576b9c"><span class="cl-7b5755e4">4</span></p></td><td  colspan="8"class="cl-7b57b6d8"><p class="cl-7b576b9c"><span class="cl-7b5755e4">地址[15:8]</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7b57b6ba"><p class="cl-7b576b9c"><span class="cl-7b5755e4">5</span></p></td><td  colspan="8"class="cl-7b57b6ce"><p class="cl-7b576b9c"><span class="cl-7b5755e4">地址[23:16]</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7b57b6ba"><p class="cl-7b576b9c"><span class="cl-7b5755e4">6</span></p></td><td  colspan="8"class="cl-7b57b6ce"><p class="cl-7b576b9c"><span class="cl-7b5755e4">地址[31:24]</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7b57b6ba"><p class="cl-7b576b9c"><span class="cl-7b5755e4">7</span></p></td><td  colspan="8"class="cl-7b57b6ce"><p class="cl-7b576b9c"><span class="cl-7b5755e4">地址[39:32]</span></p></td></tr></tbody></table></div></template>
+<div class="flextable-shadow-host" id="ed3c7676-cb0a-463d-bef2-8eb727309035"></div>
+<script>
+var dest = document.getElementById("ed3c7676-cb0a-463d-bef2-8eb727309035");
+var template = document.getElementById("cf4fb3f9-6875-408f-a590-1150250fe115");
+var caption = template.content.querySelector("caption");
+if(caption) {
+  caption.style.cssText = "display:block;text-align:center;";
+  var newcapt = document.createElement("p");
+  newcapt.appendChild(caption)
+  dest.parentNode.insertBefore(newcapt, dest.previousSibling);
+}
+var fantome = dest.attachShadow({mode: 'open'});
+var templateContent = template.content;
+fantome.appendChild(templateContent);
+</script>
+
+<p>请求包主要是读请求和写请求。其中读请求不需要数据，而写请求需要跟随数据包。</p>
+<p>表<a href="计算机总线接口技术.html#tab:ht-response">6.6</a>是响应包的格式。响应包大小为4字节。与请求包类似，写响应包不需要数据，而读响应包需要跟随数据包。</p>
+<template id="9529fe5e-b3e5-4921-be59-66f5f1d43d9b"><style>
+.tabwid table{
+  border-spacing:0px !important;
+  border-collapse:collapse;
+  line-height:1;
+  margin-left:auto;
+  margin-right:auto;
+  border-width: 0;
+  display: table;
+  margin-top: 1.275em;
+  margin-bottom: 1.275em;
+  border-color: transparent;
+}
+.tabwid_left table{
+  margin-left:0;
+}
+.tabwid_right table{
+  margin-right:0;
+}
+.tabwid td {
+    padding: 0;
+}
+.tabwid a {
+  text-decoration: none;
+}
+.tabwid thead {
+    background-color: transparent;
+}
+.tabwid tfoot {
+    background-color: transparent;
+}
+.tabwid table tr {
+background-color: transparent;
+}
+</style><div class="tabwid"><style>.cl-7b877bf2{}.cl-7b7f6e26{font-family:'Noto Sans CJK SC';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-7b7f84f6{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-7b7fc696{width:43.2pt;background-color:rgba(190, 190, 190, 1.00);vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7b7fc6be{width:72pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7b7fc6c8{width:43.2pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7b7fc6d2{width:43.2pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7b7fc6e6{width:72pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7b7fc6f0{width:43.2pt;background-color:rgba(190, 190, 190, 1.00);vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-7b877bf2'>
+<caption class="Table Caption">
+<p><span id="tab:ht-response">表 6.6: </span>HT响应包格式</p>
+</caption>
+<thead><tr style="overflow-wrap:break-word;"><td class="cl-7b7fc6e6"><p class="cl-7b7f84f6"><span class="cl-7b7f6e26">字节\数据位</span></p></td><td class="cl-7b7fc6d2"><p class="cl-7b7f84f6"><span class="cl-7b7f6e26">7</span></p></td><td class="cl-7b7fc6d2"><p class="cl-7b7f84f6"><span class="cl-7b7f6e26">6</span></p></td><td class="cl-7b7fc6d2"><p class="cl-7b7f84f6"><span class="cl-7b7f6e26">5</span></p></td><td class="cl-7b7fc6d2"><p class="cl-7b7f84f6"><span class="cl-7b7f6e26">4</span></p></td><td class="cl-7b7fc6d2"><p class="cl-7b7f84f6"><span class="cl-7b7f6e26">3</span></p></td><td class="cl-7b7fc6d2"><p class="cl-7b7f84f6"><span class="cl-7b7f6e26">2</span></p></td><td class="cl-7b7fc6d2"><p class="cl-7b7f84f6"><span class="cl-7b7f6e26">1</span></p></td><td class="cl-7b7fc6d2"><p class="cl-7b7f84f6"><span class="cl-7b7f6e26">0</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-7b7fc6be"><p class="cl-7b7f84f6"><span class="cl-7b7f6e26">0</span></p></td><td  colspan="2"class="cl-7b7fc696"><p class="cl-7b7f84f6"><span class="cl-7b7f6e26">命令相关内容</span></p></td><td class="cl-7b7fc6c8"><p class="cl-7b7f84f6"><span class="cl-7b7f6e26"></span></p></td><td  colspan="5"class="cl-7b7fc6c8"><p class="cl-7b7f84f6"><span class="cl-7b7f6e26">命令</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7b7fc6e6"><p class="cl-7b7f84f6"><span class="cl-7b7f6e26">1</span></p></td><td  colspan="3"class="cl-7b7fc6d2"><p class="cl-7b7f84f6"><span class="cl-7b7f6e26"></span></p></td><td  colspan="5"class="cl-7b7fc6d2"><p class="cl-7b7f84f6"><span class="cl-7b7f6e26">设备标识</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7b7fc6e6"><p class="cl-7b7f84f6"><span class="cl-7b7f6e26">2</span></p></td><td  colspan="2"class="cl-7b7fc6d2"><p class="cl-7b7f84f6"><span class="cl-7b7f6e26"></span></p></td><td class="cl-7b7fc6d2"><p class="cl-7b7f84f6"><span class="cl-7b7f6e26">错误</span></p></td><td  colspan="5"class="cl-7b7fc6f0"><p class="cl-7b7f84f6"><span class="cl-7b7f6e26">命令相关内容</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7b7fc6e6"><p class="cl-7b7f84f6"><span class="cl-7b7f6e26">3</span></p></td><td  colspan="2"class="cl-7b7fc6d2"><p class="cl-7b7f84f6"><span class="cl-7b7f6e26"></span></p></td><td class="cl-7b7fc6d2"><p class="cl-7b7f84f6"><span class="cl-7b7f6e26">错误</span></p></td><td  colspan="3"class="cl-7b7fc6d2"><p class="cl-7b7f84f6"><span class="cl-7b7f6e26"></span></p></td><td  colspan="2"class="cl-7b7fc6f0"><p class="cl-7b7f84f6"><span class="cl-7b7f6e26">命令相关内容</span></p></td></tr></tbody></table></div></template>
+<div class="flextable-shadow-host" id="ec28526b-5082-4cb1-a32c-e3237475406d"></div>
+<script>
+var dest = document.getElementById("ec28526b-5082-4cb1-a32c-e3237475406d");
+var template = document.getElementById("9529fe5e-b3e5-4921-be59-66f5f1d43d9b");
+var caption = template.content.querySelector("caption");
+if(caption) {
+  caption.style.cssText = "display:block;text-align:center;";
+  var newcapt = document.createElement("p");
+  newcapt.appendChild(caption)
+  dest.parentNode.insertBefore(newcapt, dest.previousSibling);
+}
+var fantome = dest.attachShadow({mode: 'open'});
+var templateContent = template.content;
+fantome.appendChild(templateContent);
+</script>
+
+</div>
+<div id="设备总线" class="section level3">
+<h3><span class="header-section-number">6.5.3</span> 设备总线</h3>
+<p>设备总线用于计算机系统中与IO设备的连接。</p>
+<p>PCI（Peripheral Component Interconnect）总线是一种对计算机体系结构连接影响深远并广泛应用的设备总线。PCIE（PCI Express）可以被看作PCI总线的升级版本，兼容PCI软件架构。PCIE总线被广泛地用作连接设备的通用总线，在现有计算机系统中已经基本取代了PCI的位置。PCIE接口在系统中的位置如图<a href="计算机总线接口技术.html#fig:pcie-location">6.24</a>所示，一般与SATA、USB、显示等设备接口位于同样层次，用于扩展外部设备。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:pcie-location"></span>
+<img src="images/chapter6/pcie_location.png" alt="PCIE接口位置示意图" width="50%" />
+<p class="caption">
+图 6.24: PCIE接口位置示意图
+</p>
+</div>
+</div>
+<div id="pcie总线" class="section level3">
+<h3><span class="header-section-number">6.5.4</span> PCIE总线</h3>
+<p>与HT类似，PCIE总线也是串行总线。PCIE与设备进行连接的时候同样采用点对点的方式，一组PCIE接口只能连接一个设备。为了连接多个设备，就需要实现多个接口，如图<a href="计算机总线接口技术.html#fig:pcie-interconnect">6.25</a>所示。</p>
+<p>与HT又有所不同，两者在信号定义和接收发送方法上有很大差别。上一节介绍过，HT总线主要包括三种信号，分别为CLK、CTL、CAD，其中CLK作为随路时钟使用，用于传递总线的频率信息并用作数据恢复。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:pcie-interconnect"></span>
+<img src="images/chapter6/pcie_interconnect.png" alt="PCIE接口连接示意图" width="100%" />
+<p class="caption">
+图 6.25: PCIE接口连接示意图
+</p>
+</div>
+<p>PCIE的总线信号如表<a href="计算机总线接口技术.html#tab:pcie-signals">6.7</a>所示。</p>
+<template id="401640a1-8264-4a94-874d-0dcc57608f7a"><style>
+.tabwid table{
+  border-spacing:0px !important;
+  border-collapse:collapse;
+  line-height:1;
+  margin-left:auto;
+  margin-right:auto;
+  border-width: 0;
+  display: table;
+  margin-top: 1.275em;
+  margin-bottom: 1.275em;
+  border-color: transparent;
+}
+.tabwid_left table{
+  margin-left:0;
+}
+.tabwid_right table{
+  margin-right:0;
+}
+.tabwid td {
+    padding: 0;
+}
+.tabwid a {
+  text-decoration: none;
+}
+.tabwid thead {
+    background-color: transparent;
+}
+.tabwid tfoot {
+    background-color: transparent;
+}
+.tabwid table tr {
+background-color: transparent;
+}
+</style><div class="tabwid"><style>.cl-7bb07d2c{}.cl-7ba92f04{font-family:'Noto Sans CJK SC';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-7ba92f2c{font-family:'Noto Sans CJK SC';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-7ba9452a{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-7ba97c8e{width:46.9pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7ba97cac{width:94.8pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7ba97cb6{width:33.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7ba97cca{width:94.8pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7ba97cd4{width:46.9pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7ba97cde{width:33.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7ba97cf2{width:94.8pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7ba97cfc{width:33.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7ba97d06{width:46.9pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-7bb07d2c'>
+<caption class="Table Caption">
+<p><span id="tab:pcie-signals">表 6.7: </span>PCIE总线主要信号定义</p>
+</caption>
+<thead><tr style="overflow-wrap:break-word;"><td class="cl-7ba97cf2"><p class="cl-7ba9452a"><span class="cl-7ba92f04">引脚名称</span></p></td><td class="cl-7ba97cfc"><p class="cl-7ba9452a"><span class="cl-7ba92f04">方向</span></p></td><td class="cl-7ba97d06"><p class="cl-7ba9452a"><span class="cl-7ba92f04">描述</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-7ba97cac"><p class="cl-7ba9452a"><span class="cl-7ba92f2c">TXp/TXn[n:0]</span></p></td><td class="cl-7ba97cb6"><p class="cl-7ba9452a"><span class="cl-7ba92f2c">输出</span></p></td><td class="cl-7ba97c8e"><p class="cl-7ba9452a"><span class="cl-7ba92f2c">发送信号</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7ba97cca"><p class="cl-7ba9452a"><span class="cl-7ba92f2c">RXp/RXn[n:0]</span></p></td><td class="cl-7ba97cde"><p class="cl-7ba9452a"><span class="cl-7ba92f2c">输入</span></p></td><td class="cl-7ba97cd4"><p class="cl-7ba9452a"><span class="cl-7ba92f2c">接收信号</span></p></td></tr></tbody></table></div></template>
+<div class="flextable-shadow-host" id="a6cf8b80-d147-4c6b-9be2-986a3a823cb0"></div>
+<script>
+var dest = document.getElementById("a6cf8b80-d147-4c6b-9be2-986a3a823cb0");
+var template = document.getElementById("401640a1-8264-4a94-874d-0dcc57608f7a");
+var caption = template.content.querySelector("caption");
+if(caption) {
+  caption.style.cssText = "display:block;text-align:center;";
+  var newcapt = document.createElement("p");
+  newcapt.appendChild(caption)
+  dest.parentNode.insertBefore(newcapt, dest.previousSibling);
+}
+var fantome = dest.attachShadow({mode: 'open'});
+var templateContent = template.content;
+fantome.appendChild(templateContent);
+</script>
+
+<p>可以看到，PCIE接口上只有用于数据传输的信号。HT接口上，CAD[n:0]通常是以8位为单位，共用一组时钟信号，总线宽度可以为8位、16位或32位。而PCIE接口上的各个TX信号之间相互独立，最小单位为1位，称之为通道（Lane）。常见的总线宽度有1位、4位、8位及16位。如千兆网卡、SATA扩展卡、USB扩展卡等总线宽度大多为1位，而显卡、RAID卡等总线宽度通常为16位。</p>
+<p>PCIE在进行传输时，仅仅发送数据信号，而没有发送时钟信号。在接收端通过总线初始化时约定好的数据序列恢复出与发送端同步的时钟，并使用该时钟对接收到的数据信号进行采样，得到原始数据。</p>
+</div>
+<div id="pcie包格式" class="section level3">
+<h3><span class="header-section-number">6.5.5</span> PCIE包格式</h3>
+<p>PCIE总线的传输同样以包（事务层包，Transaction Level Packet，简称TLP）为单位，其包格式如图<a href="计算机总线接口技术.html#fig:pcie-packet">6.26</a>所示。PCIE包主要分为TLP首部与数据负载两部分，其作用与HT包类似，可以对应到HT包中的控制包与数据包。PCIE包同样是以4字节为单位增长。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:pcie-packet"></span>
+<img src="images/chapter6/pcie_packet.png" alt="PCIE总线包格式" width="100%" />
+<p class="caption">
+图 6.26: PCIE总线包格式
+</p>
+</div>
+<p>对于具体包格式的定义，PCIE与HT各有不同。尤其是PCIE包在协议上最多可以一次传输4KB的数据，而HT包最多一次传输64字节。PCIE的具体包格式定义在此不再展开，感兴趣的读者可以参考PCIE相关协议。</p>
+<p>此外，PCIE同样采用了流控机制来消除总线握手。</p>
+<p>PCIE总线被广泛地用作连接设备的设备总线，而HT总线则作为系统总线，用于处理器与桥片之间的连接及多处理器间的互连。</p>
+<p>这些使用上的差异是由总线接口特性所决定的。与HT总线不同的是，PCIE接口在x1时，只有一对发送信号线和一对接收信号线，没有随之发送的时钟和控制信号。PCIE接口通过总线传输编码，将时钟信息从总线上重新提取并恢复数据。PCIE总线的传输相比HT总线来说，开销更大，带来延迟的增大及总线带宽利用率的降低。</p>
+<p>PCIE总线可以由多个数据通道组成，每个通道只有一对发送信号和一对接收信号，因此传输时每个通道所使用的信号线更少，而且不同的通道之间相关性小，目前使用的PCIE卡最多为16个数据通道。对于物理连接来说，PCIE接口相比HT接口，实现更为简单，被广泛地用作可扩展设备连接，逐渐替代了PCI总线。</p>
+</div>
+</div>
+<div id="本章小结-5" class="section level2">
+<h2><span class="header-section-number">6.6</span> 本章小结</h2>
+<p>本章简单介绍了计算机中的总线技术。总线技术的应用简化了计算机的设计，使得人们可以专注于部件的开发，促进了分工合作。计算机在发展过程中，形成了各种各样的总线，有些总线发展为行业标准，有专门的组织和结构去制定规范，有些总线虽然没有明文规定，却也成为事实上的标准。这些总线，有的已经逐渐消失，有的还在不断演进。随着计算机产业的发展，未来还会不断出现新的总线。计算机总线的发展趋势是：内部化、串行化和统一化。随着集成电路行业器件集成度的不断提高，越来越多的功能被集成到单个芯片中，因此许多外部总线逐渐被内部化。串行总线由于占用的引脚个数少，总线速度高，因此逐渐替代并行总线成为主流。在市场竞争中，由于马太效应，不同设备的接口逐渐向少数几种总线标准集中，特别是在消费电子领域，USB接口逐渐成为IO设备的标准接口，总线接口越来越统一化。</p>
+</div>
+<div id="习题-5" class="section level2">
+<h2><span class="header-section-number">6.7</span> 习题</h2>
+<ol style="list-style-type: decimal">
+<li>找一台电脑，打开机箱，说明每条连线都是什么总线。（注意：一定要先切断电源。）</li>
+<li>说明总线包含哪些层次。</li>
+<li>假定一组AXI 3.0总线，ID宽度为8，数据宽度为64，地址宽度为32，请计算该组AXI总线的信号线数量。</li>
+<li>阅读AMBA APB总线协议并设计一个APB接口的GPIO模块。</li>
+<li>DRAM的寻址包含哪几部分？</li>
+<li>假设一个处理器支持两个DDR3内存通道，每个通道为64位宽，内存地址线个数为15，片选个数为4，计算该处理器实际支持的最大内存容量。</li>
+</ol>
+<div style="page-break-after: always;"></div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="计算机组成原理和结构.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="计算机启动过程分析.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/clipboard.min.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/foxsen/archbase-book/edit/master/16-bus.Rmd",
+"text": "编辑"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown.pdf", "bookdown.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

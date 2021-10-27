@@ -1,0 +1,1534 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>第 8 章 运算器设计 | 计算机体系结构基础</title>
+  <meta name="description" content="第 8 章 运算器设计 | 计算机体系结构基础" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="第 8 章 运算器设计 | 计算机体系结构基础" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="第 8 章 运算器设计 | 计算机体系结构基础" />
+  <meta name="github-repo" content="foxsen/archbase-book" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="第 8 章 运算器设计 | 计算机体系结构基础" />
+  
+  <meta name="twitter:description" content="第 8 章 运算器设计 | 计算机体系结构基础" />
+  
+
+<meta name="author" content="胡伟武 汪文祥 苏孟豪 张福新 王焕东 章隆兵 肖俊华 刘 苏 陈新科 吴瑞阳 李晓钰 高燕萍" />
+
+
+<meta name="date" content="2021-10-27" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="计算机启动过程分析.html"/>
+<link rel="next" href="指令流水线.html"/>
+<script src="libs/jquery/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block/empty-anchor.js"></script>
+<link href="libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections/anchor-sections.js"></script>
+<link href="libs/tabwid/tabwid.css" rel="stylesheet" />
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">计算机体系结构基础</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>丛书序言</a></li>
+<li class="chapter" data-level="" data-path="推荐序.html"><a href="推荐序.html"><i class="fa fa-check"></i>推荐序</a></li>
+<li class="chapter" data-level="" data-path="自序.html"><a href="自序.html"><i class="fa fa-check"></i>自序</a></li>
+<li class="chapter" data-level="" data-path="第三版序.html"><a href="第三版序.html"><i class="fa fa-check"></i>第三版序</a></li>
+<li class="chapter" data-level="" data-path="前言.html"><a href="前言.html"><i class="fa fa-check"></i>前言</a></li>
+<li class="chapter" data-level="" data-path="关于本书的在线版本.html"><a href="关于本书的在线版本.html"><i class="fa fa-check"></i>关于本书的在线版本</a></li>
+<li class="part"><span><b>I 引言</b></span></li>
+<li class="chapter" data-level="1" data-path="引言.html"><a href="引言.html"><i class="fa fa-check"></i><b>1</b> 引言</a><ul>
+<li class="chapter" data-level="1.1" data-path="引言.html"><a href="引言.html#计算机体系结构的研究内容"><i class="fa fa-check"></i><b>1.1</b> 计算机体系结构的研究内容</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="引言.html"><a href="引言.html#一以贯之"><i class="fa fa-check"></i><b>1.1.1</b> 一以贯之</a></li>
+<li class="chapter" data-level="1.1.2" data-path="引言.html"><a href="引言.html#什么是计算机"><i class="fa fa-check"></i><b>1.1.2</b> 什么是计算机</a></li>
+<li class="chapter" data-level="1.1.3" data-path="引言.html"><a href="引言.html#计算机的基本组成"><i class="fa fa-check"></i><b>1.1.3</b> 计算机的基本组成</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="引言.html"><a href="引言.html#衡量计算机的指标"><i class="fa fa-check"></i><b>1.2</b> 衡量计算机的指标</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="引言.html"><a href="引言.html#计算机的性能"><i class="fa fa-check"></i><b>1.2.1</b> 计算机的性能</a></li>
+<li class="chapter" data-level="1.2.2" data-path="引言.html"><a href="引言.html#计算机的价格"><i class="fa fa-check"></i><b>1.2.2</b> 计算机的价格</a></li>
+<li class="chapter" data-level="1.2.3" data-path="引言.html"><a href="引言.html#计算机的功耗"><i class="fa fa-check"></i><b>1.2.3</b> 计算机的功耗</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="引言.html"><a href="引言.html#计算机体系结构的发展"><i class="fa fa-check"></i><b>1.3</b> 计算机体系结构的发展</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="引言.html"><a href="引言.html#摩尔定律和工艺的发展"><i class="fa fa-check"></i><b>1.3.1</b> 摩尔定律和工艺的发展</a></li>
+<li class="chapter" data-level="1.3.2" data-path="引言.html"><a href="引言.html#计算机应用和体系结构"><i class="fa fa-check"></i><b>1.3.2</b> 计算机应用和体系结构</a></li>
+<li class="chapter" data-level="1.3.3" data-path="引言.html"><a href="引言.html#计算机体系结构发展"><i class="fa fa-check"></i><b>1.3.3</b> 计算机体系结构发展</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="引言.html"><a href="引言.html#体系结构设计的基本原则"><i class="fa fa-check"></i><b>1.4</b> 体系结构设计的基本原则</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="引言.html"><a href="引言.html#平衡性"><i class="fa fa-check"></i><b>1.4.1</b> 平衡性</a></li>
+<li class="chapter" data-level="1.4.2" data-path="引言.html"><a href="引言.html#局部性"><i class="fa fa-check"></i><b>1.4.2</b> 局部性</a></li>
+<li class="chapter" data-level="1.4.3" data-path="引言.html"><a href="引言.html#并行性"><i class="fa fa-check"></i><b>1.4.3</b> 并行性</a></li>
+<li class="chapter" data-level="1.4.4" data-path="引言.html"><a href="引言.html#虚拟化"><i class="fa fa-check"></i><b>1.4.4</b> 虚拟化</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="引言.html"><a href="引言.html#本章小结"><i class="fa fa-check"></i><b>1.5</b> 本章小结</a></li>
+<li class="chapter" data-level="1.6" data-path="引言.html"><a href="引言.html#习题"><i class="fa fa-check"></i><b>1.6</b> 习题</a></li>
+</ul></li>
+<li class="part"><span><b>II 指令系统结构</b></span></li>
+<li class="chapter" data-level="2" data-path="sec-ISA.html"><a href="sec-ISA.html"><i class="fa fa-check"></i><b>2</b> 指令系统</a><ul>
+<li class="chapter" data-level="2.1" data-path="sec-ISA.html"><a href="sec-ISA.html#指令系统简介"><i class="fa fa-check"></i><b>2.1</b> 指令系统简介</a></li>
+<li class="chapter" data-level="2.2" data-path="sec-ISA.html"><a href="sec-ISA.html#指令系统设计原则"><i class="fa fa-check"></i><b>2.2</b> 指令系统设计原则</a></li>
+<li class="chapter" data-level="2.3" data-path="sec-ISA.html"><a href="sec-ISA.html#指令系统发展历程"><i class="fa fa-check"></i><b>2.3</b> 指令系统发展历程</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="sec-ISA.html"><a href="sec-ISA.html#指令内容的演变"><i class="fa fa-check"></i><b>2.3.1</b> 指令内容的演变</a></li>
+<li class="chapter" data-level="2.3.2" data-path="sec-ISA.html"><a href="sec-ISA.html#存储管理的演变"><i class="fa fa-check"></i><b>2.3.2</b> 存储管理的演变</a></li>
+<li class="chapter" data-level="2.3.3" data-path="sec-ISA.html"><a href="sec-ISA.html#运行级别的演变"><i class="fa fa-check"></i><b>2.3.3</b> 运行级别的演变</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="sec-ISA.html"><a href="sec-ISA.html#指令系统组成"><i class="fa fa-check"></i><b>2.4</b> 指令系统组成</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="sec-ISA.html"><a href="sec-ISA.html#地址空间"><i class="fa fa-check"></i><b>2.4.1</b> 地址空间</a></li>
+<li class="chapter" data-level="2.4.2" data-path="sec-ISA.html"><a href="sec-ISA.html#操作数"><i class="fa fa-check"></i><b>2.4.2</b> 操作数</a></li>
+<li class="chapter" data-level="2.4.3" data-path="sec-ISA.html"><a href="sec-ISA.html#指令操作和编码"><i class="fa fa-check"></i><b>2.4.3</b> 指令操作和编码</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="sec-ISA.html"><a href="sec-ISA.html#risc指令集比较"><i class="fa fa-check"></i><b>2.5</b> RISC指令集比较</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="sec-ISA.html"><a href="sec-ISA.html#指令格式比较"><i class="fa fa-check"></i><b>2.5.1</b> 指令格式比较</a></li>
+<li class="chapter" data-level="2.5.2" data-path="sec-ISA.html"><a href="sec-ISA.html#寻址方式比较"><i class="fa fa-check"></i><b>2.5.2</b> 寻址方式比较</a></li>
+<li class="chapter" data-level="2.5.3" data-path="sec-ISA.html"><a href="sec-ISA.html#公共指令功能"><i class="fa fa-check"></i><b>2.5.3</b> 公共指令功能</a></li>
+<li class="chapter" data-level="2.5.4" data-path="sec-ISA.html"><a href="sec-ISA.html#不同指令系统的特色"><i class="fa fa-check"></i><b>2.5.4</b> 不同指令系统的特色</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="sec-ISA.html"><a href="sec-ISA.html#c语言的机器表示"><i class="fa fa-check"></i><b>2.6</b> C语言的机器表示</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="sec-ISA.html"><a href="sec-ISA.html#过程调用"><i class="fa fa-check"></i><b>2.6.1</b> 过程调用</a></li>
+<li class="chapter" data-level="2.6.2" data-path="sec-ISA.html"><a href="sec-ISA.html#流程控制语句"><i class="fa fa-check"></i><b>2.6.2</b> 流程控制语句</a></li>
+<li class="chapter" data-level="2.6.3" data-path="sec-ISA.html"><a href="sec-ISA.html#循环语句"><i class="fa fa-check"></i><b>2.6.3</b> 循环语句</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="sec-ISA.html"><a href="sec-ISA.html#本章小结-1"><i class="fa fa-check"></i><b>2.7</b> 本章小结</a></li>
+<li class="chapter" data-level="2.8" data-path="sec-ISA.html"><a href="sec-ISA.html#习题-1"><i class="fa fa-check"></i><b>2.8</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html"><i class="fa fa-check"></i><b>3</b> 特权指令系统</a><ul>
+<li class="chapter" data-level="3.1" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#特权指令系统简介"><i class="fa fa-check"></i><b>3.1</b> 特权指令系统简介</a></li>
+<li class="chapter" data-level="3.2" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#sec-exception"><i class="fa fa-check"></i><b>3.2</b> 异常与中断</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#异常分类"><i class="fa fa-check"></i><b>3.2.1</b> 异常分类</a></li>
+<li class="chapter" data-level="3.2.2" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#异常处理"><i class="fa fa-check"></i><b>3.2.2</b> 异常处理</a></li>
+<li class="chapter" data-level="3.2.3" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#中断"><i class="fa fa-check"></i><b>3.2.3</b> 中断</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#sec-memory-management"><i class="fa fa-check"></i><b>3.3</b> 存储管理</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#存储管理的原理"><i class="fa fa-check"></i><b>3.3.1</b> 存储管理的原理</a></li>
+<li class="chapter" data-level="3.3.2" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#tlb的结构和使用"><i class="fa fa-check"></i><b>3.3.2</b> TLB的结构和使用</a></li>
+<li class="chapter" data-level="3.3.3" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#sec-tlb-ex"><i class="fa fa-check"></i><b>3.3.3</b> TLB地址翻译相关异常的处理</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#本章小结-2"><i class="fa fa-check"></i><b>3.4</b> 本章小结</a></li>
+<li class="chapter" data-level="3.5" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#习题-2"><i class="fa fa-check"></i><b>3.5</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="软硬件协同.html"><a href="软硬件协同.html"><i class="fa fa-check"></i><b>4</b> 软硬件协同</a><ul>
+<li class="chapter" data-level="4.1" data-path="软硬件协同.html"><a href="软硬件协同.html#应用程序二进制接口"><i class="fa fa-check"></i><b>4.1</b> 应用程序二进制接口</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="软硬件协同.html"><a href="软硬件协同.html#寄存器约定"><i class="fa fa-check"></i><b>4.1.1</b> 寄存器约定</a></li>
+<li class="chapter" data-level="4.1.2" data-path="软硬件协同.html"><a href="软硬件协同.html#函数调用约定"><i class="fa fa-check"></i><b>4.1.2</b> 函数调用约定</a></li>
+<li class="chapter" data-level="4.1.3" data-path="软硬件协同.html"><a href="软硬件协同.html#进程虚拟地址空间"><i class="fa fa-check"></i><b>4.1.3</b> 进程虚拟地址空间</a></li>
+<li class="chapter" data-level="4.1.4" data-path="软硬件协同.html"><a href="软硬件协同.html#栈帧布局"><i class="fa fa-check"></i><b>4.1.4</b> 栈帧布局</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="软硬件协同.html"><a href="软硬件协同.html#六种常见的上下文切换场景"><i class="fa fa-check"></i><b>4.2</b> 六种常见的上下文切换场景</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="软硬件协同.html"><a href="软硬件协同.html#函数调用"><i class="fa fa-check"></i><b>4.2.1</b> 函数调用</a></li>
+<li class="chapter" data-level="4.2.2" data-path="软硬件协同.html"><a href="软硬件协同.html#异常和中断"><i class="fa fa-check"></i><b>4.2.2</b> 异常和中断</a></li>
+<li class="chapter" data-level="4.2.3" data-path="软硬件协同.html"><a href="软硬件协同.html#系统调用"><i class="fa fa-check"></i><b>4.2.3</b> 系统调用</a></li>
+<li class="chapter" data-level="4.2.4" data-path="软硬件协同.html"><a href="软硬件协同.html#进程"><i class="fa fa-check"></i><b>4.2.4</b> 进程</a></li>
+<li class="chapter" data-level="4.2.5" data-path="软硬件协同.html"><a href="软硬件协同.html#线程"><i class="fa fa-check"></i><b>4.2.5</b> 线程</a></li>
+<li class="chapter" data-level="4.2.6" data-path="软硬件协同.html"><a href="软硬件协同.html#虚拟机"><i class="fa fa-check"></i><b>4.2.6</b> 虚拟机</a></li>
+<li class="chapter" data-level="4.2.7" data-path="软硬件协同.html"><a href="软硬件协同.html#六种上下文切换场景的对比"><i class="fa fa-check"></i><b>4.2.7</b> 六种上下文切换场景的对比</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="软硬件协同.html"><a href="软硬件协同.html#同步机制"><i class="fa fa-check"></i><b>4.3</b> 同步机制</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="软硬件协同.html"><a href="软硬件协同.html#基于互斥的同步机制"><i class="fa fa-check"></i><b>4.3.1</b> 基于互斥的同步机制</a></li>
+<li class="chapter" data-level="4.3.2" data-path="软硬件协同.html"><a href="软硬件协同.html#非阻塞的同步机制"><i class="fa fa-check"></i><b>4.3.2</b> 非阻塞的同步机制</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="软硬件协同.html"><a href="软硬件协同.html#本章小结-3"><i class="fa fa-check"></i><b>4.4</b> 本章小结</a></li>
+<li class="chapter" data-level="4.5" data-path="软硬件协同.html"><a href="软硬件协同.html#习题-3"><i class="fa fa-check"></i><b>4.5</b> 习题</a></li>
+</ul></li>
+<li class="part"><span><b>III 计算机硬件结构</b></span></li>
+<li class="chapter" data-level="5" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html"><i class="fa fa-check"></i><b>5</b> 计算机组成原理和结构</a><ul>
+<li class="chapter" data-level="5.1" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#冯诺依曼结构"><i class="fa fa-check"></i><b>5.1</b> 冯·诺依曼结构</a></li>
+<li class="chapter" data-level="5.2" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#计算机的组成部件"><i class="fa fa-check"></i><b>5.2</b> 计算机的组成部件</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#运算器"><i class="fa fa-check"></i><b>5.2.1</b> 运算器</a></li>
+<li class="chapter" data-level="5.2.2" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#控制器"><i class="fa fa-check"></i><b>5.2.2</b> 控制器</a></li>
+<li class="chapter" data-level="5.2.3" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#存储器"><i class="fa fa-check"></i><b>5.2.3</b> 存储器</a></li>
+<li class="chapter" data-level="5.2.4" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#输入输出设备"><i class="fa fa-check"></i><b>5.2.4</b> 输入/输出设备</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#计算机系统硬件结构发展"><i class="fa fa-check"></i><b>5.3</b> 计算机系统硬件结构发展</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#cpu-gpu-北桥-南桥四片结构"><i class="fa fa-check"></i><b>5.3.1</b> CPU-GPU-北桥-南桥四片结构</a></li>
+<li class="chapter" data-level="5.3.2" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#cpu-北桥-南桥三片结构"><i class="fa fa-check"></i><b>5.3.2</b> CPU-北桥-南桥三片结构</a></li>
+<li class="chapter" data-level="5.3.3" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#cpu-弱北桥-南桥三片结构"><i class="fa fa-check"></i><b>5.3.3</b> CPU-弱北桥-南桥三片结构</a></li>
+<li class="chapter" data-level="5.3.4" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#cpu-南桥两片结构"><i class="fa fa-check"></i><b>5.3.4</b> CPU-南桥两片结构</a></li>
+<li class="chapter" data-level="5.3.5" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#soc单片结构"><i class="fa fa-check"></i><b>5.3.5</b> SoC单片结构</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#处理器和io设备间的通信"><i class="fa fa-check"></i><b>5.4</b> 处理器和IO设备间的通信</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#io寄存器寻址"><i class="fa fa-check"></i><b>5.4.1</b> IO寄存器寻址</a></li>
+<li class="chapter" data-level="5.4.2" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#处理器和io设备之间的同步"><i class="fa fa-check"></i><b>5.4.2</b> 处理器和IO设备之间的同步</a></li>
+<li class="chapter" data-level="5.4.3" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#存储器和io设备之间的数据传送"><i class="fa fa-check"></i><b>5.4.3</b> 存储器和IO设备之间的数据传送</a></li>
+<li class="chapter" data-level="5.4.4" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#龙芯3a30007a1000桥片系统中的cpugpudc通信"><i class="fa fa-check"></i><b>5.4.4</b> 龙芯3A3000+7A1000桥片系统中的CPU、GPU、DC通信</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#本章小结-4"><i class="fa fa-check"></i><b>5.5</b> 本章小结</a></li>
+<li class="chapter" data-level="5.6" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#习题-4"><i class="fa fa-check"></i><b>5.6</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html"><i class="fa fa-check"></i><b>6</b> 计算机总线接口技术</a><ul>
+<li class="chapter" data-level="6.1" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#总线概述"><i class="fa fa-check"></i><b>6.1</b> 总线概述</a></li>
+<li class="chapter" data-level="6.2" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#总线分类"><i class="fa fa-check"></i><b>6.2</b> 总线分类</a></li>
+<li class="chapter" data-level="6.3" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#片上总线"><i class="fa fa-check"></i><b>6.3</b> 片上总线</a></li>
+<li class="chapter" data-level="6.4" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#内存总线"><i class="fa fa-check"></i><b>6.4</b> 内存总线</a></li>
+<li class="chapter" data-level="6.5" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#系统总线"><i class="fa fa-check"></i><b>6.5</b> 系统总线</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#hypertransport总线"><i class="fa fa-check"></i><b>6.5.1</b> HyperTransport总线</a></li>
+<li class="chapter" data-level="6.5.2" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#ht包格式"><i class="fa fa-check"></i><b>6.5.2</b> HT包格式</a></li>
+<li class="chapter" data-level="6.5.3" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#设备总线"><i class="fa fa-check"></i><b>6.5.3</b> 设备总线</a></li>
+<li class="chapter" data-level="6.5.4" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#pcie总线"><i class="fa fa-check"></i><b>6.5.4</b> PCIE总线</a></li>
+<li class="chapter" data-level="6.5.5" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#pcie包格式"><i class="fa fa-check"></i><b>6.5.5</b> PCIE包格式</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#本章小结-5"><i class="fa fa-check"></i><b>6.6</b> 本章小结</a></li>
+<li class="chapter" data-level="6.7" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#习题-5"><i class="fa fa-check"></i><b>6.7</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html"><i class="fa fa-check"></i><b>7</b> 计算机启动过程分析</a><ul>
+<li class="chapter" data-level="7.1" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#处理器核初始化"><i class="fa fa-check"></i><b>7.1</b> 处理器核初始化</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#sec-cpu-reset"><i class="fa fa-check"></i><b>7.1.1</b> 处理器复位</a></li>
+<li class="chapter" data-level="7.1.2" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#调试接口初始化"><i class="fa fa-check"></i><b>7.1.2</b> 调试接口初始化</a></li>
+<li class="chapter" data-level="7.1.3" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#tlb初始化"><i class="fa fa-check"></i><b>7.1.3</b> TLB初始化</a></li>
+<li class="chapter" data-level="7.1.4" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#cache初始化"><i class="fa fa-check"></i><b>7.1.4</b> Cache初始化</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#总线接口初始化"><i class="fa fa-check"></i><b>7.2</b> 总线接口初始化</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#内存初始化"><i class="fa fa-check"></i><b>7.2.1</b> 内存初始化</a></li>
+<li class="chapter" data-level="7.2.2" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#io总线初始化"><i class="fa fa-check"></i><b>7.2.2</b> IO总线初始化</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#设备的探测及驱动加载"><i class="fa fa-check"></i><b>7.3</b> 设备的探测及驱动加载</a></li>
+<li class="chapter" data-level="7.4" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#多核启动过程"><i class="fa fa-check"></i><b>7.4</b> 多核启动过程</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#初始化时的多核协同"><i class="fa fa-check"></i><b>7.4.1</b> 初始化时的多核协同</a></li>
+<li class="chapter" data-level="7.4.2" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#操作系统启动时的多核唤醒"><i class="fa fa-check"></i><b>7.4.2</b> 操作系统启动时的多核唤醒</a></li>
+<li class="chapter" data-level="7.4.3" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#核间同步与通信"><i class="fa fa-check"></i><b>7.4.3</b> 核间同步与通信</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#本章小结-6"><i class="fa fa-check"></i><b>7.5</b> 本章小结</a></li>
+<li class="chapter" data-level="7.6" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#习题-6"><i class="fa fa-check"></i><b>7.6</b> 习题</a></li>
+</ul></li>
+<li class="part"><span><b>IV Part IV CPU的微结构</b></span></li>
+<li class="chapter" data-level="8" data-path="运算器设计.html"><a href="运算器设计.html"><i class="fa fa-check"></i><b>8</b> 运算器设计</a><ul>
+<li class="chapter" data-level="8.1" data-path="运算器设计.html"><a href="运算器设计.html#二进制与逻辑电路"><i class="fa fa-check"></i><b>8.1</b> 二进制与逻辑电路</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="运算器设计.html"><a href="运算器设计.html#sec-number-presentation"><i class="fa fa-check"></i><b>8.1.1</b> 计算机中数的表示</a></li>
+<li class="chapter" data-level="8.1.2" data-path="运算器设计.html"><a href="运算器设计.html#sec-MOS-principle"><i class="fa fa-check"></i><b>8.1.2</b> MOS晶体管工作原理</a></li>
+<li class="chapter" data-level="8.1.3" data-path="运算器设计.html"><a href="运算器设计.html#cmos逻辑电路"><i class="fa fa-check"></i><b>8.1.3</b> CMOS逻辑电路</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="运算器设计.html"><a href="运算器设计.html#简单运算器设计"><i class="fa fa-check"></i><b>8.2</b> 简单运算器设计</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="运算器设计.html"><a href="运算器设计.html#定点补码加法器"><i class="fa fa-check"></i><b>8.2.1</b> 定点补码加法器</a></li>
+<li class="chapter" data-level="8.2.2" data-path="运算器设计.html"><a href="运算器设计.html#减法运算实现"><i class="fa fa-check"></i><b>8.2.2</b> 减法运算实现</a></li>
+<li class="chapter" data-level="8.2.3" data-path="运算器设计.html"><a href="运算器设计.html#比较运算实现"><i class="fa fa-check"></i><b>8.2.3</b> 比较运算实现</a></li>
+<li class="chapter" data-level="8.2.4" data-path="运算器设计.html"><a href="运算器设计.html#移位器"><i class="fa fa-check"></i><b>8.2.4</b> 移位器</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="运算器设计.html"><a href="运算器设计.html#定点补码乘法器"><i class="fa fa-check"></i><b>8.3</b> 定点补码乘法器</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="运算器设计.html"><a href="运算器设计.html#补码乘法器"><i class="fa fa-check"></i><b>8.3.1</b> 补码乘法器</a></li>
+<li class="chapter" data-level="8.3.2" data-path="运算器设计.html"><a href="运算器设计.html#booth乘法器"><i class="fa fa-check"></i><b>8.3.2</b> Booth乘法器</a></li>
+<li class="chapter" data-level="8.3.3" data-path="运算器设计.html"><a href="运算器设计.html#华莱士树"><i class="fa fa-check"></i><b>8.3.3</b> 华莱士树</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="运算器设计.html"><a href="运算器设计.html#本章小结-7"><i class="fa fa-check"></i><b>8.4</b> 本章小结</a></li>
+<li class="chapter" data-level="8.5" data-path="运算器设计.html"><a href="运算器设计.html#习题-7"><i class="fa fa-check"></i><b>8.5</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="指令流水线.html"><a href="指令流水线.html"><i class="fa fa-check"></i><b>9</b> 指令流水线</a><ul>
+<li class="chapter" data-level="9.1" data-path="指令流水线.html"><a href="指令流水线.html#单周期处理器"><i class="fa fa-check"></i><b>9.1</b> 单周期处理器</a></li>
+<li class="chapter" data-level="9.2" data-path="指令流水线.html"><a href="指令流水线.html#sec-pipeline-cpu"><i class="fa fa-check"></i><b>9.2</b> 流水线处理器</a></li>
+<li class="chapter" data-level="9.3" data-path="指令流水线.html"><a href="指令流水线.html#sec-hazard"><i class="fa fa-check"></i><b>9.3</b> 指令相关和流水线冲突</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="指令流水线.html"><a href="指令流水线.html#数据相关引发的冲突及解决办法"><i class="fa fa-check"></i><b>9.3.1</b> 数据相关引发的冲突及解决办法</a></li>
+<li class="chapter" data-level="9.3.2" data-path="指令流水线.html"><a href="指令流水线.html#sec-control-hazard"><i class="fa fa-check"></i><b>9.3.2</b> 控制相关引发冲突及解决方法</a></li>
+<li class="chapter" data-level="9.3.3" data-path="指令流水线.html"><a href="指令流水线.html#结构相关引发冲突及解决办法"><i class="fa fa-check"></i><b>9.3.3</b> 结构相关引发冲突及解决办法</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="指令流水线.html"><a href="指令流水线.html#sec-precise-exception"><i class="fa fa-check"></i><b>9.4</b> 流水线与异常处理</a></li>
+<li class="chapter" data-level="9.5" data-path="指令流水线.html"><a href="指令流水线.html#提高流水线效率的技术"><i class="fa fa-check"></i><b>9.5</b> 提高流水线效率的技术</a><ul>
+<li class="chapter" data-level="9.5.1" data-path="指令流水线.html"><a href="指令流水线.html#多发射数据通路"><i class="fa fa-check"></i><b>9.5.1</b> 多发射数据通路</a></li>
+<li class="chapter" data-level="9.5.2" data-path="指令流水线.html"><a href="指令流水线.html#sec-dynamic"><i class="fa fa-check"></i><b>9.5.2</b> 动态调度</a></li>
+<li class="chapter" data-level="9.5.3" data-path="指令流水线.html"><a href="指令流水线.html#sec-branch-predict"><i class="fa fa-check"></i><b>9.5.3</b> 转移预测</a></li>
+<li class="chapter" data-level="9.5.4" data-path="指令流水线.html"><a href="指令流水线.html#高速缓存"><i class="fa fa-check"></i><b>9.5.4</b> 高速缓存</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="指令流水线.html"><a href="指令流水线.html#本章小结-8"><i class="fa fa-check"></i><b>9.6</b> 本章小结</a></li>
+<li class="chapter" data-level="9.7" data-path="指令流水线.html"><a href="指令流水线.html#习题-8"><i class="fa fa-check"></i><b>9.7</b> 习题</a></li>
+</ul></li>
+<li class="part"><span><b>V 并行处理结构</b></span></li>
+<li class="chapter" data-level="10" data-path="并行编程基础.html"><a href="并行编程基础.html"><i class="fa fa-check"></i><b>10</b> 并行编程基础</a><ul>
+<li class="chapter" data-level="10.1" data-path="并行编程基础.html"><a href="并行编程基础.html#程序的并行行为"><i class="fa fa-check"></i><b>10.1</b> 程序的并行行为</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="并行编程基础.html"><a href="并行编程基础.html#指令级并行性"><i class="fa fa-check"></i><b>10.1.1</b> 指令级并行性</a></li>
+<li class="chapter" data-level="10.1.2" data-path="并行编程基础.html"><a href="并行编程基础.html#数据级并行性"><i class="fa fa-check"></i><b>10.1.2</b> 数据级并行性</a></li>
+<li class="chapter" data-level="10.1.3" data-path="并行编程基础.html"><a href="并行编程基础.html#任务级并行性"><i class="fa fa-check"></i><b>10.1.3</b> 任务级并行性</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="并行编程基础.html"><a href="并行编程基础.html#并行编程模型"><i class="fa fa-check"></i><b>10.2</b> 并行编程模型</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="并行编程基础.html"><a href="并行编程基础.html#单任务数据并行模型"><i class="fa fa-check"></i><b>10.2.1</b> 单任务数据并行模型</a></li>
+<li class="chapter" data-level="10.2.2" data-path="并行编程基础.html"><a href="并行编程基础.html#多任务共享存储编程模型"><i class="fa fa-check"></i><b>10.2.2</b> 多任务共享存储编程模型</a></li>
+<li class="chapter" data-level="10.2.3" data-path="并行编程基础.html"><a href="并行编程基础.html#多任务消息传递编程模型"><i class="fa fa-check"></i><b>10.2.3</b> 多任务消息传递编程模型</a></li>
+<li class="chapter" data-level="10.2.4" data-path="并行编程基础.html"><a href="并行编程基础.html#共享存储与消息传递编程模型的编程复杂度"><i class="fa fa-check"></i><b>10.2.4</b> 共享存储与消息传递编程模型的编程复杂度</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="并行编程基础.html"><a href="并行编程基础.html#典型并行编程环境"><i class="fa fa-check"></i><b>10.3</b> 典型并行编程环境</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="并行编程基础.html"><a href="并行编程基础.html#数据并行simd编程"><i class="fa fa-check"></i><b>10.3.1</b> 数据并行SIMD编程</a></li>
+<li class="chapter" data-level="10.3.2" data-path="并行编程基础.html"><a href="并行编程基础.html#posix编程标准"><i class="fa fa-check"></i><b>10.3.2</b> POSIX编程标准</a></li>
+<li class="chapter" data-level="10.3.3" data-path="并行编程基础.html"><a href="并行编程基础.html#openmp标准"><i class="fa fa-check"></i><b>10.3.3</b> OpenMP标准</a></li>
+<li class="chapter" data-level="10.3.4" data-path="并行编程基础.html"><a href="并行编程基础.html#消息传递编程接口"><i class="fa fa-check"></i><b>10.3.4</b> 消息传递编程接口</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="并行编程基础.html"><a href="并行编程基础.html#习题-9"><i class="fa fa-check"></i><b>10.4</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="多核处理结构.html"><a href="多核处理结构.html"><i class="fa fa-check"></i><b>11</b> 多核处理结构</a><ul>
+<li class="chapter" data-level="11.1" data-path="多核处理结构.html"><a href="多核处理结构.html#多核处理器的发展演化"><i class="fa fa-check"></i><b>11.1</b> 多核处理器的发展演化</a></li>
+<li class="chapter" data-level="11.2" data-path="多核处理结构.html"><a href="多核处理结构.html#多核处理器的访存结构"><i class="fa fa-check"></i><b>11.2</b> 多核处理器的访存结构</a><ul>
+<li class="chapter" data-level="11.2.1" data-path="多核处理结构.html"><a href="多核处理结构.html#通用多核处理器的片上cache结构"><i class="fa fa-check"></i><b>11.2.1</b> 通用多核处理器的片上Cache结构</a></li>
+<li class="chapter" data-level="11.2.2" data-path="多核处理结构.html"><a href="多核处理结构.html#存储一致性模型"><i class="fa fa-check"></i><b>11.2.2</b> 存储一致性模型</a></li>
+<li class="chapter" data-level="11.2.3" data-path="多核处理结构.html"><a href="多核处理结构.html#cache一致性协议"><i class="fa fa-check"></i><b>11.2.3</b> Cache一致性协议</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="多核处理结构.html"><a href="多核处理结构.html#多核处理器的互连结构"><i class="fa fa-check"></i><b>11.3</b> 多核处理器的互连结构</a></li>
+<li class="chapter" data-level="11.4" data-path="多核处理结构.html"><a href="多核处理结构.html#多核处理器的同步机制"><i class="fa fa-check"></i><b>11.4</b> 多核处理器的同步机制</a></li>
+<li class="chapter" data-level="11.5" data-path="多核处理结构.html"><a href="多核处理结构.html#典型多核处理器"><i class="fa fa-check"></i><b>11.5</b> 典型多核处理器</a><ul>
+<li class="chapter" data-level="11.5.1" data-path="多核处理结构.html"><a href="多核处理结构.html#龙芯3a5000处理器"><i class="fa fa-check"></i><b>11.5.1</b> 龙芯3A5000处理器</a></li>
+<li class="chapter" data-level="11.5.2" data-path="多核处理结构.html"><a href="多核处理结构.html#intel-sandybridge架构"><i class="fa fa-check"></i><b>11.5.2</b> Intel SandyBridge架构</a></li>
+<li class="chapter" data-level="11.5.3" data-path="多核处理结构.html"><a href="多核处理结构.html#ibm-cell处理器"><i class="fa fa-check"></i><b>11.5.3</b> IBM Cell处理器</a></li>
+<li class="chapter" data-level="11.5.4" data-path="多核处理结构.html"><a href="多核处理结构.html#nvidia-gpu"><i class="fa fa-check"></i><b>11.5.4</b> NVIDIA GPU</a></li>
+<li class="chapter" data-level="11.5.5" data-path="多核处理结构.html"><a href="多核处理结构.html#tile64处理器"><i class="fa fa-check"></i><b>11.5.5</b> Tile64处理器</a></li>
+</ul></li>
+<li class="chapter" data-level="11.6" data-path="多核处理结构.html"><a href="多核处理结构.html#本章小结-9"><i class="fa fa-check"></i><b>11.6</b> 本章小结</a></li>
+<li class="chapter" data-level="11.7" data-path="多核处理结构.html"><a href="多核处理结构.html#习题-10"><i class="fa fa-check"></i><b>11.7</b> 习题</a></li>
+</ul></li>
+<li class="part"><span><b>VI 系统性能评价与分析</b></span></li>
+<li class="chapter" data-level="12" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html"><i class="fa fa-check"></i><b>12</b> 计算机系统性能评价与性能分析</a><ul>
+<li class="chapter" data-level="12.1" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#计算机系统性能评价指标"><i class="fa fa-check"></i><b>12.1</b> 计算机系统性能评价指标</a><ul>
+<li class="chapter" data-level="12.1.1" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#计算机系统常用性能评价指标"><i class="fa fa-check"></i><b>12.1.1</b> 计算机系统常用性能评价指标</a></li>
+<li class="chapter" data-level="12.1.2" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#并行系统的性能评价指标"><i class="fa fa-check"></i><b>12.1.2</b> 并行系统的性能评价指标</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#测试程序集"><i class="fa fa-check"></i><b>12.2</b> 测试程序集</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#微基准测试程序"><i class="fa fa-check"></i><b>12.2.1</b> 微基准测试程序</a></li>
+<li class="chapter" data-level="12.2.2" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#spec-cpu基准测试程序"><i class="fa fa-check"></i><b>12.2.2</b> SPEC CPU基准测试程序</a></li>
+<li class="chapter" data-level="12.2.3" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#并行系统基准测试程序"><i class="fa fa-check"></i><b>12.2.3</b> 并行系统基准测试程序</a></li>
+<li class="chapter" data-level="12.2.4" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#其他常见的基准测试程序集"><i class="fa fa-check"></i><b>12.2.4</b> 其他常见的基准测试程序集</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#性能分析方法"><i class="fa fa-check"></i><b>12.3</b> 性能分析方法</a><ul>
+<li class="chapter" data-level="12.3.1" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#分析建模的方法"><i class="fa fa-check"></i><b>12.3.1</b> 分析建模的方法</a></li>
+<li class="chapter" data-level="12.3.2" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#模拟建模的方法和模拟器"><i class="fa fa-check"></i><b>12.3.2</b> 模拟建模的方法和模拟器</a></li>
+<li class="chapter" data-level="12.3.3" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#性能测量的方法"><i class="fa fa-check"></i><b>12.3.3</b> 性能测量的方法</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#性能测试和分析实例"><i class="fa fa-check"></i><b>12.4</b> 性能测试和分析实例</a><ul>
+<li class="chapter" data-level="12.4.1" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#spec-cpu基准测试程序的分值对比"><i class="fa fa-check"></i><b>12.4.1</b> SPEC CPU基准测试程序的分值对比</a></li>
+<li class="chapter" data-level="12.4.2" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#微结构相关统计数据"><i class="fa fa-check"></i><b>12.4.2</b> 微结构相关统计数据</a></li>
+<li class="chapter" data-level="12.4.3" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#基础性能参数"><i class="fa fa-check"></i><b>12.4.3</b> 基础性能参数</a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#本章小结-10"><i class="fa fa-check"></i><b>12.5</b> 本章小结</a></li>
+<li class="chapter" data-level="12.6" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#习题-11"><i class="fa fa-check"></i><b>12.6</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="总结.html"><a href="总结.html"><i class="fa fa-check"></i>总结</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>参考文献</a></li>
+<li class="divider"></li>
+<li><a href="http://www.loongson.cn" target="blank">本书电子版由龙芯中科赞助提供</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">计算机体系结构基础</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="运算器设计" class="section level1">
+<h1><span class="header-section-number">第 8 章</span> 运算器设计</h1>
+<div id="二进制与逻辑电路" class="section level2">
+<h2><span class="header-section-number">8.1</span> 二进制与逻辑电路</h2>
+<div id="sec-number-presentation" class="section level3">
+<h3><span class="header-section-number">8.1.1</span> 计算机中数的表示</h3>
+<p>人们使用计算机处理信息。无论被处理信息的实质形态如何千差万别，计算机内部只能处理离散化的编码后的数据。目前，计算机系统内部的所有数据均采用二进制编码。这样做的原因主要有两点。</p>
+<p>1）二进制只有“0”和“1”两个数，其编码、计数和运算规则都很简单，特别是其中的符号“0”和“1”恰好可以与逻辑命题的“假”和“真”两个值相对应，因而能通过逻辑电路方便地实现算术运算。</p>
+<p>2）二进制只有两种基本状态，使用有两个稳定状态的物理器件就能表示二进制数的每一位，而制造有两个稳定状态的物理器件要比制造有多个稳定状态的物理器件容易得多。例如，电压的“高” “低”，磁极的“N”“S”，脉冲的“正”“负”，磁通量的“有”“无”。半导体工艺无论是TTL、ECL还是CMOS，都是用电压的高低来表示二进制的两个基本状态。</p>
+<p>所有数据在计算机内部最终都交由机器指令处理，被处理的数据分为数值数据和非数值数据两类。数值数据用于表示数量的多少；非数值数据就是一个二进制比特串，不表示数量多少。对于给定的一个二进制比特串，要确定其表达的数值，需要明确三个要素：进位制、定/浮点表示和编码规则。</p>
+<p>1.二进制</p>
+<p>二进制同人们日常使用的十进制原理是相同的，区别仅在于两者的基数不同。</p>
+<p>一般地，任意一个R进制数（R是正整数）</p>
+<p><span class="math display">\[A=a_{n}a_{n-1}\ldots a_{1}a_{0}.a_{-1}a_{-2}\ldots a_{1-m}a_{-m} (m,n为正整数)\]</span></p>
+<p>其值可以通过如下方式求得：</p>
+<p><span class="math display">\[\begin{aligned}Value(A)&amp;=a_{n}\times R^{n}+a_{n-1}\times R^{n-1}+\ldots +a_{1}\times R^{1}+a_{0}\times R^{0}+a_{-1}\times R^{-1}\\ &amp;\ +a_{-2}\times R^{-2}+\ldots +a_{1-m}\times R^{1-m}+a_{-m}\times R^{-m}\end{aligned}\]</span></p>
+<p>其中R称为基数，代表每个数位上可以使用的不同数字符号的个数。<span class="math inline">\(R_{i}\)</span>称为第i位上的权，即采用“逢R进一”。</p>
+<p>二进制即是上述一般性定义中R=2的具体情况。</p>
+<p>上面的定义只回答了非负数或无符号整数的二进制表示问题。有关正负整数的表示问题会在<a href="运算器设计.html#sec-number-presentation">8.1.1</a>节讨论。下面举例说明无符号二进制整数的表示和加法。</p>
+<p>例用4位二进制编码，计算5+9。</p>
+<p>解5的4位二进制表示为<span class="math inline">\(0101_{2}\)</span>，9的4位二进制表示为<span class="math inline">\(1001_{2}\)</span>。5+9列竖式计算如下：</p>
+<template id="a0c09f0b-1e96-4c30-96e8-e2297f73ecf7"><style>
+.tabwid table{
+  border-spacing:0px !important;
+  border-collapse:collapse;
+  line-height:1;
+  margin-left:auto;
+  margin-right:auto;
+  border-width: 0;
+  display: table;
+  margin-top: 1.275em;
+  margin-bottom: 1.275em;
+  border-color: transparent;
+}
+.tabwid_left table{
+  margin-left:0;
+}
+.tabwid_right table{
+  margin-right:0;
+}
+.tabwid td {
+    padding: 0;
+}
+.tabwid a {
+  text-decoration: none;
+}
+.tabwid thead {
+    background-color: transparent;
+}
+.tabwid tfoot {
+    background-color: transparent;
+}
+.tabwid table tr {
+background-color: transparent;
+}
+</style><div class="tabwid"><style>.cl-7ce01a86{}.cl-7cd7870e{font-family:'Noto Sans CJK SC';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-7cd79e88{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-7cd7d4b6{width:57.7pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7cd7d4d4{width:57.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7cd7d4e8{width:57.7pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-7ce01a86'>
+<tbody><tr style="overflow-wrap:break-word;"><td class="cl-7cd7d4b6"><p class="cl-7cd79e88"><span class="cl-7cd7870e">0101</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7cd7d4d4"><p class="cl-7cd79e88"><span class="cl-7cd7870e">+1001</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7cd7d4e8"><p class="cl-7cd79e88"><span class="cl-7cd7870e">1110</span></p></td></tr></tbody></table></div></template>
+<div class="flextable-shadow-host" id="d570c6d9-9354-4aaa-9ad0-ee678d536927"></div>
+<script>
+var dest = document.getElementById("d570c6d9-9354-4aaa-9ad0-ee678d536927");
+var template = document.getElementById("a0c09f0b-1e96-4c30-96e8-e2297f73ecf7");
+var caption = template.content.querySelector("caption");
+if(caption) {
+  caption.style.cssText = "display:block;text-align:center;";
+  var newcapt = document.createElement("p");
+  newcapt.appendChild(caption)
+  dest.parentNode.insertBefore(newcapt, dest.previousSibling);
+}
+var fantome = dest.attachShadow({mode: 'open'});
+var templateContent = template.content;
+fantome.appendChild(templateContent);
+</script>
+
+<p>上面的竖式计算过程和人们日常的十进制竖式加法计算过程极为相似。所不同的仅在于，十进制是“逢十进一”，二进制是“逢二进一”。</p>
+<p>计算机内部的所有数据都采用二进制编码表示，但是在表示绝对值较大的数据时需要很多位，不利于书写和阅读，因此经常采用十六进制编码来记录数据。因为16恰为<span class="math inline">\(2^4\)</span>，所以二进制和十六进制相互转换时不会出现除不尽的情况，可以非常快捷地进行两种进制的转换运算。具体做法是，将一个数由二进制编码转换为十六进制编码时，从小数点开始，向左、向右两个方向，每4个二进制位一组（不足时小数点左侧的左补0，小数点右侧的右补0），直接替换为一个十六进制位。十六进制编码转换为二进制编码的方法类似，只是每个十六进制位替换为4个二进制位。</p>
+<ol start="2" style="list-style-type: decimal">
+<li>定点数的表示</li>
+</ol>
+<p>常见的数有整数和实数之分，整数的小数点固定在数的最右边，通常省略不写，而实数的小数点则不是固定的。但是，计算机中只能表示0和1，无法表示小数点，因此计算机中表示数值数据必须要解决小数点的表示问题。我们通过约定小数点的位置来解决该问题。小数点位置约定在固定位置的数称为定点数，小数点位置约定为可以浮动的数称为浮点数。其中浮点数的表示将在下面介绍。这里将介绍计算机中最常见的两种定点数表示方法：原码和补码。</p>
+<p>在明确了进位制和小数点位置的约定之后，整数在计算机中的表示还有一个正负号如何表示的问题要解决。针对这一问题，原码和补码这两种编码规则采用了不同的解决思路。</p>
+<p>（1）原码</p>
+<p>数的原码表示采用“符号-数值”的表示方式，即一个形如<span class="math inline">\(A=a_{n-1}a_{n-2}\ldots a_{1}a_{0}\)</span>的原码表示，最高位<span class="math inline">\(a_{n-1}\)</span>是符号位，0表示正数，1表示负数；其余位<span class="math inline">\(a_{n-2}\ldots a_{1}a_{0}\)</span>表示数值的绝对值。如果<span class="math inline">\(a_{n-1}\)</span>是0，则A表示正数<span class="math inline">\(+a_{n-2}\ldots a_{1}a_{0}\)</span>；如果<span class="math inline">\(a_{n-1}\)</span>是1，则A表示负数<span class="math inline">\(-a_{n-2}\ldots a_{1}a_{0}\)</span>。例如，对于+19和-19这两个数，如果用8位二进制原码表示，则+19的原码是<span class="math inline">\(00010011_{2}\)</span>，-19的原码是<span class="math inline">\(10010011_{2}\)</span>。</p>
+<p>原码表示有两大优点：</p>
+<p>1）与人们日常记录正负数的习惯接近，与真实数值之间的对应关系直观，利于与真实数值相互转换。</p>
+<p>2）原码实现乘除运算比较简便直接。</p>
+<p>但是原码表示亦存在两个缺点：</p>
+<p>1）存在两个0，即一个+0，一个-0。这不仅有悖于人们的习惯，也给使用带来不便。</p>
+<p>2）原码的加减运算规则复杂，这对于逻辑实现的影响很大。在进行原码加减运算时，需要首先判断是否为异号相加或同号相减的情况，如果是的话则必须先根据两个数的绝对值的大小关系来决定结果的正负号，再用绝对值大的数减去绝对值小的数。</p>
+<p>权衡上述利弊，现代计算机中基本不使用原码来表示整数。原码仅在表示浮点数的尾数部分时采用。</p>
+<p>（2）补码</p>
+<p>补码是定点数的另一种表示方法。现代计算机中基本都是采用补码来表示整数。它最大的好处就是可以用加法来完成减法运算，实现加减运算的统一。这恰好解决了原码表示所存在的最大问题。</p>
+<p>在补码表示中，其最高位同原码一样也作为符号位，0表示正数，1表示负数。补码表示和原码表示的差异在于其数值的计算方法。对于一个形如<span class="math inline">\(A=a_{n-1}a_{n-2}\ldots a_{1}a_{0}\)</span>的补码表示，其值等于<span class="math inline">\(-2^{n-1}\times a_{n-1}+a_{n-2}\ldots a_{1}a_{0}\)</span>。如果<span class="math inline">\(a_{n-1}\)</span>是0，则补码和原码一样，A表示正的<span class="math inline">\(a_{n-2}\ldots a_{1}a_{0}\)</span>；如果<span class="math inline">\(a_{n-1}\)</span>是1，则A表示<span class="math inline">\(a_{n-2}\ldots a_{1}a_{0}\)</span>减去<span class="math inline">\(10\ldots 0_{2}\)</span>（共n-1个0）得到的数。</p>
+<p>求一个数的补码是个取模运算。关于模运算系统的准确数学描述，感兴趣的读者可以自行查阅相关资料。这里举一个最为常见的模运算系统的例子——时钟。这个模系统的模数为12。假定现在时钟指向6点，需要将它拨向10点，那么你有两种拨法，一种是顺时针向前拨4个小时，另一种是逆时针向后拨8个小时。这种相同的效果用数学的语言来说即4≡-8 (mod 12)。基于模运算系统的概念，对于具有1位符号位和n-1位数值位的n位二进制整数的补码来说，其补码的定义是：</p>
+<p><span class="math display">\[[X]_{\mbox{补}}=2^{n}+X (mod 2^{n})，-2^{n-1}≤X&lt;2^{n-1}\]</span></p>
+<p>利用补码基于模运算的这个特点，可以把减法转换成加法来做，因此在计算机中不用把加法器和减法器分开，只要有加法器就可以做减法。</p>
+<p>根据上述补码的定义并不容易写出一个数值的补码形式，而前面提到的原码可以很直观地与其数值进行转换。这里介绍一个原码和补码之间的转换方法：最高位为0时，原码与补码相同；最高位是1时，原码的最高位不变，其余位按位取反后末位加1。举个例子，譬如+19这个数，如果用8位二进制原码表示是<span class="math inline">\(00010011_{2}\)</span>，最高位是0，所以其二进制补码也是<span class="math inline">\(00010011_{2}\)</span>。那么对于-19这个数，其原码就是把+19原码的最高位从0变为1，即<span class="math inline">\(10010011_{2}\)</span>。在求-19的补码时，原码最高位的1保持不变，原码余下的7位<span class="math inline">\(0010011_{2}\)</span>按位取反得到<span class="math inline">\(1101100_{2}\)</span>，末位再加一个1，得到<span class="math inline">\(1101101_{2}\)</span>，最终得到-19的8位补码是<span class="math inline">\(11101101_{2}\)</span>，这个值实际上是由+19的8位补码减去<span class="math inline">\(10000000_{2}(128_{10})\)</span>得到的。</p>
+<p>（3）溢出</p>
+<p>无论采用原码表示还是补码表示，当一个二进制数的位数确定后，其能够覆盖的数值范围也就确定了。例如n位的二进制有符号数，其原码表示范围是[<span class="math inline">\(-2^{n-1}+1\)</span> , <span class="math inline">\(2^{n-1}-1\)</span>]，其补码表示范围是[<span class="math inline">\(-2^{n-1}\)</span> , <span class="math inline">\(2^{n-1}-1\)</span>]。当同符号数相加或异符号数相减时，结果的数值就可能会超过该长度编码下可表示的范围，称之为溢出。例如，使用4位二进制编码计算-7+5，-7的补码是<span class="math inline">\(1001_{2}\)</span>，+5的补码是<span class="math inline">\(0101_{2}\)</span>，两者相加是<span class="math inline">\(1110_{2}(-2_{10})\)</span>，两异号数相加不会溢出。又比如，使用4位二进制编码计算5+4，+5的补码是<span class="math inline">\(0101_{2}\)</span>，+4的补码是<span class="math inline">\(0100_{2}\)</span>，两者相加得到<span class="math inline">\(1001_{2}(-7_{10})\)</span>，这显然是溢出，两个正数相加得到了一个负数。</p>
+<p>加法溢出的判断方法是：如果A和B的最高位一样，但是A+B结果的最高位与A和B的最高位不一样，表示溢出，即两个正数相加得到负数，或两个负数相加得到正数。减法溢出的判断方法类似，即负数减正数结果是正数，或正数减负数结果是负数，这就表示溢出。</p>
+<ol start="3" style="list-style-type: decimal">
+<li>浮点数的表示</li>
+</ol>
+<p>计算机中用于数据存储、传输和运算的部件的位数都是有限的，所以采用定点数表示数值数据时有一个不足之处，就是表示范围有限，太大或太小的数都不能表示。同时定点数表示精度也有限，用定点做除法不精确。此外，定点数也无法表示数学中的实数。所以，计算机还定义了浮点数，用来表示实数并弥补定点数的不足。</p>
+<p>（1）二进制的科学记数法</p>
+<p>在具体介绍计算机浮点数表示规格前，我们先回忆一下日常书写实数时所采用的科学记数法。譬如<span class="math inline">\(0.000000001_{10}\)</span>可以记为<span class="math inline">\(1.0_{10}\times 10^{-9}\)</span>，<span class="math inline">\(-31576000_{10}\)</span>可以记为<span class="math inline">\(-3.1576_{10}\times 10^{7}\)</span>。一个采用科学记数法表示的数，如果尾数没有前导零且小数点左边只有一位整数，则可称为规格化数。既然我们可以用科学记数法来表示十进制实数，也可以用科学记数法来表示二进制实数。其一般的表示形式为：</p>
+<p><span class="math display">\[(-1)^{s}\times f\times 2^{e}\]</span></p>
+<p>其中s表示符号，f为尾数域的值，e为指数域的值。</p>
+<p>譬如二进制实数的科学记数法表示：<span class="math inline">\(1.1_{2}\times 2^{4}=2.4_{10}\times 10^{1}\)</span>，<span class="math inline">\(-1.0_{2}\times 2^{-7}=-7.8125_{10}\times 10^{-3}\)</span>。</p>
+<p>（2）IEEE 754浮点数标准</p>
+<p>计算机中的浮点数表示沿用了科学记数法的表示方式，即包含了符号、尾数和阶码三个域。符号用一位二进制码表示，0为正，1为负。然而在计算机内部位宽是有限的，余下的尾数和阶码两者间存在一个此消彼长的关系，需要设计者在两者间权衡：增加尾数的位宽会提高表示的精度但是会减少表示的范围，而增加阶码的位宽虽然扩大了表示的范围但是会降低表示的精度。因为浮点数规格的定义融入了设计者自身的考虑，所以直到20世纪80年代初，浮点数表示格式还没有统一标准，不同厂商的计算机内部的浮点数表示格式存在差异。这导致在不同厂商计算机之间进行含有浮点数的数据传送或程序移植时，必须进行数据格式的转换，更为糟糕的是，有时这种数据格式转换会带来运算结果不一致的问题。因此，从20世纪70年代后期开始，IEEE成立委员会着手制定统一的浮点数标准，最终在1985年完成了浮点数标准IEEE 754的制定。该标准的主要起草者是美国加州大学伯克利分校数学系教授William Kahan，他帮助Intel公司设计了8087浮点协处理器，并以此为基础形成了IEEE 754标准，他本人也因此获得了1987年的图灵奖。自IEEE 754标准颁布后，目前几乎所有的计算机都遵循该标准来表示浮点数。在过去的几十年间，IEEE 754标准也根据工业界在CPU研发过程中遇到的新需求、实现的新结构，及时进行演进和完善。其中一个比较重要的版本是2008年更新的IEEE 754-2008。该版本中明确了有关融合乘加（Fused Multiply-Add）运算、半精度浮点数等方面的内容。本书仅介绍IEEE 754标准中涉及单精度、双精度浮点数表示的基本内容，对其他内容感兴趣的读者可查阅相关文献。</p>
+<p>（3）IEEE 754标准浮点数格式</p>
+<p>IEEE 754标准中定义了两种基本的浮点数格式：32位的单精度格式和64位的双精度格式，如图<a href="运算器设计.html#fig:IEEE754float">8.1</a>所示。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:IEEE754float"></span>
+<img src="images/chapter8/IEEE754_float.png" alt="IEEE 754浮点数格式" width="100%" />
+<p class="caption">
+图 8.1: IEEE 754浮点数格式
+</p>
+</div>
+<p>32位单精度格式中包含1位符号、8位阶码和23位尾数；64位双精度格式中包含1位符号、11位阶码和52位尾数。两种格式下基数均隐含为2。</p>
+<p>IEEE 754标准中，尾数用原码表示。由于表示同一个数的时候尾数可以有多种表示，例如<span class="math inline">\(0.001_{2}\)</span>可以表示为<span class="math inline">\(0.1_{2}\times 2^{-2}\)</span>，也可以表示成<span class="math inline">\(1.0_{2}\times 2^{-3}\)</span>，因此需要一个规格化的表示来使得表示唯一。IEEE 754标准中规格化尾数的表示统一为1.xxxx的形式。尾数规格化后第一位总为1，因而可以在尾数中缺省这一位1。隐藏该位后尾数可以多一位表示，精度提高一位。</p>
+<p>IEEE 754标准中，阶码是用减偏置常量的移码表示，但是所用的偏置常量并不是通常n位移码所用的<span class="math inline">\(2^{n-1}\)</span>，而是<span class="math inline">\((2^{n-1}-1)\)</span>，因此，单精度和双精度浮点数的偏置常量分别为127和1023。</p>
+<p>IEEE 754标准对浮点数的一些情况做了特殊的规定，总的来说可以分为5种情况，主要用阶码进行区分，表<a href="运算器设计.html#tab:tabIEEE754float">8.1</a>给出了IEEE 754标准中单精度和双精度不同浮点数的表示。</p>
+<template id="c80ac5ff-65f2-4d00-8555-bde6c475cd1a"><style>
+.tabwid table{
+  border-spacing:0px !important;
+  border-collapse:collapse;
+  line-height:1;
+  margin-left:auto;
+  margin-right:auto;
+  border-width: 0;
+  display: table;
+  margin-top: 1.275em;
+  margin-bottom: 1.275em;
+  border-color: transparent;
+}
+.tabwid_left table{
+  margin-left:0;
+}
+.tabwid_right table{
+  margin-right:0;
+}
+.tabwid td {
+    padding: 0;
+}
+.tabwid a {
+  text-decoration: none;
+}
+.tabwid thead {
+    background-color: transparent;
+}
+.tabwid tfoot {
+    background-color: transparent;
+}
+.tabwid table tr {
+background-color: transparent;
+}
+</style><div class="tabwid"><style>.cl-7db13526{}.cl-7da4f9e6{font-family:'Noto Sans CJK SC';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-7da4fa22{font-family:'Noto Sans CJK SC';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-7da4fa36{font-family:'Noto Sans CJK SC';font-size:6.6pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;bottom:3.3pt;}.cl-7da514c6{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-7da57236{width:41.1pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7da5725e{width:73.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7da57268{width:74.5pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7da57272{width:40.6pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7da5727c{width:73.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7da57290{width:71pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7da5729a{width:80.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7da572a4{width:41.1pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7da572ae{width:73.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7da572c2{width:74.5pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7da572cc{width:40.6pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7da572d6{width:71pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7da572ea{width:80.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7da572f4{width:73.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7da572fe{width:73.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7da57308{width:41.1pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7da5731c{width:40.6pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7da57326{width:73.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7da57330{width:74.5pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7da57344{width:71pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7da5734e{width:80.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-7db13526'>
+<caption class>
+<p><span id="tab:tabIEEE754float">表 8.1: </span>IEEE 754 浮点数格式</p>
+</caption>
+<thead><tr style="overflow-wrap:break-word;"><td  rowspan="2"class="cl-7da572ae"><p class="cl-7da514c6"><span class="cl-7da4f9e6"> </span></p></td><td  colspan="4"class="cl-7da572a4"><p class="cl-7da514c6"><span class="cl-7da4f9e6">单精度</span></p></td><td  colspan="4"class="cl-7da572a4"><p class="cl-7da514c6"><span class="cl-7da4f9e6">双精度</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7da572a4"><p class="cl-7da514c6"><span class="cl-7da4f9e6">符号</span></p></td><td class="cl-7da572f4"><p class="cl-7da514c6"><span class="cl-7da4f9e6">阶码</span></p></td><td class="cl-7da572cc"><p class="cl-7da514c6"><span class="cl-7da4f9e6">尾数</span></p></td><td class="cl-7da572d6"><p class="cl-7da514c6"><span class="cl-7da4f9e6">值</span></p></td><td class="cl-7da572a4"><p class="cl-7da514c6"><span class="cl-7da4f9e6">符号</span></p></td><td class="cl-7da572ea"><p class="cl-7da514c6"><span class="cl-7da4f9e6">阶码</span></p></td><td class="cl-7da572cc"><p class="cl-7da514c6"><span class="cl-7da4f9e6">尾数</span></p></td><td class="cl-7da572c2"><p class="cl-7da514c6"><span class="cl-7da4f9e6">值</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-7da5727c"><p class="cl-7da514c6"><span class="cl-7da4fa22">正无穷</span></p></td><td class="cl-7da57236"><p class="cl-7da514c6"><span class="cl-7da4fa22">0</span></p></td><td class="cl-7da5725e"><p class="cl-7da514c6"><span class="cl-7da4fa22">255</span></p></td><td class="cl-7da57272"><p class="cl-7da514c6"><span class="cl-7da4fa22">0</span></p></td><td class="cl-7da57290"><p class="cl-7da514c6"><span class="cl-7da4fa22">∞</span></p></td><td class="cl-7da57236"><p class="cl-7da514c6"><span class="cl-7da4fa22">0</span></p></td><td class="cl-7da5729a"><p class="cl-7da514c6"><span class="cl-7da4fa22">2047</span></p></td><td class="cl-7da57272"><p class="cl-7da514c6"><span class="cl-7da4fa22">0</span></p></td><td class="cl-7da57268"><p class="cl-7da514c6"><span class="cl-7da4fa22">∞</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7da572ae"><p class="cl-7da514c6"><span class="cl-7da4fa22">负无穷</span></p></td><td class="cl-7da572a4"><p class="cl-7da514c6"><span class="cl-7da4fa22">1</span></p></td><td class="cl-7da572f4"><p class="cl-7da514c6"><span class="cl-7da4fa22">255</span></p></td><td class="cl-7da572cc"><p class="cl-7da514c6"><span class="cl-7da4fa22">0</span></p></td><td class="cl-7da572d6"><p class="cl-7da514c6"><span class="cl-7da4fa22">-∞</span></p></td><td class="cl-7da572a4"><p class="cl-7da514c6"><span class="cl-7da4fa22">1</span></p></td><td class="cl-7da572ea"><p class="cl-7da514c6"><span class="cl-7da4fa22">2047</span></p></td><td class="cl-7da572cc"><p class="cl-7da514c6"><span class="cl-7da4fa22">0</span></p></td><td class="cl-7da572c2"><p class="cl-7da514c6"><span class="cl-7da4fa22">-∞</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7da572fe"><p class="cl-7da514c6"><span class="cl-7da4fa22">非数（NaN）</span></p></td><td class="cl-7da57308"><p class="cl-7da514c6"><span class="cl-7da4fa22">0或1</span></p></td><td class="cl-7da57326"><p class="cl-7da514c6"><span class="cl-7da4fa22">255</span></p></td><td class="cl-7da5731c"><p class="cl-7da514c6"><span class="cl-7da4fa22">≠0</span></p></td><td class="cl-7da57344"><p class="cl-7da514c6"><span class="cl-7da4fa22">NaN</span></p></td><td class="cl-7da57308"><p class="cl-7da514c6"><span class="cl-7da4fa22">0或1</span></p></td><td class="cl-7da5734e"><p class="cl-7da514c6"><span class="cl-7da4fa22">2047</span></p></td><td class="cl-7da5731c"><p class="cl-7da514c6"><span class="cl-7da4fa22">≠0</span></p></td><td class="cl-7da57330"><p class="cl-7da514c6"><span class="cl-7da4fa22">NaN</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7da572fe"><p class="cl-7da514c6"><span class="cl-7da4fa22">规格化非0正数</span></p></td><td class="cl-7da57308"><p class="cl-7da514c6"><span class="cl-7da4fa22">0</span></p></td><td class="cl-7da57326"><p class="cl-7da514c6"><span class="cl-7da4fa22">0&lt;e&lt;255</span></p></td><td class="cl-7da5731c"><p class="cl-7da514c6"><span class="cl-7da4fa22">f</span></p></td><td class="cl-7da57344"><p class="cl-7da514c6"><span class="cl-7da4fa22">1.f×2</span><span class="cl-7da4fa36">e-127</span></p></td><td class="cl-7da57308"><p class="cl-7da514c6"><span class="cl-7da4fa22">0</span></p></td><td class="cl-7da5734e"><p class="cl-7da514c6"><span class="cl-7da4fa22">0&lt;e&lt;2047</span></p></td><td class="cl-7da5731c"><p class="cl-7da514c6"><span class="cl-7da4fa22">f</span></p></td><td class="cl-7da57330"><p class="cl-7da514c6"><span class="cl-7da4fa22">1.f×2</span><span class="cl-7da4fa36">e-1023</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7da572fe"><p class="cl-7da514c6"><span class="cl-7da4fa22">规格化非0负数</span></p></td><td class="cl-7da57308"><p class="cl-7da514c6"><span class="cl-7da4fa22">1</span></p></td><td class="cl-7da57326"><p class="cl-7da514c6"><span class="cl-7da4fa22">0&lt;e&lt;255</span></p></td><td class="cl-7da5731c"><p class="cl-7da514c6"><span class="cl-7da4fa22">f</span></p></td><td class="cl-7da57344"><p class="cl-7da514c6"><span class="cl-7da4fa22">-1.f×2</span><span class="cl-7da4fa36">e-127</span></p></td><td class="cl-7da57308"><p class="cl-7da514c6"><span class="cl-7da4fa22">1</span></p></td><td class="cl-7da5734e"><p class="cl-7da514c6"><span class="cl-7da4fa22">0&lt;e&lt;2047</span></p></td><td class="cl-7da5731c"><p class="cl-7da514c6"><span class="cl-7da4fa22">f</span></p></td><td class="cl-7da57330"><p class="cl-7da514c6"><span class="cl-7da4fa22">-1.f×2</span><span class="cl-7da4fa36">e-1023</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7da572fe"><p class="cl-7da514c6"><span class="cl-7da4fa22">非规格化非0正数</span></p></td><td class="cl-7da57308"><p class="cl-7da514c6"><span class="cl-7da4fa22">0</span></p></td><td class="cl-7da57326"><p class="cl-7da514c6"><span class="cl-7da4fa22">0</span></p></td><td class="cl-7da5731c"><p class="cl-7da514c6"><span class="cl-7da4fa22">f≠0</span></p></td><td class="cl-7da57344"><p class="cl-7da514c6"><span class="cl-7da4fa22">0.f×2</span><span class="cl-7da4fa36">e-126</span></p></td><td class="cl-7da57308"><p class="cl-7da514c6"><span class="cl-7da4fa22">0</span></p></td><td class="cl-7da5734e"><p class="cl-7da514c6"><span class="cl-7da4fa22">0</span></p></td><td class="cl-7da5731c"><p class="cl-7da514c6"><span class="cl-7da4fa22">f≠0</span></p></td><td class="cl-7da57330"><p class="cl-7da514c6"><span class="cl-7da4fa22">0.f×2</span><span class="cl-7da4fa36">e-1022</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7da572fe"><p class="cl-7da514c6"><span class="cl-7da4fa22">非规格化非0负数</span></p></td><td class="cl-7da57308"><p class="cl-7da514c6"><span class="cl-7da4fa22">1</span></p></td><td class="cl-7da57326"><p class="cl-7da514c6"><span class="cl-7da4fa22">0</span></p></td><td class="cl-7da5731c"><p class="cl-7da514c6"><span class="cl-7da4fa22">f≠0</span></p></td><td class="cl-7da57344"><p class="cl-7da514c6"><span class="cl-7da4fa22">-0.f×2</span><span class="cl-7da4fa36">e-126</span></p></td><td class="cl-7da57308"><p class="cl-7da514c6"><span class="cl-7da4fa22">1</span></p></td><td class="cl-7da5734e"><p class="cl-7da514c6"><span class="cl-7da4fa22">0</span></p></td><td class="cl-7da5731c"><p class="cl-7da514c6"><span class="cl-7da4fa22">f≠0</span></p></td><td class="cl-7da57330"><p class="cl-7da514c6"><span class="cl-7da4fa22">-0.f×2</span><span class="cl-7da4fa36">e-1022</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7da572fe"><p class="cl-7da514c6"><span class="cl-7da4fa22">正0</span></p></td><td class="cl-7da57308"><p class="cl-7da514c6"><span class="cl-7da4fa22">0</span></p></td><td class="cl-7da57326"><p class="cl-7da514c6"><span class="cl-7da4fa22">0</span></p></td><td class="cl-7da5731c"><p class="cl-7da514c6"><span class="cl-7da4fa22">0</span></p></td><td class="cl-7da57344"><p class="cl-7da514c6"><span class="cl-7da4fa22">0</span></p></td><td class="cl-7da57308"><p class="cl-7da514c6"><span class="cl-7da4fa22">0</span></p></td><td class="cl-7da5734e"><p class="cl-7da514c6"><span class="cl-7da4fa22">0</span></p></td><td class="cl-7da5731c"><p class="cl-7da514c6"><span class="cl-7da4fa22">0</span></p></td><td class="cl-7da57330"><p class="cl-7da514c6"><span class="cl-7da4fa22">0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7da572fe"><p class="cl-7da514c6"><span class="cl-7da4fa22">负0</span></p></td><td class="cl-7da57308"><p class="cl-7da514c6"><span class="cl-7da4fa22">1</span></p></td><td class="cl-7da57326"><p class="cl-7da514c6"><span class="cl-7da4fa22">0</span></p></td><td class="cl-7da5731c"><p class="cl-7da514c6"><span class="cl-7da4fa22">0</span></p></td><td class="cl-7da57344"><p class="cl-7da514c6"><span class="cl-7da4fa22">0</span></p></td><td class="cl-7da57308"><p class="cl-7da514c6"><span class="cl-7da4fa22">1</span></p></td><td class="cl-7da5734e"><p class="cl-7da514c6"><span class="cl-7da4fa22">0</span></p></td><td class="cl-7da5731c"><p class="cl-7da514c6"><span class="cl-7da4fa22">0</span></p></td><td class="cl-7da57330"><p class="cl-7da514c6"><span class="cl-7da4fa22">0</span></p></td></tr></tbody></table></div></template>
+<div class="flextable-shadow-host" id="b612ad7e-0f89-4a4a-9130-236f4b335a4c"></div>
+<script>
+var dest = document.getElementById("b612ad7e-0f89-4a4a-9130-236f4b335a4c");
+var template = document.getElementById("c80ac5ff-65f2-4d00-8555-bde6c475cd1a");
+var caption = template.content.querySelector("caption");
+if(caption) {
+  caption.style.cssText = "display:block;text-align:center;";
+  var newcapt = document.createElement("p");
+  newcapt.appendChild(caption)
+  dest.parentNode.insertBefore(newcapt, dest.previousSibling);
+}
+var fantome = dest.attachShadow({mode: 'open'});
+var templateContent = template.content;
+fantome.appendChild(templateContent);
+</script>
+
+<p>（1）无穷大：阶码全1尾数全0</p>
+<p>引入无穷大是为了在出现浮点计算异常时保证程序能够继续执行下去，同时也为程序提供一种检测错误的途径。<span class="math inline">\(+\infty\)</span>在数值上大于所有有限浮点数，<span class="math inline">\(-\infty\)</span>在数值上小于所有有限浮点数。无穷大不仅可以是运算的结果，也可以作为运算的源操作数。当无穷大作为源操作数时，根据IEEE 754标准规定，可以得到无穷大或非数的结果。</p>
+<p>（2）非数（NaN）：阶码全1尾数非0</p>
+<p>非数（NaN）表示一个没有定义的数。引入非数的目的是检测非初始化值的使用，而且在计算出现异常时程序能够继续执行下去。非数根据尾数的内容又可以分为发信号非数（Signaling NaN）和不发信号非数（Quiet NaN）两种。如果源操作数是Quiet NaN，则运算结果还是Quiet NaN；如果源操作数是Signaling NaN，则会触发浮点异常。</p>
+<p>（3）规格化非0数：阶码非全0非全1</p>
+<p>阶码e的值落在[1, 254]（单精度）和[1, 2046]（双精度）范围内且尾数f是非0值的浮点数是规格化的非0数。其尾数经过规格化处理，最高位的1被省略，因此如果符号位是0，则表示数值为<span class="math inline">\(1.f\times 2^{e-127}\)</span>（单精度）和<span class="math inline">\(1.f\times 2^{e-1023}\)</span>（双精度）；如果符号位是1，则表示数值为<span class="math inline">\(-1.f\times 2^{e-127}\)</span>（单精度）和<span class="math inline">\(-1.f\times 2^{e-1023}\)</span>（双精度）。</p>
+<p>（4）非规格化非0数：阶码全0尾数非0</p>
+<p>在规格化非0数中，能表示的浮点数的最小阶值是-126（单精度）和-1022（双精度），如果浮点数的绝对值小于<span class="math inline">\(1.0\times 2^{-126}\)</span>（单精度）和<span class="math inline">\(1.0\times 2^{-1022}\)</span>（双精度），该如何表示呢？IEEE 754允许特别小的非规格化数，此时阶码为0，尾数的小数点前面的那个1就不再添加了。因此如果符号位是0，则表示数值为<span class="math inline">\(0.f\times 2^{e-126}\)</span>（单精度）和<span class="math inline">\(0.f\times 2^{e-1022}\)</span>（双精度）；如果符号位是1，则表示数值为<span class="math inline">\(-0.f\times 2^{e-126}\)</span>（单精度）和<span class="math inline">\(-0.f\times 2^{e-1022}\)</span>（双精度）。非规格化数填补了最小的规格化数和0之间的一段空隙，使得浮点数值可表示的精度进一步提升了很多。</p>
+<p>（5）零：阶码全0尾数全0</p>
+<p>根据符号位的取值，分为+0和-0。</p>
+</div>
+<div id="sec-MOS-principle" class="section level3">
+<h3><span class="header-section-number">8.1.2</span> MOS晶体管工作原理</h3>
+<p>从原理上看，只要有一个二值系统，并且系统中能够进行与、或、非这样的基本操作，就能够搭建出一台计算机。最早期的电子计算机使用继电器或电子管实现二值系统，而现代计算机中则采用晶体管来实现二值系统。晶体管可以根据控制端电压或电流的变化来实现“开启”和“关闭”的功能，从而表达二进制。晶体管主要分为双极型晶体管（Bipolar Junction Transistor）和金属-氧化物半导体场效应晶体管（Metal Oxide Semiconductor Field Effect Transistor，简称MOSFET或MOS）。当前绝大多数CPU都采用MOS晶体管实现，其中又以CMOS（Complementary Metal Oxide Semiconductor）晶体管电路设计最为常见。</p>
+<ol style="list-style-type: decimal">
+<li>半导体</li>
+</ol>
+<p>MOS晶体管使用硅作为基本材料。在元素周期表中，硅是IV族元素，它的原子最外层有4个电子，可以与相邻的4个硅原子的最外层电子配对形成共价键。图<a href="运算器设计.html#fig:silicium">8.2</a>a给出了纯净硅中原子连接关系的一个简单二维平面示意，实际上纯净硅中原子构成的是一个正四面体立体网格。通过与相邻原子形成的共价键，纯净硅中所有原子的最外层都具有8个电子，达到相对稳定，所以纯净硅的导电性很弱。但是，如果在纯净硅中掺杂少量5价的原子（如磷），这些原子将挤占原有硅原子的位置，而由于这些原子的最外层有5个电子，除了与原有硅原子形成共价键用掉4个电子外，还多余一个处于游离状态的电子，如图<a href="运算器设计.html#fig:silicium">8.2</a>b所示。在电场的作用下，处于游离状态的电子就会逆着电场方向流动，形成负电流。这类材料被称为N（Negative）型材料。同样，如果在纯净的硅中掺杂少量3价的原子（如硼），那么这些原子挤占原有硅原子的位置后，其最外层还缺少一个电子和相邻的硅原子形成共价键，形成空穴，如图<a href="运算器设计.html#fig:silicium">8.2</a>c所示。在电场的作用下，周围的电子就会跑过来填补这个空穴，从而留下一个新的空穴，相当于空穴也在顺着电场方向流动，形成正电流。这类材料被称为P（Positive）型材料。当非4价元素掺杂的含量较小时，产生的电子和空穴也就比较少，用—号表示；当非4价元素掺杂的含量较大时，产生的电子和空穴也就比较多，用+号表示。因此，P-表示掺杂浓度低的P型材料，里面只有少量的空穴；N+表示掺杂浓度高的N型材料，里面有大量电子。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:silicium"></span>
+<img src="images/chapter8/sicicium_atomic_structure.png" alt="半导体硅原子结构示意图" width="100%" />
+<p class="caption">
+图 8.2: 半导体硅原子结构示意图
+</p>
+</div>
+<ol start="2" style="list-style-type: decimal">
+<li>NMOS和PMOS晶体管
+如图<a href="运算器设计.html#fig:MOS-struc">8.3</a>所示，MOS晶体管是由多层摞放在一起的导电和绝缘材料构建起来的。每个晶体管的底部叫作衬底，是低浓度掺杂的半导体硅。晶体管的上部接出来3个信号端口，分别称为源极（Source）、漏极（Drain）和栅极（Gate）。源极和漏极叫作有源区，该区域内采用与衬底相反极性的高浓度掺杂。衬底是低浓度P型掺杂，有源区是高浓度N型掺杂的MOS晶体管叫作NMOS晶体管；衬底是低浓度N型掺杂，有源区是高浓度P型掺杂的MOS晶体管叫作PMOS晶体管。无论是NMOS管还是PMOS管，其栅极与衬底之间都存在一层绝缘体，叫作栅氧层，其成分通常是二氧化硅（SiO<sub>2</sub>）。最早期的MOS晶体管栅极由金属制成，后来的栅极采用掺杂后的多晶硅制成。掺杂后的多晶硅尽管其电阻比金属大，但却比半导体硅的电阻小很多，可以作为电极。并且同普通金属相比，多晶硅更耐受高温，不至于在MOS晶体管生产过程中融化。不过最新的工艺又有重新采用金属栅极的。</li>
+</ol>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:MOS-struc"></span>
+<img src="images/chapter8/MOS_structure.png" alt="MOS晶体管组成结构示意图" width="100%" />
+<p class="caption">
+图 8.3: MOS晶体管组成结构示意图
+</p>
+</div>
+<p>上面简述了MOS晶体管的基本构成，下面以NMOS晶体管为例介绍MOS晶体管的工作原理。如果单纯在源极、漏极之间加上电压，两极之间是不会有电流流过的，因为源极和漏极之间相当于有一对正反相对的PN结，如图<a href="运算器设计.html#fig:NMOS-work">8.4</a>a所示。如果先在栅极上加上电压，因为栅氧层是绝缘的，就会在P衬底里形成一个电场。栅极上的正电压会把P衬底里面的电子吸引到栅氧层的底部，形成一个很薄的沟道电子层，相当于在源极和漏极之间架起了一座导电的桥梁。此时如果再在源极、漏极之间加上电压，那么两极之间的电流就能流过来了，如图@ref(fig:NMOS_work)b所示。NMOS的基本工作原理就是这样，但是其实际的物理现象却很复杂。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:NMOS-work"></span>
+<img src="images/chapter8/NMOS_workingprinciple.png" alt="NMOS晶体管工作原理示意图" width="80%" />
+<p class="caption">
+图 8.4: NMOS晶体管工作原理示意图
+</p>
+</div>
+<p>当我们屏蔽掉底层的物理现象细节，对MOS晶体管的工作行为进行适度抽象后，NMOS晶体管的工作行为就是：在栅极上加上电就通，不加电就断。PMOS晶体管的工作行为与NMOS晶体管的恰好相反，加上电就断，不加电就通。这样我们可以简单地把MOS晶体管当作开关。NMOS晶体管是栅极电压高时打开，栅极电压低时关闭；PMOS晶体管反过来，栅极电压低时打开，栅极电压高时关闭。如图<a href="运算器设计.html#fig:MOS-switch">8.5</a>所示。随着工艺的发展，MOS晶体管中栅氧层的厚度越来越薄，使得开启所需的栅极电压不断降低。晶体管的工作电压从早期工艺的5.0V，降到后来的2.5V、1.8V，现在都是1V左右或更低。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:MOS-switch"></span>
+<img src="images/chapter8/MOS_switch.png" alt="MOS晶体管开关行为" width="50%" />
+<p class="caption">
+图 8.5: MOS晶体管开关行为
+</p>
+</div>
+<p>尽管MOS晶体管可以表现出开关的行为，但是单纯的PMOS晶体管或者NMOS晶体管都不是理想的开关。例如，NMOS晶体管适合传输0而不适合传输1；PMOS晶体管恰好相反，适合传输1而不适合传输0。在后面讲述常见CMOS电路时，将会论及如何解决这一问题。</p>
+</div>
+<div id="cmos逻辑电路" class="section level3">
+<h3><span class="header-section-number">8.1.3</span> CMOS逻辑电路</h3>
+<p>在了解了MOS晶体管的组成和基本原理后，我们接下来了解如何用MOS晶体管构建逻辑电路。</p>
+<ol style="list-style-type: decimal">
+<li>数字逻辑电路</li>
+</ol>
+<p>（1）布尔代数</p>
+<p>数字逻辑基于的数学运算体系是布尔代数。布尔代数是在二元集合{0, 1}基础上定义的。最基本的逻辑运算有三种：与（AND，&amp;）、或（OR，|）、非（NOT，~）。这三种逻辑关系定义如下：</p>
+<template id="cdea0fa9-8fc4-4080-8fe5-14f628afea04"><style>
+.tabwid table{
+  border-spacing:0px !important;
+  border-collapse:collapse;
+  line-height:1;
+  margin-left:auto;
+  margin-right:auto;
+  border-width: 0;
+  display: table;
+  margin-top: 1.275em;
+  margin-bottom: 1.275em;
+  border-color: transparent;
+}
+.tabwid_left table{
+  margin-left:0;
+}
+.tabwid_right table{
+  margin-right:0;
+}
+.tabwid td {
+    padding: 0;
+}
+.tabwid a {
+  text-decoration: none;
+}
+.tabwid thead {
+    background-color: transparent;
+}
+.tabwid tfoot {
+    background-color: transparent;
+}
+.tabwid table tr {
+background-color: transparent;
+}
+</style><div class="tabwid"><style>.cl-7de4c5a8{}.cl-7ddbdab0{font-family:'Noto Sans CJK SC';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-7ddbf220{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-7ddc2d76{width:37.3pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7ddc2d94{width:28.1pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7ddc2d9e{width:51.2pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7ddc2db2{width:46.3pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7ddc2dbc{width:28.1pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7ddc2dc6{width:37.3pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7ddc2dd0{width:28.1pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7ddc2dda{width:51.2pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7ddc2de4{width:46.3pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7ddc2dee{width:28.1pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-7de4c5a8'>
+<thead><tr style="overflow-wrap:break-word;"><td class="cl-7ddc2dd0"><p class="cl-7ddbf220"><span class="cl-7ddbdab0">A</span></p></td><td class="cl-7ddc2dee"><p class="cl-7ddbf220"><span class="cl-7ddbdab0">B</span></p></td><td class="cl-7ddc2dda"><p class="cl-7ddbf220"><span class="cl-7ddbdab0">A &amp; B</span></p></td><td class="cl-7ddc2de4"><p class="cl-7ddbf220"><span class="cl-7ddbdab0">A | B</span></p></td><td class="cl-7ddc2dc6"><p class="cl-7ddbf220"><span class="cl-7ddbdab0">~A</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-7ddc2d94"><p class="cl-7ddbf220"><span class="cl-7ddbdab0">0</span></p></td><td class="cl-7ddc2dbc"><p class="cl-7ddbf220"><span class="cl-7ddbdab0">0</span></p></td><td class="cl-7ddc2d9e"><p class="cl-7ddbf220"><span class="cl-7ddbdab0">0</span></p></td><td class="cl-7ddc2db2"><p class="cl-7ddbf220"><span class="cl-7ddbdab0">0</span></p></td><td class="cl-7ddc2d76"><p class="cl-7ddbf220"><span class="cl-7ddbdab0">1</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7ddc2d94"><p class="cl-7ddbf220"><span class="cl-7ddbdab0">0</span></p></td><td class="cl-7ddc2dbc"><p class="cl-7ddbf220"><span class="cl-7ddbdab0">1</span></p></td><td class="cl-7ddc2d9e"><p class="cl-7ddbf220"><span class="cl-7ddbdab0">0</span></p></td><td class="cl-7ddc2db2"><p class="cl-7ddbf220"><span class="cl-7ddbdab0">1</span></p></td><td class="cl-7ddc2d76"><p class="cl-7ddbf220"><span class="cl-7ddbdab0">1</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7ddc2d94"><p class="cl-7ddbf220"><span class="cl-7ddbdab0">1</span></p></td><td class="cl-7ddc2dbc"><p class="cl-7ddbf220"><span class="cl-7ddbdab0">0</span></p></td><td class="cl-7ddc2d9e"><p class="cl-7ddbf220"><span class="cl-7ddbdab0">0</span></p></td><td class="cl-7ddc2db2"><p class="cl-7ddbf220"><span class="cl-7ddbdab0">1</span></p></td><td class="cl-7ddc2d76"><p class="cl-7ddbf220"><span class="cl-7ddbdab0">0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7ddc2d94"><p class="cl-7ddbf220"><span class="cl-7ddbdab0">1</span></p></td><td class="cl-7ddc2dbc"><p class="cl-7ddbf220"><span class="cl-7ddbdab0">1</span></p></td><td class="cl-7ddc2d9e"><p class="cl-7ddbf220"><span class="cl-7ddbdab0">1</span></p></td><td class="cl-7ddc2db2"><p class="cl-7ddbf220"><span class="cl-7ddbdab0">1</span></p></td><td class="cl-7ddc2d76"><p class="cl-7ddbf220"><span class="cl-7ddbdab0">0</span></p></td></tr></tbody></table></div></template>
+<div class="flextable-shadow-host" id="f1a9bd12-4106-40a6-8b27-67b163502e69"></div>
+<script>
+var dest = document.getElementById("f1a9bd12-4106-40a6-8b27-67b163502e69");
+var template = document.getElementById("cdea0fa9-8fc4-4080-8fe5-14f628afea04");
+var caption = template.content.querySelector("caption");
+if(caption) {
+  caption.style.cssText = "display:block;text-align:center;";
+  var newcapt = document.createElement("p");
+  newcapt.appendChild(caption)
+  dest.parentNode.insertBefore(newcapt, dest.previousSibling);
+}
+var fantome = dest.attachShadow({mode: 'open'});
+var templateContent = template.content;
+fantome.appendChild(templateContent);
+</script>
+
+<p>常用的布尔代数运算定律有：</p>
+<p>恒等律：<span class="math inline">\(A \ |\  0 = A,\ A \ \&amp;\  1 = A\)</span>；</p>
+<p>0/1律：<span class="math inline">\(A \ |\ 1 = 1,\ A \ \&amp;\ 0 = 0\)</span>；</p>
+<p>互补律：<span class="math inline">\(A \ |\ ( \sim A) = 1,\ A \ \&amp;\ (\sim A) = 0\)</span>；</p>
+<p>交换律：<span class="math inline">\(A \ |\ B = B \ |\ A,\ A \ \&amp;\ B = B \ \&amp;\ A\)</span>；</p>
+<p>结合律：<span class="math inline">\(A \ |\ (B \ |\ C) = (A \ |\ B) \ |\ C,\ A \ \&amp;\ (B \ \&amp;\ C) = (A \ \&amp;\ B) \ \&amp;\ C\)</span>；</p>
+<p>分配律：<span class="math inline">\(A \ \&amp;\ (B \ |\ C) = (A \ \&amp;\ B) \ |\ (A \ \&amp;\ C),\ A \ |\ (B \ \&amp;\ C) = (A \ |\ B) \ \&amp;\ (A \ |\ C)\)</span>；</p>
+<p>德摩根（DeMorgan）定律：<span class="math inline">\(\sim (A \ \&amp;\ B) = (\sim A) \ |\ (\sim B),\ \sim (A \ |\ B) = (\sim A) \ \&amp;\ (\sim B)\)</span>。</p>
+<p>上述定律虽然很简单，但使用起来变化无穷。</p>
+<p>根据电路是否具有数据存储功能，可将数字逻辑电路分为组合逻辑电路和时序逻辑电路两类。</p>
+<p>（2）组合逻辑</p>
+<p>组合逻辑电路中没有数据存储单元，电路的输出完全由当前的输入决定。在组合逻辑的各种表达方式中，最简单的就是真值表，即对每一种可能的输入组合给出输出值。显然一个N输入的电路就有<span class="math inline">\(2^{N}\)</span>种不同的输入组合。常见的门级组合逻辑除了与门（AND）、或门（OR）、非门（NOT），还有与非门（NAND）、或非门（NOR）、异或门（XOR）。图<a href="运算器设计.html#fig:logicgate">8.6</a>给出了这些常见的门逻辑符号及其真值表。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:logicgate"></span>
+<img src="images/chapter8/logic_gate.png" alt="常用基本逻辑门电路" width="100%" />
+<p class="caption">
+图 8.6: 常用基本逻辑门电路
+</p>
+</div>
+<p>利用基本逻辑门电路可以构成具有特定功能的更大规模的组合逻辑部件，如译码器、编码器、多路选择器、加法器等。加法器和乘法器两类运算逻辑电路我们将在后续章节中介绍。表<a href="运算器设计.html#tab:3-8decoder">8.2</a>所示是3-8译码器真值表，把3位信号译码成8位输出，当输入000时，8个输出里面最低位为1，输入为001时，次低位为1，依次类推。表<a href="运算器设计.html#tab:8-1selector">8.3</a>所示是一个8选1选择器的真值表，当CBA为000的时候选择输出第0路<span class="math inline">\(D_{0}\)</span>，为001的时候选择输出第1路<span class="math inline">\(D_{1}\)</span>，依次类推。可以看出选择器可以用译码器加上与门来实现。</p>
+<template id="c5bbe3b0-ee05-4f81-8cee-8f27afc5521d"><style>
+.tabwid table{
+  border-spacing:0px !important;
+  border-collapse:collapse;
+  line-height:1;
+  margin-left:auto;
+  margin-right:auto;
+  border-width: 0;
+  display: table;
+  margin-top: 1.275em;
+  margin-bottom: 1.275em;
+  border-color: transparent;
+}
+.tabwid_left table{
+  margin-left:0;
+}
+.tabwid_right table{
+  margin-right:0;
+}
+.tabwid td {
+    padding: 0;
+}
+.tabwid a {
+  text-decoration: none;
+}
+.tabwid thead {
+    background-color: transparent;
+}
+.tabwid tfoot {
+    background-color: transparent;
+}
+.tabwid table tr {
+background-color: transparent;
+}
+</style><div class="tabwid"><style>.cl-7eca3368{}.cl-7ec0dd4a{font-family:'Noto Sans CJK SC';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-7ec0dd72{font-family:'Noto Sans CJK SC';font-size:6.6pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;top:3.3pt;}.cl-7ec0f2e4{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-7ec15c20{width:33.7pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7ec15c48{width:28.1pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7ec15c5c{width:30.8pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7ec15c66{width:28.1pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7ec15c70{width:33.7pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7ec15c7a{width:30.8pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7ec15c8e{width:28.1pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7ec15c98{width:28.1pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7ec15ca2{width:33.7pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7ec15cac{width:33.7pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7ec15cb6{width:33.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7ec15cc0{width:28.1pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7ec15cca{width:30.8pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7ec15cd4{width:28.1pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7ec15ce8{width:33.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-7eca3368'>
+<caption class>
+<p><span id="tab:3-8decoder">表 8.2: </span>3-8译码器真值表</p>
+</caption>
+<thead><tr style="overflow-wrap:break-word;"><td  colspan="3"class="cl-7ec15cb6"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">输入</span></p></td><td  colspan="8"class="cl-7ec15ce8"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">输出</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-7ec15c20"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">C</span></p></td><td class="cl-7ec15c48"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">B</span></p></td><td class="cl-7ec15c66"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">A</span></p></td><td class="cl-7ec15c70"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">Y</span><span class="cl-7ec0dd72">0</span></p></td><td class="cl-7ec15c5c"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">Y</span><span class="cl-7ec0dd72">1</span></p></td><td class="cl-7ec15c5c"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">Y</span><span class="cl-7ec0dd72">2</span></p></td><td class="cl-7ec15c5c"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">Y</span><span class="cl-7ec0dd72">3</span></p></td><td class="cl-7ec15c5c"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">Y</span><span class="cl-7ec0dd72">4</span></p></td><td class="cl-7ec15c5c"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">Y</span><span class="cl-7ec0dd72">5</span></p></td><td class="cl-7ec15c5c"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">Y</span><span class="cl-7ec0dd72">6</span></p></td><td class="cl-7ec15c5c"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">Y</span><span class="cl-7ec0dd72">7</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7ec15c20"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td><td class="cl-7ec15c48"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td><td class="cl-7ec15c66"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td><td class="cl-7ec15c70"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">1</span></p></td><td class="cl-7ec15c5c"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td><td class="cl-7ec15c5c"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td><td class="cl-7ec15c5c"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td><td class="cl-7ec15c5c"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td><td class="cl-7ec15c5c"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td><td class="cl-7ec15c5c"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td><td class="cl-7ec15c5c"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7ec15c20"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td><td class="cl-7ec15c48"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td><td class="cl-7ec15c66"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">1</span></p></td><td class="cl-7ec15c70"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td><td class="cl-7ec15c5c"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">1</span></p></td><td class="cl-7ec15c5c"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td><td class="cl-7ec15c5c"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td><td class="cl-7ec15c5c"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td><td class="cl-7ec15c5c"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td><td class="cl-7ec15c5c"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td><td class="cl-7ec15c5c"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7ec15c20"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td><td class="cl-7ec15c48"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">1</span></p></td><td class="cl-7ec15c66"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td><td class="cl-7ec15c70"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td><td class="cl-7ec15c5c"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td><td class="cl-7ec15c5c"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">1</span></p></td><td class="cl-7ec15c5c"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td><td class="cl-7ec15c5c"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td><td class="cl-7ec15c5c"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td><td class="cl-7ec15c5c"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td><td class="cl-7ec15c5c"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7ec15c20"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td><td class="cl-7ec15c48"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">1</span></p></td><td class="cl-7ec15c66"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">1</span></p></td><td class="cl-7ec15c70"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td><td class="cl-7ec15c5c"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td><td class="cl-7ec15c5c"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td><td class="cl-7ec15c5c"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">1</span></p></td><td class="cl-7ec15c5c"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td><td class="cl-7ec15c5c"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td><td class="cl-7ec15c5c"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td><td class="cl-7ec15c5c"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7ec15c20"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">1</span></p></td><td class="cl-7ec15c48"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td><td class="cl-7ec15c66"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td><td class="cl-7ec15c70"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td><td class="cl-7ec15c5c"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td><td class="cl-7ec15c5c"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td><td class="cl-7ec15c5c"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td><td class="cl-7ec15c5c"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">1</span></p></td><td class="cl-7ec15c5c"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td><td class="cl-7ec15c5c"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td><td class="cl-7ec15c5c"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7ec15c20"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">1</span></p></td><td class="cl-7ec15c48"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td><td class="cl-7ec15c66"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">1</span></p></td><td class="cl-7ec15c70"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td><td class="cl-7ec15c5c"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td><td class="cl-7ec15c5c"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td><td class="cl-7ec15c5c"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td><td class="cl-7ec15c5c"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td><td class="cl-7ec15c5c"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">1</span></p></td><td class="cl-7ec15c5c"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td><td class="cl-7ec15c5c"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7ec15c20"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">1</span></p></td><td class="cl-7ec15c48"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">1</span></p></td><td class="cl-7ec15c66"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td><td class="cl-7ec15c70"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td><td class="cl-7ec15c5c"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td><td class="cl-7ec15c5c"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td><td class="cl-7ec15c5c"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td><td class="cl-7ec15c5c"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td><td class="cl-7ec15c5c"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td><td class="cl-7ec15c5c"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">1</span></p></td><td class="cl-7ec15c5c"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7ec15cac"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">1</span></p></td><td class="cl-7ec15c98"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">1</span></p></td><td class="cl-7ec15c8e"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">1</span></p></td><td class="cl-7ec15ca2"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td><td class="cl-7ec15c7a"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td><td class="cl-7ec15c7a"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td><td class="cl-7ec15c7a"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td><td class="cl-7ec15c7a"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td><td class="cl-7ec15c7a"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td><td class="cl-7ec15c7a"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">0</span></p></td><td class="cl-7ec15c7a"><p class="cl-7ec0f2e4"><span class="cl-7ec0dd4a">1</span></p></td></tr></tbody></table></div></template>
+<div class="flextable-shadow-host" id="dfdc269a-bbd5-4dd7-bc1a-9b7e8d90666f"></div>
+<script>
+var dest = document.getElementById("dfdc269a-bbd5-4dd7-bc1a-9b7e8d90666f");
+var template = document.getElementById("c5bbe3b0-ee05-4f81-8cee-8f27afc5521d");
+var caption = template.content.querySelector("caption");
+if(caption) {
+  caption.style.cssText = "display:block;text-align:center;";
+  var newcapt = document.createElement("p");
+  newcapt.appendChild(caption)
+  dest.parentNode.insertBefore(newcapt, dest.previousSibling);
+}
+var fantome = dest.attachShadow({mode: 'open'});
+var templateContent = template.content;
+fantome.appendChild(templateContent);
+</script>
+
+<template id="36fba9f3-57bc-463c-ab66-b778412c7bd9"><style>
+.tabwid table{
+  border-spacing:0px !important;
+  border-collapse:collapse;
+  line-height:1;
+  margin-left:auto;
+  margin-right:auto;
+  border-width: 0;
+  display: table;
+  margin-top: 1.275em;
+  margin-bottom: 1.275em;
+  border-color: transparent;
+}
+.tabwid_left table{
+  margin-left:0;
+}
+.tabwid_right table{
+  margin-right:0;
+}
+.tabwid td {
+    padding: 0;
+}
+.tabwid a {
+  text-decoration: none;
+}
+.tabwid thead {
+    background-color: transparent;
+}
+.tabwid tfoot {
+    background-color: transparent;
+}
+.tabwid table tr {
+background-color: transparent;
+}
+</style><div class="tabwid"><style>.cl-7f50399a{}.cl-7f4890c8{font-family:'Noto Sans CJK SC';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-7f4890fa{font-family:'Noto Sans CJK SC';font-size:6.6pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;top:3.3pt;}.cl-7f48acde{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-7f48edca{width:33.7pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7f48edf2{width:33.7pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7f48ee06{width:28.1pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7f48ee10{width:28.1pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7f48ee24{width:28.1pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7f48ee2e{width:33.7pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7f48ee38{width:33.7pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7f48ee42{width:28.1pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7f48ee56{width:33.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7f48ee60{width:33.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7f48ee6a{width:28.1pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7f48ee74{width:28.1pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-7f50399a'>
+<caption class>
+<p><span id="tab:8-1selector">表 8.3: </span>8选1选择器真值表</p>
+</caption>
+<thead><tr style="overflow-wrap:break-word;"><td  colspan="3"class="cl-7f48ee56"><p class="cl-7f48acde"><span class="cl-7f4890c8">输入</span></p></td><td class="cl-7f48ee60"><p class="cl-7f48acde"><span class="cl-7f4890c8">输出</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-7f48edca"><p class="cl-7f48acde"><span class="cl-7f4890c8">C</span></p></td><td class="cl-7f48ee06"><p class="cl-7f48acde"><span class="cl-7f4890c8">B</span></p></td><td class="cl-7f48ee10"><p class="cl-7f48acde"><span class="cl-7f4890c8">A</span></p></td><td class="cl-7f48edf2"><p class="cl-7f48acde"><span class="cl-7f4890c8">Y</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7f48edca"><p class="cl-7f48acde"><span class="cl-7f4890c8">0</span></p></td><td class="cl-7f48ee06"><p class="cl-7f48acde"><span class="cl-7f4890c8">0</span></p></td><td class="cl-7f48ee10"><p class="cl-7f48acde"><span class="cl-7f4890c8">0</span></p></td><td class="cl-7f48edf2"><p class="cl-7f48acde"><span class="cl-7f4890c8">D</span><span class="cl-7f4890fa">0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7f48edca"><p class="cl-7f48acde"><span class="cl-7f4890c8">0</span></p></td><td class="cl-7f48ee06"><p class="cl-7f48acde"><span class="cl-7f4890c8">0</span></p></td><td class="cl-7f48ee10"><p class="cl-7f48acde"><span class="cl-7f4890c8">1</span></p></td><td class="cl-7f48edf2"><p class="cl-7f48acde"><span class="cl-7f4890c8">D</span><span class="cl-7f4890fa">1</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7f48edca"><p class="cl-7f48acde"><span class="cl-7f4890c8">0</span></p></td><td class="cl-7f48ee06"><p class="cl-7f48acde"><span class="cl-7f4890c8">1</span></p></td><td class="cl-7f48ee10"><p class="cl-7f48acde"><span class="cl-7f4890c8">0</span></p></td><td class="cl-7f48edf2"><p class="cl-7f48acde"><span class="cl-7f4890c8">D</span><span class="cl-7f4890fa">2</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7f48edca"><p class="cl-7f48acde"><span class="cl-7f4890c8">0</span></p></td><td class="cl-7f48ee06"><p class="cl-7f48acde"><span class="cl-7f4890c8">1</span></p></td><td class="cl-7f48ee10"><p class="cl-7f48acde"><span class="cl-7f4890c8">1</span></p></td><td class="cl-7f48edf2"><p class="cl-7f48acde"><span class="cl-7f4890c8">D</span><span class="cl-7f4890fa">3</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7f48edca"><p class="cl-7f48acde"><span class="cl-7f4890c8">1</span></p></td><td class="cl-7f48ee06"><p class="cl-7f48acde"><span class="cl-7f4890c8">0</span></p></td><td class="cl-7f48ee10"><p class="cl-7f48acde"><span class="cl-7f4890c8">0</span></p></td><td class="cl-7f48edf2"><p class="cl-7f48acde"><span class="cl-7f4890c8">D</span><span class="cl-7f4890fa">4</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7f48edca"><p class="cl-7f48acde"><span class="cl-7f4890c8">1</span></p></td><td class="cl-7f48ee06"><p class="cl-7f48acde"><span class="cl-7f4890c8">0</span></p></td><td class="cl-7f48ee10"><p class="cl-7f48acde"><span class="cl-7f4890c8">1</span></p></td><td class="cl-7f48edf2"><p class="cl-7f48acde"><span class="cl-7f4890c8">D</span><span class="cl-7f4890fa">5</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7f48edca"><p class="cl-7f48acde"><span class="cl-7f4890c8">1</span></p></td><td class="cl-7f48ee06"><p class="cl-7f48acde"><span class="cl-7f4890c8">1</span></p></td><td class="cl-7f48ee10"><p class="cl-7f48acde"><span class="cl-7f4890c8">0</span></p></td><td class="cl-7f48edf2"><p class="cl-7f48acde"><span class="cl-7f4890c8">D</span><span class="cl-7f4890fa">6</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7f48ee38"><p class="cl-7f48acde"><span class="cl-7f4890c8">1</span></p></td><td class="cl-7f48ee24"><p class="cl-7f48acde"><span class="cl-7f4890c8">1</span></p></td><td class="cl-7f48ee42"><p class="cl-7f48acde"><span class="cl-7f4890c8">1</span></p></td><td class="cl-7f48ee2e"><p class="cl-7f48acde"><span class="cl-7f4890c8">D</span><span class="cl-7f4890fa">7</span></p></td></tr></tbody></table></div></template>
+<div class="flextable-shadow-host" id="0f5e052f-256b-4d06-9eae-27eb0f4b534b"></div>
+<script>
+var dest = document.getElementById("0f5e052f-256b-4d06-9eae-27eb0f4b534b");
+var template = document.getElementById("36fba9f3-57bc-463c-ab66-b778412c7bd9");
+var caption = template.content.querySelector("caption");
+if(caption) {
+  caption.style.cssText = "display:block;text-align:center;";
+  var newcapt = document.createElement("p");
+  newcapt.appendChild(caption)
+  dest.parentNode.insertBefore(newcapt, dest.previousSibling);
+}
+var fantome = dest.attachShadow({mode: 'open'});
+var templateContent = template.content;
+fantome.appendChild(templateContent);
+</script>
+
+<p>（3）时序逻辑</p>
+<p>时序逻辑电路包含时钟信号和数据存储单元两个要素。时序逻辑电路的特点在于，其输出不但与当前输入的逻辑有关，而且与在此之前曾经输入过的逻辑值有关。</p>
+<p>时钟信号是时序逻辑电路的基础，它用于确定时序逻辑元件中的状态在何时发生变化。如图<a href="运算器设计.html#fig:clocksignal">8.7</a>所示，时钟信号是具有固定周期的标准脉冲信号。每个时钟周期分为高、低电平两部分，其中低电平向高电平变化的边沿称为上升沿，高电平向低电平变化的边沿称为下降沿。在CPU设计中，通常使用边沿触发方式来确定时序逻辑状态变化的时间点。所谓边沿触发就是将时钟信号的上升沿或下降沿作为采样的同步点，在每个采样同步点，对时序逻辑电路的状态进行采样，并存储到数据存储单元中。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:clocksignal"></span>
+<img src="images/chapter8/clock_signal.png" alt="时钟信号" width="80%" />
+<p class="caption">
+图 8.7: 时钟信号
+</p>
+</div>
+<p>数据存储单元是时序逻辑电路中的核心。数据存储单元多由锁存器构成。首先介绍RS锁存器。图<a href="运算器设计.html#fig:RSlatch">8.8</a>是RS锁存器的逻辑图和真值表。RS锁存器包含置位端S（Set）和复位端R（Reset）两个输入端口，R为0、S为1时置输出为1，R为1、S为0时输出为0。在图<a href="运算器设计.html#fig:RSlatch">8.8</a>中，下面与非门的输出接到上面与非门的一个输入，同样上面与非门的输出接到下面与非门的一个输入，通过两个成蝶形连接的与非门构成RS锁存器。RS锁存器与组合逻辑的不同在于，当（R, S）的值从（0, 1）或（1, 0）变成（1, 1）时能够保持输出值的状态不变，从而实现数据的存储。组合的输出只跟输入相关；但是RS锁存器的输入变了，它的输出还能保持原来的值。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:RSlatch"></span>
+<img src="images/chapter8/RS_latch.png" alt="RS锁存器" width="50%" />
+<p class="caption">
+图 8.8: RS锁存器
+</p>
+</div>
+<p>在RS锁存器前面连接上两个与非门，再用时钟C（Clock）控制D输入就构成了如图<a href="运算器设计.html#fig:Dlatch">8.9</a>a所示的电路。当C=0时，R和S都为1，RS锁存器处于保持状态，也就是说当时钟处于低电平时，无论输入D怎样变化，输出都保持原来的值。当C=1时，输出Q与输入D值相同，相当于直通。这就是D锁存器（D Latch）的原理，通过时钟C的电平进行控制，高电平输入，低电平保持。</p>
+<p>两个D锁存器以图<a href="运算器设计.html#fig:Dlatch">8.9</a>b所示的方式串接起来就构成了一个D触发器（D Flip-Flop）。当C=0时，第一个D锁存器直通，第二个D锁存器保持；当C=1时，第一个D锁存器保持，第二个D锁存器直通；C从0变为1时，D的值被锁存起来。这就是D触发器的基本原理，它是通过时钟的边沿进行数据的锁存。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Dlatch"></span>
+<img src="images/chapter8/D_latch.png" alt="D锁存器和D触发器" width="100%" />
+<p class="caption">
+图 8.9: D锁存器和D触发器
+</p>
+</div>
+<p>实际情况下，由于器件中电流的速度是有限的，并且电容充放电需要时间，所以电路存在延迟。为了保证D触发器正常工作，需要满足一定的延迟要求。例如为了把D的值通过时钟边沿锁存起来，要求在时钟变化之前的某一段时间内D的值不能改变，这个时间叫作建立时间（Setup Time）。另外，在时钟跳变后的一段时间内，D的值也不能变，这个时间就是保持时间（Hold Time）。建立时间和保持时间可以是负数。此外D触发器还有一个重要的时间参数叫作“Clock-to-Q”时间，也就是时钟边沿到来后Q端数据更新为新值的时间。D触发器整个的访问延迟是建立时间加上“Clock-to-Q”时间。图<a href="运算器设计.html#fig:Dlatchtime">8.10</a>给出了上升沿触发的D触发器的建立时间、保持时间以及“Clock-to-Q”时间的示意。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Dlatchtime"></span>
+<img src="images/chapter8/Dlatch_timing.png" alt="D触发器建立时间、保持时间和Clock-to-Q时间" width="50%" />
+<p class="caption">
+图 8.10: D触发器建立时间、保持时间和Clock-to-Q时间
+</p>
+</div>
+<ol start="2" style="list-style-type: decimal">
+<li>常见CMOS电路</li>
+</ol>
+<p>本节通过若干具体示例，讲述如何用MOS晶体管实现逻辑电路，且所列举的电路都是CMOS电路。关于CMOS电路的基本特点，将在“非门”示例之后予以说明。</p>
+<p>（1）非门</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:NOTgate"></span>
+<img src="images/chapter8/CMOS_NOT_gate.png" alt="CMOS电路：非门" width="100%" />
+<p class="caption">
+图 8.11: CMOS电路：非门
+</p>
+</div>
+<p>图<a href="运算器设计.html#fig:NOTgate">8.11</a>a是非门（也称作反相器）的CMOS电路，它由一个PMOS晶体管和一个NMOS晶体管组成，其中PMOS晶体管（以下简称“P管”）的源极接电源，NMOS晶体管（以下简称“N管”）的源极接地，两管的漏极连在一起作为输出，栅极连在一起作为输入。如果输入为0（接地），则P管导通，N管关闭，P管的电阻为0（实际电路中P管其实有一定的电阻，大约在几千欧姆），N管的电阻无穷大，输出端的电压就是电源电压<span class="math inline">\(V_{dd}\)</span>，如图<a href="运算器设计.html#fig:NOTgate">8.11</a>b所示。反之，当输入为1的时候，N管导通，P管关闭，N管的电阻为0（实际电路中N管其实有一定的电阻，大约在几千欧姆），P管的电阻无穷大，输出端与电源断开，与地导通，输出端电压为0，如图<a href="运算器设计.html#fig:NOTgate">8.11</a>c所示。这就是反相器CMOS电路的工作原理。</p>
+<p>从反相器的工作原理可以看出CMOS电路的基本特征，其关键就在“C”（Complementary，互补）上，即由上下两个互补的部分组成电路，上半部分由P管构成，下半部分由N管构成。上半部分打开的时候下半部分一定关上，下半部分打开的时候上半部分一定关闭。这种电路设计的好处是：在稳定状态，电路中总有一端是关死的，几乎没有直流电流，可以大幅度降低功耗。</p>
+<p>（2）与非门</p>
+<p>图<a href="运算器设计.html#fig:NANDgate">8.12</a>所示的是一个两输入与非门的CMOS电路，电路上面两个P管并联，下面两个N管串联。两个P管并联后，一头接电源，另一头与两个串联的N管连接。两个N管串联后，一头与并联的P管连接，另一头接地。与非门的两个输入A和B分别连接到一个N管和一个P管，输出端是Y。当A和B中有一个为0，则上面的P管网络导通，下面的N管网络断开，输出端被连接到电源上，即输出Y为1。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:NANDgate"></span>
+<img src="images/chapter8/CMOS_NAND_gate.png" alt="CMOS电路：与非门" width="50%" />
+<p class="caption">
+图 8.12: CMOS电路：与非门
+</p>
+</div>
+<p>（3）或非门</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:NORgate"></span>
+<img src="images/chapter8/CMOS_NOR_gate.png" alt="CMOS电路：或非门" width="50%" />
+<p class="caption">
+图 8.13: CMOS电路：或非门
+</p>
+</div>
+<p>图<a href="运算器设计.html#fig:NORgate">8.13</a>所示的是一个两输入或非门的CMOS电路，电路上面两个P管串联，下面两个N管并联。两个P管串联后，一头接电源，另一头与两个并联的N管连接。两个N管并联后，一头与串联的P管连接，另一头接地。或非门的两个输入A和B分别连接到一个N管和一个P管，输出端是Y。当A和B中有一个为1，则上面的P管网络断开，下面的N管网络导通，输出端与电源断开，连通到地上，即输出Y为0。</p>
+<p>（4）传输门</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:TRANSgate"></span>
+<img src="images/chapter8/CMOS_TRANS_gate.png" alt="CMOS电路：传输门" width="40%" />
+<p class="caption">
+图 8.14: CMOS电路：传输门
+</p>
+</div>
+<p>前面提到过单纯的PMOS晶体管或是NMOS晶体管都不是理想的开关，但是在设计电路时有时需要一个接近理想状态的开关，该开关无论对于0还是1都可以传递得很好。解决的方式也很直观，如图<a href="运算器设计.html#fig:TRANSgate">8.14</a>所示，一个P管和一个N管彼此源极连在一起，漏极连在一起，两者的栅极上接上一对极性相反的使能信号。当<span class="math inline">\(EN\)</span>=0、<span class="math inline">\(\overline{EN}\)</span>=1时，P管和N管都关闭；当<span class="math inline">\(EN\)</span>=1、<span class="math inline">\(\overline{EN}\)</span>=0时，P管和N管都开启。当P管和N管都开启时，无论信号是0还是1，都可以通过最适合传递该信号的MOS晶体管从A端传递到B端。</p>
+<p>（5）D触发器</p>
+<p>在前面讲述逻辑电路时介绍过如何用逻辑门搭建D触发器，在用CMOS电路实现D触发器时，我们也可以利用CMOS的逻辑门搭建出RS锁存器，进而搭建出D锁存器，并最终得到D触发器。但是考虑到构建D触发器时我们其实真正需要的是开关电路和互锁电路，所以这种构建D触发器的方式消耗的资源过多。图<a href="运算器设计.html#fig:DFlipFlop">8.15</a>中给出现代计算机中常用的一种D触发器电路结构。该电路的左边（虚线框内部）可以视作一个去除了输出缓冲器的D锁存器，该锁存器存储的值体现在其内部N1点的状态。当<span class="math inline">\(CLK\)</span>=0，<span class="math inline">\(\overline{CLK}\)</span>=1时，传输门G1开启、G2关闭，D点的值经由反相器I1和传输门G1传递进来，并通过反相器I2和三态反相器T1反馈至N1点，使该点到达一个稳定状态。当<span class="math inline">\(CLK\)</span>=1，<span class="math inline">\(\overline{CLK}\)</span>=0时，传输门G1关闭、G2开启，D点值的变化不再影响到内部N1点，同时N1点的状态经由传输门G2，并通过反相器I3和三态反相器T2反馈至N2点，使N2点处于稳定状态，并将该值传递至输出端Q。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:DFlipFlop"></span>
+<img src="images/chapter8/CMOS_D_Flip-Flop.png" alt="CMOS电路：D触发器" width="100%" />
+<p class="caption">
+图 8.15: CMOS电路：D触发器
+</p>
+</div>
+<ol start="3" style="list-style-type: decimal">
+<li>CMOS电路延迟</li>
+</ol>
+<p>前面在介绍MOS晶体管原理的时候曾经提到过，真实世界中，PMOS晶体管和NMOS晶体管即便是在导通状态下源极和漏极之间也是有电阻的，栅极和地之间也存在寄生电容。因此CMOS电路工作时输入和输出之间存在延迟，该延迟主要由电路中晶体管的RC参数来决定。</p>
+<p>图<a href="运算器设计.html#fig:inverter">8.16</a>a是一个CMOS反相器的示意图。其输出端有一个对地电容，主要由本身P管和N管漏极的寄生电容、下一级电路的栅电容以及连线电容组成。反相器输出端从0到1变化时，需要通过P管的电阻对该电容充电；从1到0变化时，该电容的电荷需要通过N管的电阻放电到地端。图<a href="运算器设计.html#fig:inverter">8.16</a>b示意了输出电容的充放电过程，其中左图代表充电过程，右图代表放电过程。因此，该反相器输出从0到1变化时的延迟由P管打开时的电阻和输出电容决定；从1到0变化时的延迟由N管打开时的电阻和输出电容决定。图<a href="运算器设计.html#fig:inverter">8.16</a>c示意了在该反相器输入端从0变到1、再变回到0的过程中（图中虚线表示），输出端值变化的过程。从中可以看出，反相器从输入到输出的变化是有延迟的，而且反相器的输出不是理想的矩形，而是存在一定的斜率。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:inverter"></span>
+<img src="images/chapter8/CMOS_inverter_delay.png" alt="CMOS反相器的延迟" width="80%" />
+<p class="caption">
+图 8.16: CMOS反相器的延迟
+</p>
+</div>
+<p>在芯片设计的时候，需要根据单元的电路结构建立每个单元的延迟模型。一般来说，一个单元的延迟由其本身延迟和负载延迟所构成，而负载延迟又与该单元的负载相关。需要指出的是，用早期工艺生成的晶体管，其负载延迟与负载呈线性关系，但对于深亚微米及纳米工艺，晶体管的负载延迟不再与负载呈线性关系。在工艺厂家给出的单元延迟模型中，通常通过一个二维的表来描述每个单元的延迟，其中一维是输入信号的斜率，另外一维是输出负载。即一个单元的延迟是由输入信号的斜率和输出负载两个值通过查表得到的。</p>
+</div>
+</div>
+<div id="简单运算器设计" class="section level2">
+<h2><span class="header-section-number">8.2</span> 简单运算器设计</h2>
+<p>在计算机发展的早期阶段，运算部件指的就是算术逻辑单元（Arithmetic Logic Unit,简称ALU）。ALU可以做算术运算、逻辑运算、比较运算和移位运算。后来功能部件不断发展扩充，可以执行乘法、除法、开方等运算。本节主要介绍定点补码加法器的设计。</p>
+<p>加法是许多运算的基础。根据不同的性能和面积需求，加法器有很多种实现方式。进位处理是加法器的核心。根据进位处理方法的不同，常见的加法器包括：行波进位加法器（Ripple Carry Adder, 简称RCA），先行进位加法器（Carry Look-ahead Adder, 简称CLA），跳跃进位加法器（Carry Skip Adder, 简称CSKA），进位选择加法器（Carry Select Adder, 简称CSLA），进位递增加法器（Carry Increment Adder, 简称CIA），等等。其中行波进位加法器最为简单直接，而先行进位加法器使用较为广泛。</p>
+<div id="定点补码加法器" class="section level3">
+<h3><span class="header-section-number">8.2.1</span> 定点补码加法器</h3>
+<p>1.一位全加器</p>
+<p>一位全加器是构成加法器的基本单元。一位全加器实现两位本地二进制数以及低位的进位位相加，求得本地和以及向高位的进位。它有三个1位二进制数输入A、B和Cin，其中A和B分别为本地的加数和被加数，C<sub>in</sub>为低位来的进位。它有两个1位二进制数输出S和C<sub>out</sub>，其中S是本地和，C<sub>out</sub>是向高位的进位。一位全加器的真值表如表<a href="运算器设计.html#tab:fulladder-truetable">8.4</a>所示。</p>
+<p>根据表<a href="运算器设计.html#tab:fulladder-truetable">8.4</a>，可以写出全加器的逻辑表达式如下：</p>
+<p><span class="math display">\[S=\sim A \ \&amp; \ \sim B \ \&amp; \ C_{in} \ | \ \sim A \ \&amp; \ B \ \&amp; \ \sim C_{in} \ | \ A \ \&amp; \ \sim B \ \&amp; \ \sim C_{in} \ | \ A \ \&amp; \ B \ \&amp; \ C_{in}\]</span>
+<span class="math display">\[C_{out}=A \ \&amp; \ B \ | \ A \ \&amp; \ C_{in} \ | \ B \ \&amp; \ C_{in}\]</span></p>
+<p>上述表达式中，~表示取反操作，&amp;表示与操作，|表示或操作，其中~操作的优先级最高，&amp;操作次之，|操作优先级最低。上述表达式还可以简单解释为：当输入的三个数中有奇数个1时，本地和为1；当输入的三个数中有两个1时，向高位的进位为1。</p>
+<template id="40448f4e-4e77-4a6d-965a-b7edac8c01a6"><style>
+.tabwid table{
+  border-spacing:0px !important;
+  border-collapse:collapse;
+  line-height:1;
+  margin-left:auto;
+  margin-right:auto;
+  border-width: 0;
+  display: table;
+  margin-top: 1.275em;
+  margin-bottom: 1.275em;
+  border-color: transparent;
+}
+.tabwid_left table{
+  margin-left:0;
+}
+.tabwid_right table{
+  margin-right:0;
+}
+.tabwid td {
+    padding: 0;
+}
+.tabwid a {
+  text-decoration: none;
+}
+.tabwid thead {
+    background-color: transparent;
+}
+.tabwid tfoot {
+    background-color: transparent;
+}
+.tabwid table tr {
+background-color: transparent;
+}
+</style><div class="tabwid"><style>.cl-7fc3e0c0{}.cl-7fbb8038{font-family:'Noto Sans CJK SC';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-7fbb806a{font-family:'Noto Sans CJK SC';font-size:6.6pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;top:3.3pt;}.cl-7fbb9320{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-7fbbcb9c{width:33.2pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7fbbcbba{width:27.5pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7fbbcbc4{width:28.1pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7fbbcbce{width:37.2pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7fbbcbe2{width:28.1pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7fbbcbec{width:28.1pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7fbbcbf6{width:28.1pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7fbbcc00{width:33.2pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7fbbcc0a{width:27.5pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7fbbcc14{width:37.2pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7fbbcc1e{width:28.1pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7fbbcc28{width:28.1pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7fbbcc32{width:37.2pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7fbbcc3c{width:33.2pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7fbbcc46{width:27.5pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-7fc3e0c0'>
+<caption class>
+<p><span id="tab:fulladder-truetable">表 8.4: </span>一位全加器真值表</p>
+</caption>
+<thead><tr style="overflow-wrap:break-word;"><td class="cl-7fbbcc1e"><p class="cl-7fbb9320"><span class="cl-7fbb8038">A</span></p></td><td class="cl-7fbbcc28"><p class="cl-7fbb9320"><span class="cl-7fbb8038">B</span></p></td><td class="cl-7fbbcc3c"><p class="cl-7fbb9320"><span class="cl-7fbb8038">C</span><span class="cl-7fbb806a">in</span></p></td><td class="cl-7fbbcc46"><p class="cl-7fbb9320"><span class="cl-7fbb8038">S</span></p></td><td class="cl-7fbbcc32"><p class="cl-7fbb9320"><span class="cl-7fbb8038">C</span><span class="cl-7fbb806a">out</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-7fbbcbe2"><p class="cl-7fbb9320"><span class="cl-7fbb8038">0</span></p></td><td class="cl-7fbbcbc4"><p class="cl-7fbb9320"><span class="cl-7fbb8038">0</span></p></td><td class="cl-7fbbcb9c"><p class="cl-7fbb9320"><span class="cl-7fbb8038">0</span></p></td><td class="cl-7fbbcbba"><p class="cl-7fbb9320"><span class="cl-7fbb8038">0</span></p></td><td class="cl-7fbbcbce"><p class="cl-7fbb9320"><span class="cl-7fbb8038">0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7fbbcbe2"><p class="cl-7fbb9320"><span class="cl-7fbb8038">0</span></p></td><td class="cl-7fbbcbc4"><p class="cl-7fbb9320"><span class="cl-7fbb8038">0</span></p></td><td class="cl-7fbbcb9c"><p class="cl-7fbb9320"><span class="cl-7fbb8038">1</span></p></td><td class="cl-7fbbcbba"><p class="cl-7fbb9320"><span class="cl-7fbb8038">1</span></p></td><td class="cl-7fbbcbce"><p class="cl-7fbb9320"><span class="cl-7fbb8038">0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7fbbcbe2"><p class="cl-7fbb9320"><span class="cl-7fbb8038">0</span></p></td><td class="cl-7fbbcbc4"><p class="cl-7fbb9320"><span class="cl-7fbb8038">1</span></p></td><td class="cl-7fbbcb9c"><p class="cl-7fbb9320"><span class="cl-7fbb8038">0</span></p></td><td class="cl-7fbbcbba"><p class="cl-7fbb9320"><span class="cl-7fbb8038">1</span></p></td><td class="cl-7fbbcbce"><p class="cl-7fbb9320"><span class="cl-7fbb8038">0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7fbbcbe2"><p class="cl-7fbb9320"><span class="cl-7fbb8038">0</span></p></td><td class="cl-7fbbcbc4"><p class="cl-7fbb9320"><span class="cl-7fbb8038">1</span></p></td><td class="cl-7fbbcb9c"><p class="cl-7fbb9320"><span class="cl-7fbb8038">1</span></p></td><td class="cl-7fbbcbba"><p class="cl-7fbb9320"><span class="cl-7fbb8038">0</span></p></td><td class="cl-7fbbcbce"><p class="cl-7fbb9320"><span class="cl-7fbb8038">1</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7fbbcbe2"><p class="cl-7fbb9320"><span class="cl-7fbb8038">1</span></p></td><td class="cl-7fbbcbc4"><p class="cl-7fbb9320"><span class="cl-7fbb8038">0</span></p></td><td class="cl-7fbbcb9c"><p class="cl-7fbb9320"><span class="cl-7fbb8038">0</span></p></td><td class="cl-7fbbcbba"><p class="cl-7fbb9320"><span class="cl-7fbb8038">1</span></p></td><td class="cl-7fbbcbce"><p class="cl-7fbb9320"><span class="cl-7fbb8038">0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7fbbcbe2"><p class="cl-7fbb9320"><span class="cl-7fbb8038">1</span></p></td><td class="cl-7fbbcbc4"><p class="cl-7fbb9320"><span class="cl-7fbb8038">0</span></p></td><td class="cl-7fbbcb9c"><p class="cl-7fbb9320"><span class="cl-7fbb8038">1</span></p></td><td class="cl-7fbbcbba"><p class="cl-7fbb9320"><span class="cl-7fbb8038">0</span></p></td><td class="cl-7fbbcbce"><p class="cl-7fbb9320"><span class="cl-7fbb8038">1</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7fbbcbe2"><p class="cl-7fbb9320"><span class="cl-7fbb8038">1</span></p></td><td class="cl-7fbbcbc4"><p class="cl-7fbb9320"><span class="cl-7fbb8038">1</span></p></td><td class="cl-7fbbcb9c"><p class="cl-7fbb9320"><span class="cl-7fbb8038">0</span></p></td><td class="cl-7fbbcbba"><p class="cl-7fbb9320"><span class="cl-7fbb8038">0</span></p></td><td class="cl-7fbbcbce"><p class="cl-7fbb9320"><span class="cl-7fbb8038">1</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7fbbcbf6"><p class="cl-7fbb9320"><span class="cl-7fbb8038">1</span></p></td><td class="cl-7fbbcbec"><p class="cl-7fbb9320"><span class="cl-7fbb8038">1</span></p></td><td class="cl-7fbbcc00"><p class="cl-7fbb9320"><span class="cl-7fbb8038">1</span></p></td><td class="cl-7fbbcc0a"><p class="cl-7fbb9320"><span class="cl-7fbb8038">1</span></p></td><td class="cl-7fbbcc14"><p class="cl-7fbb9320"><span class="cl-7fbb8038">1</span></p></td></tr></tbody></table></div></template>
+<div class="flextable-shadow-host" id="06e02dbc-a6e6-4ce0-8b76-c5d1a2cc1e1c"></div>
+<script>
+var dest = document.getElementById("06e02dbc-a6e6-4ce0-8b76-c5d1a2cc1e1c");
+var template = document.getElementById("40448f4e-4e77-4a6d-965a-b7edac8c01a6");
+var caption = template.content.querySelector("caption");
+if(caption) {
+  caption.style.cssText = "display:block;text-align:center;";
+  var newcapt = document.createElement("p");
+  newcapt.appendChild(caption)
+  dest.parentNode.insertBefore(newcapt, dest.previousSibling);
+}
+var fantome = dest.attachShadow({mode: 'open'});
+var templateContent = template.content;
+fantome.appendChild(templateContent);
+</script>
+
+<p>根据上面的逻辑表达式，图<a href="运算器设计.html#fig:FULLadder">8.17</a>给出了用非门和与非门搭建的一位全加器的逻辑电路图及其示意图。如果我们不严格区分非门和与非门，以及不同数目输入与非门之间的延迟差异，则可近似认为每个一位全加器需要2或3级的门延迟。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:FULLadder"></span>
+<img src="images/chapter8/1bit_full_adder_circuit.png" alt="一位全加器逻辑电路图与示意图" width="100%" />
+<p class="caption">
+图 8.17: 一位全加器逻辑电路图与示意图
+</p>
+</div>
+<p>接下来将介绍如何用一位全加器构建一个N（N&gt;1）位的带进位加法器。</p>
+<p>2.行波进位加法器</p>
+<p>构建N位带进位加法器的最简单的方法是将N个一位全加器逐个串接起来。图<a href="运算器设计.html#fig:32bitRCA">8.18</a>给出了32位行波进位加法器的示意图。其中输入A=a<sub>31</sub>a<sub>0</sub>和B=b<sub>31</sub>b<sub>0</sub>分别是加数和被加数，C<sub>in</sub>是最低位的进位；输出加和S=s<sub>31</sub>s<sub>0</sub>以及最高位向上的进位C<sub>out</sub>。所谓“行波”，是指每一级的一位全加器将来自低位的一位全加器的进位输出C<sub>out</sub>作为本级的进位输入C<sub>in</sub>，如波浪一般层层递进下去。这种串行的进位传递方式与人们日常演算十进制加法时采用的进位方式原理一样，非常直观。但是，这种加法器的电路中每一位的数据相加都必须等待低位的进位产生之后才能完成，即进位在各级之间是顺序传递的。回顾一下上一节关于一位全加器的延迟的大致估算，可知一位全加器输入到S的最长延迟是3级门、输入到C<sub>out</sub>的最长延迟是2级门。因此，32位行波进位加法器中，从最低位的输入A<sub>0</sub>、B<sub>0</sub>、C<sub>in</sub>到最高位的进位输出C<sub>out</sub>存在一条进位链，其总延迟为2×32=64级门，从最低位的输入A<sub>0</sub>、B<sub>0</sub>、C<sub>in</sub>到最高位的进位输入C<sub>in</sub>的延迟为2×31=62级门，所以从最低位的输入A<sub>0</sub>、B<sub>0</sub>、C<sub>in</sub>到最高位的加和S<sub>31</sub>的总延迟为62+3=65级门。从这个例子可以看出，虽然行波进位加法器直观简单，但是其延迟随着加法位数N的增加而线性增长，N越大时，行波进位加法器的延迟将越发显著。在CPU设计中，加法器的延迟是决定其主频的一个重要参数指标，如果加法器的延迟太长，则CPU的主频就会降低。例如，对于一个64位的高性能通用CPU来说，在良好的流水线切分下，每级流水的延迟应控制在20级门以内，所以64位行波进位加法器高达129级门的延迟太长了。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:32bitRCA"></span>
+<img src="images/chapter8/32bit_RCA.png" alt="32位行波进位加法器" width="100%" />
+<p class="caption">
+图 8.18: 32位行波进位加法器
+</p>
+</div>
+<p>3.先行进位加法器</p>
+<p>为了改进行波进位加法器延迟随位数增加增长过快的缺点，人们提出了先行进位加法器的电路结构。其主要思想是先并行地计算每一位的进位，由于每一位的进位已经提前算出，这样计算每一个的结果只需要将本地和与进位相加即可。下面详细介绍先行进位（或者说并行进位）加法器的设计原理。</p>
+<p>（1）并行进位逻辑</p>
+<p>假设两个N位数A和B相加，A记作a<sub>N-1</sub>a<sub>N-2</sub><span class="math inline">\(\ldots\)</span>a<sub>i</sub>a<sub>i-1</sub>a<sub>1</sub>a<sub>0</sub>，B记作b<sub>N-1</sub>b<sub>N-2</sub><span class="math inline">\(\ldots\)</span>b<sub>i</sub>b<sub>i-1</sub><span class="math inline">\(\ldots\)</span>b<sub>1</sub>b<sub>0</sub>。定义第i位的进位输入为c<sub>i</sub>，进位输出为c<sub>i+1</sub>，且将加法器的输入C<sub>in</sub>记作c<sub>0</sub>以方便后面描述的统一。每一位进位输出c<sub>i+1</sub>的计算为：<span class="math display">\[c_{i+1}=a_{i}\ \&amp;\ b_{i}\ |\ a_{i}\ \&amp;\ c_{i}\ |\ b_{i}\ \&amp;\ c_{i}=a_{i}\ \&amp;\ b_{i}\ |\ (a_{i}\ |\ b_{i}）\ \&amp;\ c_{i}\]</span></p>
+<p>设<span class="math inline">\(g_{i} = a_{i} \ \&amp;\ b_{i}，p_{i} = a_{i} \ |\ b_{i}\)</span>，则c<sub>i+1</sub>的计算可以表达为：</p>
+<p><span class="math display">\[c_{i+1}=g_{i} \ |\ p_{i} \ \&amp; \ c_{i}\]</span></p>
+<p>从上式可以看出，当g<sub>i</sub>=1时，在c<sub>i+1</sub>必定产生一个进位，与c<sub>i</sub>无关；当p<sub>i</sub>=1时，如果c<sub>i</sub>有一个进位输入，则该进位可以被传播至c<sub>i+1</sub>。我们称g<sub>i</sub>为第i位的进位生成因子，p<sub>i</sub>为第i位的进位传递因子。</p>
+<p>下面以4位加法器的进位传递为例，根据公式<span class="math inline">\(c_{i+1}=g_{i} \ |\ p_{i}\ \&amp;\ c_{i}\)</span>逐级展开可得到：</p>
+<p><span class="math inline">\(c_{1}=g_{0} \ |\ p_{0} \ \&amp;\ c_{0}\)</span></p>
+<p><span class="math inline">\(c_{2}=g_{1}\ |\ p_{1}\ \&amp;\ g_{0}\ |\ p_{1}\ \&amp;\ p_{0}\ \&amp;\ c_{0}\)</span></p>
+<p><span class="math inline">\(c_{3}=g_{2}\ |\ p_{2}\ \&amp;\ g_{1}\ |\ p_{2}\ \&amp;\ p_{1} \ \&amp;\ g_{0} \ |\ p_{2}\ \&amp;\ p_{1}\ \&amp;\ p_{0}\ \&amp;\ c_{0}\)</span></p>
+<p><span class="math inline">\(c_{4}=g_{3}\ |\ p_{3}\ \&amp;\ g_{2}\ |\ p_{3}\ \&amp;\ p_{2}\ \&amp;\ g_{1}\ |\ p_{3}\ \&amp;\ p_{2}\ \&amp;\ p_{1}\ \&amp;\ g_{0}\ |\ p_{3}\ \&amp;\ p_{2}\ \&amp;\ p_{1}\ \&amp;\ p_{0}\ \&amp;\ c_{0}\)</span></p>
+<p>扩展之后，每一位的进位输出c<sub>i+1</sub>可以由仅使用本地信号生成的g和p直接得到，不用依赖前一位的进位输入c<sub>i</sub>。图<a href="运算器设计.html#fig:4bitCLA">8.19</a>给出了4位先行进位的逻辑电路图及其示意图。从图<a href="运算器设计.html#fig:4bitCLA">8.19</a>中可以看出，采用先行进位逻辑，产生第4位的进位输出只需要2级门延迟，而之前介绍的行波进位逻辑则需要8级门延迟，先行进位逻辑的延迟显著地优于行波进位逻辑。当然，这里为了电路逻辑的简洁以及计算的简便，我们使用了四输入、五输入的与非门，这些与非门的延迟比行波进位逻辑中采用的二输入、三输入的与非门的延迟要长，但我们不再做进一步细致的区分，均视作相同延迟。而且实际实现时也很少采用五输入的与非门，其N管网络上串接5个NMOS管，电阻值较大，电路速度慢。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:4bitCLA"></span>
+<img src="images/chapter8/4bit_CLA.png" alt="块内并行的4位先行进位逻辑" width="100%" />
+<p class="caption">
+图 8.19: 块内并行的4位先行进位逻辑
+</p>
+</div>
+<p>（2）块内并行、块间串行逻辑</p>
+<p>理论上可以把上述并行进位方法扩展成更多位的情况，但那需要很多输入的逻辑门，在实现上是不现实的。实现更多位的加法器时通常采用分块的进位方法，将加法器分为若干个相同位数的块，块内通过先行进位的方法计算进位，块间通过行波进位的方法传递进位。图<a href="运算器设计.html#fig:32bitCLA">8.20</a>给出了16位加法器中采用该方式构建的进位逻辑。由于块内并行产生进位只需要2级门延迟，因此从p<sub>i</sub>和g<sub>i</sub>产生c<sub>16</sub>最多只需要18级门延迟，而非行波进位逻辑的32级门延迟。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:32bitCLA"></span>
+<img src="images/chapter8/32bit_CLA.png" alt="块内并行块间串行的16位先行进位加法器的进位逻辑" width="100%" />
+<p class="caption">
+图 8.20: 块内并行块间串行的16位先行进位加法器的进位逻辑
+</p>
+</div>
+<p>（3）块内并行、块间并行逻辑</p>
+<p>为了进一步提升加法器的速度，可以在块间也采用先行进位的方法，即块内并行、块间也并行的进位实现方式。与前面类似，对于块内进位，定义其的进位生成因子为g和进位传递因子为p，对于块间的进位传递，定义其进位生成因子为G和块间进位传递因子为P，则其表达式如下：</p>
+<p><span class="math display">\[P= p_{3}\ \&amp;\ p_{2}\ \&amp;\ p_{1}\ \&amp;\ p_{0}\]</span></p>
+<p><span class="math display">\[G= g_{3}\ |\ p_{3}\ \&amp;\ g_{2}\ |\ p_{3}\ \&amp;\ p_{2}\ \&amp;\ g_{1}\ |\ p_{3}\ \&amp;\ p_{2}\ \&amp;\ p_{1}\ \&amp;\ g_{0}\]</span></p>
+<p>上面的表达式可以解释为，当G为1时表示本块有进位输出生成，当P为1时表示当本块有进位输入时该进位可以传播至该块的进位输出。图<a href="运算器设计.html#fig:4bitCLAwithc">8.21</a>给出了包含块间进位生成因子和进位传递因子的4位先行进位的逻辑电路及其示意图。</p>
+<p>定义上述的块间进位生成因子和进位传递因子是因为这种逻辑设计具有很好的层次扩展性，即以层次化的方式构建进位传递逻辑，把下一级的P和G输出作为上一级的p<sub>i</sub>和g<sub>i</sub>输入。图<a href="运算器设计.html#fig:16bitCLA">8.22</a>给出了一个采用两层并行进位结构的16位先行进位逻辑，采用了5块4位先行进位逻辑。其计算步骤是：</p>
+<p>1）下层的4块4位先行进位逻辑根据各块所对应的p<sub>i</sub>和g<sub>i</sub>生成各自的块间进位生成因子G和块间进位传递因子P；</p>
+<p>2）上层的4位先行进位逻辑把下层的先行进位逻辑生成的P和G作为本层的p<sub>i</sub>和g<sub>i</sub>输入，生成块间的进位c<sub>4</sub>、c<sub>8</sub>；</p>
+<p>3）下层的每块4位先行进位逻辑分别把c<sub>0</sub>以及上层计算出的c<sub>4</sub>、c<sub>8</sub>和c<sub>12</sub>作为各自块的进位输入c<sub>0</sub>，再结合本地的p<sub>i</sub>和g<sub>i</sub>分别计算出本块内部所需要的每一位进位。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:4bitCLAwithc"></span>
+<img src="images/chapter8/4bit_CLA(include%20carry%20factor).png" alt="包含块间进位生成因子和进位传递因子的4位先行进位逻辑" width="100%" />
+<p class="caption">
+图 8.21: 包含块间进位生成因子和进位传递因子的4位先行进位逻辑
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:16bitCLA"></span>
+<img src="images/chapter8/16bit_CLA.png" alt="块内并行且块间并行的16位先行进位逻辑" width="100%" />
+<p class="caption">
+图 8.22: 块内并行且块间并行的16位先行进位逻辑
+</p>
+</div>
+<p>可以看出，从p<sub>i</sub>和g<sub>i</sub>生成下层各块的P、G需要2级门延迟，上层根据自身p<sub>i</sub>和g<sub>i</sub>输入生成进位输出c<sub>1</sub>~c<sub>3</sub>需要2级门延迟，下层各块从c<sub>0</sub>输入至生成进位输出c<sub>1</sub>~c<sub>3</sub>也需要2级门延迟。所以整体来看，从p<sub>i</sub>和g<sub>i</sub>生成进位c<sub>1</sub>~c<sub>16</sub>最长的路径也只需要6级门延迟，这比前面介绍的块内并行但块间串行的电路结构更快。而且进一步分析可知，块间并行的电路结构中，最大的与非门的扇入为4，而前面分析块间串行电路结构延迟时，那个电路中最大的与非门的扇入为5。</p>
+<p>这种块间并行的电路结构在设计更多位的加法器时，只需要进一步进行层次化级联就可以。例如，仍采用4位先行进位逻辑作为基本块，通过3层的树状级联就可以得到64位加法器的进位生成逻辑，其从p<sub>i</sub>和g<sub>i</sub>输入到所有进位输出的最长路径的延迟为10级门。感兴趣的读者可以自行推导一下其具体的结构和连接关系。</p>
+<p>采用块内并行且块间并行的先行进位逻辑所构建的加法器，其延迟随着加法位数的增加以对数的方式增长，因而在高性能通用CPU设计中被广泛采用。</p>
+</div>
+<div id="减法运算实现" class="section level3">
+<h3><span class="header-section-number">8.2.2</span> 减法运算实现</h3>
+<p>在<a href="运算器设计.html#sec-number-presentation">8.1.1</a>节中我们提到，现代通用计算机中定点数都是用补码表示的。补码表示的一个显著优点就是补码的减法可以通过补码加法来实现，即补码运算具有如下性质：</p>
+<p><span class="math display">\[[A]_{\mbox{补}}-[B]_{\mbox{补}}=[A-B]_{\mbox{补}}=[A]_{\mbox{补}}+[-B]_{\mbox{补}}\]</span></p>
+<p>而-B<sub>补</sub>可以通过将B<sub>补</sub>“按位取反，末位加1”的法则进行计算。所以，只需要将被减数直接接到加法器的A输入，减数按位取反后接到加法器的B输入，同时将加法器的进位输入C<sub>in</sub>置为1，就可以用加法器完成A<sub>补</sub>-B<sub>补</sub>的计算了，如图<a href="运算器设计.html#fig:SUBer">8.23</a>a所示。在此基础之上，可以将加法和减法统一到一套电路中予以实现，如图<a href="运算器设计.html#fig:SUBer">8.23</a>b所示，其中SUB作为加、减法的控制信号。当SUB信号为0时，表示进行加法运算；当SUB信号为1时，表示进行减法运算。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:SUBer"></span>
+<img src="images/chapter8/subtracter.png" alt="利用加法器实现减法" width="50%" />
+<p class="caption">
+图 8.23: 利用加法器实现减法
+</p>
+</div>
+</div>
+<div id="比较运算实现" class="section level3">
+<h3><span class="header-section-number">8.2.3</span> 比较运算实现</h3>
+<p>常见基本运算中除了加减法外还有比较运算。比较运算主要包含两种类型：一是判断两个数的相等情况，二是判断两个数的大小情况。</p>
+<p>判断两个数相等所需要的逻辑电路比较简单，图<a href="运算器设计.html#fig:comparer">8.24</a>给出了一个4位相等比较的逻辑电路及其示意图。电路首先采用异或逻辑逐位比较输入A和B的对应位是否相同，所得到的结果中只要出现一个1则表示两者不相等，输出结果为0，否则结果为1。更多位数的相等比较的电路原理与所举的例子基本一致，只是在实现时判断异或结果中是否有1需要多级逻辑完成以降低逻辑门的扇入数目。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:comparer"></span>
+<img src="images/chapter8/4bit_comparer.png" alt="4位相等比较器逻辑电路及其示意图" width="50%" />
+<p class="caption">
+图 8.24: 4位相等比较器逻辑电路及其示意图
+</p>
+</div>
+<p>我们通过分析A-B的结果来比较A和B的大小。这里需要注意的是结果溢出的情况。如果减法操作没有发生溢出，则减法结果的符号位为1时表示A &lt; B；如果发生溢出，则结果符号位为0时才表示A &lt; B。假设A和B是两个64位的有符号数，A=a<sub>63</sub><span class="math inline">\(\ldots\)</span>a<sub>0</sub>，B=b<sub>63</sub><span class="math inline">\(\ldots\)</span>b<sub>0</sub>，A-B的结果为S=s<sub>63</sub><span class="math inline">\(\ldots\)</span>s<sub>0</sub>，则A &lt; B成立的条件可以表示为：</p>
+<p><span class="math display">\[\begin{aligned}Cond_{A&lt; B}&amp;=\ \sim Overflow \ \&amp;\ s_{63} \ |\ Overflow \ \&amp;\ s_{63} \\ &amp;=\ a_{63}\ \&amp;\ s_{63}\ |\ \sim b_{63}\ \&amp;\ s_{63}\ |\ a_{63}\ \&amp;\ \sim b_{63}\end{aligned}\]</span></p>
+<p>当然，最终的表示方式也可以直接得到，即A &lt; B成立的条件仅包括三种情况：A是负数且B是非负数；A是负数（且B也是负数）且结果是负数；B是非负数（且A是非负数）且结果是负数。</p>
+<p>由于能够通过减法来做大小的比较，且相等比较的逻辑资源并不多，所以在设计ALU时，比较操作的实现并不会新增很多逻辑资源消耗。</p>
+</div>
+<div id="移位器" class="section level3">
+<h3><span class="header-section-number">8.2.4</span> 移位器</h3>
+<p>常见基本运算中除了加减、比较运算外，还有移位运算。移位运算不仅在进行位串处理时十分有用，而且常用于计算乘以或除以2的幂次方。移位运算通常有四种：逻辑左移、逻辑右移、算术右移和循环右移。其中左移、右移的概念如同其名字中的表述，是直观明了的。逻辑右移和算术右移的区别在于前者从高位移入的是0，后者从高位移入的是源操作数的符号位。算术右移之所以名字中使用“算术”这个词，是因为当用移位操作计算有符号数（补码表示）除以2的幂次方时，只有从高位移入符号位才能保证结果的正确。由此也可以知晓为什么没有定义“算术左移”这种移位操作。因为无论是有符号数还是无符号数，其乘以2的幂次方都只需要在低位移入0就可以了。循环右移操作，顾名思义，右移时从最低位移出去的比特位并不被丢弃，而是重新填入到结果的最高位。也正是因为这种循环移位的特点，循环左移操作其实可以用循环右移操作来实现，故不单独定义循环左移操作。例如：5位二进制数11001，其逻辑左移2位的结果是00100，逻辑右移2位的结果是00110，算术右移2位的结果是11110，循环右移2位的结果是01110。</p>
+<p>N位数的移位器实现，实质上是N个N:1的多路选择器。图<a href="运算器设计.html#fig:shifter">8.25</a>中依次给出了4位数的逻辑左移、逻辑右移、算术右移和循环右移的逻辑电路示意图。其中A=a<sub>3</sub>a<sub>2</sub>a<sub>1</sub>a<sub>0</sub>是被移位数，shamt<sub>1..0</sub>是移位量，Y=y<sub>3</sub>y<sub>2</sub>y<sub>1</sub>y<sub>0</sub>是移位结果。更多位数的移位器的实现原理与示例一致，只是选择器的规模更大。由于位数多时多路选择器消耗的电路资源较多，所以在实现时，可以将逻辑右移、算术右移和循环右移的电路糅合到一起，以尽可能复用多路选择器的资源。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:shifter"></span>
+<img src="images/chapter8/4bit_shifter.png" alt="4位移位器逻辑" width="100%" />
+<p class="caption">
+图 8.25: 4位移位器逻辑
+</p>
+</div>
+</div>
+</div>
+<div id="定点补码乘法器" class="section level2">
+<h2><span class="header-section-number">8.3</span> 定点补码乘法器</h2>
+<p>本节介绍定点补码乘法器的设计。乘法指令在科学计算程序中很常见，矩阵运算、快速傅里叶变换操作中都有大量的定点或浮点乘法操作。在计算机发展的早期，由于硬件集成度较低，只通过ALU实现了加减法、移位等操作，乘法这样的复杂操作需要由软件通过迭代的移位-累加操作来实现。随着处理器运算部件的升级，现代处理器已经使用硬件方式来实现定点和浮点乘法操作。</p>
+<div id="补码乘法器" class="section level3">
+<h3><span class="header-section-number">8.3.1</span> 补码乘法器</h3>
+<p>对于定点乘法器而言，最简单的实现方式就是通过硬件来模拟软件的迭代操作，这种乘法实现方式被称为移位加。其逻辑结构如图<a href="运算器设计.html#fig:iter-sourcecode-MUL">8.26</a>所示。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:iter-sourcecode-MUL"></span>
+<img src="images/chapter8/iterative_sourcecode_multipilier.png" alt="迭代式硬件原码乘法器" width="50%" />
+<p class="caption">
+图 8.26: 迭代式硬件原码乘法器
+</p>
+</div>
+<p>以两个8位数的乘法为例，乘法器的输入包括一个8位的乘数和一个8位的被乘数，输出则是16位的乘法结果。通过触发器将这3个数存储下来，并执行以下步骤：</p>
+<p>1）最初时，将乘法结果设置为0。</p>
+<p>2）在每个时钟周期，判断乘数的最低位，如果值为1，则将被乘数加到乘法结果；如果值为0，则不进行加法操作。此后将乘数右移1位，将被乘数左移1位，将参与运算的3个数锁存，进入下一个时钟周期。</p>
+<p>3）执行8次操作，得到正确的乘法结果。</p>
+<p>实现上述移位加算法需要的硬件很简单，组合逻辑延迟也较小，缺点是完成一条乘法需要很多个时钟周期，对于64位的乘法而言就需要64拍。但是，上述算法是将操作数视为一个无符号二进制数来设计的，如果计算的输入是补码形式，那么就需要先根据输入的正负情况判断出结果的符号位，随后将输入转换为其绝对值后进行上述迭代运算，最后再根据结果符号位转换回补码形式。很显然这样操作略显复杂，有没有直接根据补码形式进行运算的方法呢？</p>
+<p>在8.1.1小节中介绍过，现代处理器中的定点数都是按照补码形式来存储的，同时有[X]<sub>补</sub>+[Y]<sub>补</sub>=[X+Y]<sub>补</sub>的特性。那么，应该如何计算[X×Y]<sub>补</sub>呢？是否可以简单地将[X]<sub>补</sub>与[Y]<sub>补</sub>相乘得到呢？</p>
+<p>还是以8位乘法为例。假定有8位定点数Y，[Y]<sub>补</sub>的二进制格式写作y<sub>7</sub>y<sub>6</sub>y<sub>5</sub>y<sub>4</sub>y<sub>3</sub>y<sub>2</sub>y<sub>1</sub>y<sub>0</sub>，根据补码定义，Y的值等于：</p>
+<p><span class="math display">\[Y=-y_{7}\times 2^{7}+y_{6}\times 2^{6}+y_{5}\times 2^{5}+\ldots +y_{1}\times 2^{1}+y_{0}\times 2^{0}\]</span></p>
+<p>由此推出：</p>
+<p><span class="math display">\[\begin{aligned}[X\times Y]_{\mbox{补}}&amp;=[X\times (-y_{7}\times 2^{7}+y_{6}\times 2^{6}+\ldots +y_{1}\times 2^{1}+y_{0}\times 2^{0})]_{\mbox{补}} \\ &amp;=[X\times -y_{7}\times 2^{7}+X\times y_{6}\times 2^{6}+\ldots +X\times y_{1}\times 2^{1}+X\times y_{0}\times 2^{0}]_{\mbox{补}}\end{aligned}\]</span></p>
+<p>根据补码加法具有的特性，有：</p>
+<p><span class="math display">\[[X\times Y]_{\mbox{补}}=[X\times -y_{7}\times 2^{7}]_{\mbox{补}}+[X\times y_{6}\times 2^{6}]_{\mbox{补}}+\ldots +[X\times y_{0}\times 2^{0}]_{\mbox{补}}\]</span></p>
+<p>需要注意，这个公式中位于方括号外的加法操作为补码加法，而之前两个公式中位于方括号内部的加法为算术加法。由于y<sub>i</sub>只能取值为0或者1，再根据补码减法的规则，继续推导公式，有：</p>
+<p><span class="math display">\[[X\times Y]_{\mbox{补}}=-y_{7}\times [X\times 2^{7}]_{\mbox{补}}+y_{6}\times [X\times 2^{6}]_{\mbox{补}}+\ldots +y_{0}\times [X\times 2^{0}]_{\mbox{补}}\]</span></p>
+<p>公式中最开头的减号是补码减法操作。为了继续运算，需要引入一个定理：</p>
+<p><span class="math display">\[[X\times 2^{n}]_{\mbox{补}}=[X]_{\mbox{补}}\times 2^{n}\]</span></p>
+<p>该定理的证明可以较容易地根据补码的定义得出，留作本章的课后习题。据此定理，补码乘法的公式可以继续推导如下：</p>
+<p><span class="math display">\[\begin{aligned}[X\times Y]_{\mbox{补}}&amp;=-[X]_{\mbox{补}}\times （y_{7}\times 2^{7}）+[X]_{\mbox{补}}\times （y_{6}\times 2^{6}）+\ldots +[X]_{\mbox{补}}\times （y_{0}\times 2^{0}）\\ &amp;=[X]_{\mbox{补}}\times （-y_{7}\times 2^{7}+y_{6}\times 2^{6}+\ldots +y_{0}\times 2^{0}）\end{aligned}\]</span></p>
+<p>最后得到的公式与移位加算法的原理很类似，但是存在两个重要区别：第一，本公式中的加法、减法均为补码运算；第二，最后一次被累加的部分积需要使用补码减法来操作。这就意味着[X]<sub>补</sub>×[Y]<sub>补</sub>不等于[X×Y]<sub>补</sub>。图<a href="运算器设计.html#fig:complement-MUL">8.27</a>给出两个4位补码相乘的例子。注意在补码加法运算中，需要进行8位的符号位扩展，并仅保留8位结果。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:complement-MUL"></span>
+<img src="images/chapter8/complement_multiplication.png" alt="补码乘法计算示例" width="70%" />
+<p class="caption">
+图 8.27: 补码乘法计算示例
+</p>
+</div>
+<p>简单地修改之前的迭代式硬件原码乘法器，就可以实现补码乘法，如图<a href="运算器设计.html#fig:iter-complement-MUL">8.28</a>所示。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:iter-complement-MUL"></span>
+<img src="images/chapter8/iterative_complement_multipilier.png" alt="迭代式硬件补码乘法器" width="70%" />
+<p class="caption">
+图 8.28: 迭代式硬件补码乘法器
+</p>
+</div>
+<p>依此方法，也可以计算32位数、64位数的补码乘法。运算数据更宽的乘法需要更多的时钟周期来完成。</p>
+</div>
+<div id="booth乘法器" class="section level3">
+<h3><span class="header-section-number">8.3.2</span> Booth乘法器</h3>
+<p>Booth乘法器由英国的Booth夫妇提出。按照8.3.1小节中的补码乘法算法，需要特地挑出第N个部分积，并使用补码减法操作，这就需要实现一个额外的状态机来控制，增加了硬件设计复杂度。因此他们对补码乘法公式进行变换，试图找到更适合于硬件实现的算法。</p>
+<p>Booth一位乘变换的公式推导如下：</p>
+<p><span class="math display">\[\begin{aligned}&amp;\quad（-y_{7}\times 2^{7}+y_{6}\times 2……{6}+\ldots +y_{1}\times 2^{1}+y_{0}\times 2^{0}）\\
+&amp;=（-y_{7}\times 2^{7}+（y_{6}\times 2^{7}-y_{6}\times 2^{6}）+（y_{5}\times 2^{6}-y_{5}\times 2^{5}）+\ldots + \\ &amp;\quad（y_{1}\times 2^{2}-y_{1}\times 2^{1}）+（y_{0}\times 2^{1}-y_{0}\times 2^{0}）+（0\times 2^{0}））\\
+&amp;=（y_{6}-y_{7}）\times 2^{7}+（y_{5}-y_{6}）\times 2^{6}+\ldots +（y_{0}-y_{1}）\times 2^{1}+（y_{-1}-y_{0}）\times 2^{0}\end{aligned}\]</span></p>
+<p>其中y<sub>-1</sub>取值为0。经过变换，公式变得更加规整，不再需要专门对最后一次部分积采用补码减法，更适合硬件实现。这个新公式被称为Booth一位乘算法。</p>
+<p>为了实现Booth一位乘算法，需要根据乘数的最末两位来确定如何将被乘数累加到结果中，再将乘数和被乘数移一位。根据算法公式，很容易得出它的规则，如表<a href="运算器设计.html#tab:booth-one-mul-rule">8.5</a>所示。</p>
+<template id="62094bc0-cb06-443e-98cb-ce6ddeb84139"><style>
+.tabwid table{
+  border-spacing:0px !important;
+  border-collapse:collapse;
+  line-height:1;
+  margin-left:auto;
+  margin-right:auto;
+  border-width: 0;
+  display: table;
+  margin-top: 1.275em;
+  margin-bottom: 1.275em;
+  border-color: transparent;
+}
+.tabwid_left table{
+  margin-left:0;
+}
+.tabwid_right table{
+  margin-right:0;
+}
+.tabwid td {
+    padding: 0;
+}
+.tabwid a {
+  text-decoration: none;
+}
+.tabwid thead {
+    background-color: transparent;
+}
+.tabwid tfoot {
+    background-color: transparent;
+}
+.tabwid table tr {
+background-color: transparent;
+}
+</style><div class="tabwid"><style>.cl-80700134{}.cl-80668118{font-family:'Noto Sans CJK SC';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-8066814a{font-family:'Noto Sans CJK SC';font-size:6.6pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;top:3.3pt;}.cl-8066943c{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-8066d654{width:28.6pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-8066d67c{width:89.7pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-8066d686{width:34.1pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-8066d69a{width:89.7pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-8066d6a4{width:28.6pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-8066d6ae{width:34.1pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-8066d6b8{width:34.1pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-8066d6c2{width:28.6pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-8066d6cc{width:89.7pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-8066d6e0{width:34.1pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-8066d6ea{width:28.6pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-8066d6f4{width:89.7pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-80700134'>
+<caption class>
+<p><span id="tab:booth-one-mul-rule">表 8.5: </span>Booth一位乘运算规则</p>
+</caption>
+<thead><tr style="overflow-wrap:break-word;"><td class="cl-8066d6ea"><p class="cl-8066943c"><span class="cl-80668118">y</span><span class="cl-8066814a">i</span></p></td><td class="cl-8066d6e0"><p class="cl-8066943c"><span class="cl-80668118">y</span><span class="cl-8066814a">i-1</span></p></td><td class="cl-8066d6f4"><p class="cl-8066943c"><span class="cl-80668118">操作</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-8066d654"><p class="cl-8066943c"><span class="cl-80668118">0</span></p></td><td class="cl-8066d686"><p class="cl-8066943c"><span class="cl-80668118">0</span></p></td><td class="cl-8066d67c"><p class="cl-8066943c"><span class="cl-80668118">不需要加（+0）</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-8066d6a4"><p class="cl-8066943c"><span class="cl-80668118">0</span></p></td><td class="cl-8066d6ae"><p class="cl-8066943c"><span class="cl-80668118">1</span></p></td><td class="cl-8066d69a"><p class="cl-8066943c"><span class="cl-80668118">补码加X（+[X]</span><span class="cl-8066814a">补</span><span class="cl-80668118">）</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-8066d6a4"><p class="cl-8066943c"><span class="cl-80668118">1</span></p></td><td class="cl-8066d6ae"><p class="cl-8066943c"><span class="cl-80668118">0</span></p></td><td class="cl-8066d69a"><p class="cl-8066943c"><span class="cl-80668118">补码减X（-[X]</span><span class="cl-8066814a">补</span><span class="cl-80668118">）</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-8066d6c2"><p class="cl-8066943c"><span class="cl-80668118">1</span></p></td><td class="cl-8066d6b8"><p class="cl-8066943c"><span class="cl-80668118">1</span></p></td><td class="cl-8066d6cc"><p class="cl-8066943c"><span class="cl-80668118">不需要加（+0）</span></p></td></tr></tbody></table></div></template>
+<div class="flextable-shadow-host" id="b643246a-af7b-4a01-bcb8-9e3bec1c4ff8"></div>
+<script>
+var dest = document.getElementById("b643246a-af7b-4a01-bcb8-9e3bec1c4ff8");
+var template = document.getElementById("62094bc0-cb06-443e-98cb-ce6ddeb84139");
+var caption = template.content.querySelector("caption");
+if(caption) {
+  caption.style.cssText = "display:block;text-align:center;";
+  var newcapt = document.createElement("p");
+  newcapt.appendChild(caption)
+  dest.parentNode.insertBefore(newcapt, dest.previousSibling);
+}
+var fantome = dest.attachShadow({mode: 'open'});
+var templateContent = template.content;
+fantome.appendChild(templateContent);
+</script>
+
+<p>注意算法开始时，要隐含地在乘数最右侧补一个y-1的值。图<a href="运算器设计.html#fig:Booth-1-mul">8.29</a>给出了Booth一位乘算法的示例。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Booth-1-mul"></span>
+<img src="images/chapter8/booth_one_multiplication.png" alt="Booth一位乘示例" width="80%" />
+<p class="caption">
+图 8.29: Booth一位乘示例
+</p>
+</div>
+<p>在Booth一位乘算法中，为了计算N位的补码乘法，依然需要N-1次加法。而数据宽度较大的补码加法器面积大、电路延迟长，限制了硬件乘法器的计算速度，因此重新对补码乘法公式进行变换，得到Booth两位乘算法：</p>
+<p><span class="math display">\[\begin{aligned}&amp;\quad（-y_{7}\times 2^{7}+y_{6}\times 2^{6}+\ldots +y_{1}\times 2^{1}+y_{0}\times 2^{0}）\\
+&amp;=（-2\times y_{7}\times 2^{6}+y_{6}\times 2^{6}+（y_{5}\times 2^{6}-2\times y_{5}\times 2^{4}）+\ldots \\
+&amp;\quad +y_{1}\times 2^{2}-2\times y_{1}\times 2^{0}）+y_{0}\times 2^{0}+y_{-1}\times 2^{0}）\\
+&amp;=（y_{5}+y_{6}-2y_{7}）\times 2^{6}+（y_{3}+y_{4}-2y_{5}）\times 2^{4}+\ldots +（y_{-1}+y_{0}-2y_{1}）\times 2^{0}\end{aligned}\]</span></p>
+<p>根据Booth两位乘算法，需要每次扫描3位的乘数，并在每次累加完成后，将被乘数和乘数移2位。根据算法公式，可以推导出操作的方式，参见表<a href="运算器设计.html#tab:booth-two-mul-rule">8.6</a>。注意被扫描的3位是当前操作阶数i加上其左右各1位。因此操作开始时，需要在乘数最右侧隐含地补一个0。</p>
+<template id="d46bad42-a202-487d-a7d8-2ca8653e3bea"><style>
+.tabwid table{
+  border-spacing:0px !important;
+  border-collapse:collapse;
+  line-height:1;
+  margin-left:auto;
+  margin-right:auto;
+  border-width: 0;
+  display: table;
+  margin-top: 1.275em;
+  margin-bottom: 1.275em;
+  border-color: transparent;
+}
+.tabwid_left table{
+  margin-left:0;
+}
+.tabwid_right table{
+  margin-right:0;
+}
+.tabwid td {
+    padding: 0;
+}
+.tabwid a {
+  text-decoration: none;
+}
+.tabwid thead {
+    background-color: transparent;
+}
+.tabwid tfoot {
+    background-color: transparent;
+}
+.tabwid table tr {
+background-color: transparent;
+}
+</style><div class="tabwid"><style>.cl-81214278{}.cl-8118d412{font-family:'Noto Sans CJK SC';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-8118d444{font-family:'Noto Sans CJK SC';font-size:6.6pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;top:3.3pt;}.cl-8118e90c{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-81193600{width:28.6pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-81193628{width:109.9pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-8119363c{width:34.1pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-81193650{width:36.7pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-8119365a{width:34.1pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-8119366e{width:36.7pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-81193678{width:28.6pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-8119368c{width:109.9pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-81193696{width:36.7pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-811936aa{width:28.6pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-81193768{width:34.1pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-8119377c{width:109.9pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-81193786{width:109.9pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-8119379a{width:28.6pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-811937a4{width:34.1pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-811937b8{width:36.7pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-81214278'>
+<caption class>
+<p><span id="tab:booth-two-mul-rule">表 8.6: </span>Booth两位乘运算规则</p>
+</caption>
+<thead><tr style="overflow-wrap:break-word;"><td class="cl-811937b8"><p class="cl-8118e90c"><span class="cl-8118d412">y</span><span class="cl-8118d444">i+1</span></p></td><td class="cl-8119379a"><p class="cl-8118e90c"><span class="cl-8118d412">y</span><span class="cl-8118d444">i</span></p></td><td class="cl-811937a4"><p class="cl-8118e90c"><span class="cl-8118d412">y</span><span class="cl-8118d444">i-1</span></p></td><td class="cl-81193786"><p class="cl-8118e90c"><span class="cl-8118d412">操作</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-81193650"><p class="cl-8118e90c"><span class="cl-8118d412">0</span></p></td><td class="cl-81193600"><p class="cl-8118e90c"><span class="cl-8118d412">0</span></p></td><td class="cl-8119363c"><p class="cl-8118e90c"><span class="cl-8118d412">0</span></p></td><td class="cl-81193628"><p class="cl-8118e90c"><span class="cl-8118d412">不需要加（+0）</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-8119366e"><p class="cl-8118e90c"><span class="cl-8118d412">0</span></p></td><td class="cl-81193678"><p class="cl-8118e90c"><span class="cl-8118d412">0</span></p></td><td class="cl-8119365a"><p class="cl-8118e90c"><span class="cl-8118d412">1</span></p></td><td class="cl-8119368c"><p class="cl-8118e90c"><span class="cl-8118d412">补码加X（+[X]</span><span class="cl-8118d444">补</span><span class="cl-8118d412">）</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-8119366e"><p class="cl-8118e90c"><span class="cl-8118d412">0</span></p></td><td class="cl-81193678"><p class="cl-8118e90c"><span class="cl-8118d412">1</span></p></td><td class="cl-8119365a"><p class="cl-8118e90c"><span class="cl-8118d412">0</span></p></td><td class="cl-8119368c"><p class="cl-8118e90c"><span class="cl-8118d412">补码加X（+[X]</span><span class="cl-8118d444">补</span><span class="cl-8118d412">）</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-8119366e"><p class="cl-8118e90c"><span class="cl-8118d412">0</span></p></td><td class="cl-81193678"><p class="cl-8118e90c"><span class="cl-8118d412">1</span></p></td><td class="cl-8119365a"><p class="cl-8118e90c"><span class="cl-8118d412">1</span></p></td><td class="cl-8119368c"><p class="cl-8118e90c"><span class="cl-8118d412">补码加2X（+[X]</span><span class="cl-8118d444">补</span><span class="cl-8118d412">左移）</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-8119366e"><p class="cl-8118e90c"><span class="cl-8118d412">1</span></p></td><td class="cl-81193678"><p class="cl-8118e90c"><span class="cl-8118d412">0</span></p></td><td class="cl-8119365a"><p class="cl-8118e90c"><span class="cl-8118d412">0</span></p></td><td class="cl-8119368c"><p class="cl-8118e90c"><span class="cl-8118d412">补码减2X（-[X]</span><span class="cl-8118d444">补</span><span class="cl-8118d412">左移）</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-8119366e"><p class="cl-8118e90c"><span class="cl-8118d412">1</span></p></td><td class="cl-81193678"><p class="cl-8118e90c"><span class="cl-8118d412">0</span></p></td><td class="cl-8119365a"><p class="cl-8118e90c"><span class="cl-8118d412">1</span></p></td><td class="cl-8119368c"><p class="cl-8118e90c"><span class="cl-8118d412">补码减X（-[X]</span><span class="cl-8118d444">补</span><span class="cl-8118d412">）</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-8119366e"><p class="cl-8118e90c"><span class="cl-8118d412">1</span></p></td><td class="cl-81193678"><p class="cl-8118e90c"><span class="cl-8118d412">1</span></p></td><td class="cl-8119365a"><p class="cl-8118e90c"><span class="cl-8118d412">0</span></p></td><td class="cl-8119368c"><p class="cl-8118e90c"><span class="cl-8118d412">补码减X（-[X]</span><span class="cl-8118d444">补</span><span class="cl-8118d412">）</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-81193696"><p class="cl-8118e90c"><span class="cl-8118d412">1</span></p></td><td class="cl-811936aa"><p class="cl-8118e90c"><span class="cl-8118d412">1</span></p></td><td class="cl-81193768"><p class="cl-8118e90c"><span class="cl-8118d412">1</span></p></td><td class="cl-8119377c"><p class="cl-8118e90c"><span class="cl-8118d412">不需要加（+0）</span></p></td></tr></tbody></table></div></template>
+<div class="flextable-shadow-host" id="c02c0bf4-ac52-4d56-8b80-0d5abb4d14d5"></div>
+<script>
+var dest = document.getElementById("c02c0bf4-ac52-4d56-8b80-0d5abb4d14d5");
+var template = document.getElementById("d46bad42-a202-487d-a7d8-2ca8653e3bea");
+var caption = template.content.querySelector("caption");
+if(caption) {
+  caption.style.cssText = "display:block;text-align:center;";
+  var newcapt = document.createElement("p");
+  newcapt.appendChild(caption)
+  dest.parentNode.insertBefore(newcapt, dest.previousSibling);
+}
+var fantome = dest.attachShadow({mode: 'open'});
+var templateContent = template.content;
+fantome.appendChild(templateContent);
+</script>
+
+<p>还是以4位补码乘法为例，如图<a href="运算器设计.html#fig:Booth-2-mul">8.30</a>所示。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Booth-2-mul"></span>
+<img src="images/chapter8/Booth_two_multiplication.png" alt="Booth两位乘示例" width="80%" />
+<p class="caption">
+图 8.30: Booth两位乘示例
+</p>
+</div>
+<p>如果使用Booth两位乘算法，计算N位的补码乘法时，只需要N/2-1次加法，如果使用移位加策略，则需要N/2个时钟周期来完成计算。龙芯处理器就采用了Booth两位乘算法来实现硬件补码乘法器，大多数现代处理器也均采用该算法。</p>
+<p>同理，可以推导Booth三位乘算法、Booth四位乘算法。其中Booth三位乘算法的核心部分为：</p>
+<p><span class="math display">\[（y_{i-1}+y_{i}+2y_{i+1}-4y_{i+2}）\times 2^{i}   (i=0, 每次循环i+3)\]</span></p>
+<p>对于Booth三位乘而言，在扫描乘数低位时，有可能出现补码加3倍[X]<sub>补</sub>的操作。不同于2倍[X]<sub>补</sub>可以直接通过将[X]<sub>补</sub>左移1位来实现，3倍[X]<sub>补</sub>的值很难直接获得，需要在主循环开始之前进行预处理，算出3倍[X]<sub>补</sub>的值并使用额外的触发器记录下来。对于越复杂的Booth算法，需要的预处理过程也越复杂。所以，相比之下Booth两位乘算法更适合硬件实现，更为实用。本节接下来将介绍这个算法的电路实现方式。</p>
+<p>Booth乘法的核心是部分积的生成，共需要生成N/2个部分积。每个部分积与[X]<sub>补</sub>相关，总共有-X、-2X、+X、+2X和0 五种可能，而其中减去[X]<sub>补</sub>的操作，可以视作加上按位取反的[X]<sub>补</sub>再末位加1。为了硬件实现方便，将这个末位加1的操作提取出来，假设[X]<sub>补</sub>的二进制格式写作x<sub>7</sub>x<sub>6</sub>x<sub>5</sub>x<sub>4</sub>x<sub>3</sub>x<sub>2</sub>x<sub>1</sub>x<sub>0</sub>,再假设部分积P等于p<sub>7</sub>p<sub>6</sub>p<sub>5</sub>p<sub>4</sub>p<sub>3</sub>p<sub>2</sub>p<sub>1</sub>p<sub>0</sub>+c，那么有：</p>
+<p><span class="math display">\[p_{i}=
+\begin{cases}
+\sim x_{i}&amp; \text{选择-X}\\
+\sim x_{i-1}&amp;  \text{选择-2X}\\
+x_{i}&amp; \text{选择+X}\\
+x_{i-1}&amp; \text{选择+2X}\\
+0&amp; \text{选择0}
+\end{cases}\]</span></p>
+<p><span class="math display">\[c=
+\begin{cases}
+1&amp; \text{选择-X或-2X}\\
+0&amp; \text{选择+X或+2X或0}
+\end{cases}\]</span></p>
+<p>当部分积的选择为2X时，可以视作X输入左移1位，此时p<sub>i</sub>就与x<sub>i-1</sub>相等。如果部分积的选择是-X或者-2X，则此处对x<sub>i</sub>或者x<sub>i-1</sub>取反，并设置最后的末位进位c为1。</p>
+<p>根据上述规则，经过卡诺图分析，可以得出每一位p<sub>i</sub>的逻辑表达式：</p>
+<p><span class="math display">\[p_{i}=\sim (\sim (S_{-X}\ \&amp;\ \sim x_{i})\ \&amp;\ \sim (S_{-2X}\ \&amp;\ \sim x_{i-1})\ \&amp;\ \sim (S_{+X}\ \&amp;\ x_{i})\ \&amp;\ \sim (S_{+2X}\ \&amp;\ x_{i-1}))\]</span></p>
+<p>其中S<sub>+x</sub>信号在部分积选择为+X时为1，其他情况为0；另外三个S信号含义类似。画出p<sub>i</sub>的逻辑图，如图<a href="运算器设计.html#fig:Booth-select-logic">8.31</a>所示。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Booth-select-logic"></span>
+<img src="images/chapter8/Booth_select_logic.png" alt="Booth结果选择逻辑" width="80%" />
+<p class="caption">
+图 8.31: Booth结果选择逻辑
+</p>
+</div>
+<p>下文将使用图中箭头右侧的小示意图来代表p<sub>i</sub>的生成逻辑。生成逻辑中需要使用部分积选择信号，因此还需要考虑如何根据y<sub>i-1</sub>、y<sub>i</sub>和y<sub>i+1</sub>三个信号生成图<a href="运算器设计.html#fig:Booth-selectsignal">8.32</a>用到的4个选择信号。根据表<a href="运算器设计.html#tab:booth-two-mul-rule">8.6</a>中的规则，很容易通过卡诺图化简得到：</p>
+<p><span class="math display">\[\begin{aligned}S_{-x}&amp;=\sim (\sim（y_{i+1}\ \&amp;\ y_{i}\ \&amp;\ \sim y_{i-1})\ \&amp;\ \sim (y_{i+1}\ \&amp;\ \sim y_{i}\ \&amp;\ y_{i-1})) \\ S_{+x}&amp;=\sim (\sim（\sim y_{i+1}\ \&amp;\ y_{i}\ \&amp;\ \sim y_{i-1})\ \&amp;\ \sim (\sim y_{i+1}\ \&amp;\ \sim y_{i}\ \&amp;\ y_{i-1})) \\ S_{-2x}&amp;=\sim (\sim (y_{i+1}\ \&amp;\ \sim y_{i}\ \&amp;\ \sim y_{i-1})) \\ S_{+2x}&amp;=\sim (\sim (\sim y_{i+1}\ \&amp;\ y_{i}\ \&amp;\ y_{i-1}))\end{aligned}\]</span></p>
+<p>画出选择信号生成部分的逻辑图，并得到如图<a href="运算器设计.html#fig:Booth-selectsignal">8.32</a>所示的示意图。：</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Booth-selectsignal"></span>
+<img src="images/chapter8/Booth_selectsignal_logic.png" alt="Booth选择信号生成逻辑" width="80%" />
+<p class="caption">
+图 8.32: Booth选择信号生成逻辑
+</p>
+</div>
+<p>将两部分组合起来，形成每个Booth部分积的逻辑图，并得到如图<a href="运算器设计.html#fig:Booth-partial-product">8.33</a>所示的示意图。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Booth-partial-product"></span>
+<img src="images/chapter8/Booth_partial_product.png" alt="Booth部分积生成逻辑" width="80%" />
+<p class="caption">
+图 8.33: Booth部分积生成逻辑
+</p>
+</div>
+<p>这个逻辑就是两位Booth乘法的核心逻辑。调用该逻辑，并通过移位加策略实现两位Booth补码乘的结构，如图<a href="运算器设计.html#fig:Booth-SHIFT">8.34</a>所示。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Booth-SHIFT"></span>
+<img src="images/chapter8/Booth_multiplication%20with%20shifter.png" alt="使用移位加实现Booth乘法" width="50%" />
+<p class="caption">
+图 8.34: 使用移位加实现Booth乘法
+</p>
+</div>
+<p>乘法操作开始时，乘数右侧需要补1位的0，而结果需要预置为全0。在每个时钟周期的计算结束后，乘数算术右移2位，而被乘数左移2位，直到乘数为全0时，乘法结束。对于N位数的补码乘法，操作可以在N/2个时钟周期内完成，并有可能提前结束。在这个结构中，被乘数、结果、加法器和Booth核心的宽度都为2N位。</p>
+</div>
+<div id="华莱士树" class="section level3">
+<h3><span class="header-section-number">8.3.3</span> 华莱士树</h3>
+<p>即使采用了Booth两位乘算法，使用移位加策略来完成一个64位的乘法操作也需要32个时钟周期，并且不支持流水操作，即第一条乘法全部完成之后才能开始计算下一条。现代处理器通常可以实现全流水、4个时钟周期延迟的定点乘法指令，其核心思想就是将各个部分积并行地加在一起，而非串行迭代累加。</p>
+<p>以64位数据的乘法为例，共有32个部分积，如果按照二叉树方式来搭建加法结构，第一拍执行16个加法，第二拍执行8个加法，以此类推，就可以在5个时钟周期内结束运算。这个设计还支持流水式操作：当上一条乘法指令到达第二级，此时第一级的16个加法器已经空闲，可以用来服务下一条乘法指令了。</p>
+<p>这种设计的硬件开销非常大，其中128位宽度的加法器就需要31个，而用于锁存中间结果的触发器更是接近4000个。本节将要介绍的华莱士树（Wallace Tree）结构可以大幅降低多个数相加的硬件开销和延迟。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:1bit-full-adder"></span>
+<img src="images/chapter8/1bit_full_adder.png" alt="一位全加器示例" width="30%" />
+<p class="caption">
+图 8.35: 一位全加器示例
+</p>
+</div>
+<p>华莱士树由全加器搭建而成。根据8.2.1节的介绍，全加器的示例如图<a href="运算器设计.html#fig:1bit-full-adder">8.35</a>所示。</p>
+<p><span class="math display">\[\begin{aligned}S&amp;=\sim A\ \&amp;\ \sim B\ \&amp;\ C\ |\ \sim A\ \&amp;\ B\ \&amp;\ \sim C\ |\ A\ \&amp;\ \sim B\ \&amp;\ \sim C\ |\ A\ \&amp;\ B\ \&amp;\ C \\ C&amp;=A \ \&amp;\ B\ |\ A\ \&amp;\ C\ |\ B\ \&amp;\ C\end{aligned}\]</span></p>
+<p>全加器可以将3个1位数A、B、C的加法转换为两个1位数S和C的错位加法：</p>
+<p>A+B+C=S+(C≪1)</p>
+<p>如果参与加法的数据较宽，可以通过调用多个全加器，将3个数的加法转换为两个数的加法。图<a href="运算器设计.html#fig:4full-adder">8.36</a>给出了3个4位数相加的例子。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:4full-adder"></span>
+<img src="images/chapter8/FULL_adder%20for%20three%204bit%20number.png" alt="使用全加器实现3个4位数相加" width="100%" />
+<p class="caption">
+图 8.36: 使用全加器实现3个4位数相加
+</p>
+</div>
+<p>其中4位数A的二进制表示为A<sub>3</sub>A<sub>2</sub>A<sub>1</sub>A<sub>0</sub>，可以很容易得知：</p>
+<p><span class="math display">\[\{A_{3}A_{2}A_{1}A_{0}\}+\{B_{3}B_{2}B_{1}B_{0}\}+\{D_{3}D_{2}D_{1}D_{0}\}=\{S_{3}S_{2}S_{1}S_{0}\}+\{C_{2}C_{1}C_{0}0\}\]</span></p>
+<p>公式中所有加法都为补码加法，操作宽度为4位，结果也仅保留4位的宽度，这也导致C<sub>3</sub>位没有被使用，而是在C<sub>0</sub>右侧再补一个0参与补码加法运算。</p>
+<p>那么问题来了，如果需要相加的数有4个，又应该如何呢？很自然地想到，可以先将其中3个数相加，再调用一层全加器结构，将刚得到的结果与第4个数相加即可。不过要注意，全加器的C输出需要左移1位才能继续参与运算。如图<a href="运算器设计.html#fig:full-adder-for4number">8.37</a>所示。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:full-adder-for4number"></span>
+<img src="images/chapter8/FULL_adder%20for%20four%204bit%20number.png" alt="使用全加器实现4个4位数相加" width="100%" />
+<p class="caption">
+图 8.37: 使用全加器实现4个4位数相加
+</p>
+</div>
+<p>最后结果中，最高位进位C<sub>3</sub>和C<sub>3’</sub>都不会被使用。第二级的最右侧全加器需要在其中一个输入位置补0参与运算。从图<a href="运算器设计.html#fig:full-adder-for4number">8.37</a>中可以看出，整个结构呈现重复特征，提取出圆角矩形框选中的部分，这部分称为一位华莱士树。准确地说，图中灰色部分呈现的是4个数相加的一位华莱士树结构，它除了输入的4个被加数、输出的C与S之外，还有级联的进位信号。通过M个这样的一位华莱士树，就可以实现4个M位数的相加。</p>
+<p>可以简单地计算一下使用华莱士树进行相加的优势。根据图<a href="运算器设计.html#fig:full-adder-for4number">8.37</a>的结构，4个数相加的华莱士树需要两层全加器，当前位的进位信号在第一层产生，并接到了下一位的第二层，这意味着C<sub>out</sub>与C<sub>in</sub>无关。全加器的S输出需要3级门延迟，而C输出需要2级门延迟，因此不论参与加法的数据宽度是多少位，将4个数相加转换为两个数相加最多只需要6级门延迟，最后把这两个数加起来还需要一个加法器。整套逻辑需要一个加法器的面积，再加上两倍数据宽度个全加器的面积。如果不使用华莱士树，而是先将四个数捉对相加，再把结果相加，计算的延迟就是两倍的加法器延迟，面积则是3倍的加法器面积。对于64位或者更宽的加法器，它的延迟肯定是远远超过6级门的，面积也比64个全加器要大得多。</p>
+<p>因此使用华莱士树进行多个数相加可以明显地降低计算延迟，数据宽度越宽，其效果越明显。通过本节后续的介绍可以归纳出，使用华莱士树进行M个N位数相加，可以大致降低延迟logN倍，而每一层华莱士树包含的全加器个数为⌊2M’/3⌋（M’是当前层次要加的数字个数）。</p>
+<p>回到本节最开始的问题，Booth乘法需要实现N/2个2N宽度的部分积相加，如果可以先画出N/2个数的一位华莱士树结构，通过2N次使用，就可以达到这个要求。为了描述的简洁，下面我们具体分析N=16即8个数相加情况下的一位华莱士树结构，如图<a href="运算器设计.html#fig:1bit-wallace-tree-for8">8.38</a>所示。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:1bit-wallace-tree-for8"></span>
+<img src="images/chapter8/1bit_wallace_tree_for8.png" alt="8个数相加的一位华莱士树" width="100%" />
+<p class="caption">
+图 8.38: 8个数相加的一位华莱士树
+</p>
+</div>
+<p>从图<a href="运算器设计.html#fig:1bit-wallace-tree-for8">8.38</a>中可以看出，通过华莱士树可以用4级全加器即12级门的延迟把8个数转换成两个数相加。华莱士树的精髓在于：通过连线实现进位传递，从而避免了复杂的进位传递逻辑。不过需要指出的是，在华莱士树中，每一级全加器生成本地和以及向高位的进位，因此在每一级华莱士树生成的结果中，凡是由全加器的进位生成的部分连接到下一级时要连接到下一级的高位。像图<a href="运算器设计.html#fig:wrong-wallace-tree">8.39</a>中左侧的搭建方法就是没有保证这一点，所以是错误的。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:wrong-wallace-tree"></span>
+<img src="images/chapter8/WORONG_exaxple%20of%20walllace%20tree.png" alt="两种错误的8个数相加的一位华莱士树" width="100%" />
+<p class="caption">
+图 8.39: 两种错误的8个数相加的一位华莱士树
+</p>
+</div>
+<p>图<a href="运算器设计.html#fig:wrong-wallace-tree">8.39</a>右侧的搭建方式修正了图左侧级间进位传递逻辑的错误，但是它的搭建方式依然存在问题。为了理解问题出在哪里，我们需要从整个乘法器的设计入手。</p>
+<p>为了构成一个16位定点补码乘法器，需要使用8个Booth编码器，外加32个8个数相加的一位华莱士树，再加上一个32位加法器。值得注意的是，根据上一节提出的Booth乘法核心逻辑，除了有8个部分积需要相加之外，还有8个“末位加1”的信号。在华莱士树中，最低位对应的华莱士树上有空闲的进位输入信号，根据图<a href="运算器设计.html#fig:1bit-wallace-tree-for8">8.38</a>的结构，共有6个进位输入，可以接上6个“末位加1”的信号。还剩下两个“末位加1”的信号，只能去最后的加法器上想办法：最后的加法器负责将华莱士树产生的2N位的C和S信号错位相加，其中C信号左移一位低位补0。据此设计，这两个“末位加1”的信号可以一个接到加法器的进位输入上，另一个接到C左移后的补位上。分析到这里，应该能够理解为什么说图<a href="运算器设计.html#fig:1bit-wallace-tree-for8">8.38</a>中的华莱士树才是合适的，因为这种搭建方法才能出现6个进位输入。</p>
+<p>最终的乘法器示意图如图<a href="运算器设计.html#fig:16bitmulti-unit">8.40</a>所示。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:16bitmulti-unit"></span>
+<img src="images/chapter8/16bit_multiplying_unit.png" alt="16位乘法器示意图" width="100%" />
+<p class="caption">
+图 8.40: 16位乘法器示意图
+</p>
+</div>
+<p>图中间标注为switch的部分，负责收集8个Booth核心生成的8个32位数，进行类似矩阵转置的操作，重新组织为32组、8个一位数相加的格式，输出给华莱士树，并将Booth核心生成的8个“末位加1”信号从switch部分右侧接出，提供给华莱士树最右侧的一位树及最后的加法器。此外图中没有画出的是，被乘数X送到8个Booth编码器时需要先扩展到32位，并按照编码器所处的位置进行不同偏移量的左移操作。</p>
+</div>
+</div>
+<div id="本章小结-7" class="section level2">
+<h2><span class="header-section-number">8.4</span> 本章小结</h2>
+<p>本章首先回顾了计算机中数的二进制编码及定点数和浮点数的表示，介绍了晶体管原理以及由晶体管构建的基本逻辑电路。然后介绍了CPU中简单运算器设计时常见的加法、减法、比较和移位运算的实现，重点是补码加法器的设计实现。最后介绍了定点补码乘法器的设计，重点是补码乘法的规则、两位Booth算法和华莱士树。</p>
+</div>
+<div id="习题-7" class="section level2">
+<h2><span class="header-section-number">8.5</span> 习题</h2>
+<ol style="list-style-type: decimal">
+<li><p>请将下列无符号数据在不同的进制表达间进行转换。</p>
+<ol style="list-style-type: lower-alpha">
+<li>二进制转换为十进制：101011<sub>2</sub>、001101<sub>2</sub>、01011010<sub>2</sub>、0000111010000101<sub>2</sub>。</li>
+<li>十进制转换为二进制：42<sub>10</sub>、79<sub>10</sub>、811<sub>10</sub>、374<sub>10</sub>。</li>
+<li>十六进制转换为十进制：8AE<sub>16</sub>、C18D<sub>16</sub>、B379<sub>16</sub>、100<sub>16</sub>。</li>
+<li>十进制转换为十六进制：81783<sub>10</sub>、1922<sub>10</sub>、345208<sub>10</sub>、5756<sub>10</sub>。</li>
+</ol></li>
+<li><p>请给出32位二进制数分别视作无符号数、原码、补码时所表示的数的范围。</p></li>
+<li><p>请将下列十进制数表示为8位原码和8位补码，或者表明该数据会溢出：45<sub>10</sub>、-59<sub>10</sub>、-128<sub>10</sub>、119<sub>10</sub>、127<sub>10</sub>、128<sub>10</sub>、0、-1<sub>10</sub>。</p></li>
+<li><p>请将下列数据分别视作原码和补码，从8位扩展为16位：00101100<sub>2</sub>、11010100<sub>2</sub>、10000001<sub>2</sub>、00010111<sub>2</sub>。</p></li>
+<li><p>请将下列浮点数在不同进制间进行转换。</p>
+<ol style="list-style-type: lower-alpha">
+<li>十进制数转换为单精度数：0、116.25、-4.375。</li>
+<li>十进制数转换为双精度数：-0、116.25、-2049.5。</li>
+<li>单精度数转换为十进制数：0xff800000、0x7fe00000。</li>
+<li>双精度数转换为十进制数：0x8008000000000000、0x7065020000000000。</li>
+</ol></li>
+<li><p>请写出下图所示晶体管级电路图的真值表，并给出对应的逻辑表达式。
+<img src="images/chapter8/hwCMOS.png" width="40%" style="display: block; margin: auto;" /></p></li>
+<li><p>请写出下图所示逻辑门电路图的真值表。
+<img src="images/chapter8/hw%20logic%20gate.png" width="30%" style="display: block; margin: auto;" /></p></li>
+<li><p>请用尽可能少的二输入NAND门搭建出一个具有二输入XOR功能的电路。</p></li>
+<li><p>请用D触发器和常见组合逻辑门搭建出一个具有同步复位为0功能的触发器的电路。</p></li>
+<li><p>证明[X+Y]<sub>补</sub>=[X]<sub>补</sub>+[Y]<sub>补</sub>。</p></li>
+<li><p>证明[X-Y]<sub>补</sub>=[X]<sub>补</sub>+[-Y]<sub>补</sub>。</p></li>
+<li><p>假设每个“非门”“与非门”“或非门”的扇入不超过4个且每个门的延迟为T，请给出下列不同实现的32位加法器的延迟。</p>
+<ol style="list-style-type: lower-alpha">
+<li>行波进位加法器；</li>
+<li>4位一块且块内并行、块间串行的加法器；</li>
+<li>4位一块且块内并行、块间并行的加法器。</li>
+</ol></li>
+<li><p>作为设计者，在什么情况下会使用行波进位加法器而非先行进位加法器？</p></li>
+<li><p>请利用图<a href="运算器设计.html#fig:4bitCLAwithc">8.21</a>所示的4位先行进位逻辑组建出块内并行且块间并行的64位先行进位加法器的进位逻辑，并证明其正确性。</p></li>
+<li><p>请举例说明[X×Y]<sub>补</sub>≠[X]<sub>补</sub>×[Y]<sub>补</sub>。</p></li>
+<li><p>请证明[X×2<sup>n</sup>]<sub>补</sub>=[X]<sub>补</sub>×2<sup>n</sup>。</p></li>
+<li><p>假设每个“非门” “与非门”“或非门”的扇入不超过4个且每个门的延迟为T，请给出下列不同实现将4个16位数相加的延迟：</p>
+<ol style="list-style-type: lower-alpha">
+<li>使用多个先行进位加法器；</li>
+<li>使用华莱士树及先行进位加法器。</li>
+</ol></li>
+<li><p>请系统描述采用两位Booth编码和华莱士树的补码乘法器是如何处理[-X]<sub>补</sub>和[-2X]<sub>补</sub>的部分积的。</p></li>
+<li><p>用Verilog语言设计一个32位输入宽度的定点补码乘法器，要求使用Booth两位一乘和华莱士树。</p></li>
+<li><p>单精度和双精度浮点数能表示无理数<span class="math inline">\(\pi\)</span>吗？为什么？</p></li>
+</ol>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="计算机启动过程分析.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="指令流水线.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/clipboard.min.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/foxsen/archbase-book/edit/master/18-microarch.Rmd",
+"text": "编辑"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown.pdf", "bookdown.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

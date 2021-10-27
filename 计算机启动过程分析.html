@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>第 7 章 计算机启动过程分析 | 计算机体系结构基础</title>
+  <meta name="description" content="第 7 章 计算机启动过程分析 | 计算机体系结构基础" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="第 7 章 计算机启动过程分析 | 计算机体系结构基础" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="第 7 章 计算机启动过程分析 | 计算机体系结构基础" />
+  <meta name="github-repo" content="foxsen/archbase-book" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="第 7 章 计算机启动过程分析 | 计算机体系结构基础" />
+  
+  <meta name="twitter:description" content="第 7 章 计算机启动过程分析 | 计算机体系结构基础" />
+  
+
+<meta name="author" content="胡伟武 汪文祥 苏孟豪 张福新 王焕东 章隆兵 肖俊华 刘 苏 陈新科 吴瑞阳 李晓钰 高燕萍" />
+
+
+<meta name="date" content="2021-10-27" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="计算机总线接口技术.html"/>
+<link rel="next" href="运算器设计.html"/>
+<script src="libs/jquery/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block/empty-anchor.js"></script>
+<link href="libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections/anchor-sections.js"></script>
+<link href="libs/tabwid/tabwid.css" rel="stylesheet" />
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">计算机体系结构基础</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>丛书序言</a></li>
+<li class="chapter" data-level="" data-path="推荐序.html"><a href="推荐序.html"><i class="fa fa-check"></i>推荐序</a></li>
+<li class="chapter" data-level="" data-path="自序.html"><a href="自序.html"><i class="fa fa-check"></i>自序</a></li>
+<li class="chapter" data-level="" data-path="第三版序.html"><a href="第三版序.html"><i class="fa fa-check"></i>第三版序</a></li>
+<li class="chapter" data-level="" data-path="前言.html"><a href="前言.html"><i class="fa fa-check"></i>前言</a></li>
+<li class="chapter" data-level="" data-path="关于本书的在线版本.html"><a href="关于本书的在线版本.html"><i class="fa fa-check"></i>关于本书的在线版本</a></li>
+<li class="part"><span><b>I 引言</b></span></li>
+<li class="chapter" data-level="1" data-path="引言.html"><a href="引言.html"><i class="fa fa-check"></i><b>1</b> 引言</a><ul>
+<li class="chapter" data-level="1.1" data-path="引言.html"><a href="引言.html#计算机体系结构的研究内容"><i class="fa fa-check"></i><b>1.1</b> 计算机体系结构的研究内容</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="引言.html"><a href="引言.html#一以贯之"><i class="fa fa-check"></i><b>1.1.1</b> 一以贯之</a></li>
+<li class="chapter" data-level="1.1.2" data-path="引言.html"><a href="引言.html#什么是计算机"><i class="fa fa-check"></i><b>1.1.2</b> 什么是计算机</a></li>
+<li class="chapter" data-level="1.1.3" data-path="引言.html"><a href="引言.html#计算机的基本组成"><i class="fa fa-check"></i><b>1.1.3</b> 计算机的基本组成</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="引言.html"><a href="引言.html#衡量计算机的指标"><i class="fa fa-check"></i><b>1.2</b> 衡量计算机的指标</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="引言.html"><a href="引言.html#计算机的性能"><i class="fa fa-check"></i><b>1.2.1</b> 计算机的性能</a></li>
+<li class="chapter" data-level="1.2.2" data-path="引言.html"><a href="引言.html#计算机的价格"><i class="fa fa-check"></i><b>1.2.2</b> 计算机的价格</a></li>
+<li class="chapter" data-level="1.2.3" data-path="引言.html"><a href="引言.html#计算机的功耗"><i class="fa fa-check"></i><b>1.2.3</b> 计算机的功耗</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="引言.html"><a href="引言.html#计算机体系结构的发展"><i class="fa fa-check"></i><b>1.3</b> 计算机体系结构的发展</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="引言.html"><a href="引言.html#摩尔定律和工艺的发展"><i class="fa fa-check"></i><b>1.3.1</b> 摩尔定律和工艺的发展</a></li>
+<li class="chapter" data-level="1.3.2" data-path="引言.html"><a href="引言.html#计算机应用和体系结构"><i class="fa fa-check"></i><b>1.3.2</b> 计算机应用和体系结构</a></li>
+<li class="chapter" data-level="1.3.3" data-path="引言.html"><a href="引言.html#计算机体系结构发展"><i class="fa fa-check"></i><b>1.3.3</b> 计算机体系结构发展</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="引言.html"><a href="引言.html#体系结构设计的基本原则"><i class="fa fa-check"></i><b>1.4</b> 体系结构设计的基本原则</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="引言.html"><a href="引言.html#平衡性"><i class="fa fa-check"></i><b>1.4.1</b> 平衡性</a></li>
+<li class="chapter" data-level="1.4.2" data-path="引言.html"><a href="引言.html#局部性"><i class="fa fa-check"></i><b>1.4.2</b> 局部性</a></li>
+<li class="chapter" data-level="1.4.3" data-path="引言.html"><a href="引言.html#并行性"><i class="fa fa-check"></i><b>1.4.3</b> 并行性</a></li>
+<li class="chapter" data-level="1.4.4" data-path="引言.html"><a href="引言.html#虚拟化"><i class="fa fa-check"></i><b>1.4.4</b> 虚拟化</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="引言.html"><a href="引言.html#本章小结"><i class="fa fa-check"></i><b>1.5</b> 本章小结</a></li>
+<li class="chapter" data-level="1.6" data-path="引言.html"><a href="引言.html#习题"><i class="fa fa-check"></i><b>1.6</b> 习题</a></li>
+</ul></li>
+<li class="part"><span><b>II 指令系统结构</b></span></li>
+<li class="chapter" data-level="2" data-path="sec-ISA.html"><a href="sec-ISA.html"><i class="fa fa-check"></i><b>2</b> 指令系统</a><ul>
+<li class="chapter" data-level="2.1" data-path="sec-ISA.html"><a href="sec-ISA.html#指令系统简介"><i class="fa fa-check"></i><b>2.1</b> 指令系统简介</a></li>
+<li class="chapter" data-level="2.2" data-path="sec-ISA.html"><a href="sec-ISA.html#指令系统设计原则"><i class="fa fa-check"></i><b>2.2</b> 指令系统设计原则</a></li>
+<li class="chapter" data-level="2.3" data-path="sec-ISA.html"><a href="sec-ISA.html#指令系统发展历程"><i class="fa fa-check"></i><b>2.3</b> 指令系统发展历程</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="sec-ISA.html"><a href="sec-ISA.html#指令内容的演变"><i class="fa fa-check"></i><b>2.3.1</b> 指令内容的演变</a></li>
+<li class="chapter" data-level="2.3.2" data-path="sec-ISA.html"><a href="sec-ISA.html#存储管理的演变"><i class="fa fa-check"></i><b>2.3.2</b> 存储管理的演变</a></li>
+<li class="chapter" data-level="2.3.3" data-path="sec-ISA.html"><a href="sec-ISA.html#运行级别的演变"><i class="fa fa-check"></i><b>2.3.3</b> 运行级别的演变</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="sec-ISA.html"><a href="sec-ISA.html#指令系统组成"><i class="fa fa-check"></i><b>2.4</b> 指令系统组成</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="sec-ISA.html"><a href="sec-ISA.html#地址空间"><i class="fa fa-check"></i><b>2.4.1</b> 地址空间</a></li>
+<li class="chapter" data-level="2.4.2" data-path="sec-ISA.html"><a href="sec-ISA.html#操作数"><i class="fa fa-check"></i><b>2.4.2</b> 操作数</a></li>
+<li class="chapter" data-level="2.4.3" data-path="sec-ISA.html"><a href="sec-ISA.html#指令操作和编码"><i class="fa fa-check"></i><b>2.4.3</b> 指令操作和编码</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="sec-ISA.html"><a href="sec-ISA.html#risc指令集比较"><i class="fa fa-check"></i><b>2.5</b> RISC指令集比较</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="sec-ISA.html"><a href="sec-ISA.html#指令格式比较"><i class="fa fa-check"></i><b>2.5.1</b> 指令格式比较</a></li>
+<li class="chapter" data-level="2.5.2" data-path="sec-ISA.html"><a href="sec-ISA.html#寻址方式比较"><i class="fa fa-check"></i><b>2.5.2</b> 寻址方式比较</a></li>
+<li class="chapter" data-level="2.5.3" data-path="sec-ISA.html"><a href="sec-ISA.html#公共指令功能"><i class="fa fa-check"></i><b>2.5.3</b> 公共指令功能</a></li>
+<li class="chapter" data-level="2.5.4" data-path="sec-ISA.html"><a href="sec-ISA.html#不同指令系统的特色"><i class="fa fa-check"></i><b>2.5.4</b> 不同指令系统的特色</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="sec-ISA.html"><a href="sec-ISA.html#c语言的机器表示"><i class="fa fa-check"></i><b>2.6</b> C语言的机器表示</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="sec-ISA.html"><a href="sec-ISA.html#过程调用"><i class="fa fa-check"></i><b>2.6.1</b> 过程调用</a></li>
+<li class="chapter" data-level="2.6.2" data-path="sec-ISA.html"><a href="sec-ISA.html#流程控制语句"><i class="fa fa-check"></i><b>2.6.2</b> 流程控制语句</a></li>
+<li class="chapter" data-level="2.6.3" data-path="sec-ISA.html"><a href="sec-ISA.html#循环语句"><i class="fa fa-check"></i><b>2.6.3</b> 循环语句</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="sec-ISA.html"><a href="sec-ISA.html#本章小结-1"><i class="fa fa-check"></i><b>2.7</b> 本章小结</a></li>
+<li class="chapter" data-level="2.8" data-path="sec-ISA.html"><a href="sec-ISA.html#习题-1"><i class="fa fa-check"></i><b>2.8</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html"><i class="fa fa-check"></i><b>3</b> 特权指令系统</a><ul>
+<li class="chapter" data-level="3.1" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#特权指令系统简介"><i class="fa fa-check"></i><b>3.1</b> 特权指令系统简介</a></li>
+<li class="chapter" data-level="3.2" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#sec-exception"><i class="fa fa-check"></i><b>3.2</b> 异常与中断</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#异常分类"><i class="fa fa-check"></i><b>3.2.1</b> 异常分类</a></li>
+<li class="chapter" data-level="3.2.2" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#异常处理"><i class="fa fa-check"></i><b>3.2.2</b> 异常处理</a></li>
+<li class="chapter" data-level="3.2.3" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#中断"><i class="fa fa-check"></i><b>3.2.3</b> 中断</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#sec-memory-management"><i class="fa fa-check"></i><b>3.3</b> 存储管理</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#存储管理的原理"><i class="fa fa-check"></i><b>3.3.1</b> 存储管理的原理</a></li>
+<li class="chapter" data-level="3.3.2" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#tlb的结构和使用"><i class="fa fa-check"></i><b>3.3.2</b> TLB的结构和使用</a></li>
+<li class="chapter" data-level="3.3.3" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#sec-tlb-ex"><i class="fa fa-check"></i><b>3.3.3</b> TLB地址翻译相关异常的处理</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#本章小结-2"><i class="fa fa-check"></i><b>3.4</b> 本章小结</a></li>
+<li class="chapter" data-level="3.5" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#习题-2"><i class="fa fa-check"></i><b>3.5</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="软硬件协同.html"><a href="软硬件协同.html"><i class="fa fa-check"></i><b>4</b> 软硬件协同</a><ul>
+<li class="chapter" data-level="4.1" data-path="软硬件协同.html"><a href="软硬件协同.html#应用程序二进制接口"><i class="fa fa-check"></i><b>4.1</b> 应用程序二进制接口</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="软硬件协同.html"><a href="软硬件协同.html#寄存器约定"><i class="fa fa-check"></i><b>4.1.1</b> 寄存器约定</a></li>
+<li class="chapter" data-level="4.1.2" data-path="软硬件协同.html"><a href="软硬件协同.html#函数调用约定"><i class="fa fa-check"></i><b>4.1.2</b> 函数调用约定</a></li>
+<li class="chapter" data-level="4.1.3" data-path="软硬件协同.html"><a href="软硬件协同.html#进程虚拟地址空间"><i class="fa fa-check"></i><b>4.1.3</b> 进程虚拟地址空间</a></li>
+<li class="chapter" data-level="4.1.4" data-path="软硬件协同.html"><a href="软硬件协同.html#栈帧布局"><i class="fa fa-check"></i><b>4.1.4</b> 栈帧布局</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="软硬件协同.html"><a href="软硬件协同.html#六种常见的上下文切换场景"><i class="fa fa-check"></i><b>4.2</b> 六种常见的上下文切换场景</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="软硬件协同.html"><a href="软硬件协同.html#函数调用"><i class="fa fa-check"></i><b>4.2.1</b> 函数调用</a></li>
+<li class="chapter" data-level="4.2.2" data-path="软硬件协同.html"><a href="软硬件协同.html#异常和中断"><i class="fa fa-check"></i><b>4.2.2</b> 异常和中断</a></li>
+<li class="chapter" data-level="4.2.3" data-path="软硬件协同.html"><a href="软硬件协同.html#系统调用"><i class="fa fa-check"></i><b>4.2.3</b> 系统调用</a></li>
+<li class="chapter" data-level="4.2.4" data-path="软硬件协同.html"><a href="软硬件协同.html#进程"><i class="fa fa-check"></i><b>4.2.4</b> 进程</a></li>
+<li class="chapter" data-level="4.2.5" data-path="软硬件协同.html"><a href="软硬件协同.html#线程"><i class="fa fa-check"></i><b>4.2.5</b> 线程</a></li>
+<li class="chapter" data-level="4.2.6" data-path="软硬件协同.html"><a href="软硬件协同.html#虚拟机"><i class="fa fa-check"></i><b>4.2.6</b> 虚拟机</a></li>
+<li class="chapter" data-level="4.2.7" data-path="软硬件协同.html"><a href="软硬件协同.html#六种上下文切换场景的对比"><i class="fa fa-check"></i><b>4.2.7</b> 六种上下文切换场景的对比</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="软硬件协同.html"><a href="软硬件协同.html#同步机制"><i class="fa fa-check"></i><b>4.3</b> 同步机制</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="软硬件协同.html"><a href="软硬件协同.html#基于互斥的同步机制"><i class="fa fa-check"></i><b>4.3.1</b> 基于互斥的同步机制</a></li>
+<li class="chapter" data-level="4.3.2" data-path="软硬件协同.html"><a href="软硬件协同.html#非阻塞的同步机制"><i class="fa fa-check"></i><b>4.3.2</b> 非阻塞的同步机制</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="软硬件协同.html"><a href="软硬件协同.html#本章小结-3"><i class="fa fa-check"></i><b>4.4</b> 本章小结</a></li>
+<li class="chapter" data-level="4.5" data-path="软硬件协同.html"><a href="软硬件协同.html#习题-3"><i class="fa fa-check"></i><b>4.5</b> 习题</a></li>
+</ul></li>
+<li class="part"><span><b>III 计算机硬件结构</b></span></li>
+<li class="chapter" data-level="5" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html"><i class="fa fa-check"></i><b>5</b> 计算机组成原理和结构</a><ul>
+<li class="chapter" data-level="5.1" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#冯诺依曼结构"><i class="fa fa-check"></i><b>5.1</b> 冯·诺依曼结构</a></li>
+<li class="chapter" data-level="5.2" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#计算机的组成部件"><i class="fa fa-check"></i><b>5.2</b> 计算机的组成部件</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#运算器"><i class="fa fa-check"></i><b>5.2.1</b> 运算器</a></li>
+<li class="chapter" data-level="5.2.2" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#控制器"><i class="fa fa-check"></i><b>5.2.2</b> 控制器</a></li>
+<li class="chapter" data-level="5.2.3" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#存储器"><i class="fa fa-check"></i><b>5.2.3</b> 存储器</a></li>
+<li class="chapter" data-level="5.2.4" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#输入输出设备"><i class="fa fa-check"></i><b>5.2.4</b> 输入/输出设备</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#计算机系统硬件结构发展"><i class="fa fa-check"></i><b>5.3</b> 计算机系统硬件结构发展</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#cpu-gpu-北桥-南桥四片结构"><i class="fa fa-check"></i><b>5.3.1</b> CPU-GPU-北桥-南桥四片结构</a></li>
+<li class="chapter" data-level="5.3.2" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#cpu-北桥-南桥三片结构"><i class="fa fa-check"></i><b>5.3.2</b> CPU-北桥-南桥三片结构</a></li>
+<li class="chapter" data-level="5.3.3" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#cpu-弱北桥-南桥三片结构"><i class="fa fa-check"></i><b>5.3.3</b> CPU-弱北桥-南桥三片结构</a></li>
+<li class="chapter" data-level="5.3.4" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#cpu-南桥两片结构"><i class="fa fa-check"></i><b>5.3.4</b> CPU-南桥两片结构</a></li>
+<li class="chapter" data-level="5.3.5" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#soc单片结构"><i class="fa fa-check"></i><b>5.3.5</b> SoC单片结构</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#处理器和io设备间的通信"><i class="fa fa-check"></i><b>5.4</b> 处理器和IO设备间的通信</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#io寄存器寻址"><i class="fa fa-check"></i><b>5.4.1</b> IO寄存器寻址</a></li>
+<li class="chapter" data-level="5.4.2" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#处理器和io设备之间的同步"><i class="fa fa-check"></i><b>5.4.2</b> 处理器和IO设备之间的同步</a></li>
+<li class="chapter" data-level="5.4.3" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#存储器和io设备之间的数据传送"><i class="fa fa-check"></i><b>5.4.3</b> 存储器和IO设备之间的数据传送</a></li>
+<li class="chapter" data-level="5.4.4" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#龙芯3a30007a1000桥片系统中的cpugpudc通信"><i class="fa fa-check"></i><b>5.4.4</b> 龙芯3A3000+7A1000桥片系统中的CPU、GPU、DC通信</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#本章小结-4"><i class="fa fa-check"></i><b>5.5</b> 本章小结</a></li>
+<li class="chapter" data-level="5.6" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#习题-4"><i class="fa fa-check"></i><b>5.6</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html"><i class="fa fa-check"></i><b>6</b> 计算机总线接口技术</a><ul>
+<li class="chapter" data-level="6.1" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#总线概述"><i class="fa fa-check"></i><b>6.1</b> 总线概述</a></li>
+<li class="chapter" data-level="6.2" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#总线分类"><i class="fa fa-check"></i><b>6.2</b> 总线分类</a></li>
+<li class="chapter" data-level="6.3" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#片上总线"><i class="fa fa-check"></i><b>6.3</b> 片上总线</a></li>
+<li class="chapter" data-level="6.4" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#内存总线"><i class="fa fa-check"></i><b>6.4</b> 内存总线</a></li>
+<li class="chapter" data-level="6.5" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#系统总线"><i class="fa fa-check"></i><b>6.5</b> 系统总线</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#hypertransport总线"><i class="fa fa-check"></i><b>6.5.1</b> HyperTransport总线</a></li>
+<li class="chapter" data-level="6.5.2" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#ht包格式"><i class="fa fa-check"></i><b>6.5.2</b> HT包格式</a></li>
+<li class="chapter" data-level="6.5.3" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#设备总线"><i class="fa fa-check"></i><b>6.5.3</b> 设备总线</a></li>
+<li class="chapter" data-level="6.5.4" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#pcie总线"><i class="fa fa-check"></i><b>6.5.4</b> PCIE总线</a></li>
+<li class="chapter" data-level="6.5.5" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#pcie包格式"><i class="fa fa-check"></i><b>6.5.5</b> PCIE包格式</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#本章小结-5"><i class="fa fa-check"></i><b>6.6</b> 本章小结</a></li>
+<li class="chapter" data-level="6.7" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#习题-5"><i class="fa fa-check"></i><b>6.7</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html"><i class="fa fa-check"></i><b>7</b> 计算机启动过程分析</a><ul>
+<li class="chapter" data-level="7.1" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#处理器核初始化"><i class="fa fa-check"></i><b>7.1</b> 处理器核初始化</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#sec-cpu-reset"><i class="fa fa-check"></i><b>7.1.1</b> 处理器复位</a></li>
+<li class="chapter" data-level="7.1.2" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#调试接口初始化"><i class="fa fa-check"></i><b>7.1.2</b> 调试接口初始化</a></li>
+<li class="chapter" data-level="7.1.3" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#tlb初始化"><i class="fa fa-check"></i><b>7.1.3</b> TLB初始化</a></li>
+<li class="chapter" data-level="7.1.4" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#cache初始化"><i class="fa fa-check"></i><b>7.1.4</b> Cache初始化</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#总线接口初始化"><i class="fa fa-check"></i><b>7.2</b> 总线接口初始化</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#内存初始化"><i class="fa fa-check"></i><b>7.2.1</b> 内存初始化</a></li>
+<li class="chapter" data-level="7.2.2" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#io总线初始化"><i class="fa fa-check"></i><b>7.2.2</b> IO总线初始化</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#设备的探测及驱动加载"><i class="fa fa-check"></i><b>7.3</b> 设备的探测及驱动加载</a></li>
+<li class="chapter" data-level="7.4" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#多核启动过程"><i class="fa fa-check"></i><b>7.4</b> 多核启动过程</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#初始化时的多核协同"><i class="fa fa-check"></i><b>7.4.1</b> 初始化时的多核协同</a></li>
+<li class="chapter" data-level="7.4.2" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#操作系统启动时的多核唤醒"><i class="fa fa-check"></i><b>7.4.2</b> 操作系统启动时的多核唤醒</a></li>
+<li class="chapter" data-level="7.4.3" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#核间同步与通信"><i class="fa fa-check"></i><b>7.4.3</b> 核间同步与通信</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#本章小结-6"><i class="fa fa-check"></i><b>7.5</b> 本章小结</a></li>
+<li class="chapter" data-level="7.6" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#习题-6"><i class="fa fa-check"></i><b>7.6</b> 习题</a></li>
+</ul></li>
+<li class="part"><span><b>IV Part IV CPU的微结构</b></span></li>
+<li class="chapter" data-level="8" data-path="运算器设计.html"><a href="运算器设计.html"><i class="fa fa-check"></i><b>8</b> 运算器设计</a><ul>
+<li class="chapter" data-level="8.1" data-path="运算器设计.html"><a href="运算器设计.html#二进制与逻辑电路"><i class="fa fa-check"></i><b>8.1</b> 二进制与逻辑电路</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="运算器设计.html"><a href="运算器设计.html#sec-number-presentation"><i class="fa fa-check"></i><b>8.1.1</b> 计算机中数的表示</a></li>
+<li class="chapter" data-level="8.1.2" data-path="运算器设计.html"><a href="运算器设计.html#sec-MOS-principle"><i class="fa fa-check"></i><b>8.1.2</b> MOS晶体管工作原理</a></li>
+<li class="chapter" data-level="8.1.3" data-path="运算器设计.html"><a href="运算器设计.html#cmos逻辑电路"><i class="fa fa-check"></i><b>8.1.3</b> CMOS逻辑电路</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="运算器设计.html"><a href="运算器设计.html#简单运算器设计"><i class="fa fa-check"></i><b>8.2</b> 简单运算器设计</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="运算器设计.html"><a href="运算器设计.html#定点补码加法器"><i class="fa fa-check"></i><b>8.2.1</b> 定点补码加法器</a></li>
+<li class="chapter" data-level="8.2.2" data-path="运算器设计.html"><a href="运算器设计.html#减法运算实现"><i class="fa fa-check"></i><b>8.2.2</b> 减法运算实现</a></li>
+<li class="chapter" data-level="8.2.3" data-path="运算器设计.html"><a href="运算器设计.html#比较运算实现"><i class="fa fa-check"></i><b>8.2.3</b> 比较运算实现</a></li>
+<li class="chapter" data-level="8.2.4" data-path="运算器设计.html"><a href="运算器设计.html#移位器"><i class="fa fa-check"></i><b>8.2.4</b> 移位器</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="运算器设计.html"><a href="运算器设计.html#定点补码乘法器"><i class="fa fa-check"></i><b>8.3</b> 定点补码乘法器</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="运算器设计.html"><a href="运算器设计.html#补码乘法器"><i class="fa fa-check"></i><b>8.3.1</b> 补码乘法器</a></li>
+<li class="chapter" data-level="8.3.2" data-path="运算器设计.html"><a href="运算器设计.html#booth乘法器"><i class="fa fa-check"></i><b>8.3.2</b> Booth乘法器</a></li>
+<li class="chapter" data-level="8.3.3" data-path="运算器设计.html"><a href="运算器设计.html#华莱士树"><i class="fa fa-check"></i><b>8.3.3</b> 华莱士树</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="运算器设计.html"><a href="运算器设计.html#本章小结-7"><i class="fa fa-check"></i><b>8.4</b> 本章小结</a></li>
+<li class="chapter" data-level="8.5" data-path="运算器设计.html"><a href="运算器设计.html#习题-7"><i class="fa fa-check"></i><b>8.5</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="指令流水线.html"><a href="指令流水线.html"><i class="fa fa-check"></i><b>9</b> 指令流水线</a><ul>
+<li class="chapter" data-level="9.1" data-path="指令流水线.html"><a href="指令流水线.html#单周期处理器"><i class="fa fa-check"></i><b>9.1</b> 单周期处理器</a></li>
+<li class="chapter" data-level="9.2" data-path="指令流水线.html"><a href="指令流水线.html#sec-pipeline-cpu"><i class="fa fa-check"></i><b>9.2</b> 流水线处理器</a></li>
+<li class="chapter" data-level="9.3" data-path="指令流水线.html"><a href="指令流水线.html#sec-hazard"><i class="fa fa-check"></i><b>9.3</b> 指令相关和流水线冲突</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="指令流水线.html"><a href="指令流水线.html#数据相关引发的冲突及解决办法"><i class="fa fa-check"></i><b>9.3.1</b> 数据相关引发的冲突及解决办法</a></li>
+<li class="chapter" data-level="9.3.2" data-path="指令流水线.html"><a href="指令流水线.html#sec-control-hazard"><i class="fa fa-check"></i><b>9.3.2</b> 控制相关引发冲突及解决方法</a></li>
+<li class="chapter" data-level="9.3.3" data-path="指令流水线.html"><a href="指令流水线.html#结构相关引发冲突及解决办法"><i class="fa fa-check"></i><b>9.3.3</b> 结构相关引发冲突及解决办法</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="指令流水线.html"><a href="指令流水线.html#sec-precise-exception"><i class="fa fa-check"></i><b>9.4</b> 流水线与异常处理</a></li>
+<li class="chapter" data-level="9.5" data-path="指令流水线.html"><a href="指令流水线.html#提高流水线效率的技术"><i class="fa fa-check"></i><b>9.5</b> 提高流水线效率的技术</a><ul>
+<li class="chapter" data-level="9.5.1" data-path="指令流水线.html"><a href="指令流水线.html#多发射数据通路"><i class="fa fa-check"></i><b>9.5.1</b> 多发射数据通路</a></li>
+<li class="chapter" data-level="9.5.2" data-path="指令流水线.html"><a href="指令流水线.html#sec-dynamic"><i class="fa fa-check"></i><b>9.5.2</b> 动态调度</a></li>
+<li class="chapter" data-level="9.5.3" data-path="指令流水线.html"><a href="指令流水线.html#sec-branch-predict"><i class="fa fa-check"></i><b>9.5.3</b> 转移预测</a></li>
+<li class="chapter" data-level="9.5.4" data-path="指令流水线.html"><a href="指令流水线.html#高速缓存"><i class="fa fa-check"></i><b>9.5.4</b> 高速缓存</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="指令流水线.html"><a href="指令流水线.html#本章小结-8"><i class="fa fa-check"></i><b>9.6</b> 本章小结</a></li>
+<li class="chapter" data-level="9.7" data-path="指令流水线.html"><a href="指令流水线.html#习题-8"><i class="fa fa-check"></i><b>9.7</b> 习题</a></li>
+</ul></li>
+<li class="part"><span><b>V 并行处理结构</b></span></li>
+<li class="chapter" data-level="10" data-path="并行编程基础.html"><a href="并行编程基础.html"><i class="fa fa-check"></i><b>10</b> 并行编程基础</a><ul>
+<li class="chapter" data-level="10.1" data-path="并行编程基础.html"><a href="并行编程基础.html#程序的并行行为"><i class="fa fa-check"></i><b>10.1</b> 程序的并行行为</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="并行编程基础.html"><a href="并行编程基础.html#指令级并行性"><i class="fa fa-check"></i><b>10.1.1</b> 指令级并行性</a></li>
+<li class="chapter" data-level="10.1.2" data-path="并行编程基础.html"><a href="并行编程基础.html#数据级并行性"><i class="fa fa-check"></i><b>10.1.2</b> 数据级并行性</a></li>
+<li class="chapter" data-level="10.1.3" data-path="并行编程基础.html"><a href="并行编程基础.html#任务级并行性"><i class="fa fa-check"></i><b>10.1.3</b> 任务级并行性</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="并行编程基础.html"><a href="并行编程基础.html#并行编程模型"><i class="fa fa-check"></i><b>10.2</b> 并行编程模型</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="并行编程基础.html"><a href="并行编程基础.html#单任务数据并行模型"><i class="fa fa-check"></i><b>10.2.1</b> 单任务数据并行模型</a></li>
+<li class="chapter" data-level="10.2.2" data-path="并行编程基础.html"><a href="并行编程基础.html#多任务共享存储编程模型"><i class="fa fa-check"></i><b>10.2.2</b> 多任务共享存储编程模型</a></li>
+<li class="chapter" data-level="10.2.3" data-path="并行编程基础.html"><a href="并行编程基础.html#多任务消息传递编程模型"><i class="fa fa-check"></i><b>10.2.3</b> 多任务消息传递编程模型</a></li>
+<li class="chapter" data-level="10.2.4" data-path="并行编程基础.html"><a href="并行编程基础.html#共享存储与消息传递编程模型的编程复杂度"><i class="fa fa-check"></i><b>10.2.4</b> 共享存储与消息传递编程模型的编程复杂度</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="并行编程基础.html"><a href="并行编程基础.html#典型并行编程环境"><i class="fa fa-check"></i><b>10.3</b> 典型并行编程环境</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="并行编程基础.html"><a href="并行编程基础.html#数据并行simd编程"><i class="fa fa-check"></i><b>10.3.1</b> 数据并行SIMD编程</a></li>
+<li class="chapter" data-level="10.3.2" data-path="并行编程基础.html"><a href="并行编程基础.html#posix编程标准"><i class="fa fa-check"></i><b>10.3.2</b> POSIX编程标准</a></li>
+<li class="chapter" data-level="10.3.3" data-path="并行编程基础.html"><a href="并行编程基础.html#openmp标准"><i class="fa fa-check"></i><b>10.3.3</b> OpenMP标准</a></li>
+<li class="chapter" data-level="10.3.4" data-path="并行编程基础.html"><a href="并行编程基础.html#消息传递编程接口"><i class="fa fa-check"></i><b>10.3.4</b> 消息传递编程接口</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="并行编程基础.html"><a href="并行编程基础.html#习题-9"><i class="fa fa-check"></i><b>10.4</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="多核处理结构.html"><a href="多核处理结构.html"><i class="fa fa-check"></i><b>11</b> 多核处理结构</a><ul>
+<li class="chapter" data-level="11.1" data-path="多核处理结构.html"><a href="多核处理结构.html#多核处理器的发展演化"><i class="fa fa-check"></i><b>11.1</b> 多核处理器的发展演化</a></li>
+<li class="chapter" data-level="11.2" data-path="多核处理结构.html"><a href="多核处理结构.html#多核处理器的访存结构"><i class="fa fa-check"></i><b>11.2</b> 多核处理器的访存结构</a><ul>
+<li class="chapter" data-level="11.2.1" data-path="多核处理结构.html"><a href="多核处理结构.html#通用多核处理器的片上cache结构"><i class="fa fa-check"></i><b>11.2.1</b> 通用多核处理器的片上Cache结构</a></li>
+<li class="chapter" data-level="11.2.2" data-path="多核处理结构.html"><a href="多核处理结构.html#存储一致性模型"><i class="fa fa-check"></i><b>11.2.2</b> 存储一致性模型</a></li>
+<li class="chapter" data-level="11.2.3" data-path="多核处理结构.html"><a href="多核处理结构.html#cache一致性协议"><i class="fa fa-check"></i><b>11.2.3</b> Cache一致性协议</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="多核处理结构.html"><a href="多核处理结构.html#多核处理器的互连结构"><i class="fa fa-check"></i><b>11.3</b> 多核处理器的互连结构</a></li>
+<li class="chapter" data-level="11.4" data-path="多核处理结构.html"><a href="多核处理结构.html#多核处理器的同步机制"><i class="fa fa-check"></i><b>11.4</b> 多核处理器的同步机制</a></li>
+<li class="chapter" data-level="11.5" data-path="多核处理结构.html"><a href="多核处理结构.html#典型多核处理器"><i class="fa fa-check"></i><b>11.5</b> 典型多核处理器</a><ul>
+<li class="chapter" data-level="11.5.1" data-path="多核处理结构.html"><a href="多核处理结构.html#龙芯3a5000处理器"><i class="fa fa-check"></i><b>11.5.1</b> 龙芯3A5000处理器</a></li>
+<li class="chapter" data-level="11.5.2" data-path="多核处理结构.html"><a href="多核处理结构.html#intel-sandybridge架构"><i class="fa fa-check"></i><b>11.5.2</b> Intel SandyBridge架构</a></li>
+<li class="chapter" data-level="11.5.3" data-path="多核处理结构.html"><a href="多核处理结构.html#ibm-cell处理器"><i class="fa fa-check"></i><b>11.5.3</b> IBM Cell处理器</a></li>
+<li class="chapter" data-level="11.5.4" data-path="多核处理结构.html"><a href="多核处理结构.html#nvidia-gpu"><i class="fa fa-check"></i><b>11.5.4</b> NVIDIA GPU</a></li>
+<li class="chapter" data-level="11.5.5" data-path="多核处理结构.html"><a href="多核处理结构.html#tile64处理器"><i class="fa fa-check"></i><b>11.5.5</b> Tile64处理器</a></li>
+</ul></li>
+<li class="chapter" data-level="11.6" data-path="多核处理结构.html"><a href="多核处理结构.html#本章小结-9"><i class="fa fa-check"></i><b>11.6</b> 本章小结</a></li>
+<li class="chapter" data-level="11.7" data-path="多核处理结构.html"><a href="多核处理结构.html#习题-10"><i class="fa fa-check"></i><b>11.7</b> 习题</a></li>
+</ul></li>
+<li class="part"><span><b>VI 系统性能评价与分析</b></span></li>
+<li class="chapter" data-level="12" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html"><i class="fa fa-check"></i><b>12</b> 计算机系统性能评价与性能分析</a><ul>
+<li class="chapter" data-level="12.1" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#计算机系统性能评价指标"><i class="fa fa-check"></i><b>12.1</b> 计算机系统性能评价指标</a><ul>
+<li class="chapter" data-level="12.1.1" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#计算机系统常用性能评价指标"><i class="fa fa-check"></i><b>12.1.1</b> 计算机系统常用性能评价指标</a></li>
+<li class="chapter" data-level="12.1.2" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#并行系统的性能评价指标"><i class="fa fa-check"></i><b>12.1.2</b> 并行系统的性能评价指标</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#测试程序集"><i class="fa fa-check"></i><b>12.2</b> 测试程序集</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#微基准测试程序"><i class="fa fa-check"></i><b>12.2.1</b> 微基准测试程序</a></li>
+<li class="chapter" data-level="12.2.2" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#spec-cpu基准测试程序"><i class="fa fa-check"></i><b>12.2.2</b> SPEC CPU基准测试程序</a></li>
+<li class="chapter" data-level="12.2.3" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#并行系统基准测试程序"><i class="fa fa-check"></i><b>12.2.3</b> 并行系统基准测试程序</a></li>
+<li class="chapter" data-level="12.2.4" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#其他常见的基准测试程序集"><i class="fa fa-check"></i><b>12.2.4</b> 其他常见的基准测试程序集</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#性能分析方法"><i class="fa fa-check"></i><b>12.3</b> 性能分析方法</a><ul>
+<li class="chapter" data-level="12.3.1" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#分析建模的方法"><i class="fa fa-check"></i><b>12.3.1</b> 分析建模的方法</a></li>
+<li class="chapter" data-level="12.3.2" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#模拟建模的方法和模拟器"><i class="fa fa-check"></i><b>12.3.2</b> 模拟建模的方法和模拟器</a></li>
+<li class="chapter" data-level="12.3.3" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#性能测量的方法"><i class="fa fa-check"></i><b>12.3.3</b> 性能测量的方法</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#性能测试和分析实例"><i class="fa fa-check"></i><b>12.4</b> 性能测试和分析实例</a><ul>
+<li class="chapter" data-level="12.4.1" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#spec-cpu基准测试程序的分值对比"><i class="fa fa-check"></i><b>12.4.1</b> SPEC CPU基准测试程序的分值对比</a></li>
+<li class="chapter" data-level="12.4.2" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#微结构相关统计数据"><i class="fa fa-check"></i><b>12.4.2</b> 微结构相关统计数据</a></li>
+<li class="chapter" data-level="12.4.3" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#基础性能参数"><i class="fa fa-check"></i><b>12.4.3</b> 基础性能参数</a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#本章小结-10"><i class="fa fa-check"></i><b>12.5</b> 本章小结</a></li>
+<li class="chapter" data-level="12.6" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#习题-11"><i class="fa fa-check"></i><b>12.6</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="总结.html"><a href="总结.html"><i class="fa fa-check"></i>总结</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>参考文献</a></li>
+<li class="divider"></li>
+<li><a href="http://www.loongson.cn" target="blank">本书电子版由龙芯中科赞助提供</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">计算机体系结构基础</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="计算机启动过程分析" class="section level1">
+<h1><span class="header-section-number">第 7 章</span> 计算机启动过程分析</h1>
+<p>前面章节主要从计算机硬件的角度对构成计算机系统的各个主要部分进行了介绍。为了描述计算机硬件系统各部分之间的相互关系，本章将对计算机从开机到点亮屏幕，接收键盘输入，再到引导并启动整个操作系统的具体过程进行探讨。与本书其他章节一样，本章基于LoongArch架构进行介绍，具体则以龙芯3号处理器的启动过程为例。</p>
+<p>无论采用何种指令系统的处理器，复位后的第一条指令都会从一个预先定义的特定地址取回。处理器的执行就从这条指令开始。处理器的启动过程，实际上就是一个特定程序的执行过程。这个程序我们称之为固件，又称为BIOS（Basic Input Output System，基本输入输出系统）。对于LoongArch，处理器复位后的第一条指令将固定从地址0x1C000000的位置获取。这个地址需要对应一个能够给处理器核提供指令的设备，这个设备以前是各种ROM，现在通常是闪存（Flash）。从获取第一条指令开始，计算机系统的启动过程也就开始了。</p>
+<p>为了使计算机达到一个最终可控和可用的状态，在启动过程中，需要对包括处理器核、内存、外设等在内的各个部分分别进行初始化，再对必要的外设进行驱动管理。本章的后续内容将对这些具体工作进行讨论。</p>
+<div id="处理器核初始化" class="section level2">
+<h2><span class="header-section-number">7.1</span> 处理器核初始化</h2>
+<p>在讨论这个过程之前，先来定义什么叫作初始化。所谓初始化，实际上是将计算机内部的各种寄存器状态从不确定设置为确定，将一些模块状态从无序强制为有序的过程。简单来说，就是通过load/store指令或其他方法将指定寄存器或结构设置为特定数值。</p>
+<p>举例来说，在MIPS和LoongArch结构中，都只将0号寄存器的值强制规定为0，而其他的通用寄存器值是没有要求的。在处理器复位后开始运行的时候，这些寄存器的值可能是任意值。如果需要用到寄存器内容，就需要先对其进行赋值，将这个寄存器的内容设置为软件期望的值。这个赋值操作可以是加载立即数，也可以是对内存或者其他特定地址进行load操作，又可以是以其他已初始化的寄存器作为源操作数进行运算得到的结果。</p>
+<p>这个过程相对来说比较容易理解，因为是对软件上需要用到的单元进行初始化。而另一种情况看起来就相对隐蔽一些。例如，在现代处理器支持的猜测执行、预取等微结构特性中，可能会利用某些通用寄存器的值或者高速缓存的内容进行猜测。如果整个处理器的状态并没有完全可控，或许会猜测出一些极不合理的值，导致处理器微结构上执行出错而引发死机。这样就需要对一些必要的单元结构进行初始化，防止这种情况发生。</p>
+<p>举一个简单的例子。计算机系统中使用约定的ABI（Application Binary Interface，应用程序二进制接口）作为软件接口规范。LoongArch约定使用1号寄存器（＄r1）作为函数返回指针寄存器（ra，Return Address）。函数返回时，一般使用指令“jirl”。这条指令的格式为“jirl rd,rj,offset”，其中rj与offset表示跳转的目标地址，rd为计算得到的返回地址，为当前PC+4，用于函数调用返回。当不需要保存时，可以指定为＄r0，也就是0号寄存器。因此，函数返回时，一般可用“jirl ＄r0,＄r1,0”来实现。这样，一种可行的转移预测优化方法是在指令译码得到“jirl”指令时，立即使用＄r1作为跳转地址进行猜测取指，以加速后续的指令执行。</p>
+<p>如果程序中没有使用“jirl ＄r0,＄r1,0”，而是采用了诸如“jirl ＄r0,＄r2,0”这样的指令，就会导致这个猜测机制出错。而如果此时＄r1的寄存器是一个随机值，就有可能导致取指猜测错误，发出一个对非法地址的猜测请求。如果此时处理器没有对猜测访问通路进行控制或初始化，就可能会发生严重问题，例如猜测访问落入地址空洞而失去响应并导致死机等。</p>
+<p>为了防止这个问题，在处理器开始执行之后，一方面需要先对相关的寄存器内容进行初始化，设置为一个正常地址值，另一方面则需要对地址空间进行处理，防止出现一般情况下不可访问的地址空洞。这样即使发生了这种猜测访问，也可以得到响应，避免系统出错或死机。</p>
+<div id="sec-cpu-reset" class="section level3">
+<h3><span class="header-section-number">7.1.1</span> 处理器复位</h3>
+<p>处理器的第一条指令实际上是由复位信号控制的，但受限于各种其他因素，复位信号并没有对处理器内部的所有部分进行控制，例如TLB、Cache等复杂结构，而是只保证从取指部件到BIOS取指令的通路畅通。如果把CPU比作一个大房间，复位后的房间内部漆黑一片，大门（内存接口）、窗户（IO接口）都是关着的，只有微弱的灯光照亮了通向一扇小门（BIOS接口）的通路。</p>
+<p>在LoongArch架构下，处理器复位后工作在直接地址翻译模式下。该模式下的地址为虚实地址直接对应的关系，也就是不经TLB映射，也不经窗口映射。默认情况下，无论是取指访问还是数据访问，都是Uncache模式，也即不经缓存。这样即使硬件不对TLB、Cache两个结构进行初始化，处理器也能正常启动并通过软件在后续的执行中对这些结构进行初始化。尤其是早期的处理器设计由于对资源或时序的考虑，出于简化硬件设计的目标，将很多初始化工作交由软件进行。但现在大部分处理器在硬件上自动处理，从而减轻软件负担，缩短系统启动时间。例如，龙芯3A1000和龙芯3B1500都没有实现硬件初始化功能，只能通过软件对Cache进行初始化。本身Cache的初始化就需要运行在Uncache的空间上，执行效率低下，而且当Cache越来越大时，所需要的执行时间就越来越长。从龙芯3A2000开始，龙芯处理器也实现了TLB、各级Cache等结构的硬件初始化。硬件初始化的时机是在系统复位解除之后、取指访问开始之前，以此来缩短BIOS的启动时间。</p>
+<p>LoongArch处理器复位后的第一条指令将固定从地址0x1C000000的位置获取，这个过程是由处理器的执行指针寄存器被硬件复位为0x1C000000而决定的。</p>
+<p>对物理地址0x1C000000的取指请求，会被处理器内部预先设定好的片上互连网络路由至某个预先存放着启动程序的存储设备。从第一条指令开始，处理器核会依据软件的设计按序执行。</p>
+<p>以龙芯3A5000处理器为例，处理器得到的前几条指令通常如下。左框中为手工编写的代码，右框中为编译器编译生成的汇编代码。其中的stack、_gp为在代码其他地址所定义的标号，编译器编译时能够使用实际的地址对其进行替换。</p>
+<div class="cols">
+<div class="col width48">
+<pre><code>dli     t0, (0x7 &lt;&lt; 16)
+csrxchg zero, t0, 0x4
+dli     t0, 0x1c001000
+csrwr   t0, 0xc
+dli     t0, 0x1c001000
+csrwr   t0, 0x88
+dli     t0, (1 &lt;&lt; 2)
+csrxchg zero, t0, 0x0
+la      sp, stack
+
+
+la      gp, _gp
+
+
+
+</code></pre>
+</div>
+<div class="col width4">
+<pre><code></code></pre>
+</div>
+<div class="col width48">
+<pre><code>lu12i.w    $r12, 0x70
+csrxchg    $r0, $r12, 0x4
+lu12i.w    $r12, 0x1c001
+csrwr      $r12, 0xc
+lui12i.w   $r12, 0x1c001
+csrwr      $r12, 0x88
+ori        $r12, $r0, 0x4
+csrxchg    $r0, $r12, 0x0
+lu12i.w    $r3, 0x90400
+lu32i.d    $r3, 0
+lu52i.d    $r3, $r3, 0x900
+lu12i.w    $r2, 0x90020
+ori        $r2, $r2, 0x900
+lu32i.d    $r2, 0
+lu52i.d    $r2, $r2, 0x900</code></pre>
+</div>
+</div>
+<p>这几条指令对处理器核的中断处理相关寄存器进行了初始化，并对后续软件将使用的栈地址等进行了初始化。第一条csrxchg指令将例外配置寄存器（0x4偏移）中的比特18∶16设置为0，以将除TLB外的所有例外和中断入口设置为同一个（代码中的0x1C001000）。第一条csrwr指令将该例外入口地址（0xC号控制寄存器）设置为0x1C001000，第二条csrwr指令将TLB重填例外的入口地址（0x88号控制寄存器）也设置为0x1C001000。实际上BIOS并没有使用TLB地址映射，一旦出现了TLB重填例外，一定是使用的地址出现了错误。第二条csrxchg指令将模式信息寄存器（0x0号控制寄存器）中的比特2设置为0，以禁用所有的中断。可以看到，对于stack、_gp这些地址的装载所用的la指令，在经过编译器编译之后，最终产生了多条指令与之对应。其中lu12i.w用于将20位立即数符号扩展并装载到寄存器的比特63∶12，lu32i.d用于将20位立即数符号扩展并装载到寄存器的比特63∶32，lu52i.d用于将12位立即数装载到寄存器的比特63∶52，ori用于将12位立即数与寄存器的内容进行或操作。</p>
+<p>需要指出的是，处理器复位后先是通过频率为几十兆赫兹（MHz）以下的低速设备取指令，例如SPI或LPC等接口。一拍只能取出1比特（SPI）或4比特（LPC），而一条指令一般需要32比特。对于吉赫兹（GHz）的高性能处理器来说，几千拍才能执行一条指令，相当于在城市空荡荡的大街上只有一个人在行走，这时候的指令很“孤独”。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:boot-flow"></span>
+<img src="images/chapter7/boot_flow.png" alt="系统复位到操作系统启动的简要流程图" width="100%" />
+<p class="caption">
+图 7.1: 系统复位到操作系统启动的简要流程图
+</p>
+</div>
+<p>整个处理器由系统复位到操作系统启动的简要流程如图<a href="计算机启动过程分析.html#fig:boot-flow">7.1</a>所示。其中第一列为处理器核初始化过程，第二列为芯片核外部分初始化过程，第三列为设备初始化过程，第四列为内核加载过程，第五列为多核芯片中的从核（Slave Core）独有的启动过程。</p>
+</div>
+<div id="调试接口初始化" class="section level3">
+<h3><span class="header-section-number">7.1.2</span> 调试接口初始化</h3>
+<p>那么，在启动过程中优先初始化的是什么呢？首先是用于调试的接口部分。比如开机时听到的蜂鸣器响声，或者在一些主板上看到的数码管显示，都是最基本的调试用接口。对于龙芯3号处理器来说，最先初始化的结构是芯片内集成的串口控制器。串口控制器作为一个人机交互的界面，可以提供简单方便的调试手段，以此为基础，再进一步对计算机系统中其他更复杂的部分进行管理。</p>
+<p>对串口的初始化操作实际上是处理器对串口执行一连串约定好的IO操作。在X86结构下，IO地址空间与内存地址空间相互独立，IO操作与访存操作是通过不同的指令实现的。MIPS和LoongArch等结构并不显式区分IO和内存地址，而是采用全局编址，使用地址空间将IO和内存隐式分离，并通过地址空间或TLB映射对访问方式进行定序及缓存等的控制。只有理解IO与内存访问的区别，才能很好地理解计算机启动中的各种初始化过程。</p>
+<p>内存空间对应的是存储器，存储器不会发生存储内容的自行更新。也就是说，如果处理器核向存储单元A中写入了0x5a5a的数值，除非有其他的主控设备（例如其他的处理器核或是其他的设备DMA）对它也进行写入操作，否则这个0x5a5a的数值是不会发生变化的。</p>
+<p>IO空间一般对应的是控制寄存器或状态寄存器，是受IO设备的工作状态影响的。此时，写入的数据与读出的数据可能会不一致，而多次读出的数据也可能不一致，其读出数据是受具体设备状态影响的。例如，对串口的线路状态寄存器（寄存器偏移0x5）的读取在不同的情况下会产生不同的返回值。该寄存器定义如表<a href="计算机启动过程分析.html#tab:serial-status">7.1</a>所示。</p>
+<template id="c4d43edf-f059-4151-9b57-d9e72ce9b67d"><style>
+.tabwid table{
+  border-spacing:0px !important;
+  border-collapse:collapse;
+  line-height:1;
+  margin-left:auto;
+  margin-right:auto;
+  border-width: 0;
+  display: table;
+  margin-top: 1.275em;
+  margin-bottom: 1.275em;
+  border-color: transparent;
+}
+.tabwid_left table{
+  margin-left:0;
+}
+.tabwid_right table{
+  margin-right:0;
+}
+.tabwid td {
+    padding: 0;
+}
+.tabwid a {
+  text-decoration: none;
+}
+.tabwid thead {
+    background-color: transparent;
+}
+.tabwid tfoot {
+    background-color: transparent;
+}
+.tabwid table tr {
+background-color: transparent;
+}
+</style><div class="tabwid"><style>.cl-7be3b2d2{}.cl-7bdb7aae{font-family:'Noto Sans CJK SC';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-7bdb7ae0{font-family:'Noto Sans CJK SC';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-7bdb8ee0{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-7bdb8f08{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-7bdbe11a{width:33.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7bdbe142{width:33.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7bdbe14c{width:59.1pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7bdbe160{width:359.9pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7bdbe16a{width:33.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7bdbe174{width:59.1pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7bdbe17e{width:33.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7bdbe192{width:359.9pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7bdbe19c{width:33.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7bdbe1b0{width:59.1pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7bdbe1ba{width:359.9pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7bdbe1c4{width:33.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-7be3b2d2'>
+<caption class="Table Caption">
+<p><span id="tab:serial-status">表 7.1: </span>串口线路状态寄存器定义</p>
+</caption>
+<thead><tr style="overflow-wrap:break-word;"><td class="cl-7bdbe19c"><p class="cl-7bdb8ee0"><span class="cl-7bdb7aae">位域</span></p></td><td class="cl-7bdbe1b0"><p class="cl-7bdb8f08"><span class="cl-7bdb7aae">位域名称</span></p></td><td class="cl-7bdbe19c"><p class="cl-7bdb8ee0"><span class="cl-7bdb7aae">位宽</span></p></td><td class="cl-7bdbe1c4"><p class="cl-7bdb8f08"><span class="cl-7bdb7aae">访问</span></p></td><td class="cl-7bdbe1ba"><p class="cl-7bdb8f08"><span class="cl-7bdb7aae">描述</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-7bdbe11a"><p class="cl-7bdb8ee0"><span class="cl-7bdb7ae0">7</span></p></td><td class="cl-7bdbe14c"><p class="cl-7bdb8f08"><span class="cl-7bdb7ae0">ERROR</span></p></td><td class="cl-7bdbe11a"><p class="cl-7bdb8ee0"><span class="cl-7bdb7ae0">1</span></p></td><td class="cl-7bdbe142"><p class="cl-7bdb8f08"><span class="cl-7bdb7ae0">R</span></p></td><td class="cl-7bdbe160"><p class="cl-7bdb8f08"><span class="cl-7bdb7ae0">错误表示位
+<br>‘1’ – 至少有奇偶校验位错误，帧错误或打断中断的一个。
+<br>‘0’–没有错误</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7bdbe16a"><p class="cl-7bdb8ee0"><span class="cl-7bdb7ae0">6</span></p></td><td class="cl-7bdbe174"><p class="cl-7bdb8f08"><span class="cl-7bdb7ae0">TE</span></p></td><td class="cl-7bdbe16a"><p class="cl-7bdb8ee0"><span class="cl-7bdb7ae0">1</span></p></td><td class="cl-7bdbe17e"><p class="cl-7bdb8f08"><span class="cl-7bdb7ae0">R</span></p></td><td class="cl-7bdbe192"><p class="cl-7bdb8f08"><span class="cl-7bdb7ae0">传输为空表示位
+<br>‘1’ – 传输FIFO和传输移位寄存器都为空。给传输FIFO写数据时清零
+<br>‘0’–有数据</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7bdbe16a"><p class="cl-7bdb8ee0"><span class="cl-7bdb7ae0">5</span></p></td><td class="cl-7bdbe174"><p class="cl-7bdb8f08"><span class="cl-7bdb7ae0">TFE</span></p></td><td class="cl-7bdbe16a"><p class="cl-7bdb8ee0"><span class="cl-7bdb7ae0">1</span></p></td><td class="cl-7bdbe17e"><p class="cl-7bdb8f08"><span class="cl-7bdb7ae0">R</span></p></td><td class="cl-7bdbe192"><p class="cl-7bdb8f08"><span class="cl-7bdb7ae0">传输FIFO 位空表示位
+<br>‘1’ – 当前传输FIFO为空，给传输FIFO写数据时清零
+<br>‘0’–有数据</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7bdbe16a"><p class="cl-7bdb8ee0"><span class="cl-7bdb7ae0">4</span></p></td><td class="cl-7bdbe174"><p class="cl-7bdb8f08"><span class="cl-7bdb7ae0">BI</span></p></td><td class="cl-7bdbe16a"><p class="cl-7bdb8ee0"><span class="cl-7bdb7ae0">1</span></p></td><td class="cl-7bdbe17e"><p class="cl-7bdb8f08"><span class="cl-7bdb7ae0">R</span></p></td><td class="cl-7bdbe192"><p class="cl-7bdb8f08"><span class="cl-7bdb7ae0">打断中断表示位
+<br>‘1’ –接收到起始位＋数据＋奇偶位＋停止位都是0，即有打断中断
+<br>‘0’–没有打断</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7bdbe16a"><p class="cl-7bdb8ee0"><span class="cl-7bdb7ae0">3</span></p></td><td class="cl-7bdbe174"><p class="cl-7bdb8f08"><span class="cl-7bdb7ae0">FE</span></p></td><td class="cl-7bdbe16a"><p class="cl-7bdb8ee0"><span class="cl-7bdb7ae0">1</span></p></td><td class="cl-7bdbe17e"><p class="cl-7bdb8f08"><span class="cl-7bdb7ae0">R</span></p></td><td class="cl-7bdbe192"><p class="cl-7bdb8f08"><span class="cl-7bdb7ae0">帧错误表示位
+<br>‘1’ – 接收的数据没有停止位
+<br>‘0’–没有错误</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7bdbe16a"><p class="cl-7bdb8ee0"><span class="cl-7bdb7ae0">2</span></p></td><td class="cl-7bdbe174"><p class="cl-7bdb8f08"><span class="cl-7bdb7ae0">PE</span></p></td><td class="cl-7bdbe16a"><p class="cl-7bdb8ee0"><span class="cl-7bdb7ae0">1</span></p></td><td class="cl-7bdbe17e"><p class="cl-7bdb8f08"><span class="cl-7bdb7ae0">R</span></p></td><td class="cl-7bdbe192"><p class="cl-7bdb8f08"><span class="cl-7bdb7ae0">奇偶校验位错误表示位
+<br>‘1’ – 当前接收数据有奇偶错误
+<br>‘0’–没有奇偶错误</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7bdbe16a"><p class="cl-7bdb8ee0"><span class="cl-7bdb7ae0">1</span></p></td><td class="cl-7bdbe174"><p class="cl-7bdb8f08"><span class="cl-7bdb7ae0">OE</span></p></td><td class="cl-7bdbe16a"><p class="cl-7bdb8ee0"><span class="cl-7bdb7ae0">1</span></p></td><td class="cl-7bdbe17e"><p class="cl-7bdb8f08"><span class="cl-7bdb7ae0">R</span></p></td><td class="cl-7bdbe192"><p class="cl-7bdb8f08"><span class="cl-7bdb7ae0">数据溢出表示位
+<br>‘1’ – 有数据溢出
+<br>‘0’–无溢出</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7bdbe16a"><p class="cl-7bdb8ee0"><span class="cl-7bdb7ae0">0</span></p></td><td class="cl-7bdbe174"><p class="cl-7bdb8f08"><span class="cl-7bdb7ae0">DR</span></p></td><td class="cl-7bdbe16a"><p class="cl-7bdb8ee0"><span class="cl-7bdb7ae0">1</span></p></td><td class="cl-7bdbe17e"><p class="cl-7bdb8f08"><span class="cl-7bdb7ae0">R</span></p></td><td class="cl-7bdbe192"><p class="cl-7bdb8f08"><span class="cl-7bdb7ae0">接收数据有效表示位
+<br>‘0’ – 在FIFO中无数据
+<br>‘1’–在FIFO中有数据</span></p></td></tr></tbody></table></div></template>
+<div class="flextable-shadow-host" id="9c595101-f0f9-4b89-881a-5fb4dde265e6"></div>
+<script>
+var dest = document.getElementById("9c595101-f0f9-4b89-881a-5fb4dde265e6");
+var template = document.getElementById("c4d43edf-f059-4151-9b57-d9e72ce9b67d");
+var caption = template.content.querySelector("caption");
+if(caption) {
+  caption.style.cssText = "display:block;text-align:center;";
+  var newcapt = document.createElement("p");
+  newcapt.appendChild(caption)
+  dest.parentNode.insertBefore(newcapt, dest.previousSibling);
+}
+var fantome = dest.attachShadow({mode: 'open'});
+var templateContent = template.content;
+fantome.appendChild(templateContent);
+</script>
+
+<p>可以看到这个寄存器里的各个数据位都与当时的设备状态相关。例如当程序等待外部输入数据时，就需要查询这个寄存器的第0位，以确定是否收到数据，再从FIFO寄存器中读取实际的数据。在这个轮询的过程中，寄存器的第0位根据串口的工作状态由0变成1。</p>
+<p>更有意思的是，这个寄存器的某些位在读操作之后会产生自动清除的效果，例如第7位（错误表示位）在一次读操作之后会自动清零。</p>
+<p>从这个寄存器上可以看到IO访问与内存访问的一些区别。IO寄存器的行为与具体的设备紧密相关，每种IO设备都有各自不同的寄存器说明，需要按照其规定的访问方式进行读写，而不像内存可以进行随意的读写操作。</p>
+<p>前面提到，在LoongArch结构下，IO地址空间与内存地址空间统一编址，那么IO操作和内存操作的差异如何体现呢？处理器上运行的指令使用虚拟地址，虚拟地址通过地址映射规则与物理地址相关联。基本的虚拟地址属性首先区分为经缓存（Cache）与不经缓存（Uncache）两种。对于内存操作，现代高性能通用处理器都采用Cache方式进行访问，以提升访存性能。Cache在离处理器更近的位置上利用访存局部性原理进行缓存，以加速重复访存或者其他规则访存（通过预取等手段）。对于存储器来说，在Cache中进行缓存是没有问题的，因为存储器所存储的内容不会自行修改（但可能会被其他核或设备所修改，这个问题可以通过缓存一致性协议解决）。但是对于IO设备来说，因为其寄存器状态是随着工作状态的变化而变化的，如果缓存在Cache中，那么处理器核将无法得到状态的更新，所以一般情况下不能对IO地址空间进行Cache访问，需要使用Uncache访问。使用Uncache访问对IO进行操作还有另一个作用，就是可以严格控制读写的访问顺序，不会因为预取类的操作导致寄存器状态的丢失。例如前面提到的线路状态寄存器的第7位（ERROR），一旦被预取的读操作所访问就会自动清除，而这个预取操作本身有可能会因为错误执行而被流水线取消，这样就导致这个错误状态的丢失，无法被软件观察到。</p>
+<p>理解了IO操作与内存访问操作的区别，串口初始化的过程就显得非常简单。串口初始化程序仅仅是对串口的通信速率及一些控制方法进行设置，以使其很方便地通过一个串口交互主机进行字符的读写交互。</p>
+<p>串口初始化的汇编代码和说明如下。对于串口设备各个寄存器的具体含义，感兴趣的读者可以在相关处理器的用户手册上查找。</p>
+<pre><code>LEAF(initserial)
+    # 加载串口设备基地址
+    li      a0, GS3_UART_BASE
+    #线路控制寄存器，写入0x80（128）表示后续的寄存器访问为分频寄存器访问
+    li      t1, 128
+    sb.b    t1, a0, 3
+    # 配置串口波特率分频，当串口控制器输入频率为33MHz，将串口通讯速率设置在115200
+    # 时，分频方式为33,000,000 / 16 / 0x12 = 114583。 由于串口通信有固定的起始格式，
+    # 能够容忍传输两端一定的速率差异，只要将传输两端的速率保持在一定的范围之内就可
+    # 以保证传输的正确性
+    li      t1, 0x12
+    sb.b    t1, a0, 0
+    li       t1, 0x0
+    sb.b     t1, a0, 1
+    # 设置传输字符宽度为8，同时设置后续访问常规寄存器
+    li      t1, 3
+    sb.b    t1, a0, 3
+    # 不使用中断模式
+    li      t1, 0
+    sb.b    t1, a0, 1
+    li      t1, 71
+    sb      t1, a0, 2
+    jirl    ra
+    nop
+END(initserial)</code></pre>
+<p>这里有一个值得注意的地方，串口设备使用相同的地址映射了两套功能完全不同的寄存器，通过线路控制寄存器的最高位（就是串口寄存器中偏移为3的寄存器的最高位）进行切换。因为其中一套寄存器主要用于串口波特率的设置，只需要在初始化时进行访问，在正常工作状态下完全不用再次读写，所以能够将其访问地址与另一套正常工作用的寄存器相复用来节省地址空间。表<a href="计算机启动过程分析.html#tab:reg-multiplex">7.2</a>中是两组不同寄存器的定义。</p>
+<pre><code>## Warning: One or more parsing issues, see `problems()`
+## for details</code></pre>
+<template id="91bda1c5-ed83-4b69-a3f7-e699406ab074"><style>
+.tabwid table{
+  border-spacing:0px !important;
+  border-collapse:collapse;
+  line-height:1;
+  margin-left:auto;
+  margin-right:auto;
+  border-width: 0;
+  display: table;
+  margin-top: 1.275em;
+  margin-bottom: 1.275em;
+  border-color: transparent;
+}
+.tabwid_left table{
+  margin-left:0;
+}
+.tabwid_right table{
+  margin-right:0;
+}
+.tabwid td {
+    padding: 0;
+}
+.tabwid a {
+  text-decoration: none;
+}
+.tabwid thead {
+    background-color: transparent;
+}
+.tabwid tfoot {
+    background-color: transparent;
+}
+.tabwid table tr {
+background-color: transparent;
+}
+</style><div class="tabwid"><style>.cl-7c6097a2{}.cl-7c56ef18{font-family:'Noto Sans CJK SC';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-7c56ef4a{font-family:'Noto Sans CJK SC';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-7c571718{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-7c575a2a{width:194.4pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7c575a5c{width:43.2pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7c575a66{width:43.2pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7c575a7a{width:194.4pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-7c6097a2'>
+<caption class="Table Caption">
+<p><span id="tab:reg-multiplex">表 7.2: </span>串口的部分地址复用寄存器</p>
+</caption>
+<thead><tr style="overflow-wrap:break-word;"><td class="cl-7c575a66"><p class="cl-7c571718"><span class="cl-7c56ef18">偏移</span></p></td><td class="cl-7c575a7a"><p class="cl-7c571718"><span class="cl-7c56ef18">名称（初始化设置下，0x3[7] = 1）</span></p></td><td class="cl-7c575a7a"><p class="cl-7c571718"><span class="cl-7c56ef18">名称（工作模式下，0x3[7] = 0）</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-7c575a5c"><p class="cl-7c571718"><span class="cl-7c56ef4a">0x0</span></p></td><td class="cl-7c575a2a"><p class="cl-7c571718"><span class="cl-7c56ef4a">分频锁存器低位</span></p></td><td class="cl-7c575a2a"><p class="cl-7c571718"><span class="cl-7c56ef4a">数据寄存器</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7c575a66"><p class="cl-7c571718"><span class="cl-7c56ef4a">0x1</span></p></td><td class="cl-7c575a7a"><p class="cl-7c571718"><span class="cl-7c56ef4a">分频锁存器高位</span></p></td><td class="cl-7c575a7a"><p class="cl-7c571718"><span class="cl-7c56ef4a">中断使能寄存器</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7c575a66"><p class="cl-7c571718"><span class="cl-7c56ef4a">0x2</span></p></td><td class="cl-7c575a7a"><p class="cl-7c571718"><span class="cl-7c56ef4a"></span></p></td><td class="cl-7c575a7a"><p class="cl-7c571718"><span class="cl-7c56ef4a">中断标识寄存器</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7c575a66"><p class="cl-7c571718"><span class="cl-7c56ef4a">0x3</span></p></td><td class="cl-7c575a7a"><p class="cl-7c571718"><span class="cl-7c56ef4a">线路控制寄存器。</span><span class="cl-7c56ef4a"><br></span><span class="cl-7c56ef4a">其中比特7为分频控制访问使能。该位为1时可以访问表中</span><span class="cl-7c56ef4a">“</span><span class="cl-7c56ef4a">初始化设置</span><span class="cl-7c56ef4a">”</span><span class="cl-7c56ef4a">寄存器，为0时访问表中</span><span class="cl-7c56ef4a">“</span><span class="cl-7c56ef4a">工作模式</span><span class="cl-7c56ef4a">”</span><span class="cl-7c56ef4a">寄存器</span></p></td><td class="cl-7c575a7a"><p class="cl-7c571718"><span class="cl-7c56ef4a">线路控制寄存器。</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7c575a66"><p class="cl-7c571718"><span class="cl-7c56ef4a">其中比特7为分频控制访问使能。该位为1时可以访问表中</span><span class="cl-7c56ef4a">“</span><span class="cl-7c56ef4a">初始化设置</span><span class="cl-7c56ef4a">”</span><span class="cl-7c56ef4a">寄存器，为0时访问表中</span><span class="cl-7c56ef4a">“</span><span class="cl-7c56ef4a">工作模式</span><span class="cl-7c56ef4a">”</span><span class="cl-7c56ef4a">寄存器"</span></p></td><td  colspan="2"class="cl-7c575a7a"><p class="cl-7c571718"><span class="cl-7c56ef4a">NA</span></p></td></tr></tbody></table></div></template>
+<div class="flextable-shadow-host" id="66bf7b4b-f1aa-4474-936a-59621bcd555e"></div>
+<script>
+var dest = document.getElementById("66bf7b4b-f1aa-4474-936a-59621bcd555e");
+var template = document.getElementById("91bda1c5-ed83-4b69-a3f7-e699406ab074");
+var caption = template.content.querySelector("caption");
+if(caption) {
+  caption.style.cssText = "display:block;text-align:center;";
+  var newcapt = document.createElement("p");
+  newcapt.appendChild(caption)
+  dest.parentNode.insertBefore(newcapt, dest.previousSibling);
+}
+var fantome = dest.attachShadow({mode: 'open'});
+var templateContent = template.content;
+fantome.appendChild(templateContent);
+</script>
+
+<p>其中比特7为分频控制访问使能，该位为1时可以访问表中的“初始化设置”寄存器，为0时可以访问表中的“工作模式”寄存器</p>
+<p>在初始化时，代码中先将0x3偏移寄存器的最高位设置为1，以访问分频设置寄存器，按照与连接设备协商好的波特率和字符宽度，将初始化信息写入配置寄存器中。然后退出分频寄存器的访问模式，进入正常工作模式。</p>
+<p>在使用时，串口的对端是一个同样的串口，两个串口的发送端和接收端分别对连，通过双向的字符通信来实现被调试机的字符输出和字符输入功能。</p>
+<p>在正常工作模式下，当CPU需要通过串口对外发送和接收字符时执行的两个函数分别如下：</p>
+<pre><code>字符输出
+LEAF(tgt_putchar)
+    # 加载串口设备基地址
+    dli     a1, GS3_UART_BASE
+1:
+    # 读取线路状态寄存器中的发送FIFO空标志
+    ld.bu   a2, a1, 0x5
+    andi    a2, a2, 0x20
+
+    # FIFO非空时等待
+    beqz    a2, 1b
+    # 写入字符
+    st.b    a0, a1, 0
+    jirl    zero, ra, 0
+END(tgt_putchar)</code></pre>
+<pre><code>字符输入
+LEAF(tgt_getchar)
+    #加载串口设备基地址
+    dli     a0, GS3_UART_BASE
+1:
+    #读取线路状态寄存器中的接收FIFO有效标志
+    ld.bu   a1, a0, 0x5
+    andi    a1, a1, 0x1
+
+    #接收FIFO为空时等待
+    beqz    a1, 1b
+    #FIFO非空时将数据读出放在a0寄存器中返回
+    ld.b    a0, a0, 0
+    jirl    zero, ra, 0
+END(tgt_getchar)</code></pre>
+<p>可以看到，串口通过数据FIFO作为软件数据接口，并通过线路状态寄存器中的特定位来表示串口设备的工作状态。串口驱动函数通过观察状态确定是否能够进行数据的输入输出交互。</p>
+<p>对于字符输出，串口控制器实现的功能是将发送FIFO中的数据转换为协议的格式并按位通过tx引脚向外发送，再按照发送FIFO的空满状态设置对应的状态寄存器。对于字符输入，串口控制器实现的功能是将在rx引脚上收到的信号通过协议格式进行解析，将解析得到的字符写入接收FIFO，并按照接收FIFO的空满状态设置对应的状态寄存器。</p>
+<p>串口是一个功能非常简单的设备，通过硬件提供底层支持，软件进行配合驱动来实现整个字符输入输出功能。再上到应用层面，还需要更多的软件参与。例如，当通过上位机的minicom或其他的串口工具对被调试机进行字符输入时，我们看到自己输入的字符立即显示在minicom界面上，看起来就像是键盘输入给了minicom，minicom显示后通过串口进行发送，但其真正的过程却更为复杂：</p>
+<p>（1）用户在上位机的minicom界面中敲击键盘，输入字符A；</p>
+<p>（2）上位机的内核通过其键盘驱动获得字符A；</p>
+<p>（3）上位机的内核将字符A交给minicom进程；</p>
+<p>（4）minicom进程调用串口驱动发送字符A；</p>
+<p>（5）内核中的串口驱动将字符A通过串口发送给被调试机；</p>
+<p>（6）被调试机的软件发现串口接收FIFO状态非空并接收字符A；</p>
+<p>（7）被调试机将接收的字符A通过发送函数写入串口发送FIFO；</p>
+<p>（8）被调试机的串口将发送FIFO中的字符A发送给上位机；</p>
+<p>（9）上位机发现串口接收FIFO状态非空并接收字符A；</p>
+<p>（10）上位机将接收的字符A交给minicom进程，minicom将其显示在界面上。</p>
+<p>从CPU对串口的初始化过程可以看出，当Load与Store指令访问IO设备时，与访问内存“直来直去”的行为是完全不同的。</p>
+</div>
+<div id="tlb初始化" class="section level3">
+<h3><span class="header-section-number">7.1.3</span> TLB初始化</h3>
+<p>接下来对TLB进行初始化。TLB作为一个地址映射的管理模块，主要负责操作系统里用户进程地址空间的管理，用以支持多用户多任务并发。然而在处理器启动的过程中，处理器核处于特权态，整个BIOS都工作在统一的地址空间里，并不需要对用户地址空间进行过多干预。此时TLB的作用更多是地址转换，以映射更大的地址空间供程序使用。</p>
+<p>下面具体来看看TLB在这一过程中的作用。</p>
+<p>LoongArch结构采用了分段和分页两种不同的地址映射机制。分段机制将大段的地址空间与物理地址进行映射，具体的映射方法在BIOS下使用窗口机制进行配置，主要供系统软件使用。而分页机制通过TLB起作用，主要由操作系统管理，供用户程序使用。</p>
+<p>BIOS一般映射两段，其中0x90000000_00000000开始的地址空间被映射为经缓存的地址，0x80000000_00000000开始的地址空间被映射为不经缓存的地址。根据地址空间的转换规则，这两段转换为物理地址时直接抹除地址的高位，分别对应整个物理地址空间，仅仅在是否经过Cache缓存上有所区别。</p>
+<p>由于分段机制是通过不同的虚拟地址来映射全部的物理地址空间，并不适合用作用户程序的空间隔离和保护，也不适合需要更灵活地址空间映射方法的场合。这些场景下就需要利用TLB机制。早期的处理器或者比较简单的处理器中没有实现硬件初始化TLB的逻辑，在使用之前需要使用软件对TLB进行初始化。TLB的初始化主要是将全部表项初始化为无效项。</p>
+<p>初始化为无效项就是将TLB的每项逐一清空，以免程序中使用的地址被未初始化的TLB表项所错误映射。在没有硬件复位TLB逻辑的处理器里，启动时TLB里可能会包含一些残留的或者随机的内容，这部分内容可能会导致TLB映射空间的错误命中。因此在未实现硬件复位TLB的处理器中，需要对整个TLB进行初始化操作。</p>
+<p>可以利用正常的TLB表项写入指令，例如LoongArch中的TLBWR指令，通过一个循环将TLB中的表项一项一项地写为无效。也可以利用更高效的指令来将所有表项直接写为无效，例如LoongArch中的INVTLB 0指令。</p>
+<p>以下是使用TLBWR指令来进行TLB初始化的相关代码及相应说明。具体的TLB结构和原理可以参考第3章的介绍。通过下面这段代码可以看到，初始化的过程实际上就是将整个TLB表项清0的过程。需要特别说明的是，在LoongArch架构中，实际上并不需要使用这样的指令来完成这个过程，而可以直接使用INVTLB 0,＄r0,＄r0这一条指令，由硬件完成类似的循环清空操作。</p>
+<pre><code>LEAF(CPU_TLBClear)
+    # 循环变量
+    dli     a3, 0
+    # 设置页大小为4K，31位为1表示无效
+    dli     a0, (1&lt;&lt;31) | (12 &lt;&lt; 24)
+    # TLB表项数
+    li      a2, 64
+1:
+    # 将表项写入编号为0x10的TLBIDX寄存器
+    csrwr   a0, 0x10
+    增加TLBIDX中的索引号
+    addi.d  a0, 1
+    # 增加循环变量
+    addi.d  a3, 1
+    # 写TLB表项
+    tlbwr
+    bne     a3, a2, 1b
+    jirl    zero, ra, 0
+END(CPU_TLBClear)</code></pre>
+<p>前面提到过，越来越多的处理器已经实现了在芯片复位时由硬件进行TLB表项的初始化，这样在BIOS代码中可以不用再使用类似的软件初始化流程，比如从龙芯3A2000开始的桌面或服务器用的处理器就不再需要软件初始化，这能够减少所需的启动时间。但是在一些嵌入式类的处理器上还是需要上面提到的软件初始化流程。</p>
+</div>
+<div id="cache初始化" class="section level3">
+<h3><span class="header-section-number">7.1.4</span> Cache初始化</h3>
+<p>Cache在处理器内的作用在前面的章节已经介绍过了，Cache的引入能够减小处理器执行和访存延迟之间的性能差异，即缓解存储墙的问题。引入Cache结构，能够大大提高处理器的整体运行效率。</p>
+<p>在系统复位之后，Cache同样也处于一个未经初始化的状态，也就是说Cache里面可能包含残留的或随机的数据，如果不经初始化，对于Cache空间的访问也可能会导致错误的命中。</p>
+<p>不同的处理器可能包含不同的Cache层次，各级Cache的容量也可能各不相同。例如龙芯3A1000处理器包含私有一级指令Cache、私有一级数据Cache和共享二级Cache两个层次，而龙芯3A5000处理器则包含私有一级指令Cache、私有一级数据Cache、私有二级替换Cache和共享三级Cache三个层次。在进行Cache初始化时要考虑所有需要的层次。</p>
+<p>Cache的组织结构主要包含标签（Tag）和数据（Data）两个部分，Tag用于保存Cache块状态、Cache块地址等信息，Data则保存数据内容。大多数情况下对Cache的初始化就是对Tag的初始化，只要将其中的Cache块状态设置为无效，其他部分的随机数据就不会产生影响。</p>
+<p>龙芯3A5000中一级数据Cache的组织如图<a href="计算机启动过程分析.html#fig:l1-dcache">7.2</a>所示。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:l1-dcache"></span>
+<img src="images/chapter7/l1_dcache.png" alt="龙芯3A5000的一级数据Cache组织" width="100%" />
+<p class="caption">
+图 7.2: 龙芯3A5000的一级数据Cache组织
+</p>
+</div>
+<p>其中Tag上的cs位为0表示该Cache块为无效状态，对该Cache的初始化操作就是使用Cache指令将Tag写为0。对应的ECC位，会在Tag写入时自动生成，不需要专门处理。</p>
+<p>不同Cache层次中Tag的组织结构可能会略有区别，初始化程序也会稍有不同，在此不一一列举。以下仅以龙芯3A处理器内部的一级指令Cache的初始化为例进行说明。</p>
+<pre><code>LEAF(godson2_cache_init)
+    # 64KB/4路，为Index的实际数量
+    li      a2, (1&lt;&lt;14)
+    # a0表示当前的index
+    li       a0, 0x0
+1:
+    # 对4路Cache分别进行写TAG操作
+    CACOP   0x0, a0, 0x0
+    CACOP   0x0, a0, 0x1
+    CACOP   0x0, a0, 0x2
+    CACOP   0x0, a0, 0x3
+    # 每个cache行大小为64字节
+    addi.d  a0, a0, 0x40
+    bne      a0, a2, 1b
+    jirl    ra
+    nop
+END(godson2_cache_init)</code></pre>
+<p>CACOP为LoongArch指令集中定义的Cache指令，其定义为CACOP code,rj,si12。其中code表示操作的对象和操作的类型，0x0表示对一级指令Cache进行初始化操作（StoreTag），将指定Cache行的Tag写为0。rj用于表示指定的Cache行，si12在这个操作中表示不同的Cache路数。</p>
+<p>需要特别指出的是，上述程序中的Cache指令为特权态指令，只有运行在特权态时，处理器才可以执行Cache指令，这样可以避免用户程序利用某些Cache指令对Cache结构进行破坏。处理器在复位完成之后就处于最高特权态中，完成各项初始化。在加载操作系统执行之后，在操作系统中才会使用用户态对程序的运行加以限制，以防止不同用户进程之间的相互干扰。</p>
+<p>在完成所有Cache层次的初始化之后，就可以跳转到Cache空间开始执行。此后程序的运行效率将会有数十倍的提升。以取指为例，在使用Cache访问之前，需要以指令宽度为单位（龙芯3A5000中为4字节）进行取指操作，在使用Cache访问之后，取指将以Cache行为单位（龙芯3A5000中为64字节），大大提升了取指的效率。</p>
+<p>既然Cache的使用能够大大提高程序运行效率，为什么不首先对Cache进行初始化呢？在跳转到Cache空间执行后，程序运行效率大大提升，随之而来的是处理器内各种复杂猜测机制的使用。例如对取数操作的猜测执行可能导致一个落在TLB映射空间的访存操作，如果此时TLB尚未完成初始化，就可能会导致TLB异常的发生，而TLB异常处理机制的缺失又会导致系统的崩溃。</p>
+<p>实际上，在跳转到Cache空间执行前，BIOS中还会对一些处理器具体实现中的细节或功能进行初始化，在保证执行基本安全的状态下，才会跳转到Cache空间执行。这些初始化包括对各种地址窗口的设置、对一些特殊寄存器的初始化等。感兴趣的读者可以自行阅读相关的BIOS实现代码，在此不再赘述。</p>
+<p>得益于摩尔定律的持续生效，片上Cache的容量越来越大，由此却带来了初始化时间越来越长的问题。但同时，在拥有越来越多可用片上资源的情况下，TLB、Cache等结构的初始化也更多地开始使用硬件自动完成，软件需要在这些初始化上耗费的时间也越来越少。例如从龙芯3A2000开始，片上集成的TLB、各级Cache都已经在复位之后由专用的复位电路进行初始化，不再由低效的Uncache程序来完成，大大缩短了系统启动时间。</p>
+<p>完成Cache空间的初始化并跳转至Cache空间运行也标志着处理器的核心部分，或者说体系结构相关的初始化部分已经基本完成。接下来将对计算机系统所使用的内存总线和IO总线等外围部分进行初始化。</p>
+<p>如果把CPU比作一个大房间，完成对TLB、Cache等的初始化后，房间内已是灯火通明，但大门（内存接口）和窗口（IO接口）还是紧闭的。</p>
+</div>
+</div>
+<div id="总线接口初始化" class="section level2">
+<h2><span class="header-section-number">7.2</span> 总线接口初始化</h2>
+<p>在使用同一款处理器的不同系统上，TLB、Cache这些体系结构紧密相关的芯片组成部分的初始化方法是基本一致的，不需要进行特别的改动。与此不同的是，内存和IO设备的具体组成在计算机系统中则可以比较灵活地搭配，不同系统间的差异可能会比较大。</p>
+<p>在计算机系统硬件设计中，内存可以使用不同的总线类型，例如DDR、DDR2、DDR3或者DDR4。在主板上使用时，也可以灵活地增加或者减小内存容量，甚至改变内存条种类，例如将UDIMM（Unbuffered DIMM，非缓冲型内存模组）改为RDIMM（Registered DIMM，寄存型内存模组）。</p>
+<p>IO总线的情况也比较类似，在计算机系统硬件设计中可以搭配不同的桥片，也可以在主板上根据实际情况改变某些接口上连接的设备，例如增加PCIE网卡或者增加硬盘数量等。</p>
+<p>这些不同的配置情况要求在计算机系统启动时能够进行有针对性的初始化。前面提到过，初始化就是将某些寄存器通过load/store指令或是其他的方法设置为期望数值的过程。以下代码段就是龙芯3A处理器上对内存控制器进行初始化的程序片段。</p>
+<pre><code>ddr2_config:
+  # a2、s0为调用该程序时传入的参数，它们的和表示初始化参数在Flash中的基地址
+  add.d  a2, a2, s0
+  # t1用于表示内存参数的个数
+  dli    t1, DDR_PARAM_NUM
+  # t8为调用该程序时传入的参数，用于表示内存控制器的寄存器基地址
+  addi.d  v0, t8, 0x0
+1:
+  # 可以看到，初始化的过程就是从Flash中取数再写入内存控制器中寄存器的过程
+  ld.d    a1, 0x0(a2)
+  st.d     a1, 0x0(v0)
+  addi.d  t1, t1, -1
+  addi.d  a2, a2, 0x8
+  addi.d  v0, v0, 0x8
+  bnez    t1, 1b</code></pre>
+<div id="内存初始化" class="section level3">
+<h3><span class="header-section-number">7.2.1</span> 内存初始化</h3>
+<p>内存是计算机系统的重要组成部分。冯·诺依曼结构下，计算机运行时的程序和数据都被保存在内存之中。相对复位时用于取指的ROM或是Flash器件来说，内存的读写性能大幅提高。以SPI接口的Flash为例，即使不考虑传输效率的损失，当SPI接口运行在50MHz时，其带宽最高也只有50MHz×2b=100Mb/s，而一个DDR3-1600的接口在内存宽度为64位时，其带宽可以达到最高1600MHz×64b=102400Mb/s。由此可见内存的使用对系统性能的重要程度。</p>
+<p>越来越多的处理器已经集成内存控制器。因为内存的使用和设置与外接内存芯片的种类、配置相关，所以在计算机系统启动的过程中需要先获取内存的配置信息，再根据该信息对内存控制器进行配置。正如上一章对内存总线的介绍，这些信息包含内存条的类型、容量、行列地址数、运行频率等。</p>
+<p>获取这些信息是程序通过I2C总线对外部内存条的SPD芯片进行读操作来完成的。SPD芯片也相当于一个Flash芯片，专门用于存储内存条的配置信息。</p>
+<p>如上面的程序片段所示，对内存的初始化实际上就是根据内存配置信息对内存控制器进行初始化。与Cache初始化类似的是，内存初始化并不涉及其存储的初始数据。与Cache又有所不同的地方在于，Cache有专门的硬件控制位来表示Cache块是否有效，而内存却并不需要这样的硬件控制位。内存的使用完全是由软件控制的，软件知道其访问的每一个地址是否存在有效的数据。而Cache是一个硬件加速部件，大多数情况下软件并不需要真正知道而且也不希望知道其存在，Cache的硬件控制位正是为了掩盖内存访问延迟，保证访存操作的正确性。因此内存初始化仅仅需要对内存控制器进行初始化，并通过控制器对内存的状态进行初始化。在初始化完成以后，如果是休眠唤醒，程序可以使用内存中已有的数据来恢复系统状态；如果是普通开机，则程序可以完全不关心内存数据而随意使用。</p>
+<p>内存控制器的初始化包括两个相对独立的部分，一是根据内存的行地址、列地址等对内存地址映射进行配置，二是根据协议对内存信号调整的支持方式对内存读写信号相关的寄存器进行训练，以保证传输时的数据完整性。</p>
+<p>在内存初始化完成后，可能还需要根据内存的大小对系统可用的物理地址空间进行相应的调整和设置。</p>
+</div>
+<div id="io总线初始化" class="section level3">
+<h3><span class="header-section-number">7.2.2</span> IO总线初始化</h3>
+<p>前面提到，受外围桥片搭配及可插拔设备变化的影响，系统每次启动时需要对IO总线进行有针对性的初始化操作。</p>
+<p>对于龙芯3A5000处理器，对应的IO总线主要为HyperTransport总线。在IO总线初始化时，做了三件事：一是对IO总线的访问地址空间进行设置，划定设备的配置访问空间、IO访问空间和Memory访问空间；二是对IO设备的DMA访问空间进行规定，对处理器能接收的DMA内存地址进行设置；三是对HyperTransport总线进行升频，从复位时1.0模式的200MHz升频到了3.0模式的2.0GHz，并将总线宽度由8位升至16位。</p>
+<p>完成了这三件事，对IO总线的初始化就基本完成了。接着还将设置一些和桥片特性相关的配置寄存器以使桥片正常工作。</p>
+<p>IO总线初始化的主要目的是将非通用的软硬件设置都预先配置好，将与桥片特性相关的部分与后面的标准驱动加载程序完全分离出来，以保证接下来的通用设备管理程序的运行。</p>
+<p>如果把CPU比作一个大房间，至此，房间灯火通明，门窗均已打开，但门窗外还是漆黑一片。</p>
+<p>完成内存与IO总线初始化后，BIOS中基本硬件初始化的功能目标已经达到。但是为了加载操作系统，还必须对系统中的一些设备进行配置和驱动。操作系统所需要的存储空间比较大，通常无法保存在Flash这样的存储设备中，一般保存在硬盘中并在使用时加载，或者也可以通过网口、U盘等设备进行加载。为此就需要使用更复杂的软件协议来驱动系统中的各种设备，以达到加载操作系统的最终目标。</p>
+<p>在此之前的程序运行基本没有使用内存进行存数取数操作，程序也是存放在Flash空间之中的，只不过是经过了Cache的缓存加速。在此之后的程序使用的复杂数据结构和算法才会对内存进行大量的读写操作。为了进一步提高程序的运行效率，先将程序复制到内存中，再跳转到内存空间开始执行。</p>
+<p>此后，还需要对处理器的运行频率进行测量，对BIOS中的计时函数进行校准，以便在需要等待的位置进行精确的时间同步。在经过对各种软件结构必要的初始化之后，BIOS将开始一个比较通用的设备枚举和驱动加载的过程。下一节将对这个标准的设备枚举和加载过程进行专门的说明。</p>
+</div>
+</div>
+<div id="设备的探测及驱动加载" class="section level2">
+<h2><span class="header-section-number">7.3</span> 设备的探测及驱动加载</h2>
+<p>PCI总线于20世纪90年代初提出，发展到现在已经逐渐被PCIE等高速接口所替代，但其软件配置结构却基本没有发生变化，包括HyperTransport、PCIE等新一代高速总线都兼容PCI协议的软件框架。</p>
+<p>在PCI软件框架下，系统可以灵活地支持设备的自动识别和驱动的自动加载。下面对PCI的软件框架进行简要说明。</p>
+<p>在PCI协议下，IO的系统空间分为三个部分：配置空间、IO空间和Memory空间。配置空间存储设备的基本信息，主要用于设备的探测和发现；IO空间比较小，用于少量的设备寄存器访问；Memory空间可映射的区域较大，可以方便地映射设备所需要的大块物理地址空间。</p>
+<p>对于X86架构来说，IO空间的访问需要使用IO指令操作，Memory空间的访问则需要使用通常的load/store指令操作。而对于MIPS或者LoongArch这种把设备和存储空间统一编址的体系结构来说，IO空间和Memory空间没有太大区别，都使用load/store指令操作。IO空间与Memory空间的区别仅在于所在的地址段不同，对于某些设备的Memory访问，可能可以采用更长的单次访问请求。例如对于IO空间，可以限制为仅能使用字访问，而对于Memory空间，则可以任意地使用字、双字甚至更长的Cache行访问。</p>
+<p>配置空间的地址偏移由总线号、设备号、功能号和寄存器号的组合得到，通过对这个组合的全部枚举，可以很方便地检测到系统中存在的所有设备。</p>
+<p>以HyperTransport总线为例，配置访问分为两种类型，即Type0和Type1，其区别在于基地址和对总线号的支持。如图<a href="计算机启动过程分析.html#fig:bus-access-type">7.3</a>所示，只需要在图中总线号、设备号、功能号的位置上进行枚举，就可以遍历整个总线，检测到哪个地址上存在设备。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:bus-access-type"></span>
+<img src="images/chapter7/bus_access_type.png" alt="HyperTransport总线配置访问的两种类型" width="100%" />
+<p class="caption">
+图 7.3: HyperTransport总线配置访问的两种类型
+</p>
+</div>
+<p>通过这种方式，即使在某次上电前总线上的设备发生了变化，也可以在这个枚举的过程中被探测到。而每个设备都拥有唯一的识别号，即图<a href="计算机启动过程分析.html#fig:config-reg">7.4</a>中的设备号和厂商号，通过加载这些识别号对应的驱动，就完成了设备的自动识别和驱动的自动加载。</p>
+<p>图<a href="计算机启动过程分析.html#fig:config-reg">7.4</a>为标准的设备配置空间寄存器分布。对于所有设备，这个空间的分布都是一致的，以保证PCI协议对其进行统一的检索。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:config-reg"></span>
+<img src="images/chapter7/config_reg.png" alt="标准的设备配置空间寄存器分布" width="100%" />
+<p class="caption">
+图 7.4: 标准的设备配置空间寄存器分布
+</p>
+</div>
+<p>图<a href="计算机启动过程分析.html#fig:config-reg">7.4</a>中的厂商识别号（Vendor ID）与设备识别号（Device ID）的组合是唯一的，由专门的组织进行管理。每一个提供PCI设备的厂商都应该拥有唯一的厂商识别号，以在设备枚举时正确地找到其对应的驱动程序。例如英特尔的厂商识别号为0x8086，龙芯的厂商识别号为0x0014。设备识别号对于每一个设备提供商的设备来说应该是唯一的。这两个识别号的组合就可以在系统中唯一地指明正确的驱动程序。</p>
+<p>除了通过厂商识别号与设备识别号对设备进行识别并加载驱动程序之外，还可以通过设备配置空间寄存器中的类别代码（Class Code）对一些通用的设备进行识别，并加载通用驱动。例如USB接口所使用的OHCI（Open Host Controller Interface，用于USB2.0 Full Speed或其他接口）、EHCI（Enhanced Host Controller Interface，用于USB2.0 High Speed）、XHCI（eXtensible Host Controller Interface，用于USB3.0），SATA接口所使用的AHCI（Advance Host Controller Interface，用于SATA接口）等。这一类通用接口控制器符合OHCI、EHCI、XHCI或AHCI规范所规定的标准接口定义和操作方法，类似于处理器的指令集定义，只要符合相应的规范，即使真实的设备不同，也能够运行标准的驱动程序。</p>
+<p>所谓驱动程序就是一组函数，包含用于初始化设备、关闭设备或是使用设备的各种相关操作。还是以最简单的串口设备为例，如果在设备枚举时找到了一个PCI串口设备，它的驱动程序里面可能包含哪些函数呢？首先是初始化函数，在找到设备后，首先执行一次初始化函数，以使设备到达可用状态。然后是发送数据函数和接收数据函数。在Linux内核中，系统通过调用读写函数接口实现真正的设备操作。在发送数据函数和接收数据函数中，需要将设备发送数据和接收数据的方法与读写函数的接口相配合，这样在系统调用串口写函数时，能够通过串口发送数据，调用串口读函数时，能够得到串口接收到的数据。此外还有中断处理函数，当串口中断发生时，让中断能够进入正确的处理函数，通过读取正确的中断状态寄存器，找到中断发生的原因，再进行对应的处理。</p>
+<p>当然，为了实现所有设备的共同工作，还需要其他PCI协议特性的支持。</p>
+<p>首先就是对于设备所需IO空间和Memory空间的灵活设置。从图<a href="计算机启动过程分析.html#fig:config-reg">7.4</a>可以看到，在配置空间中，并没有设备本身功能上所使用的寄存器。这些寄存器实际上是由可配置的IO空间或Memory空间来索引的。</p>
+<p>图<a href="计算机启动过程分析.html#fig:config-reg">7.4</a>的配置空间中存在6组独立的基址寄存器（Base Address Registers，简称BAR）。这些BAR一方面用于告诉软件该设备所需要的地址空间类型及其大小，另一方面用于接收软件给其配置的基地址。</p>
+<p>BAR的寄存器定义如图<a href="计算机启动过程分析.html#fig:bar-reg">7.5</a>所示，其最低位表示该BAR是IO空间还是Memory空间。BAR中间有一部分只读位为0，正是这些0的个数表示该BAR所映射空间的大小，也就是说BAR所映射的空间为2的幂次方大小。BAR的高位是可写位，用来存储软件设置的基地址。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:bar-reg"></span>
+<img src="images/chapter7/bar_reg.png" alt="BAR的寄存器定义" width="100%" />
+<p class="caption">
+图 7.5: BAR的寄存器定义
+</p>
+</div>
+<p>在这种情况下，对一个BAR的基地址配置方式首先是确定BAR所映射空间的大小，再分配一个合适的空间，给其高位基地址赋值。确定BAR空间大小的方法也很巧妙，只要给这个寄存器先写入全1的值，再读出来观察0的个数即可得到。</p>
+<p>对PCI设备的探测和驱动加载是一个递归调用过程，大致算法如下：</p>
+<p>1）将初始总线号、初始设备号、初始功能号设为0。</p>
+<p>2）使用当前的总线号、设备号、功能号组成一个配置空间地址，这个地址的构成如图<a href="计算机启动过程分析.html#fig:bus-access-type">7.3</a>所示，使用该地址，访问其0号寄存器，检查其设备号。</p>
+<p>3）如果读出全1或全0，表示无设备。</p>
+<p>4）如果该设备为有效设备，检查每个BAR所需的空间大小，并收集相关信息。</p>
+<p>5）检测其是否为一个多功能设备，如果是则将功能号加1再重复扫描，执行第2步。</p>
+<p>6）如果该设备为桥设备，则给该桥配置一个新的总线号，再使用该总线号，从设备号0、功能号0开始递归调用，执行第2步。</p>
+<p>7）如果设备号非31，则设备号加1，继续执行第2步；如果设备号为31，且总线号为0，表示扫描结束，如果总线号非0，则退回上一层递归调用。</p>
+<p>通过这个递归调用，就可以得到整个PCI总线上的所有设备及其所需要的所有空间信息。有了这些信息，就可以使用排序的方法对所有的空间从大到小进行分配。最后，利用分配的基地址和设备的ID信息，加载相应的驱动就能够正常使用该设备。</p>
+<p>下面是从龙芯3A处理器PCI初始化代码中抽取出的程序片段。通过这个片段，可以比较清楚地看到整个软件处理过程。</p>
+<pre><code>void _pci_businit(int init)
+{
+    ……
+
+    /* 这里的pci_roots用于表示系统中有多少个根节点，通常的计算机系统中都为1 */
+    for (i=0,pb=pci_head;i&lt;pci_roots;i++,pb=pb-&gt;next) {
+        _pci_scan_dev(pb, i, 0, init);
+    }
+    ……
+
+    /* 对地址窗口等进行配置 */
+    _setup_pcibuses(init);
+}
+
+static void _pci_scan_dev(struct pci_pdevice *dev, int bus, int device, int initialise)
+{
+    /* 对本级总线，扫描所有32个设备位置，判断是否存在设备 */
+    for (;device&lt;32; device++) {
+        _pci_query_dev(dev,bus,device,initialize);
+    }
+}
+
+static void _pci_query_dev(struct pci_device *dev, int bus, int device, int initialise)
+{
+    ……
+    misc = _pci_conf_read(tag, PCI_BHLC_REG);
+    /* 检测是否为多功能设备 */
+    if(PCI_HDRTYPE_MULTIFN(misc)){
+        for(function=0;function&lt;8;function++){
+            tag = _pci_make_tag(bus,device,function);
+            id  = _pci_conf_read(tag, PCI_ID_REG);
+            if(id==0 || id==0xFFFFFFFF){
+                continue;
+            }
+            _pci_query_dev_func(dev,tag,initialise);
+        }
+    } else {
+        _pci_query_dev_func(dev,tag,initialise);
+    }
+}
+
+void _pci_query_dev_func(struct pci_device *dev, pcitag tag, int initialise)
+{
+    ……
+    /* 读取配置头上的设备类别 */
+    class = _pci_conf_read(tag, PCI_CLASS_REG);
+    /* 读取配置头上的厂商ID和设备ID */
+    id    = _pci_conf_read(tag, PCI_ID_REG);
+    ……
+    /* 如果是桥设备，需要递归处理下级总线 */
+    if(PCI_ISCLASS(class,PCI_CLASS_BRIDGE,PCI_SUBCLASS_BRIDGE_PCI)){
+        /* 开始递归调用 */
+        ……
+        pd-&gt;bridge.pribus_num = bus;
+        pd-&gt;bridge.secbus_num = ++_pci_nbus;
+        ……
+        /* 收集整个下级总线所需要的资源信息 */
+        _pci_scan_dev(pd, pd-&gt;bridge.secbus_num, 0, initialise);
+        ……
+        /*收集下级总线mem/IO空间信息*/
+    } else {
+        ……
+        /*收集本设备mem/IO空间信息*/
+    }
+}</code></pre>
+<p>假设Memory空间的起始地址为0x40000000，在设备扫描过程中发现了USB控制器、显示控制器和网络控制器，三个设备对于Memory空间的需求如表<a href="计算机启动过程分析.html#tab:space-requirement">7.3</a>所示。</p>
+<template id="e075ee63-ca88-43c1-9c54-2c23d25fa673"><style>
+.tabwid table{
+  border-spacing:0px !important;
+  border-collapse:collapse;
+  line-height:1;
+  margin-left:auto;
+  margin-right:auto;
+  border-width: 0;
+  display: table;
+  margin-top: 1.275em;
+  margin-bottom: 1.275em;
+  border-color: transparent;
+}
+.tabwid_left table{
+  margin-left:0;
+}
+.tabwid_right table{
+  margin-right:0;
+}
+.tabwid td {
+    padding: 0;
+}
+.tabwid a {
+  text-decoration: none;
+}
+.tabwid thead {
+    background-color: transparent;
+}
+.tabwid tfoot {
+    background-color: transparent;
+}
+.tabwid table tr {
+background-color: transparent;
+}
+</style><div class="tabwid"><style>.cl-7c93dc2a{}.cl-7c8aa2c2{font-family:'Noto Sans CJK SC';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-7c8aa2f4{font-family:'Noto Sans CJK SC';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-7c8abe6a{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-7c8abe92{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-7c8b051e{width:52.5pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7c8b0546{width:62.9pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7c8b0550{width:58.6pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7c8b0564{width:40.3pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7c8b056e{width:62.9pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7c8b0582{width:52.5pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7c8b058c{width:40.3pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7c8b0596{width:58.6pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7c8b05aa{width:62.9pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7c8b05b4{width:52.5pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7c8b05be{width:40.3pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7c8b05c8{width:58.6pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7c8b05d2{width:52.5pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7c8b05dc{width:62.9pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7c8b05e6{width:58.6pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7c8b05f0{width:40.3pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-7c93dc2a'>
+<caption class="Table Caption">
+<p><span id="tab:space-requirement">表 7.3: </span>三个设备的空间需求</p>
+</caption>
+<thead><tr style="overflow-wrap:break-word;"><td class="cl-7c8b05f0"><p class="cl-7c8abe6a"><span class="cl-7c8aa2c2">设备号</span></p></td><td class="cl-7c8b05dc"><p class="cl-7c8abe92"><span class="cl-7c8aa2c2">名称</span></p></td><td class="cl-7c8b05d2"><p class="cl-7c8abe6a"><span class="cl-7c8aa2c2">BAR号</span></p></td><td class="cl-7c8b05e6"><p class="cl-7c8abe92"><span class="cl-7c8aa2c2">大小</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-7c8b0564"><p class="cl-7c8abe6a"><span class="cl-7c8aa2f4">1</span></p></td><td class="cl-7c8b0546"><p class="cl-7c8abe92"><span class="cl-7c8aa2f4">USB控制器</span></p></td><td class="cl-7c8b051e"><p class="cl-7c8abe6a"><span class="cl-7c8aa2f4">0</span></p></td><td class="cl-7c8b0550"><p class="cl-7c8abe92"><span class="cl-7c8aa2f4">4KB</span></p></td></tr><tr style="overflow-wrap:break-word;"><td  rowspan="2"class="cl-7c8b058c"><p class="cl-7c8abe6a"><span class="cl-7c8aa2f4">2</span></p></td><td  rowspan="2"class="cl-7c8b056e"><p class="cl-7c8abe92"><span class="cl-7c8aa2f4">显示控制器</span></p></td><td class="cl-7c8b0582"><p class="cl-7c8abe6a"><span class="cl-7c8aa2f4">0</span></p></td><td class="cl-7c8b0596"><p class="cl-7c8abe92"><span class="cl-7c8aa2f4">128MB</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7c8b05b4"><p class="cl-7c8abe6a"><span class="cl-7c8aa2f4">1</span></p></td><td class="cl-7c8b05c8"><p class="cl-7c8abe92"><span class="cl-7c8aa2f4">64KB</span></p></td></tr><tr style="overflow-wrap:break-word;"><td  rowspan="2"class="cl-7c8b058c"><p class="cl-7c8abe6a"><span class="cl-7c8aa2f4">3</span></p></td><td  rowspan="2"class="cl-7c8b056e"><p class="cl-7c8abe92"><span class="cl-7c8aa2f4">网络控制器</span></p></td><td class="cl-7c8b0582"><p class="cl-7c8abe6a"><span class="cl-7c8aa2f4">0</span></p></td><td class="cl-7c8b0596"><p class="cl-7c8abe92"><span class="cl-7c8aa2f4">4KB</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7c8b05b4"><p class="cl-7c8abe6a"><span class="cl-7c8aa2f4">1</span></p></td><td class="cl-7c8b05c8"><p class="cl-7c8abe92"><span class="cl-7c8aa2f4">16KB</span></p></td></tr></tbody></table></div></template>
+<div class="flextable-shadow-host" id="1bcdb2d6-7286-4685-8a90-40b247607c3c"></div>
+<script>
+var dest = document.getElementById("1bcdb2d6-7286-4685-8a90-40b247607c3c");
+var template = document.getElementById("e075ee63-ca88-43c1-9c54-2c23d25fa673");
+var caption = template.content.querySelector("caption");
+if(caption) {
+  caption.style.cssText = "display:block;text-align:center;";
+  var newcapt = document.createElement("p");
+  newcapt.appendChild(caption)
+  dest.parentNode.insertBefore(newcapt, dest.previousSibling);
+}
+var fantome = dest.attachShadow({mode: 'open'});
+var templateContent = template.content;
+fantome.appendChild(templateContent);
+</script>
+
+<p>在得到以上信息后，软件对各个设备的空间需求进行排序，并依次从Memory空间的起始地址开始分配，最终得到的设备地址空间分布如表<a href="计算机启动过程分析.html#tab:space-allocation">7.4</a>所示。</p>
+<template id="fb5aaf99-b383-4d0e-84cc-6659667f3f96"><style>
+.tabwid table{
+  border-spacing:0px !important;
+  border-collapse:collapse;
+  line-height:1;
+  margin-left:auto;
+  margin-right:auto;
+  border-width: 0;
+  display: table;
+  margin-top: 1.275em;
+  margin-bottom: 1.275em;
+  border-color: transparent;
+}
+.tabwid_left table{
+  margin-left:0;
+}
+.tabwid_right table{
+  margin-right:0;
+}
+.tabwid td {
+    padding: 0;
+}
+.tabwid a {
+  text-decoration: none;
+}
+.tabwid thead {
+    background-color: transparent;
+}
+.tabwid tfoot {
+    background-color: transparent;
+}
+.tabwid table tr {
+background-color: transparent;
+}
+</style><div class="tabwid"><style>.cl-7cc1e1d8{}.cl-7cb97750{font-family:'Noto Sans CJK SC';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-7cb97782{font-family:'Noto Sans CJK SC';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-7cb98ec0{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-7cb98ee8{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-7cb9db00{width:52.5pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7cb9db28{width:58.6pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7cb9db32{width:40.3pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7cb9db46{width:62.9pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7cb9db50{width:88pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7cb9db5a{width:90pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7cb9db6e{width:52.5pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7cb9db78{width:90pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7cb9db82{width:58.6pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7cb9db8c{width:40.3pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7cb9db96{width:62.9pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7cb9dbaa{width:88pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7cb9dbb4{width:52.5pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7cb9dbbe{width:58.6pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7cb9dbc8{width:90pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7cb9dbdc{width:40.3pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7cb9dbe6{width:62.9pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7cb9dbf0{width:88pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7cb9dc04{width:52.5pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7cb9dc0e{width:62.9pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7cb9dc18{width:40.3pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7cb9dc22{width:90pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7cb9dc36{width:88pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7cb9dc40{width:58.6pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-7cc1e1d8'>
+<caption class="Table Caption">
+<p><span id="tab:space-allocation">表 7.4: </span>三个设备的地址空间分布</p>
+</caption>
+<thead><tr style="overflow-wrap:break-word;"><td class="cl-7cb9dc18"><p class="cl-7cb98ec0"><span class="cl-7cb97750">设备号</span></p></td><td class="cl-7cb9dc0e"><p class="cl-7cb98ee8"><span class="cl-7cb97750">名称</span></p></td><td class="cl-7cb9dc04"><p class="cl-7cb98ec0"><span class="cl-7cb97750">BAR号</span></p></td><td class="cl-7cb9dc40"><p class="cl-7cb98ee8"><span class="cl-7cb97750">大小</span></p></td><td class="cl-7cb9dc22"><p class="cl-7cb98ee8"><span class="cl-7cb97750">起始地址</span></p></td><td class="cl-7cb9dc36"><p class="cl-7cb98ee8"><span class="cl-7cb97750">结束地址</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-7cb9db32"><p class="cl-7cb98ec0"><span class="cl-7cb97782">1</span></p></td><td class="cl-7cb9db46"><p class="cl-7cb98ee8"><span class="cl-7cb97782">USB控制器</span></p></td><td class="cl-7cb9db00"><p class="cl-7cb98ec0"><span class="cl-7cb97782">0</span></p></td><td class="cl-7cb9db28"><p class="cl-7cb98ee8"><span class="cl-7cb97782">4KB</span></p></td><td class="cl-7cb9db5a"><p class="cl-7cb98ee8"><span class="cl-7cb97782">0x48015000</span></p></td><td class="cl-7cb9db50"><p class="cl-7cb98ee8"><span class="cl-7cb97782">0x48015FFF</span></p></td></tr><tr style="overflow-wrap:break-word;"><td  rowspan="2"class="cl-7cb9db8c"><p class="cl-7cb98ec0"><span class="cl-7cb97782">2</span></p></td><td  rowspan="2"class="cl-7cb9db96"><p class="cl-7cb98ee8"><span class="cl-7cb97782">显示控制器</span></p></td><td class="cl-7cb9db6e"><p class="cl-7cb98ec0"><span class="cl-7cb97782">0</span></p></td><td class="cl-7cb9db82"><p class="cl-7cb98ee8"><span class="cl-7cb97782">128MB</span></p></td><td class="cl-7cb9db78"><p class="cl-7cb98ee8"><span class="cl-7cb97782">0x40000000</span></p></td><td class="cl-7cb9dbaa"><p class="cl-7cb98ee8"><span class="cl-7cb97782">0x47FFFFFF</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7cb9dbb4"><p class="cl-7cb98ec0"><span class="cl-7cb97782">1</span></p></td><td class="cl-7cb9dbbe"><p class="cl-7cb98ee8"><span class="cl-7cb97782">64KB</span></p></td><td class="cl-7cb9dbc8"><p class="cl-7cb98ee8"><span class="cl-7cb97782">0x48000000</span></p></td><td class="cl-7cb9dbf0"><p class="cl-7cb98ee8"><span class="cl-7cb97782">0x4800FFFF</span></p></td></tr><tr style="overflow-wrap:break-word;"><td  rowspan="2"class="cl-7cb9db8c"><p class="cl-7cb98ec0"><span class="cl-7cb97782">3</span></p></td><td  rowspan="2"class="cl-7cb9db96"><p class="cl-7cb98ee8"><span class="cl-7cb97782">网络控制器</span></p></td><td class="cl-7cb9db6e"><p class="cl-7cb98ec0"><span class="cl-7cb97782">0</span></p></td><td class="cl-7cb9db82"><p class="cl-7cb98ee8"><span class="cl-7cb97782">4KB</span></p></td><td class="cl-7cb9db78"><p class="cl-7cb98ee8"><span class="cl-7cb97782">0x48014000</span></p></td><td class="cl-7cb9dbaa"><p class="cl-7cb98ee8"><span class="cl-7cb97782">0x48014FFF</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7cb9dbb4"><p class="cl-7cb98ec0"><span class="cl-7cb97782">1</span></p></td><td class="cl-7cb9dbbe"><p class="cl-7cb98ee8"><span class="cl-7cb97782">16KB</span></p></td><td class="cl-7cb9dbc8"><p class="cl-7cb98ee8"><span class="cl-7cb97782">0x48010000</span></p></td><td class="cl-7cb9dbf0"><p class="cl-7cb98ee8"><span class="cl-7cb97782">0x48013FFF</span></p></td></tr></tbody></table></div></template>
+<div class="flextable-shadow-host" id="3457c884-3317-407f-a7ec-7985c582c46a"></div>
+<script>
+var dest = document.getElementById("3457c884-3317-407f-a7ec-7985c582c46a");
+var template = document.getElementById("fb5aaf99-b383-4d0e-84cc-6659667f3f96");
+var caption = template.content.querySelector("caption");
+if(caption) {
+  caption.style.cssText = "display:block;text-align:center;";
+  var newcapt = document.createElement("p");
+  newcapt.appendChild(caption)
+  dest.parentNode.insertBefore(newcapt, dest.previousSibling);
+}
+var fantome = dest.attachShadow({mode: 'open'});
+var templateContent = template.content;
+fantome.appendChild(templateContent);
+</script>
+
+<p>经过这样的设备探测和驱动加载过程，可以将键盘、显卡、硬盘或者网卡等设备驱动起来，在这些设备上加载预存的操作系统，就完成了整个系统的正常启动。</p>
+<p>如果把CPU比作一个大房间，至此，房间内灯火通明，门窗均已打开，门窗外四通八达。CPU及相关硬件处于就绪状态。</p>
+</div>
+<div id="多核启动过程" class="section level2">
+<h2><span class="header-section-number">7.4</span> 多核启动过程</h2>
+<p>上面几节主要讨论了从处理器核初始化、总线初始化、外设初始化到操作系统加载的启动过程。启动过程中多处理器核间的相互配合将在本节进行讨论。</p>
+<p>实现不同处理器核之间相互同步与通信的一种手段是核间中断与通信信箱机制。在龙芯3号处理器中，为每个处理器核实现了一组核间通信寄存器，包括一组中断寄存器和一组信箱寄存器。这组核间通信寄存器也属于IO寄存器的一种。实际上，信箱寄存器完全可以通过在内存中分配一块地址空间实现，这样CPU访问延迟更短。而专门使用寄存器实现的信箱寄存器更多是为了在内存还没有初始化前就让不同的核间能够有效通信。</p>
+<div id="初始化时的多核协同" class="section level3">
+<h3><span class="header-section-number">7.4.1</span> 初始化时的多核协同</h3>
+<p>在BIOS启动过程中，为了简化处理流程，实际上并没有用到中断寄存器，对于各种外设也没有使用中断机制，都是依靠处理器的轮询来实现与其他设备的协同工作。</p>
+<p>为了简化多核计算机系统的启动过程，我们将多核处理器中的一个核定为主核，其他核定为从核。主核除了对本处理器核进行初始化之外，还要负责对各种总线及外设进行初始化；而从核只需要对本处理器核的私有部件进行初始化，之后在启动过程中就可以保持空闲状态，直至进入操作系统再由主核进行调度。</p>
+<p>从核需要初始化的工作包括哪些部分呢？首先是从核私有的部分。所谓私有，就是其他处理器核无法直接操纵的部件，例如核内的私有寄存器、TLB、私有Cache等，这些器件只能由每个核自己进行初始化而无法由其他核代为进行。其次还有为了加速整个启动过程，由主核分配给从核做的工作，例如当共享Cache的初始化操作非常耗时的时候，可以将整个共享Cache分为多个部分，由不同的核负责某一块共享Cache的初始化，通过并行处理的方式进行加速。</p>
+<p>主核的启动过程与前三节介绍的内容基本是一致的。但在一些重要的节点上则需要与从核进行同步与通信，或者说通知从核系统已经到达了某种状态。为了实现这种通知机制，可以将信箱寄存器中不同的位定义为不同的含义，一旦主核完成了某些初始化阶段，就可以给信箱寄存器写入相应的值。例如将信箱寄存器的第0位定义为“串口初始化完成”标志，第1位定义为“共享Cache初始化完成”标志，第2位定义为“内存初始化完成”标志。</p>
+<p>在主核完成串口的初始化后，可以向自己的信箱寄存器写入0x1。从核在第一次使用串口之前需要查询主核的信箱寄存器，如果第0位为0，则等待并轮询，如果非0，则表示串口已经初始化完成，可以使用。</p>
+<p>在主核完成了共享Cache的初始化后，向自已的信箱寄存器写入0x3。而从核在初始化自己的私有Cache之后，还不能直接跳转到Cache空间执行，必须等待信号，以确信主核已将全部的共享Cache初始化完成，然后再开始Cache执行才是安全的。</p>
+<p>在主核完成了内存初始化后，其他核才能使用内存进行数据的读写操作。那么从核在第一次用到内存之前就必须等待表示内存初始化完成的0x7标志。</p>
+</div>
+<div id="操作系统启动时的多核唤醒" class="section level3">
+<h3><span class="header-section-number">7.4.2</span> 操作系统启动时的多核唤醒</h3>
+<p>当从核完成了自身的初始化之后，如果没有其他工作需要进行，就会跳转到一段等待唤醒的程序。在这个等待程序里，从核定时查询自己的信箱寄存器。如果为0，则表示没有得到唤醒标志。如果非0，则表示主核开始唤醒从核，此时从核还需要从其他几个信箱寄存器里得到唤醒程序的目标地址，以及执行时的参数。然后从核将跳转到目标地址开始执行。</p>
+<p>以下为龙芯3A5000的BIOS中从核等待唤醒的相关代码。</p>
+<pre><code>slave_main:
+        # NODE0_CORE0_BUF0为0号核的信箱寄存器地址，其他核的信箱寄存器地址与之
+        # 相关，在此根据主核的核号，确定主核信箱寄存器的实际地址
+        dli     t2, NODE0_CORE0_BUF0
+        dli     t3, BOOTCORE_ID
+        sll.d    t3, 8
+        or      t2, t2, t3
+
+        # 等待主核写入初始化完成标志
+wait_scache_allover:
+        ld.w      t4, t2, FN_OFF
+        dli     t5, SYSTEM_INIT_OK
+        bne     t4, t5, wait_scache_allover
+
+        # 对每个核各自的信箱寄存器进行初始化
+        bl     clear_mailbox
+
+waitforinit:
+        li      a0, 0x1000
+idle1000:
+        addiu   a0, -1
+        bnez    a0, idle1000
+
+        # t2为各个核的信箱寄存器地址，轮询等待
+        # 通过读取低32位确定是否写入，再读取64位得到完整地址
+        ld.w      t1, t2, FN_OFF
+        beqz    t1, waitforinit
+
+        # 从信箱寄存器中的其他地方取回相关启动参数
+        ld.d    t1, t2, FN_OFF
+        ld.d    sp, t2, SP_OFF
+        ld.d    gp, t2, GP_OFF
+        ld.d    a1, t2, A1_OFF
+
+        # 转至唤醒地址，开始执行
+        move    ra, t1
+        jirl    zero, ra, 0x0</code></pre>
+<p>在操作系统中，主核在各种数据结构准备好的情况下就可以开始依次唤醒每一个从核。唤醒的过程也是串行的，主核唤醒从核之后也会进入一个等待过程，直到从核执行完毕再通知主核，再唤醒一个新的从核，如此往复，直至系统中所有的处理器核都被唤醒并交由操作系统管理。</p>
+</div>
+<div id="核间同步与通信" class="section level3">
+<h3><span class="header-section-number">7.4.3</span> 核间同步与通信</h3>
+<p>操作系统启动之前，利用信箱寄存器进行了大量的多核同步与通信操作，但在操作系统启动之后，除了休眠唤醒一类的操作，却基本不会用到信箱寄存器。Linux内核中，只需要使用核间中断就可以完成各种核间的同步与通信操作。</p>
+<p>核间中断也是利用一组IO寄存器实现的。通过将目标核的核间中断寄存器置1来产生一个中断信号，使目标核进入中断处理。中断处理的具体内容则是通过内存进行交互的。内核中为每个核维护一个队列（内存中的一个数据结构），当一个核想要中断其他核时，它将需要处理的内容加入目标核的这个队列，然后再向目标核发出核间中断（设置其核间中断寄存器）。当目标核被中断之后，开始处理其核间通信队列，如果其间还收到了更多的核间中断请求，也会一并处理。</p>
+<p>为什么Linux内核中的核间中断处理不通过信箱寄存器进行呢？首先信箱寄存器只有一组，也就是说如果通过信箱寄存器发送通信消息，在这个消息没被处理之前，是不能有其他核再向其发出新的核间中断的。这样无疑会导致核间中断发送方的阻塞。另外，核间中断寄存器实际上是IO寄存器，前面我们提到，对于IO寄存器的访问是通过不经缓存这种严格访问序的方式进行的，相比于Cache访问方式，不经缓存读写效率极其低下，本身延迟开销很大，还可能会导致流水线的停顿。因此在实际的内核中，只有类似休眠唤醒这种特定的同步操作才会利用信箱寄存器进行，其他的同步通信操作则是利用内存传递信息，并利用核间中断寄存器产生中断的方式共同完成的。</p>
+</div>
+</div>
+<div id="本章小结-6" class="section level2">
+<h2><span class="header-section-number">7.5</span> 本章小结</h2>
+<p>本章的目的是使读者了解最基本的计算机软硬件协同。计算机系统从上电复位到引导操作系统启动的基本过程是从处理器核的初始化开始，经过芯片的各种接口总线的初始化，再到各种外围设备的初始化，最终完成了操作系统引导的准备工作。整个启动过程的大部分工作是串行的。对于多核处理器，启动过程中还会穿插着一些多核协同的处理工作。</p>
+<p>系统启动的整个过程中，计算机系统在软件的控制下由无序到有序，所有的组成部分都由程序管理，按照程序的执行发挥各自的功能，最终将系统的控制权安全交到操作系统手中，完成整个启动过程。</p>
+</div>
+<div id="习题-6" class="section level2">
+<h2><span class="header-section-number">7.6</span> 习题</h2>
+<ol style="list-style-type: decimal">
+<li>什么情况下需要对Cache进行初始化？LoongArch中Cache初始化过程中所使用的Cache指令Index Store Tag的作用是什么？</li>
+<li>Cache初始化和内存初始化的目的有什么不同？系统如何识别内存的更换？</li>
+<li>从HyperTransport配置地址空间的划分上，计算整个系统能够支持的总线数量、设备数量及功能数量。</li>
+<li>根据PCI地址空间命中方法及BAR的配置方式，给出地址空间命中公式。</li>
+<li>多核唤醒时，如果采用核间中断方式，从核的唤醒流程是怎样的？</li>
+<li>在一台Linux机器上，通过“lspci -v”命令查看该机器的设备列表，并列举其中三个设备的总线号、设备号和功能号，通过其地址空间信息写出该设备BAR的实际内容。</li>
+</ol>
+<div style="page-break-after: always;"></div>
+
+</div>
+</div>
+
+
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="计算机总线接口技术.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="运算器设计.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/clipboard.min.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/foxsen/archbase-book/edit/master/17-boot.Rmd",
+"text": "编辑"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown.pdf", "bookdown.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
