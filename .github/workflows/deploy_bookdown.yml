@@ -15,7 +15,7 @@ jobs:
       - uses: r-lib/actions/setup-pandoc@v1
       - uses: r-lib/actions/setup-renv@v1
         with:
-          cache-version:1
+          cache-version: 1
       - name: Render Book
         run: make
       - uses: actions/upload-artifact@v1
