@@ -1,0 +1,43 @@
+工具名称,测量
+,延迟
+lat_connect,TCP连接
+lat_ctx,通过基于管道的“hot-potato”令牌传递的上下文切换
+lat_dram_page,DRAM页开启
+lat_fcntl,fcntl文件锁“hot-potato”令牌传递
+lat_fifo,FIFO“hot-potato”令牌传递
+lat_fs,文件创建和删除
+lat_http,http GET请求延迟
+lat_mem_rd,内存读的延迟
+lat_mmap,mmap操作
+lat_ops,"对于基本数据类型（int, int64, float, double）的基本操作（xor, add, mul, div, mod）延迟"
+lat_pagefault,缺页处理
+lat_pipe,pipe“hot-potato”令牌传递
+lat_pmake,完成N个并行任务的时间
+lat_proc,过程调用的开销以及使用fork， fork和execve，fork和sh进程创建进程的时间
+lat_rand,随机数产生器
+lat_rpc,SUN RPC远程过程调用
+lat_select,select操作
+lat_sem,信号量“hot-potato”令牌传递
+lat_sig,信号处理的安装和处理
+lat_syscall,open、close、getppid、write、stat、fstat系统调用
+lat_tcp,TCP“hot-potato”令牌传递
+lat_udp,UDP“hot-potato”令牌传递
+lat_unix,UNIX“hot-potato”令牌传递
+lat_unix_connect,UNXI socket连接
+lat_usleep,usleep、select、pselect、nanosleep、settimer时间分辨率
+,带宽
+bw_file_rd,文件的读带宽
+bw_mem,内存的读带宽、写带宽和拷贝带宽
+bw_mmap_rd,从mmap的内存中读取带宽
+bw_pipe,pipe，进程间数据拷贝
+bw_tcp,TCP进程间数据拷贝
+bw_unix,UNIX进程通信带宽
+,其他
+disk,磁盘的带宽和寻道时间
+line,Cache行的大小
+lmdd,dd程序
+mhz,CPU时钟频率
+par_mem,内存子系统的并发性（ILP）
+par_ops,基本操作的并发性（ILP）
+stream,STREAM
+tlb,TLB大小

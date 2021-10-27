@@ -1,0 +1,43 @@
+处理器,寄存器,运算部件
+Alpha 21264,"Int regfile (80 4r6w)
+FP regfile (72 4r4w)","arith./logic unit; shift unit;
+ mult unit; add/logic unit;
+ shift unit; MVI/PLZ unit;
+ arith/logic; arith/logic unit;
+ FP add unit; FP mult unit;
+ FP div/sqrt unit"
+MIPS R10000,"Int regfile (64 7r3w)
+FP regfile (64 5r3w)","arith./logic unit; shift unit;
+ arith./logic unit; mult/div unit;
+ FP add/sub unit;
+ FP compae/coversion unit;
+ FP mult unit; FP div/sqrt unit"
+HP PA8700,"Intarchregfile (32 8r4w)
+ Int renregfile (56 9r4w) 
+ FP archregfile (32 8r4w)
+ FP renregfile (56 9r4w)","2 arithlogic units;
+ 2 shift merge units;
+ 2 FP MAC units;
+ 2 FP div/sqrt units"
+Ultra Sparc III,"Int regfile (144 7r3w)
+FP regfile (32 5r4w)","2 arith units; logic unit; shift unit;
+ FP adder unit; graphic unit;
+ FP div/sqrt unit; FP mult unit; graphic unit"
+Power4,"GPRS (80)
+FPRS (72)","2 fixed-point units;
+ 2 floating-point units"
+Zen,"Int regfile (168)
+ FP regfile (160)","4 floating-point/vector units;
+4 fixed-point units"
+Skylake,"Int regfile (180)
+ FP regfile (168)","4 fixed-point units;
+ 3 floating-point/vector units"
+Power8,"GPRS (2×124)
+VSRS (2×144)"," 2 fixed-point units;
+4 floating-point units; 
+ 2 vector units;
+ decimal floating-point unit;
+ crypto unit"
+龙芯3A5000,"Int regfile (128 12r8w)
+ FP regfile (128 8r6w)","4 fixed-point units; 
+ 2 floating-point/vector units"

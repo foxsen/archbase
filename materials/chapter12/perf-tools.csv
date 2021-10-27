@@ -1,0 +1,8 @@
+工具,平台,链接
+Intel Vtune,Intel X86,http://software.intel.com/intel-vtune-amplifier-xe
+Linux perf,X86/MIPS等,http://perf.wiki.kernel.org
+oprofile,X86/MIPS等,http://oprofile.sourceforge.net
+DCPI,Alpha,http://www.hp.com/openvms/products/dcpi
+Perf-mon,UltraSPARC,http://www.sics.se/~mch/perf-monitor/index.html
+AMD CodeAnalyst,AMD X86,http://developer.amd.com/tools-and-sdks/compute__trashed/amd-codeanalyst-performance-analyzer-for-linux/
+PAPI,X86,http://icl.cs.utk.edu/papi/software/index.html

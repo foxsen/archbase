@@ -1,0 +1,37 @@
+测试程序,指标,性能,分值
+World of Padman v1.2,每秒帧数（FPS）,越大越好,177.33
+H.264 v2015-11-02,每秒帧数（FPS）,越大越好,101.97
+"GraphicsMagic v1.3.12
+HWB Color Space",每分钟迭代次数,越大越好,108
+"John The Ripper v1.7.9
+Traditional DES",每秒破解的数目,越大越好,5174833
+"John The Ripper v1.7.9
+Blowfish",每秒破解的数目,越大越好,1970
+TTSIOD 3D Renderer v2.2w,每秒帧数（FPS）,越大越好,39.01
+Parallel BZIP2 Compression v1.0.5,秒数,越小越好,27.98
+"7-ZIP Compression v9.20.1
+Compress Speed Test",MIPS,越大越好,7242
+"LAME MP3 Encoding v3.99.3
+WAV to MP#",秒数,越小越好,22.86
+"x264 v2011-12-06
+H.264 Video Encoding",每秒帧数（FPS）,越大越好,54.04
+"FFmpeg v0.10
+AVI to NTSC VCD",秒数,越小越好,17.57
+"OpenSSL v1.0.0e
+RSA 4096-bit",每秒签名数,越大越好,58.58
+"Himeno Benchmark v3.0
+Poisson pressure solver",MFLOPS,越大越好,516.47
+"PostgreSQL pgbench v8.4.11
+TPC-B transaction per second",TPS,越大越好,427.13
+"Apache benchmark v2.2.21
+Static web page serving",每秒请求数,越大越好,11784.34
+C-Ray v1.1,秒数,越小越好,120.23
+POV-Ray v3.6.1,秒数,越小越好,1129
+"Smallpt v1.0
+Global Illumnination Renderer",秒数,越小越好,241
+"TSCP v1.81
+AI Chess performance",每秒计算的节点数,越大越好,261528
+"NAS Parallel benchmarks v3.3
+EP.B",总的Mop/s,越大越好,70.06
+"STREAM v2009-04-11
+Copy",MB/s,越大越好,6381.28

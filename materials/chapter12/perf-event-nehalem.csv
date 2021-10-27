@@ -1,0 +1,19 @@
+事件号,umask值,事件,描述
+3CH,00H,UnHalted Core cycles,时钟周期或拍数
+C0H,00H,Instruction retired,提交的指令数
+2EH,4FH,LLC reference,访问最后一级Cache的数目
+2EH,41H,LLC misses,访问最后一级Cache失效的数目
+C4H,00H,Branch Instruction Retired,提交的分支指令的数目
+C5H,00H,Branch Misses Retired,提交的误预测的分支指令的数目
+0BH,01H,MEM_INST_RETIRED.LOADS,提交的load指令的数目
+0BH,02H,MEM_INST_RETIRED.STORES,提交的store指令的数目
+0EH,01H,UOPS_ISSUED.ANY,从重命名表发射到保留站的微码数目
+0FH,02H,MEM_UNCORE_RETIRED.OTHER_CORE_L2_HITM,提交的load访存操作，命中芯片相邻核二级Cache，并在Modified状态
+12H,01H,SIMD_INT_128.PACKED_MPY,128位的SIMD定点乘法操作的数目
+24H,01H,L2_RQST.LD_MISS,二级load请求，二级Cache失效，二级load包括L1D失效和L1D预取
+26H,FFH,L2_DATA_RQSTS.ANY,所有的二级数据请求
+40H,0FH,L1D_CACHE_LD.MESI,所有的一级数据Cache读请求
+C4H,00H,BR_INST_RETIRED.ALL_BRANCHES,提交的分支指令
+D2H,0FH,RAT_STALLS.ANY,寄存器分配表引起的堵塞
+2AH,01H,UNC_QMC_OCCUPANCY.CH0,内存控制器通道0读请求发生
+60H,01H,UNC_DRAM_OPEN.CH0,DRAM通道0由于读或者写发出open命令，因为该页首先需要打开

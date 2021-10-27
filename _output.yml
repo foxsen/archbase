@@ -1,0 +1,34 @@
+bookdown::gitbook:
+  css: css/style.css
+  config:
+    toc:
+      collapse: none
+      before: |
+        <li><a href="./">计算机体系结构基础</a></li>
+      after: |
+        <li><a href="http://www.loongson.cn" target="blank">本书电子版由龙芯中科赞助提供</a></li>
+    download: [pdf, epub]
+    edit: https://github.com/foxsen/archbase-book/edit/master/%s
+    sharing:
+      github: yes
+      facebook: no
+bookdown::pdf_book:
+  includes:
+    in_header: latex/preamble.tex
+    before_body: latex/before_body.tex
+    after_body: latex/after_body.tex
+  keep_tex: yes
+  dev: "cairo_pdf"
+  latex_engine: xelatex
+#  citation_package: natbib
+  template: latex/template.tex
+  pandoc_args: "--top-level-division=chapter"
+  toc_depth: 3
+  toc_unnumbered: no
+  toc_appendix: yes
+  quote_footer: ["\\begin{flushright}", "\\end{flushright}"]
+bookdown::epub_book:
+  stylesheet: css/style.css
+bookdown::word_document2:
+  reference_docx: ./word/template.docx
+  toc: true

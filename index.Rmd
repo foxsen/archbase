@@ -1,0 +1,72 @@
+--- 
+title: "计算机体系结构基础"
+author:
+  - 胡伟武\ 汪文祥\ 苏孟豪\ 张福新\ 王焕东\ 章隆兵\
+    肖俊华\ 刘\ 苏\ 陈新科\ 吴瑞阳\ 李晓钰\ 高燕萍
+date: "`r Sys.Date()`"
+documentclass: ctexbook
+bibliography: [book.bib]
+#biblio-style: apalike
+#biblio-style: GBT7714-2015
+csl: chinese-gb7714-2005-numeric.csl
+link-citations: yes
+nocite: '@*'
+colorlinks: yes
+lot: yes
+lof: yes
+geometry: [letterpaper, tmargin=2.5cm, bmargin=2.5cm, lmargin=3.5cm, rmargin=2.5cm]
+site: bookdown::bookdown_site
+description: "计算机体系结构基础"
+github-repo: foxsen/archbase-book
+#cover-image: images/cover.jpg
+---
+
+```{r setup, include=FALSE}
+options(
+  htmltools.dir.version = FALSE, formatR.indent = 2, width = 55, digits = 4
+)
+
+# 填上你需要用到的包，如 c('ggplot2', 'dplyr')
+lapply(c('dplyr','knitr','flextable', 'readr', 'ftExtra'), function(pkg) {
+  if (system.file(package = pkg) == '') install.packages(pkg)
+})
+
+library('readr')
+library('flextable')
+library('ftExtra')
+library('officer')
+
+# Setup flextable default font
+def_fonts <- if( Sys.info()["sysname"] == "Windows" ){
+  "Microsoft YaHei" # TODO: Can we use YaHei in commercial publishing?
+} else if( Sys.info()["sysname"] == "Darwin" ){
+  "Helvetica" # TODO: Find the default Chinese font on Mac OSX
+} else {
+  "Noto Sans CJK SC" # Default Chinese font on Ubuntu
+}
+set_flextable_defaults(font.family=def_fonts)
+
+# Setup flextable cell padding
+if (knitr::opts_knit$get("rmarkdown.pandoc.to") == "latex") {
+  set_flextable_defaults(padding.bottom=0, padding.top=0, padding.left=0, padding.right=0)
+
+  old_autofit <- autofit
+  autofit <- function(...) {
+    old_autofit(..., add_w=0, add_h=0)
+  }
+}
+
+FitFlextableToPage <- function(ft, pgwidth = 6){
+
+  ft_out <- ft %>% autofit()
+
+  ft_out <- width(ft_out, width = dim(ft_out)$widths*pgwidth /(flextable_dim(ft_out)$widths))
+  return(ft_out)
+}
+
+```
+
+# 丛书序言 {-}
+
+\markboth{丛书序言}{丛书序言}
+

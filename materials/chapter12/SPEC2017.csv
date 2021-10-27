@@ -1,0 +1,26 @@
+SPECrate 2017定点程序,SPECspeed 2017定点程序,语言,描述
+500.perlbench_r,600.perlbench_s,C,文本处理，Perl解释器
+502.gcc_r,602.gcc_s,C,编译，GNU C编译器
+505.mcf_r,605.mcf_s,C,组合和优化，求解车辆调度问题
+520.omnetpp_r,620.omnetpp_s,C++,计算机网络，离散事件模拟
+523.xalancbmk_r,623.xalancbmk_s,C++,通过XSLT将XML转换为HTML
+525.x264_r,625.x264_s,C,视频压缩，x264视频编解码
+531.deepsjeng_r,631.deepsjeng_s,C++,人工智能，下棋程序，alpha-beta树搜索
+541.leela_r,641.leela_s,C++,人工智能，下棋程序（go），蒙特卡洛树搜索
+548.exchange2_r,648.exchange2_s,Fortran,人工智能，9x9数独，递归方式求解
+557.xz_r,657.xz_s,C,压缩和解压缩，xz压缩程序
+SPECrate 2017浮点程序,SPECspeed 2017浮点程序,语言,描述
+503.bwaves_r,603.bwaves_s,Fortran,计算流体动力学，爆炸建模
+507.cactuBSSN_r,607.cactuBSSN_s,"C++, C, Fortran",物理，广义相对论和数值相对论，求解真空中的爱因斯坦方程
+508.namd_r,,C++,结构生物学，模拟大规模的生物分子系统
+510.parest_r,,C++,分子医学成像，光学层析成像问题的有限元求解器
+511.povray_r,,"C++, C",计算机可视化，光线追踪应用POV-Ray
+519.lbm_r,619.lbm_s,C,流体动力学
+521.wrf_r,621.wrf_s,"Fortran, C",天气预报建模，基于新一代中尺度数值天气预报系统WRF
+526.blender_r,,"C++, C",三维渲染和动画，基于开源的三维制作套件Blender
+527.cam4_r,627.cam4_s,"Fortran, C",大气环流建模，地球系统模型CESM中的大气建模部分
+,628.pop2_s,"Fortran, C",大规模海洋建模（气候层面），地球系统模型CESM中的海洋建模部分
+538.imagick_r,638.imagick_s,C,图像处理，图像处理软件包ImageMagick中convert部分
+544.nab_r,644.nab_s,C,分子动力学，基于生命科学计算领域中分子建模应用NAB（核酸构建器）
+549.fotonik3d_r,649.fotonik3d_s,Fortran,计算电磁学，利用时域有限差分方法计算光子波导的透射系数
+554.roms_r,654.roms_s,Fortran,区域海洋建模，基于区域海洋建模系统ROMS

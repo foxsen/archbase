@@ -1,0 +1,1 @@
+#pragma omp atomic newline

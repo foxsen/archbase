@@ -1,0 +1,7 @@
+⠀,IBM Power8,Intel Haswell,Oracle SPARC T5,龙芯3A5000
+每芯片核数,12,4,16,4
+每核线程数,8,2,8,1
+每核一级指令Cache,32KB,32KB,16KB,64KB
+每核一级数据Cache,64KB,32KB,16KB,64KB
+每核二级Cache,512KB,256KB,128 KB,256KB
+片上共享LLC,96MB,8MB,8MB,16MB

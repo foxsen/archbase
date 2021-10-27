@@ -1,0 +1,8 @@
+寻址方式,MIPS,PowerPC,PA-RISC,SPARC,LoongArch
+寄存器寻址,Y,Y,Y,Y,Y
+立即数寻址,Y,Y,Y,Y,Y
+偏移量寻址,Y,Y,Y,Y,Y
+变址寻址,Y(仅浮点),Y,Y,Y,Y
+比例变址寻址,,,Y,,
+自增/自减+偏移量寻址,,Y,Y,,
+自增/自减+变址寻址,,Y,Y,,

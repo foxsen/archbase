@@ -1,0 +1,11 @@
+指令集,整数通用寄存器数
+Itanium,128
+VAX,16
+ARMv8,31
+PowerPC,32
+Alpha,32(包括“zero”)
+SPARC,32(包括“zero”)
+MIPS,在mips16模式下为8，在32/64位模式下为32(包括“zero”）
+ARMv7,在16位Thumb 模式下为7，在32位模式下为14
+X86,"16/32位时为8, 64位时为16"
+LoongArch,32（包括“zero”）

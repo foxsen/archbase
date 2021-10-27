@@ -1,0 +1,18 @@
+
+:::: {.cols data-latex=""}
+
+::: {.col width=48% data-latex="{0.48\textwidth}"}
+```
+```
+:::
+
+::: {.col width=4% data-latex="{0.04\textwidth}"}
+```
+```
+:::
+
+::: {.col width=48% data-latex="{0.48\textwidth}"}
+```
+```
+:::
+::::

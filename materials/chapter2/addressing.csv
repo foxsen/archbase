@@ -1,0 +1,11 @@
+寻址方式,格式,含义
+寄存器寻址（Register）,"ADD R1,R2",regs[R1]=regs[R1]+regs[R2]
+立即数寻址（Immediate）,"ADD R1,#2",regs[R1]=regs[R1]+2
+偏移量寻址（Displacement）,"ADD R1,100(R2)",regs[R1]=regs[R1]+mem[100+regs[R2]]
+寄存器间接寻址（Reg.Indirect）,"ADD R1,(R2)",regs[R1]=regs[R1]+mem[regs[R2]]
+变址寻址（Indexed）,"ADD R1,(R2+R3)",regs[R1]=regs[R1]+mem[regs[R2]+regs[R3]]
+绝对寻址（Absolute）,"ADD R1,(100)",regs[R1]=regs[R1]+mem[100]
+存储器间接寻址（Mem.Indirect）,"ADD R1,@(R2)",regs[R1]=regs[R1]+mem[mem[regs[R2]]]
+自增量寻址（Autoincrement）,"ADD R1,(R2)+","regs[R1]=regs[R1]+mem[regs[R2]],regs[R2]=regs[R2]+d"
+自减量寻址（Autodecrement）,"ADD R1,-(R2)","regs[R2]=regs[R2]-d,regs[R1]=regs[R1]+mem[regs[R2]]"
+比例变址寻址（Scaled）,"ADD R1,100(R2)(R3)",regs[R1]=regs[R1]+mem[100+regs[R2]+regs[R3]*d]

@@ -1,0 +1,20 @@
+引脚名称,描述,引脚名称,描述
+A0-A15,SDRAM地址线,SCL,EEPROM I2C总线时钟
+BA0-BA3,SDRAM bank地址,SDA,EEPROM I2C总线数据线
+RAS#,SDRAM行地址选通,SA0-SA2,EEPROM I2C从设备地址
+CAS#,SDRAM列地址选通,VDD,SDRAMCore电源
+WE#,SDRAM写使能,VDDQ,SDRAM IO输出电源
+S0#-S1#,SDRAM片选信号,VrefDQ,SDRAM IO参考电源
+CKE0-CKE1,SDRAM时钟使能信号,VrefCA,SDRAM命令地址参考电源
+ODT0-ODT1,SDRAM终端匹配电阻控制信号,Vss,电源地信号
+DQ0-DQ63,DIMM内存数据线,VDDSPD,EEPROM电源
+CB0-CB7,DIMM ECC数据线,NC,空闲引脚
+DQS0-DQS8,SDRAM数据选通线,TEST,测试引脚
+,（差分对的正沿）,,
+DQS0-DQS8,SDRAM数据选通线,RESET#,复位引脚
+,（差分对的负沿）,,
+DM0-DM8,SDRAM数据Mask线,EVENT#,温度传感器引脚（可选）
+CK0-CK8,SDRAM时钟信号线,VTT,SDRAM IO终端匹配电阻电源
+,（差分对的正沿）,,
+CK0-CK8,SDRAM时钟信号线,RSVD,保留
+,（差分对的负沿）,,

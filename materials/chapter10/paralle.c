@@ -1,0 +1,2 @@
+#pragma omp parallel [if(scalar_expression)| num_threads(integer-expression）|default(shared|none)| private(list)| \
+firstprivate(list)|shared(list)| copyin(list) |reduction(operator:list)| proc_bind(master|close|spread)] newline

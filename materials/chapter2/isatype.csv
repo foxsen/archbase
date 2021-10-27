@@ -1,0 +1,5 @@
+堆栈型,累加器型,寄存器-存储器型,寄存器-寄存器型
+PUSH A,LOAD A,"LOAD R1,A","LOAD R1,A"
+PUSH B,ADD B,"ADD R1,B","LOAD R2,B"
+ADD,STORE C,"STORE C,R1","ADD R3,R1,R2"
+POP C,,,"STORE C,R3"

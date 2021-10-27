@@ -1,0 +1,19 @@
+lat_ops延迟（ns）,loongson 3A5000,zen1 r3-1200,skylake i3 9100f
+integer bit,0.27,0.29,0.27
+integer add,0,0,0
+integer mul,0.02,0.02,1.24
+integer div,6.21,8.03,10.86
+integer mod,3.6,5.61,11.32
+int64 bit,0.27,0.29,0.27
+int64 add,0,0,0
+int64 mul,0.02,0.02,1.22
+int64 div,7.6,10.63,17.1
+int64 mod,3.34,5.34,16.55
+float add,2,1.2,1.6
+float mul,2,1.2,1.61
+float div,10.82,4.04,4.58
+double add,2,1.2,1.6
+double mul,2,1.6,1.6
+double div,9.22,5.25,5.78
+float bogomflops,5.04,1.53,1.2
+double bogomflops,9.62,1.81,1.61

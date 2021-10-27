@@ -1,0 +1,454 @@
+# 计算机总线接口技术
+
+通过上一章的学习，我们知道一个完整的计算机系统包含多种组成部件。这些组成部件，一般不是由单个公司独立生产的，而是由不同的公司共同生产完成的，每个公司往往只能生产这些部件中的一种或者少数几种。按照经济学原理，分工是促进社会生产力发展的重要原因和方法。现代计算机的飞速发展也同样得益于社会化的分工。分工就要求人们相互协调，共同遵循一定的规则规范。计算机的生产也是如此，计算机内部包含的多个部件往往是由不同的公司生产的。为了让这些不同的部件组合在一起可以正常工作，必须制定一套大家共同遵守的规格和协议，这就是接口或者总线。按照中文的含义，接口是指两个对象连接的部分，而总线是指对象之间传输信息的通道。本文对接口和总线的概念不做语义上的区分，因为使用某种接口，必然需要使用与之相对应的总线；而总线也必然离不开接口，否则就无法使用。本文使用总线时，也包含与之相对应的接口；使用接口时，也包含与之相对应的总线。比如，提到USB时，既包含USB总线，也包含USB接口。
+
+总线的应用和标准化，降低了计算机设计和应用的复杂度。有了标准化的接口，厂家生产出来的产品只需要接口符合规范，就可以直接与其他厂家生产的产品配合使用，而不必设计所有的硬件。比如，希捷公司可以只负责生产硬盘，金士顿公司可以只负责生产内存条。总线的标准化，促进了计算机行业的分工合作，也极大地促进了计算机产业的发展。同时，标准化的总线也降低了计算机使用的成本，提高了用户使用的方便性。如果不同厂家生产的产品接口规格都不一样，那么用户使用起来就会非常不方便。例如，在手机还没有发展到智能机的时代，人们可能需要一个用来打电话的手机，一个听音乐的MP3，以及一个拍照的卡片相机。由于没有统一的标准，这些电子产品的充电接口往往是不一样的。在外出或者出差的时候，人们就需要携带各种各样的充电器，非常不方便。
+
+总线技术涉及计算机的很多方面，除了物理链路外，还会涉及体系结构方面的内容。总线是不断演进发展的，目前应用的总线大都是在前代总线的基础上改进优化而来的，而且还在不断地改进。
+
+本章首先对总线的概念进行一个简单介绍，然后对当代计算机使用的总线进行简单分类，并按照一种分类原则分别介绍几种常用总线。通过本章的学习，读者可以对计算机的常见总线有一个基本的了解。
+
+
+## 总线概述
+
+总线的本质作用是完成数据交换。总线用于将两个或两个以上的部件连接起来，使得它们之间可以进行数据交换，或者说通信。总线含义很广，它不仅仅是指用于数据交换的通道，有时也包含了软件硬件架构。比如PCI总线、USB总线，它们不仅仅是指主板上的某个接口，还包含了与之相对应的整套硬件模型、软件架构。
+
+总线的含义可以分为以下几个层级：
+
+1）机械层。接口的外形、尺寸、信号排列、连接线的长度范围等。
+
+2）电气层。信号描述、电源电压、电平标准、信号质量等。
+
+3）协议层。信号时序、握手规范、命令格式、出错处理等。
+
+4）架构层。硬件模型、软件架构等。
+
+不同的总线包含的内容也有所不同，有的总线包含以上所有的层级，有的总线可能只包含部分层级。
+
+
+## 总线分类
+
+可以从多个角度对总线进行分类。
+
+按照数据传递的方向，总线可以分为单向总线和双向总线。单向总线是指数据只能从一端传递到另一端，而不能反向传递。单向总线也称为单工总线。双向总线是指数据可以在两个方向上传递，既可以从A端传递到B端，也可以从B端传递到A端。双向总线也称为双工总线。双工总线又可分为半双工总线和全双工总线。半双工总线是指在一个时间段内，数据只能从一个方向传送到另一个方向，数据不能同时在两个方向传递。全双工总线是指数据可以同时在两个方向传递。全双工总线包含两组数据线，分别用于两个方向的数据传输。
+
+按照总线使用的信号类型，总线可以分为并行总线和串行总线。并行总线包含多位传输线，在同一时刻可以传输多位数据，而串行总线只使用一位传输线，同一时刻只传输一位数据。并行总线的优点在于相同频率下总线的带宽更大，但正因为采用了同一时刻并行传输多位数据的方法，必须保证多位数据在同一时刻到达。这样就会对总线的宽度和频率产生限制，同时也对主板设计提出了更高的要求。与并行总线相反，一般串行总线只使用一位传输线，同一时刻只能传输一位数据，而且使用编码的方式将时钟频率信息编码在传输的数据之中。因此，串行总线的传输频率可以大大提升。PCI总线、DDR总线等都是传统的并行总线，而USB、SATA、PCIE等都是串行总线。以串行总线传输方式为基础，使用多条串行总线进行数据传输的方式正在被广泛采用。以PCIE协议为例，PCIE的接口规范中，可以使用x1、x4、x8、x16等不同宽度的接口，其中，x16就是采用16对串行总线进行数据传输。多位串行总线与并行总线的根本差别在于，多位串行总线的每一个数据通道都是相对独立传输的，它们独立进行编解码，在接收端恢复数据之后再进行并行数据之间的对齐。而并行总线使用同一个时钟对所有的数据线进行同时采样，因此对数据传输线之间的对齐有非常严格的要求。
+
+按照总线在计算机系统中所处的物理位置，总线可以分为片上总线、内存总线、系统总线和设备总线。下面将按照这个划分，分别举例介绍每种总线。
+
+
+
+## 片上总线
+
+片上总线是指芯片片内互连使用的总线。芯片在设计时，常常要分为多个功能模块，这些功能模块之间的连接即采用片上互连总线。例如，一个高性能通用处理器在设计时，常常会划分为处理器核、共享高速缓存、内存控制器等多个模块，而一个SoC（System on Chip，片上系统）芯片所包含的模块就更多了。图\@ref(fig:jz-m200)是一个嵌入式SoC芯片的内部结构，可以看到里面包含了很多功能模块，这些模块之间的连接就需要用到片上互连总线。这些模块形成了IP(Intellectual Property)，一家公司在设计芯片时常常需要集成其他公司的IP。这些IP的接口使用大家共同遵守的标准时，才能方便使用。因此，芯片的片上互连总线也形成了一定的标准。目前业界公开的主流片上互连总线是ARM公司的AMBA系列总线。
+
+```{r jz-m200, echo=FALSE, fig.align='center', fig.cap="君正M200芯片的结构图", out.width='100%'}
+knitr::include_graphics("images/chapter6/jz_m200.png")
+```
+
+AMBA（Advanced Microcontroller Bus Architecture，高级微控制器总线架构）系列总线包括AXI、AHB、ASB、APB等总线。下面对AMBA总线的一些特点进行概括说明，这些总线的详细内容可以参阅相关总线协议。
+
+
+**1.AXI总线**
+
+AXI（Advanced eXtensible Interface，高级可扩展接口）总线是一种高性能、高带宽、低延迟的片上总线。它的地址/控制和数据总线是分离的，支持不对齐的数据传输，同时在突发传输中只需要发送首地址即可。它使用分离的读写数据通道并支持乱序访问。AXI是AMBA 3.0规范中引入的一个新的高性能协议，目标是满足超高性能和复杂的片上系统（SoC）的设计需求。
+
+AXI总线主设备的主要信号定义如表\@ref(tab:axi)所示。可以看到，AXI总线主要分为5个独立的通道，分别为写请求、写数据、写响应、读请求、读响应。每个通道采用握手协议独立传输。
+
+```{r axi, echo = FALSE, message=FALSE, tab.cap='AXI总线主要信号定义'}
+autonum <- run_autonum(seq_id = "tab", bkm = "axi", bkm_all = TRUE)
+readr::read_csv('./materials/chapter6/axi.csv') %>%
+flextable() %>%
+set_caption(caption="AXI总线主要信号定义", autonum = autonum) %>%
+theme_box() %>%
+autofit()
+```
+
+AXI协议包括以下特点：
+
+1）单向通道体系结构。信息流只以单方向传输，符合片内设计的要求。
+
+2）支持多项数据交换。AXI协议支持的数据宽度很宽，最大可到1024位。通过并行执行突发（Burst）操作，极大地提高了数据吞吐能力，可在更短的时间内完成任务。
+
+3）独立的地址和数据通道。地址和数据通道分开便于对每一个通道进行单独优化，可以根据需要很容易地插入流水级，有利于实现高时钟频率。
+
+
+
+（1） AXI架构
+
+AXI协议是一个主从协议，每套总线的主设备和从设备是固定好的。只有主设备才可以发起读写命令。一套主从总线包含五个通道：写地址通道、写数据通道、写响应通道、读地址通道、读返回通道。读/写地址通道用来传送读写目标地址、数据宽度、传输长度和其他控制信息。写数据通道用来由主设备向从设备传送写数据，AXI支持带掩码的写操作，可以指定有效数据所在的字节。写响应通道用来传送写完成信息。读返回通道用来传送从设备读出的数据以及响应信息。
+
+AXI协议的一次完整读写过程称为一个总线事务（Transaction），传输一个周期的数据称为一次传输（Transfer）。AXI协议允许地址控制信息在数据传输之前发生，并且支持多个并发访问同时进行，它还允许读写事务的乱序完成。图\@ref(fig:read-structure)和\@ref(fig:write-structure)分别说明了读写事务是如何通过读写通道进行的。
+
+
+```{r read-structure, echo=FALSE, fig.align='center', fig.cap="读事务架构", out.width='50%'}
+knitr::include_graphics("images/chapter6/read_structure.png")
+```
+
+
+
+
+```{r write-structure, echo=FALSE, fig.align='center', fig.cap="写事务架构", out.width='50%'}
+knitr::include_graphics("images/chapter6/write_structure.png")
+```
+
+AXI使用双向握手协议，每次传输都需要主从双方给出确认信号。数据的来源方设置有效（Valid）信号，数据的接收方设置准备好（Ready）信号。只有当有效信号和准备好信号同时有效时，数据才会传输。读请求通道和写数据通道还各包含一个结束（Last）信号来指示一次突发传输的最后一个传输周期。
+
+
+（2）互连架构
+
+在一个使用AXI总线的处理器系统中，一般都会包含多个主设备和从设备。这些设备之间使用互连总线进行连接，如图\@ref(fig:axi-interface)所示。在该互连结构中，任意一个主设备都可以访问所有的从设备。比如，主设备2可以访问从设备1、2、3、4。
+
+```{r axi-interface, echo=FALSE, fig.align='center', fig.cap="AXI设备的接口和互连", out.width='50%'}
+knitr::include_graphics("images/chapter6/axi.png")
+```
+
+为了减少互连结构的信号线个数，AXI的互连结构可以共享地址和数据通道，或者共享地址通道但使用多个数据通道。当需要连接的主从设备个数较多时，为了减少互连结构的信号线个数，AXI协议还可以很方便地支持多层次的互连结构。
+
+（3）高频设计
+
+AXI协议的每个传输通道都只是单向的信息传递，并且AXI协议对多个通道之间的数据传输没有规定特定的顺序关系，多个通道之间没有同步关系。因此，设计者可以很容易地在通道中插入寄存器缓冲，这对于高频设计是很重要的。
+
+（4）基本事务
+
+下面简要介绍AXI的读写事务。AXI协议的主要特点是使用VALID和READY握手机制进行传输。地址和数据信息都只在VALID和READY信号同时为高的情况下才进行传输。
+
+
+```{r burst-read, echo=FALSE, fig.align='center', fig.cap="突发读事务", out.width='100%'}
+knitr::include_graphics("images/chapter6/burst_read.png")
+```
+
+图\@ref(fig:burst-read)显示了一个突发读事务的传输，其中请求由主设备发往从设备，响应由从设备发往主设备。地址信息在T2传输后，主设备从T4时刻开始给出读数据READY信号，从设备保持读数据VALID信号为低，直到读数据准备好后，才在T6时刻将读数据VALID信号拉高，主设备在T6时刻接收读数据。当所有读数据传输完成后，在T13时刻，从设备将RLAST信号拉高表示该周期是最后一个数据传输。
+
+
+```{r overlapped-read, echo=FALSE, fig.align='center', fig.cap="重叠的读事务", out.width='100%'}
+knitr::include_graphics("images/chapter6/overlapped_read.png")
+```
+
+图\@ref(fig:overlapped-read)显示了一个重叠的读事务。在T4时刻，事务A的读数据还没有完成传输，从设备就已经接收了读事务B的地址信息。重叠事务使得从设备可以在前面的数据没有传输完成时就开始处理后面的事务，从而降低后面事务的完成时间。AXI总线上，通过ID对不同的事务加以区别。同一个读事务的请求与响应中，ARID与RID相同；同一个写事务的请求与响应中，AWID、WID与BID相同。
+
+```{r write-transaction, echo=FALSE, fig.align='center', fig.cap="写事务", out.width='100%'}
+knitr::include_graphics("images/chapter6/write_transaction.png")
+```
+图\@ref(fig:write-transaction)是一个写事务的示例。主从设备在T2时刻传输写地址信息，接着主设备将写数据发送给从设备，在T9时刻，所有的写数据传输完毕，从设备在T10时刻给出写完成响应信号。
+
+
+（5）读写事务顺序
+
+AXI协议支持读写事务乱序完成。每一个读写事务都有一个ID标签，该标签通过AXI信号的ID域进行传输。同ID的读事务或者同ID的写事务必须按照接收的顺序按序完成，不同ID的事务可以乱序完成。以图\@ref(fig:overlapped-read)为例，图中事务A的请求发生在事务B的请求之前，从设备响应时事务A的数据同样发生在事务B的数据之前，这就是顺序完成。如果事务A与事务B使用了不同的ID，那么从设备就可以先返回事务B的数据再返回事务A的数据。
+
+
+（6）AXI协议的其他特点
+
+AXI协议使用分离的读写地址通道，读事务和写事务都包含一个独立的地址通道，用来传输地址和其他控制信息。
+
+AXI协议支持下列传输机制：
+
+1）不同的突发传输类型。AXI支持回绕（Wrapping）、顺序（Incrementing）和固定（Fix）三种传输方式。回绕传输适合高速缓存行传输，顺序传输适合较长的内存访问，固定传输则适合对外设FIFO的访问。
+
+2）传输长度可变。AXI协议支持1到16甚至更多个传输周期。
+
+3）传输数据宽度可变。支持8\~1024位数据宽度。
+
+4）支持原子操作。
+
+5）支持安全和特权访问。
+
+6）支持错误报告。
+
+7）支持不对齐访问。
+
+
+
+**2.AHB、ASB、APB总线**
+
+AHB、ASB、APB总线是在AXI总线之前推出的系统总线，本书只对它们进行简要总结，详细内容可参阅相关协议文档。
+
+AHB（Advanced High-performance Bus）总线是高性能系统总线，它的读写操作共用命令和响应通道，具有突发传输、事务分割、流水线操作、单周期总线主设备切换、非三态实现以及宽数据总线等特点。AHB协议允许8\~1024位的数据总线宽度，但推荐的数据宽度最小为32位，最大为256位。
+
+ASB（Advanced System Bus）是第一代AMBA系统总线，同AHB相比，它支持的数据宽度要小一些，典型数据宽度为8位、16位、32位。它的主要特征有：流水线方式，数据突发传送，多总线主设备，内部有三态实现。
+
+APB（Advanced Peripheral Bus）是本地二级总线（Local Secondary Bus），通过桥和AHB/ASB相连。它主要是为了满足不需要高性能流水线接口或不需要高带宽接口的设备间的互连。其主要优点是接口简单、易实现。
+
+基于AMBA总线的计算机系统的结构如图\@ref(fig:ahb-apb)和图\@ref(fig:axi-interconnect)所示。
+
+```{r ahb-apb, echo=FALSE, fig.align='center', fig.cap="使用AHB和APB连接的微控制器系统", out.width='50%'}
+knitr::include_graphics("images/chapter6/ahb_apb.png")
+```
+
+```{r axi-interconnect, echo=FALSE, fig.align='center', fig.cap="使用AXI总线互连的通用高性能处理器", out.width='50%'}
+knitr::include_graphics("images/chapter6/axi_interconnect.png")
+```
+
+片上互连总线的最大特点是高并行性。由于片内走线的距离短，线宽细，因此可以实现高并行性。片上互连总线的设计需要考虑总线的通用性、可扩展性、性能以及总线接口逻辑的设计简单性等方面。
+
+
+## 内存总线
+
+内存总线用于连接处理器和主存储器。
+
+前面章节我们介绍了目前使用的主存储器——DRAM芯片，以及内存条、内存控制器的一些概念。内存控制器和内存芯片（或者说内存条）的接口就是内存总线。内存总线规范是由JEDEC（Joint Electron Device Engineering Council）组织制定的，它包含了一般总线的三个层级：机械层、电气层和协议层。
+
+在机械层，JEDEC规定了内存芯片的封装方式、封装大小和引脚排布，内存条生产厂家可以据此设计内存条PCB板，可以使用不同DRAM厂家的芯片。同时，JEDEC也制定了内存条和计算机主板连接的规范，也就是内存插槽规范，规定了内存条的引脚个数、排布和内存条的长度、厚度、机械形式。这样不同厂家的内存条就可以在同一块主板上使用。图\@ref(fig:ddr3)是台式机使用的DDR3内存条和对应的内存插槽的图片。DDR3内存条使用双列直插式设计，每列分布了120个引脚，共240个引脚。中间的缺口不是位于内存条的正中心，目的是为了防止将内存条插反。图\@ref(fig:ddr2)是台式机使用的DDR2内存条的图片。DDR3内存条和DDR2内存条的长度相同，但内存条上的缺口位置是不同的，可以防止DDR2和DDR3内存条之间误插。
+
+
+```{r ddr3, echo=FALSE, fig.align='center', fig.cap="台式机的DDR3内存条和内存插槽", out.width='100%'}
+knitr::include_graphics("images/chapter6/ddr3.png")
+```
+
+```{r ddr2, echo=FALSE, fig.align='center', fig.cap="台式机的DDR2内存条", out.width='100%'}
+knitr::include_graphics("images/chapter6/ddr2.png")
+```
+
+在电气层，JEDEC组织规定了DRAM芯片的电气特性。例如，DDR2内存使用1.8V电压，而DDR3内存使用1.5V电压。另外，规范还规定输入电压高低电平的标准、信号斜率、时钟抖动的范围等信号电气特性。
+
+在协议层，JEDEC组织规定了DRAM芯片的操作时序。协议规定了DRAM芯片的上电和初始化过程、DRAM工作的几种状态、状态之间的转换，以及低功耗控制等内容。比如，DRAM初始化完成后，进入空闲态，通过激活（Activate）命令进入“打开一行”的激活态，只有在激活态，才可以读写DRAM的数据，单纯的读写操作后，DRAM仍会处于激活态，等待下一次读写。如果想要读写其他行，需要首先发送预充（Precharge）命令将DRAM转回空闲态，然后再发送激活命令。这些命令不是在任意时刻都可以发送的，需要满足协议规定的时序要求。图\@ref(fig:ddr2-state)给出了DDR2内存的状态转换图。
+
+
+```{r ddr2-state, echo=FALSE, fig.align='center', fig.cap="DDR2内存各状态转换图", out.width='100%'}
+knitr::include_graphics("images/chapter6/ddr2_state.png")
+```
+
+```{r ddr3-udimm, echo = FALSE, message=FALSE, tab.cap='双面DDR3 UDIMM内存条的接口信号列表'}
+autonum <- run_autonum(seq_id = "tab", bkm = "ddr3-udimm", bkm_all = TRUE)
+readr::read_csv('./materials/chapter6/ddr3_udimm.csv') %>%
+flextable() %>%
+delete_part(part='header') %>%
+add_header_row(values=c('引脚名称', '描述', '引脚名称', '描述')) %>%
+set_caption(caption="双面DDR3 UDIMM内存条的接口信号列表", autonum = autonum) %>%
+theme_box() %>%
+autofit()
+```
+DDR3内存条的接口信号见表\@ref(tab:ddr3-udimm)。内存条将多个DDR3 SDRAM存储芯片简单地并列在一起，因此表中所列的信号主要是DDR3 SDRAM的信号。此外，表中还包含了一组I2C总线信号（SCL、SDA）和I2C地址信号（SA0\~SA2）用来支持内存条的软件识别。内存条将自身的一些设计信息（包括SDRAM类型、SDRAM的速度等级、数据宽度、容量以及机械尺寸标准等信息）保存在一个EEPROM中，该EEPROM可以通过I2C总线访问，称为SPD（Serial Present Detect）。计算机系统可以通过I2C总线来读取内存条的信息，从而自动匹配合适的控制参数并获取正确的系统内存容量。组装电脑时，用户可以选用不同容量、品牌的内存条而无须修改软件或主板，就离不开SPD的作用。值得一提的是，表中给出的信号是按照双面内存条带ECC功能列出来的，如果只有单面，或者不带ECC校验功能，只需将相应的引脚位置悬空。
+
+DRAM存储单元是按照Bank、行、列来组织的，因此对DRAM的寻址是通过bank地址、行地址和列地址来进行的。此外，计算机系统中可以将多组DRAM串接在一起，不同组之间通过片选（CS）信号来区分。在计算机系统中，程序的地址空间是线性的，处理器发出的内存访问地址也是线性的，由内存控制器负责将地址转换为对应于DRAM的片选、Bank地址、行地址、列地址。
+
+DDR3 SDRAM读操作时序如图\@ref(fig:ddr3-read)所示。图中命令（Command，简称CMD）由RAS_n、CAS_n和WE_n三个信号组成。当RAS_n为高电平，CAS_n为低电平，WE_n为高电平时，表示一个读命令。该图中，列地址信号延迟 (CL) 等于5个时钟周期，读延迟 (RL)等于5个时钟周期，突发长度（Burst Length,BL）等于8。控制器发出读命令后，经过5个时钟周期，SDRAM开始驱动DQS和DQ总线输出数据。DQ数据信号和DQS信号是边沿对齐的。在DQS的起始、DQ传输数据之前，DQS信号会有一个时钟周期长度的低电平，称为读前导（Read Preamble）。读前导的作用是给内存控制器提供一个缓冲时间，以开启一个信号采样窗口，将有用的读数据采集到内部寄存器，同时又不会采集到数据线上的噪声数据。
+
+```{r ddr3-read, echo=FALSE, fig.align='center', fig.cap="DDR3 SDRAM读时序", out.width='100%'}
+knitr::include_graphics("images/chapter6/ddr3_read.png")
+```
+
+```{r ddr3-write, echo=FALSE, fig.align='center', fig.cap="DDR3 SDRAM写时序", out.width='100%'}
+knitr::include_graphics("images/chapter6/ddr3_write.png")
+```
+
+DDR3 SDRAM写操作的协议如图\@ref(fig:ddr3-write)所示。当RAS_n为高电平，CAS_n为高电平，WE_n为低电平时，表示一个写操作。读写操作命令的区别是WE_n信号的电平不同，读操作时该信号为高，写操作时该信号为低。写操作使用额外的数据掩码（Data Mask，DM）信号来标识数据是否有效。当DM为高时，对应时钟沿的数据并不写入SDRAM，当DM为低时，对应时钟沿的数据才写入SDRAM。DM信号与DQ信号同步。在写操作时，DQS信号和DQ信号是由内存控制器驱动的。同样，在DQS的起始、DQ传输数据之前，DQS信号也存在一个写前导（Write Preamble）。DDR3 SDRAM的写前导为一个周期的时钟信号，DDR2 SDRAM的写前导为半个时钟周期的低电平信号。
+
+前面讲过SDRAM的基本操作包括激活（Activate）、读写（Read/Write）和预充电（Precharge）。当SDRAM接收到一个操作后，它需要在固定的时钟周期之后开始进行相应的动作，并且这些动作是需要经过一定的时间才能完成的。因此，对DRAM不同操作命令之间是有时间限制的。例如，对于DDR3-1600内存来说，当软件访问的两个地址正好位于内存的同一个Bank的不同行时，内存控制器需要首先针对第一个访问地址发出激活操作，经过13.75ns的时间，才可以发出读写操作。如果第一个访问是读操作，则需要经过至少7.5ns（此外还需满足tRASmin的要求，这里进行简化说明）的时间才可以发送预充电操作。预充电操作发送后，需要经过13.75ns的时间才可以针对第二个访问的行地址发送新的激活操作，然后经过13.75ns的时间，发送读写操作。因此，对SDRAM的同一个Bank的不同行进行读写存在较大的访问延迟。为了掩盖访问延迟，SDRAM允许针对不同Bank的操作并发执行。上述访问过程如图\@ref(fig:sdram-timing)所示。
+
+```{r sdram-timing, echo=FALSE, fig.align='center', fig.cap="SDRAM的访问时序图", out.width='100%'}
+knitr::include_graphics("images/chapter6/sdram_timing.png")
+```
+
+提高内存总线访问效率的两个主要手段是充分利用行缓冲局部性和Bank级并行度。行缓冲局部性是说，当两个访存命令命中SDRAM的同一行时，两个命令可以连续快速发送；Bank级并行度是说，针对SDRAM的不同Bank的操作可以并发执行，从而降低后一个操作的访存延迟。下面以一个简单的例子来说明对SDRAM的不同访问序列的延迟的差别。
+
+假定处理器发出了三个访存读命令，地址分别命中SDRAM的第0个Bank的第0行（列地址为0）、第0个Bank的第1行和第0个Bank的第0行（与第一个命令的列地址不同，假定列地址为1）。如果我们不改变访问的顺序，直接将这三个命令转换为对应SDRAM的操作发送给内存。则需要的时间如图\@ref(fig:command-before)所示。图中，<B0,R0>表示第0个Bank的第0行，<B0,R1>表示第0个Bank的第1行。每一个读命令都会转换出对应于SDRAM的<激活，读数据，预充电>序列。假定使用的是DDR2-800E规格的内存，它对应的时序参数为：tRCD=15ns，tRP=15ns,tRASmin=45ns,tRC=60ns,tRL=15ns,tRTP=7.5ns,tCCD=10ns(4个时钟周期)。则读数据分别在第30ns（tRCD+tRL）、90ns(tRC+tRCD+tRL)和150ns（tRC+tRC+tRCD+tRL）返回给处理器。
+
+假定我们改变命令发给内存的顺序，我们将第3个命令放到第1个命令之后发送，将第2个命令最后发送，则得到的访存序列如图\@ref(fig:command-after)所示。在该图中，针对第0个Bank第0行第1列的命令不需要发送预充电和激活操作，而是在针对第0个Bank第0行第0列的命令之后直接发送。则处理器得到读数据的时间变为第30ns、第40ns和第90ns。相比上一种访存序列，第3个访存命令的读数据的访存延迟降低了110ns（40ns相比于150ns）。
+
+```{r command-before, echo=FALSE, fig.align='center', fig.cap="调度前的命令序列", out.width='100%'}
+knitr::include_graphics("images/chapter6/command_before.png")
+```
+
+```{r command-after, echo=FALSE, fig.align='center', fig.cap="调度后的命令序列", out.width='100%'}
+knitr::include_graphics("images/chapter6/command_after.png")
+```
+
+对内存总线的控制是由内存控制器实现的。内存控制器负责管理内存条的初始化、读写、低功耗控制等操作。内存控制器接收处理器发出的读写命令，将其转化为内存芯片可以识别的DRAM操作，并负责处理时序相关问题，最终返回数据（对于读命令）或者返回一个响应（对于写命令）给处理器。内存控制器一般还包括命令调度功能，以提高内存总线的访问效率。对于处理器来说，它只需要发送读写命令给内存控制器就可以了，而不必关心内存的状态以及内存是如何被读写的。
+
+## 系统总线
+
+系统总线通常用于处理器与桥片的连接，同时也作为多处理器间的连接以构成多路系统。
+
+英特尔处理器所广泛采用的QPI（Quick Path Interconnect）接口及在QPI之前的FSB（Front Side Bus），还有AMD处理器所广泛采用的HT（HyperTransport）接口都属于系统总线。
+
+系统总线是处理器与其他芯片进行数据交换的主要通道，系统总线的数据传输能力对计算机整体性能影响很大。如果没有足够带宽的系统总线，计算机系统的外设访问速度会明显受限，类似于显示、存储、网络等设备的交互都会受到影响。随着计算机系统技术的不断进步，微处理器与其他芯片间的数据传输性能成为制约系统性能进一步提升的一个重要因素。为了提升片间传输性能，系统总线渐渐由并行总线发展为高速串行总线。下面以HyperTransport总线为例介绍系统总线。
+
+### HyperTransport总线
+
+HyperTransport总线（简称HT总线）是AMD公司提出的一种高速系统总线，用于连接微处理器与配套桥片，以及多个处理器之间的互连。HT总线提出后，先后发展了HT1.0、HT2.0、HT3.0等几代标准，目前最新的标准为HT3.1。
+
+图\@ref(fig:ht-two-chips)是采用HT总线连接处理器与桥片的结构示意图。
+
+```{r ht-two-chips, echo=FALSE, fig.align='center', fig.cap="CPU-南桥两片结构", out.width='50%'}
+knitr::include_graphics("images/chapter6/ht_two_chips.png")
+```
+与并行总线不同的是，串行总线通常采用点对点传输形式，体现在计算机体系结构上，就是一组串行总线只能连接两个芯片。以龙芯3A2000/3A3000为例，在四路互连系统中，一共采用了7组HT互连总线，其中6组用于四个处理器间的全相联连接，1组用于处理器与桥片的连接，如图\@ref(fig:loongson-4way)所示。而作为对比，PCI总线则可以在同一组信号上连接多个不同的设备，如图\@ref(fig:pci-interconnect)所示。
+
+```{r loongson-4way, echo=FALSE, fig.align='center', fig.cap="龙芯3A2000/3A3000四路系统结构示意图", out.width='50%'}
+knitr::include_graphics("images/chapter6/loongson_4way.png")
+```
+
+```{r pci-interconnect, echo=FALSE, fig.align='center', fig.cap="PCI总线设备连接", out.width='50%'}
+knitr::include_graphics("images/chapter6/pci_interconnect.png")
+```
+
+HT总线的软件架构与PCI总线协议基本相同，都采用配置空间、IO空间和Memory空间的划分，通过对配置寄存器的设置，采用正向译码的方向对设备空间进行访问。基于PCI总线设计的设备驱动程序能够直接使用在HT总线的设备上。
+
+但在电气特性及信号定义上，HT总线与PCI总线却大相径庭，HT由两组定义类似但方向不同的信号组成。其主要信号定义如表\@ref(tab:ht-signals)所示。
+
+```{r ht-signals, echo = FALSE, message=FALSE, tab.cap='HT总线主要信号定义'}
+autonum <- run_autonum(seq_id = "tab", bkm = "ht-signals", bkm_all = TRUE)
+readr::read_csv('./materials/chapter6/ht_signals.csv') %>%
+flextable() %>%
+set_caption(caption="HT总线主要信号定义", autonum = autonum) %>%
+theme_box() %>%
+autofit()
+```
+```{r ht-interconnect, echo=FALSE, fig.align='center', fig.cap="HT总线连接", out.width='50%'}
+knitr::include_graphics("images/chapter6/ht_interconnect.png")
+```
+
+可以看到，图\@ref(fig:ht-interconnect)中两个芯片通过定义相同的信号进行相互传输。与上一节介绍的DDR内存总线所不同的是，HT总线上，用于数据传输的信号并非双向信号，而是由两组方向相反的单向信号各自传输。这种传输方式即通常所说的全双工传输。发送和接收两个方向的传输可以同时进行，互不干扰。而采用双向信号的总线，例如DDR内存总线或者PCI总线，只能进行半双工传输，其发送和接收不能同时进行。而且在较高频率下，发送和接收两种模式需要进行切换时，为了保证其数据传输的完整性，还需要在切换过程中增加专门的空闲周期，这样更加影响了总线传输效率。
+
+PCI接口信号定义如图\@ref(fig:pci-signals)所示。PCI总线上使用起始信号（FRAME#）及相应的准备好信号（TRDY#、IRDY#）、停止信号（STOP#）来进行总线的握手，控制总线传输。与PCI总线不同，HT总线信号定义看起来非常简单，没有类似PCI总线的握手信号。
+
+```{r pci-signals, echo=FALSE, fig.align='center', fig.cap="PCI总线信号定义", out.width='100%'}
+knitr::include_graphics("images/chapter6/pci_signals.png")
+```
+
+实际上HT总线的读写请求是通过包的形式传输的，将预先定义好的读写包通过几个连续的时钟周期进行发送，再由接收端进行解析处理。同时，HT总线采用了流控机制替代了握手机制。
+
+流控机制的原理并不复杂。简单来说，在总线初始化完成后，总线双方的发送端将自身的接收端能够接收的请求或响应数通过一种专用的流控包通知对方。总线双方各自维护一组计数器用于记录该信息。每需要发出请求或响应时，先检查对应的计数器是否为0。如果为0，表示另一方无法再接收这种请求或响应，发送方需要等待；如果不为0，则将对应的计数器值减1，再发出请求或响应。而接收端每处理完一个请求或响应后，会再通过流控包通知对方，对方根据这个信息来增加内部对应的计数器。正是通过这种方式，有效消除了总线上的握手，提升了总线传输的频率和效率。
+
+这种传输模式对提升总线频率很有好处。PCI总线发展到PCI-X时，频率能够达到133MHz，宽度最高为64位，总线峰值带宽为1064MB/s。而HT总线发展到3.1版本时，频率能够达到3.2GHz，使用双沿传输，数据速率达到6.4Gb/s，以常见的16位总线来说，单向峰值带宽为12.8GB/s，双向峰值带宽为25.6GB/s。即使去除地址命令传输周期，其有效带宽也比PCI总线提升了一个数量级以上。
+
+### HT包格式
+
+HT总线的传输以包为单位。按照传输的类型，首先分为控制包和数据包两种。控制包和数据包使用CTL信号区分，当CTL信号为高时，表示正在传输一个控制包，当CTL信号为低时，表示正在传输一个数据包。数据包依附于最近的一个带数据的控制包。
+
+控制包根据传输的内容，再分为三种不同的包格式，分别为信息包、请求包和响应包。
+
+信息包的作用是为互连的两端传递底层信息，本身不需要流控。这意味着对于信息包，无论何时都是可以被接收并处理的。流控信息就是一种典型的信息包。信息包的格式如表\@ref(tab:ht-packet-format)所示。
+
+其中，“命令”域用于区分不同的包。对不同的命令，包的其他位置表示的内容之间有所不同。
+
+HT也是采用DDR传输，即双倍数据率传输，在时钟的上升、下降沿各传一组数据。每种包大小都是4字节的倍数。图\@ref(fig:ht-transfer)是在总线上传输的时序示意图，以8位的CAD总线为为例。在CTL为高电平的时候，表示传输的是控制包，而CTL为低时，表示传输的是数据包。图中CAD信息上的数字对应包格式表中的具体拍数。
+
+```{r ht-packet-format, echo = FALSE, message=FALSE, tab.cap='HT信息包格式'}
+autonum <- run_autonum(seq_id = "tab", bkm = "ht-packet-format", bkm_all = TRUE)
+readr::read_csv('./materials/chapter6/ht_packet_format.csv') %>%
+flextable() %>%
+set_caption(caption="HT信息包格式", autonum = autonum) %>%
+width(j=1, width=1) %>%
+width(j=2:9, width=0.6) %>%
+merge_h() %>%
+align(align='center',part='all') %>%
+bg(i=1, j=2:3, bg='grey') %>%
+bg(i=2:4,j=2:9, bg='grey') %>%
+border_outer(fp_border()) %>%
+border_inner(fp_border())
+#theme_box() --> this will cancel alignment
+```
+
+```{r ht-transfer, echo=FALSE, fig.align='center', fig.cap="HT总线传输示意图", out.width='100%'}
+knitr::include_graphics("images/chapter6/ht_transfer.png")
+```
+
+表\@ref(tab:ht-request)为请求包的格式。因为需要传输地址信息，请求包最少需要8字节。当使用64位地址时，请求包可以扩展至12字节。大部分请求包地址的[7:2]是存放在第3拍。因为数据的最小单位为4字节，地址的[1:0]不需要进行传输。当传输的数据少于4字节时，利用数据包的屏蔽位进行处理。
+
+
+```{r ht-request, echo = FALSE, message=FALSE, tab.cap='HT请求包格式'}
+autonum <- run_autonum(seq_id = "tab", bkm = "ht-request", bkm_all = TRUE)
+readr::read_csv('./materials/chapter6/ht_request.csv') %>%
+flextable() %>%
+set_caption(caption="HT请求包格式", autonum = autonum) %>%
+width(j=1, width=1) %>%
+width(j=2:9, width=0.6) %>%
+merge_h() %>%
+align(align='center',part='all') %>%
+bg(i=4:5,j=2:9, bg='grey') %>%
+border_outer(fp_border()) %>%
+border_inner(fp_border())
+```
+
+请求包主要是读请求和写请求。其中读请求不需要数据，而写请求需要跟随数据包。
+
+表\@ref(tab:ht-response)是响应包的格式。响应包大小为4字节。与请求包类似，写响应包不需要数据，而读响应包需要跟随数据包。
+
+
+```{r ht-response, echo = FALSE, message=FALSE, tab.cap='HT响应包格式'}
+autonum <- run_autonum(seq_id = "tab", bkm = "ht-response", bkm_all = TRUE)
+readr::read_csv('./materials/chapter6/ht_response.csv') %>%
+flextable() %>%
+set_caption(caption="HT响应包格式", autonum = autonum) %>%
+width(j=1, width=1) %>%
+width(j=2:9, width=0.6) %>%
+merge_h() %>%
+align(align='center',part='all') %>%
+bg(i=1,j=2:3, bg='grey') %>%
+bg(i=3,j=5:9, bg='grey') %>%
+bg(i=4,j=8:9, bg='grey') %>%
+border_outer(fp_border()) %>%
+border_inner(fp_border())
+```
+
+### 设备总线
+
+设备总线用于计算机系统中与IO设备的连接。
+
+PCI（Peripheral Component Interconnect）总线是一种对计算机体系结构连接影响深远并广泛应用的设备总线。PCIE（PCI Express）可以被看作PCI总线的升级版本，兼容PCI软件架构。PCIE总线被广泛地用作连接设备的通用总线，在现有计算机系统中已经基本取代了PCI的位置。PCIE接口在系统中的位置如图\@ref(fig:pcie-location)所示，一般与SATA、USB、显示等设备接口位于同样层次，用于扩展外部设备。
+
+```{r pcie-location, echo=FALSE, fig.align='center', fig.cap="PCIE接口位置示意图", out.width='50%'}
+knitr::include_graphics("images/chapter6/pcie_location.png")
+```
+
+### PCIE总线
+
+与HT类似，PCIE总线也是串行总线。PCIE与设备进行连接的时候同样采用点对点的方式，一组PCIE接口只能连接一个设备。为了连接多个设备，就需要实现多个接口，如图\@ref(fig:pcie-interconnect)所示。
+
+与HT又有所不同，两者在信号定义和接收发送方法上有很大差别。上一节介绍过，HT总线主要包括三种信号，分别为CLK、CTL、CAD，其中CLK作为随路时钟使用，用于传递总线的频率信息并用作数据恢复。
+
+```{r pcie-interconnect, echo=FALSE, fig.align='center', fig.cap="PCIE接口连接示意图", out.width='100%'}
+knitr::include_graphics("images/chapter6/pcie_interconnect.png")
+```
+
+PCIE的总线信号如表\@ref(tab:pcie-signals)所示。
+
+```{r pcie-signals, echo = FALSE, message=FALSE, tab.cap='PCIE总线主要信号定义'}
+autonum <- run_autonum(seq_id = "tab", bkm = "pcie-signals", bkm_all = TRUE)
+readr::read_csv('./materials/chapter6/pcie_signals.csv') %>%
+flextable() %>%
+set_caption(caption="PCIE总线主要信号定义", autonum = autonum) %>%
+theme_box() %>%
+autofit()
+```
+
+可以看到，PCIE接口上只有用于数据传输的信号。HT接口上，CAD[n:0]通常是以8位为单位，共用一组时钟信号，总线宽度可以为8位、16位或32位。而PCIE接口上的各个TX信号之间相互独立，最小单位为1位，称之为通道（Lane）。常见的总线宽度有1位、4位、8位及16位。如千兆网卡、SATA扩展卡、USB扩展卡等总线宽度大多为1位，而显卡、RAID卡等总线宽度通常为16位。
+
+PCIE在进行传输时，仅仅发送数据信号，而没有发送时钟信号。在接收端通过总线初始化时约定好的数据序列恢复出与发送端同步的时钟，并使用该时钟对接收到的数据信号进行采样，得到原始数据。
+
+### PCIE包格式
+
+PCIE总线的传输同样以包（事务层包，Transaction Level Packet，简称TLP）为单位，其包格式如图\@ref(fig:pcie-packet)所示。PCIE包主要分为TLP首部与数据负载两部分，其作用与HT包类似，可以对应到HT包中的控制包与数据包。PCIE包同样是以4字节为单位增长。
+
+```{r pcie-packet, echo=FALSE, fig.align='center', fig.cap="PCIE总线包格式", out.width='100%'}
+knitr::include_graphics("images/chapter6/pcie_packet.png")
+```
+
+对于具体包格式的定义，PCIE与HT各有不同。尤其是PCIE包在协议上最多可以一次传输4KB的数据，而HT包最多一次传输64字节。PCIE的具体包格式定义在此不再展开，感兴趣的读者可以参考PCIE相关协议。
+
+此外，PCIE同样采用了流控机制来消除总线握手。
+
+PCIE总线被广泛地用作连接设备的设备总线，而HT总线则作为系统总线，用于处理器与桥片之间的连接及多处理器间的互连。
+
+这些使用上的差异是由总线接口特性所决定的。与HT总线不同的是，PCIE接口在x1时，只有一对发送信号线和一对接收信号线，没有随之发送的时钟和控制信号。PCIE接口通过总线传输编码，将时钟信息从总线上重新提取并恢复数据。PCIE总线的传输相比HT总线来说，开销更大，带来延迟的增大及总线带宽利用率的降低。
+
+PCIE总线可以由多个数据通道组成，每个通道只有一对发送信号和一对接收信号，因此传输时每个通道所使用的信号线更少，而且不同的通道之间相关性小，目前使用的PCIE卡最多为16个数据通道。对于物理连接来说，PCIE接口相比HT接口，实现更为简单，被广泛地用作可扩展设备连接，逐渐替代了PCI总线。
+
+## 本章小结
+
+本章简单介绍了计算机中的总线技术。总线技术的应用简化了计算机的设计，使得人们可以专注于部件的开发，促进了分工合作。计算机在发展过程中，形成了各种各样的总线，有些总线发展为行业标准，有专门的组织和结构去制定规范，有些总线虽然没有明文规定，却也成为事实上的标准。这些总线，有的已经逐渐消失，有的还在不断演进。随着计算机产业的发展，未来还会不断出现新的总线。计算机总线的发展趋势是：内部化、串行化和统一化。随着集成电路行业器件集成度的不断提高，越来越多的功能被集成到单个芯片中，因此许多外部总线逐渐被内部化。串行总线由于占用的引脚个数少，总线速度高，因此逐渐替代并行总线成为主流。在市场竞争中，由于马太效应，不同设备的接口逐渐向少数几种总线标准集中，特别是在消费电子领域，USB接口逐渐成为IO设备的标准接口，总线接口越来越统一化。
+
+
+## 习题
+
+1.	找一台电脑，打开机箱，说明每条连线都是什么总线。（注意：一定要先切断电源。）
+2.	说明总线包含哪些层次。
+3.	假定一组AXI 3.0总线，ID宽度为8，数据宽度为64，地址宽度为32，请计算该组AXI总线的信号线数量。
+4.	阅读AMBA APB总线协议并设计一个APB接口的GPIO模块。
+5.	DRAM的寻址包含哪几部分？
+6.	假设一个处理器支持两个DDR3内存通道，每个通道为64位宽，内存地址线个数为15，片选个数为4，计算该处理器实际支持的最大内存容量。
+
+\newpage

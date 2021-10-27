@@ -1,0 +1,6 @@
+C语言名称,LA32名称/数据长度,LA64名称/数据长度,X86名称/数据长度,X86-64名称/数据长度
+char,Byte/1,Byte/1,Byte/1,Byte/1
+short,Halfword/2,Halfword/2,Word/2,Word/2
+int,Word/4,Word/4,Dword/4,Dword/4
+long,Word/4,Dword/8,Dword/4,Qword/8
+long long,Dword/8,Dword/8,Qword/8,Qword/8

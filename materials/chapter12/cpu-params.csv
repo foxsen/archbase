@@ -1,0 +1,20 @@
+厂商,Loongson,AMD,Intel
+处理器型号,3A5000,r3 1200,i3 9100f
+上市时间,2021,2017,2019
+工艺,12nm,14nm,14nm
+指令集,LoongArch,X86-64,X86-64
+微结构型号,GS464V,Zen1,SkyLake
+频率,2.5GHz,2.5GHz,2.5GHz
+内存类型和频率,DDR4 3200MHz,DDR4 3200MHz,DDR4 2400MHz
+Cache层次,"64KB以及ICache
+64KB一级DCache
+256KB二级Cache
+16MB三级Cache","64KB一级ICache
+32KB一级DCache
+512KB二级Cache
+8MB三级Cache","32KB一级ICache
+32KB一级DCache
+256KB二级Cache
+6MB三级Cache"
+核心队列和重命名寄存器数量,128项ROB，64项load队列，48项store队列，32项分支队列，32项定点、32项浮点和32项访存保留站，128项定点和128项浮点重命名寄存器。,192项ROB，72项load队列，44项store队列，84项定点和96项浮点保留站，168项定点和160项浮点重命名寄存器。,224项ROB，72项load队列，56项store队列，97项统一保留站，180项定点和168项浮点重命名寄存器。
+功能部件数,4个定点，2个访存部件，2个256位的浮点乘加,4个定点部件，2个访存部件，4个128位浮点部件（其中2个FMA/FMUL，2个FADD）,4个定点、3个访存、3个256位浮点乘加

@@ -1,0 +1,5 @@
+                                                                                
+IIIIIIIIII
+HHHHHHHHHH
+AAAAATTTTT
+ATATATATAT

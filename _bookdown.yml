@@ -1,0 +1,11 @@
+book_filename: bookdown
+clean: [bookdown.bbl]
+delete_merged_file: true
+language:
+  label:
+    fig: "图 "
+    tab: "表 "
+  ui:
+    edit: "编辑"
+    chapter_name: ["第 ", " 章"]
+    part_name: ["第 ", " 部分"]
