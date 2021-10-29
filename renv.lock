@@ -130,10 +130,15 @@
     },
     "flextable": {
       "Package": "flextable",
-      "Version": "0.6.9",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "1513194de7a11d0661bdb07376450998"
+      "Version": "0.6.10.001",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "foxsen",
+      "RemoteRepo": "flextable",
+      "RemoteRef": "master",
+      "RemoteSha": "30cb59a02e2de1c8e5fd795e77259c860c384d0d",
+      "Hash": "8cd4dacc5c76330ec55a3a6ccf95a064"
     },
     "ftExtra": {
       "Package": "ftExtra",
@@ -144,10 +149,15 @@
     },
     "gdtools": {
       "Package": "gdtools",
-      "Version": "0.2.3",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "12a524de5a491ff39debb9311fc0763f"
+      "Version": "0.2.3.9000",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "foxsen",
+      "RemoteRepo": "gdtools",
+      "RemoteRef": "main",
+      "RemoteSha": "b2caddd09672eceac0a6f1952f1d41c504974aa4",
+      "Hash": "fa2826a504b6f80dca326df8f79bf5da"
     },
     "generics": {
       "Package": "generics",
