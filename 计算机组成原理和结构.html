@@ -33,6 +33,7 @@
   
 <link rel="prev" href="软硬件协同.html"/>
 <link rel="next" href="计算机总线接口技术.html"/>
+<script src="libs/header-attrs/header-attrs.js"></script>
 <script src="libs/jquery/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
@@ -50,25 +51,23 @@
 
 
 
-<script src="libs/accessible-code-block/empty-anchor.js"></script>
 <link href="libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections/anchor-sections.js"></script>
 <link href="libs/tabwid/tabwid.css" rel="stylesheet" />
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -88,7 +87,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -121,6 +120,28 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
@@ -145,23 +166,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="前言.html"><a href="前言.html"><i class="fa fa-check"></i>前言</a></li>
 <li class="chapter" data-level="" data-path="关于本书的在线版本.html"><a href="关于本书的在线版本.html"><i class="fa fa-check"></i>关于本书的在线版本</a></li>
 <li class="part"><span><b>I 引言</b></span></li>
-<li class="chapter" data-level="1" data-path="引言.html"><a href="引言.html"><i class="fa fa-check"></i><b>1</b> 引言</a><ul>
-<li class="chapter" data-level="1.1" data-path="引言.html"><a href="引言.html#计算机体系结构的研究内容"><i class="fa fa-check"></i><b>1.1</b> 计算机体系结构的研究内容</a><ul>
+<li class="chapter" data-level="1" data-path="引言.html"><a href="引言.html"><i class="fa fa-check"></i><b>1</b> 引言</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="引言.html"><a href="引言.html#计算机体系结构的研究内容"><i class="fa fa-check"></i><b>1.1</b> 计算机体系结构的研究内容</a>
+<ul>
 <li class="chapter" data-level="1.1.1" data-path="引言.html"><a href="引言.html#一以贯之"><i class="fa fa-check"></i><b>1.1.1</b> 一以贯之</a></li>
 <li class="chapter" data-level="1.1.2" data-path="引言.html"><a href="引言.html#什么是计算机"><i class="fa fa-check"></i><b>1.1.2</b> 什么是计算机</a></li>
 <li class="chapter" data-level="1.1.3" data-path="引言.html"><a href="引言.html#计算机的基本组成"><i class="fa fa-check"></i><b>1.1.3</b> 计算机的基本组成</a></li>
 </ul></li>
-<li class="chapter" data-level="1.2" data-path="引言.html"><a href="引言.html#衡量计算机的指标"><i class="fa fa-check"></i><b>1.2</b> 衡量计算机的指标</a><ul>
+<li class="chapter" data-level="1.2" data-path="引言.html"><a href="引言.html#衡量计算机的指标"><i class="fa fa-check"></i><b>1.2</b> 衡量计算机的指标</a>
+<ul>
 <li class="chapter" data-level="1.2.1" data-path="引言.html"><a href="引言.html#计算机的性能"><i class="fa fa-check"></i><b>1.2.1</b> 计算机的性能</a></li>
 <li class="chapter" data-level="1.2.2" data-path="引言.html"><a href="引言.html#计算机的价格"><i class="fa fa-check"></i><b>1.2.2</b> 计算机的价格</a></li>
 <li class="chapter" data-level="1.2.3" data-path="引言.html"><a href="引言.html#计算机的功耗"><i class="fa fa-check"></i><b>1.2.3</b> 计算机的功耗</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="引言.html"><a href="引言.html#计算机体系结构的发展"><i class="fa fa-check"></i><b>1.3</b> 计算机体系结构的发展</a><ul>
+<li class="chapter" data-level="1.3" data-path="引言.html"><a href="引言.html#计算机体系结构的发展"><i class="fa fa-check"></i><b>1.3</b> 计算机体系结构的发展</a>
+<ul>
 <li class="chapter" data-level="1.3.1" data-path="引言.html"><a href="引言.html#摩尔定律和工艺的发展"><i class="fa fa-check"></i><b>1.3.1</b> 摩尔定律和工艺的发展</a></li>
 <li class="chapter" data-level="1.3.2" data-path="引言.html"><a href="引言.html#计算机应用和体系结构"><i class="fa fa-check"></i><b>1.3.2</b> 计算机应用和体系结构</a></li>
 <li class="chapter" data-level="1.3.3" data-path="引言.html"><a href="引言.html#计算机体系结构发展"><i class="fa fa-check"></i><b>1.3.3</b> 计算机体系结构发展</a></li>
 </ul></li>
-<li class="chapter" data-level="1.4" data-path="引言.html"><a href="引言.html#体系结构设计的基本原则"><i class="fa fa-check"></i><b>1.4</b> 体系结构设计的基本原则</a><ul>
+<li class="chapter" data-level="1.4" data-path="引言.html"><a href="引言.html#体系结构设计的基本原则"><i class="fa fa-check"></i><b>1.4</b> 体系结构设计的基本原则</a>
+<ul>
 <li class="chapter" data-level="1.4.1" data-path="引言.html"><a href="引言.html#平衡性"><i class="fa fa-check"></i><b>1.4.1</b> 平衡性</a></li>
 <li class="chapter" data-level="1.4.2" data-path="引言.html"><a href="引言.html#局部性"><i class="fa fa-check"></i><b>1.4.2</b> 局部性</a></li>
 <li class="chapter" data-level="1.4.3" data-path="引言.html"><a href="引言.html#并行性"><i class="fa fa-check"></i><b>1.4.3</b> 并行性</a></li>
@@ -171,26 +197,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.6" data-path="引言.html"><a href="引言.html#习题"><i class="fa fa-check"></i><b>1.6</b> 习题</a></li>
 </ul></li>
 <li class="part"><span><b>II 指令系统结构</b></span></li>
-<li class="chapter" data-level="2" data-path="sec-ISA.html"><a href="sec-ISA.html"><i class="fa fa-check"></i><b>2</b> 指令系统</a><ul>
+<li class="chapter" data-level="2" data-path="sec-ISA.html"><a href="sec-ISA.html"><i class="fa fa-check"></i><b>2</b> 指令系统</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="sec-ISA.html"><a href="sec-ISA.html#指令系统简介"><i class="fa fa-check"></i><b>2.1</b> 指令系统简介</a></li>
 <li class="chapter" data-level="2.2" data-path="sec-ISA.html"><a href="sec-ISA.html#指令系统设计原则"><i class="fa fa-check"></i><b>2.2</b> 指令系统设计原则</a></li>
-<li class="chapter" data-level="2.3" data-path="sec-ISA.html"><a href="sec-ISA.html#指令系统发展历程"><i class="fa fa-check"></i><b>2.3</b> 指令系统发展历程</a><ul>
+<li class="chapter" data-level="2.3" data-path="sec-ISA.html"><a href="sec-ISA.html#指令系统发展历程"><i class="fa fa-check"></i><b>2.3</b> 指令系统发展历程</a>
+<ul>
 <li class="chapter" data-level="2.3.1" data-path="sec-ISA.html"><a href="sec-ISA.html#指令内容的演变"><i class="fa fa-check"></i><b>2.3.1</b> 指令内容的演变</a></li>
 <li class="chapter" data-level="2.3.2" data-path="sec-ISA.html"><a href="sec-ISA.html#存储管理的演变"><i class="fa fa-check"></i><b>2.3.2</b> 存储管理的演变</a></li>
 <li class="chapter" data-level="2.3.3" data-path="sec-ISA.html"><a href="sec-ISA.html#运行级别的演变"><i class="fa fa-check"></i><b>2.3.3</b> 运行级别的演变</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="sec-ISA.html"><a href="sec-ISA.html#指令系统组成"><i class="fa fa-check"></i><b>2.4</b> 指令系统组成</a><ul>
+<li class="chapter" data-level="2.4" data-path="sec-ISA.html"><a href="sec-ISA.html#指令系统组成"><i class="fa fa-check"></i><b>2.4</b> 指令系统组成</a>
+<ul>
 <li class="chapter" data-level="2.4.1" data-path="sec-ISA.html"><a href="sec-ISA.html#地址空间"><i class="fa fa-check"></i><b>2.4.1</b> 地址空间</a></li>
 <li class="chapter" data-level="2.4.2" data-path="sec-ISA.html"><a href="sec-ISA.html#操作数"><i class="fa fa-check"></i><b>2.4.2</b> 操作数</a></li>
 <li class="chapter" data-level="2.4.3" data-path="sec-ISA.html"><a href="sec-ISA.html#指令操作和编码"><i class="fa fa-check"></i><b>2.4.3</b> 指令操作和编码</a></li>
 </ul></li>
-<li class="chapter" data-level="2.5" data-path="sec-ISA.html"><a href="sec-ISA.html#risc指令集比较"><i class="fa fa-check"></i><b>2.5</b> RISC指令集比较</a><ul>
+<li class="chapter" data-level="2.5" data-path="sec-ISA.html"><a href="sec-ISA.html#risc指令集比较"><i class="fa fa-check"></i><b>2.5</b> RISC指令集比较</a>
+<ul>
 <li class="chapter" data-level="2.5.1" data-path="sec-ISA.html"><a href="sec-ISA.html#指令格式比较"><i class="fa fa-check"></i><b>2.5.1</b> 指令格式比较</a></li>
 <li class="chapter" data-level="2.5.2" data-path="sec-ISA.html"><a href="sec-ISA.html#寻址方式比较"><i class="fa fa-check"></i><b>2.5.2</b> 寻址方式比较</a></li>
 <li class="chapter" data-level="2.5.3" data-path="sec-ISA.html"><a href="sec-ISA.html#公共指令功能"><i class="fa fa-check"></i><b>2.5.3</b> 公共指令功能</a></li>
 <li class="chapter" data-level="2.5.4" data-path="sec-ISA.html"><a href="sec-ISA.html#不同指令系统的特色"><i class="fa fa-check"></i><b>2.5.4</b> 不同指令系统的特色</a></li>
 </ul></li>
-<li class="chapter" data-level="2.6" data-path="sec-ISA.html"><a href="sec-ISA.html#c语言的机器表示"><i class="fa fa-check"></i><b>2.6</b> C语言的机器表示</a><ul>
+<li class="chapter" data-level="2.6" data-path="sec-ISA.html"><a href="sec-ISA.html#c语言的机器表示"><i class="fa fa-check"></i><b>2.6</b> C语言的机器表示</a>
+<ul>
 <li class="chapter" data-level="2.6.1" data-path="sec-ISA.html"><a href="sec-ISA.html#过程调用"><i class="fa fa-check"></i><b>2.6.1</b> 过程调用</a></li>
 <li class="chapter" data-level="2.6.2" data-path="sec-ISA.html"><a href="sec-ISA.html#流程控制语句"><i class="fa fa-check"></i><b>2.6.2</b> 流程控制语句</a></li>
 <li class="chapter" data-level="2.6.3" data-path="sec-ISA.html"><a href="sec-ISA.html#循环语句"><i class="fa fa-check"></i><b>2.6.3</b> 循环语句</a></li>
@@ -198,14 +229,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.7" data-path="sec-ISA.html"><a href="sec-ISA.html#本章小结-1"><i class="fa fa-check"></i><b>2.7</b> 本章小结</a></li>
 <li class="chapter" data-level="2.8" data-path="sec-ISA.html"><a href="sec-ISA.html#习题-1"><i class="fa fa-check"></i><b>2.8</b> 习题</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html"><i class="fa fa-check"></i><b>3</b> 特权指令系统</a><ul>
+<li class="chapter" data-level="3" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html"><i class="fa fa-check"></i><b>3</b> 特权指令系统</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#特权指令系统简介"><i class="fa fa-check"></i><b>3.1</b> 特权指令系统简介</a></li>
-<li class="chapter" data-level="3.2" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#sec-exception"><i class="fa fa-check"></i><b>3.2</b> 异常与中断</a><ul>
+<li class="chapter" data-level="3.2" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#sec-exception"><i class="fa fa-check"></i><b>3.2</b> 异常与中断</a>
+<ul>
 <li class="chapter" data-level="3.2.1" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#异常分类"><i class="fa fa-check"></i><b>3.2.1</b> 异常分类</a></li>
 <li class="chapter" data-level="3.2.2" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#异常处理"><i class="fa fa-check"></i><b>3.2.2</b> 异常处理</a></li>
 <li class="chapter" data-level="3.2.3" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#中断"><i class="fa fa-check"></i><b>3.2.3</b> 中断</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#sec-memory-management"><i class="fa fa-check"></i><b>3.3</b> 存储管理</a><ul>
+<li class="chapter" data-level="3.3" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#sec-memory-management"><i class="fa fa-check"></i><b>3.3</b> 存储管理</a>
+<ul>
 <li class="chapter" data-level="3.3.1" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#存储管理的原理"><i class="fa fa-check"></i><b>3.3.1</b> 存储管理的原理</a></li>
 <li class="chapter" data-level="3.3.2" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#tlb的结构和使用"><i class="fa fa-check"></i><b>3.3.2</b> TLB的结构和使用</a></li>
 <li class="chapter" data-level="3.3.3" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#sec-tlb-ex"><i class="fa fa-check"></i><b>3.3.3</b> TLB地址翻译相关异常的处理</a></li>
@@ -213,14 +247,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.4" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#本章小结-2"><i class="fa fa-check"></i><b>3.4</b> 本章小结</a></li>
 <li class="chapter" data-level="3.5" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#习题-2"><i class="fa fa-check"></i><b>3.5</b> 习题</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="软硬件协同.html"><a href="软硬件协同.html"><i class="fa fa-check"></i><b>4</b> 软硬件协同</a><ul>
-<li class="chapter" data-level="4.1" data-path="软硬件协同.html"><a href="软硬件协同.html#应用程序二进制接口"><i class="fa fa-check"></i><b>4.1</b> 应用程序二进制接口</a><ul>
+<li class="chapter" data-level="4" data-path="软硬件协同.html"><a href="软硬件协同.html"><i class="fa fa-check"></i><b>4</b> 软硬件协同</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="软硬件协同.html"><a href="软硬件协同.html#应用程序二进制接口"><i class="fa fa-check"></i><b>4.1</b> 应用程序二进制接口</a>
+<ul>
 <li class="chapter" data-level="4.1.1" data-path="软硬件协同.html"><a href="软硬件协同.html#寄存器约定"><i class="fa fa-check"></i><b>4.1.1</b> 寄存器约定</a></li>
 <li class="chapter" data-level="4.1.2" data-path="软硬件协同.html"><a href="软硬件协同.html#函数调用约定"><i class="fa fa-check"></i><b>4.1.2</b> 函数调用约定</a></li>
 <li class="chapter" data-level="4.1.3" data-path="软硬件协同.html"><a href="软硬件协同.html#进程虚拟地址空间"><i class="fa fa-check"></i><b>4.1.3</b> 进程虚拟地址空间</a></li>
 <li class="chapter" data-level="4.1.4" data-path="软硬件协同.html"><a href="软硬件协同.html#栈帧布局"><i class="fa fa-check"></i><b>4.1.4</b> 栈帧布局</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="软硬件协同.html"><a href="软硬件协同.html#六种常见的上下文切换场景"><i class="fa fa-check"></i><b>4.2</b> 六种常见的上下文切换场景</a><ul>
+<li class="chapter" data-level="4.2" data-path="软硬件协同.html"><a href="软硬件协同.html#六种常见的上下文切换场景"><i class="fa fa-check"></i><b>4.2</b> 六种常见的上下文切换场景</a>
+<ul>
 <li class="chapter" data-level="4.2.1" data-path="软硬件协同.html"><a href="软硬件协同.html#函数调用"><i class="fa fa-check"></i><b>4.2.1</b> 函数调用</a></li>
 <li class="chapter" data-level="4.2.2" data-path="软硬件协同.html"><a href="软硬件协同.html#异常和中断"><i class="fa fa-check"></i><b>4.2.2</b> 异常和中断</a></li>
 <li class="chapter" data-level="4.2.3" data-path="软硬件协同.html"><a href="软硬件协同.html#系统调用"><i class="fa fa-check"></i><b>4.2.3</b> 系统调用</a></li>
@@ -229,7 +266,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.2.6" data-path="软硬件协同.html"><a href="软硬件协同.html#虚拟机"><i class="fa fa-check"></i><b>4.2.6</b> 虚拟机</a></li>
 <li class="chapter" data-level="4.2.7" data-path="软硬件协同.html"><a href="软硬件协同.html#六种上下文切换场景的对比"><i class="fa fa-check"></i><b>4.2.7</b> 六种上下文切换场景的对比</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="软硬件协同.html"><a href="软硬件协同.html#同步机制"><i class="fa fa-check"></i><b>4.3</b> 同步机制</a><ul>
+<li class="chapter" data-level="4.3" data-path="软硬件协同.html"><a href="软硬件协同.html#同步机制"><i class="fa fa-check"></i><b>4.3</b> 同步机制</a>
+<ul>
 <li class="chapter" data-level="4.3.1" data-path="软硬件协同.html"><a href="软硬件协同.html#基于互斥的同步机制"><i class="fa fa-check"></i><b>4.3.1</b> 基于互斥的同步机制</a></li>
 <li class="chapter" data-level="4.3.2" data-path="软硬件协同.html"><a href="软硬件协同.html#非阻塞的同步机制"><i class="fa fa-check"></i><b>4.3.2</b> 非阻塞的同步机制</a></li>
 </ul></li>
@@ -237,22 +275,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.5" data-path="软硬件协同.html"><a href="软硬件协同.html#习题-3"><i class="fa fa-check"></i><b>4.5</b> 习题</a></li>
 </ul></li>
 <li class="part"><span><b>III 计算机硬件结构</b></span></li>
-<li class="chapter" data-level="5" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html"><i class="fa fa-check"></i><b>5</b> 计算机组成原理和结构</a><ul>
+<li class="chapter" data-level="5" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html"><i class="fa fa-check"></i><b>5</b> 计算机组成原理和结构</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#冯诺依曼结构"><i class="fa fa-check"></i><b>5.1</b> 冯·诺依曼结构</a></li>
-<li class="chapter" data-level="5.2" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#计算机的组成部件"><i class="fa fa-check"></i><b>5.2</b> 计算机的组成部件</a><ul>
+<li class="chapter" data-level="5.2" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#计算机的组成部件"><i class="fa fa-check"></i><b>5.2</b> 计算机的组成部件</a>
+<ul>
 <li class="chapter" data-level="5.2.1" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#运算器"><i class="fa fa-check"></i><b>5.2.1</b> 运算器</a></li>
 <li class="chapter" data-level="5.2.2" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#控制器"><i class="fa fa-check"></i><b>5.2.2</b> 控制器</a></li>
 <li class="chapter" data-level="5.2.3" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#存储器"><i class="fa fa-check"></i><b>5.2.3</b> 存储器</a></li>
 <li class="chapter" data-level="5.2.4" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#输入输出设备"><i class="fa fa-check"></i><b>5.2.4</b> 输入/输出设备</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#计算机系统硬件结构发展"><i class="fa fa-check"></i><b>5.3</b> 计算机系统硬件结构发展</a><ul>
+<li class="chapter" data-level="5.3" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#计算机系统硬件结构发展"><i class="fa fa-check"></i><b>5.3</b> 计算机系统硬件结构发展</a>
+<ul>
 <li class="chapter" data-level="5.3.1" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#cpu-gpu-北桥-南桥四片结构"><i class="fa fa-check"></i><b>5.3.1</b> CPU-GPU-北桥-南桥四片结构</a></li>
 <li class="chapter" data-level="5.3.2" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#cpu-北桥-南桥三片结构"><i class="fa fa-check"></i><b>5.3.2</b> CPU-北桥-南桥三片结构</a></li>
 <li class="chapter" data-level="5.3.3" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#cpu-弱北桥-南桥三片结构"><i class="fa fa-check"></i><b>5.3.3</b> CPU-弱北桥-南桥三片结构</a></li>
 <li class="chapter" data-level="5.3.4" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#cpu-南桥两片结构"><i class="fa fa-check"></i><b>5.3.4</b> CPU-南桥两片结构</a></li>
 <li class="chapter" data-level="5.3.5" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#soc单片结构"><i class="fa fa-check"></i><b>5.3.5</b> SoC单片结构</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#处理器和io设备间的通信"><i class="fa fa-check"></i><b>5.4</b> 处理器和IO设备间的通信</a><ul>
+<li class="chapter" data-level="5.4" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#处理器和io设备间的通信"><i class="fa fa-check"></i><b>5.4</b> 处理器和IO设备间的通信</a>
+<ul>
 <li class="chapter" data-level="5.4.1" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#io寄存器寻址"><i class="fa fa-check"></i><b>5.4.1</b> IO寄存器寻址</a></li>
 <li class="chapter" data-level="5.4.2" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#处理器和io设备之间的同步"><i class="fa fa-check"></i><b>5.4.2</b> 处理器和IO设备之间的同步</a></li>
 <li class="chapter" data-level="5.4.3" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#存储器和io设备之间的数据传送"><i class="fa fa-check"></i><b>5.4.3</b> 存储器和IO设备之间的数据传送</a></li>
@@ -261,12 +303,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.5" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#本章小结-4"><i class="fa fa-check"></i><b>5.5</b> 本章小结</a></li>
 <li class="chapter" data-level="5.6" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#习题-4"><i class="fa fa-check"></i><b>5.6</b> 习题</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html"><i class="fa fa-check"></i><b>6</b> 计算机总线接口技术</a><ul>
+<li class="chapter" data-level="6" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html"><i class="fa fa-check"></i><b>6</b> 计算机总线接口技术</a>
+<ul>
 <li class="chapter" data-level="6.1" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#总线概述"><i class="fa fa-check"></i><b>6.1</b> 总线概述</a></li>
 <li class="chapter" data-level="6.2" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#总线分类"><i class="fa fa-check"></i><b>6.2</b> 总线分类</a></li>
 <li class="chapter" data-level="6.3" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#片上总线"><i class="fa fa-check"></i><b>6.3</b> 片上总线</a></li>
 <li class="chapter" data-level="6.4" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#内存总线"><i class="fa fa-check"></i><b>6.4</b> 内存总线</a></li>
-<li class="chapter" data-level="6.5" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#系统总线"><i class="fa fa-check"></i><b>6.5</b> 系统总线</a><ul>
+<li class="chapter" data-level="6.5" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#系统总线"><i class="fa fa-check"></i><b>6.5</b> 系统总线</a>
+<ul>
 <li class="chapter" data-level="6.5.1" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#hypertransport总线"><i class="fa fa-check"></i><b>6.5.1</b> HyperTransport总线</a></li>
 <li class="chapter" data-level="6.5.2" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#ht包格式"><i class="fa fa-check"></i><b>6.5.2</b> HT包格式</a></li>
 <li class="chapter" data-level="6.5.3" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#设备总线"><i class="fa fa-check"></i><b>6.5.3</b> 设备总线</a></li>
@@ -276,19 +320,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.6" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#本章小结-5"><i class="fa fa-check"></i><b>6.6</b> 本章小结</a></li>
 <li class="chapter" data-level="6.7" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#习题-5"><i class="fa fa-check"></i><b>6.7</b> 习题</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html"><i class="fa fa-check"></i><b>7</b> 计算机启动过程分析</a><ul>
-<li class="chapter" data-level="7.1" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#处理器核初始化"><i class="fa fa-check"></i><b>7.1</b> 处理器核初始化</a><ul>
+<li class="chapter" data-level="7" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html"><i class="fa fa-check"></i><b>7</b> 计算机启动过程分析</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#处理器核初始化"><i class="fa fa-check"></i><b>7.1</b> 处理器核初始化</a>
+<ul>
 <li class="chapter" data-level="7.1.1" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#sec-cpu-reset"><i class="fa fa-check"></i><b>7.1.1</b> 处理器复位</a></li>
 <li class="chapter" data-level="7.1.2" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#调试接口初始化"><i class="fa fa-check"></i><b>7.1.2</b> 调试接口初始化</a></li>
 <li class="chapter" data-level="7.1.3" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#tlb初始化"><i class="fa fa-check"></i><b>7.1.3</b> TLB初始化</a></li>
 <li class="chapter" data-level="7.1.4" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#cache初始化"><i class="fa fa-check"></i><b>7.1.4</b> Cache初始化</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#总线接口初始化"><i class="fa fa-check"></i><b>7.2</b> 总线接口初始化</a><ul>
+<li class="chapter" data-level="7.2" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#总线接口初始化"><i class="fa fa-check"></i><b>7.2</b> 总线接口初始化</a>
+<ul>
 <li class="chapter" data-level="7.2.1" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#内存初始化"><i class="fa fa-check"></i><b>7.2.1</b> 内存初始化</a></li>
 <li class="chapter" data-level="7.2.2" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#io总线初始化"><i class="fa fa-check"></i><b>7.2.2</b> IO总线初始化</a></li>
 </ul></li>
 <li class="chapter" data-level="7.3" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#设备的探测及驱动加载"><i class="fa fa-check"></i><b>7.3</b> 设备的探测及驱动加载</a></li>
-<li class="chapter" data-level="7.4" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#多核启动过程"><i class="fa fa-check"></i><b>7.4</b> 多核启动过程</a><ul>
+<li class="chapter" data-level="7.4" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#多核启动过程"><i class="fa fa-check"></i><b>7.4</b> 多核启动过程</a>
+<ul>
 <li class="chapter" data-level="7.4.1" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#初始化时的多核协同"><i class="fa fa-check"></i><b>7.4.1</b> 初始化时的多核协同</a></li>
 <li class="chapter" data-level="7.4.2" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#操作系统启动时的多核唤醒"><i class="fa fa-check"></i><b>7.4.2</b> 操作系统启动时的多核唤醒</a></li>
 <li class="chapter" data-level="7.4.3" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#核间同步与通信"><i class="fa fa-check"></i><b>7.4.3</b> 核间同步与通信</a></li>
@@ -297,19 +345,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.6" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#习题-6"><i class="fa fa-check"></i><b>7.6</b> 习题</a></li>
 </ul></li>
 <li class="part"><span><b>IV Part IV CPU的微结构</b></span></li>
-<li class="chapter" data-level="8" data-path="运算器设计.html"><a href="运算器设计.html"><i class="fa fa-check"></i><b>8</b> 运算器设计</a><ul>
-<li class="chapter" data-level="8.1" data-path="运算器设计.html"><a href="运算器设计.html#二进制与逻辑电路"><i class="fa fa-check"></i><b>8.1</b> 二进制与逻辑电路</a><ul>
+<li class="chapter" data-level="8" data-path="运算器设计.html"><a href="运算器设计.html"><i class="fa fa-check"></i><b>8</b> 运算器设计</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="运算器设计.html"><a href="运算器设计.html#二进制与逻辑电路"><i class="fa fa-check"></i><b>8.1</b> 二进制与逻辑电路</a>
+<ul>
 <li class="chapter" data-level="8.1.1" data-path="运算器设计.html"><a href="运算器设计.html#sec-number-presentation"><i class="fa fa-check"></i><b>8.1.1</b> 计算机中数的表示</a></li>
 <li class="chapter" data-level="8.1.2" data-path="运算器设计.html"><a href="运算器设计.html#sec-MOS-principle"><i class="fa fa-check"></i><b>8.1.2</b> MOS晶体管工作原理</a></li>
 <li class="chapter" data-level="8.1.3" data-path="运算器设计.html"><a href="运算器设计.html#cmos逻辑电路"><i class="fa fa-check"></i><b>8.1.3</b> CMOS逻辑电路</a></li>
 </ul></li>
-<li class="chapter" data-level="8.2" data-path="运算器设计.html"><a href="运算器设计.html#简单运算器设计"><i class="fa fa-check"></i><b>8.2</b> 简单运算器设计</a><ul>
+<li class="chapter" data-level="8.2" data-path="运算器设计.html"><a href="运算器设计.html#简单运算器设计"><i class="fa fa-check"></i><b>8.2</b> 简单运算器设计</a>
+<ul>
 <li class="chapter" data-level="8.2.1" data-path="运算器设计.html"><a href="运算器设计.html#定点补码加法器"><i class="fa fa-check"></i><b>8.2.1</b> 定点补码加法器</a></li>
 <li class="chapter" data-level="8.2.2" data-path="运算器设计.html"><a href="运算器设计.html#减法运算实现"><i class="fa fa-check"></i><b>8.2.2</b> 减法运算实现</a></li>
 <li class="chapter" data-level="8.2.3" data-path="运算器设计.html"><a href="运算器设计.html#比较运算实现"><i class="fa fa-check"></i><b>8.2.3</b> 比较运算实现</a></li>
 <li class="chapter" data-level="8.2.4" data-path="运算器设计.html"><a href="运算器设计.html#移位器"><i class="fa fa-check"></i><b>8.2.4</b> 移位器</a></li>
 </ul></li>
-<li class="chapter" data-level="8.3" data-path="运算器设计.html"><a href="运算器设计.html#定点补码乘法器"><i class="fa fa-check"></i><b>8.3</b> 定点补码乘法器</a><ul>
+<li class="chapter" data-level="8.3" data-path="运算器设计.html"><a href="运算器设计.html#定点补码乘法器"><i class="fa fa-check"></i><b>8.3</b> 定点补码乘法器</a>
+<ul>
 <li class="chapter" data-level="8.3.1" data-path="运算器设计.html"><a href="运算器设计.html#补码乘法器"><i class="fa fa-check"></i><b>8.3.1</b> 补码乘法器</a></li>
 <li class="chapter" data-level="8.3.2" data-path="运算器设计.html"><a href="运算器设计.html#booth乘法器"><i class="fa fa-check"></i><b>8.3.2</b> Booth乘法器</a></li>
 <li class="chapter" data-level="8.3.3" data-path="运算器设计.html"><a href="运算器设计.html#华莱士树"><i class="fa fa-check"></i><b>8.3.3</b> 华莱士树</a></li>
@@ -317,16 +369,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.4" data-path="运算器设计.html"><a href="运算器设计.html#本章小结-7"><i class="fa fa-check"></i><b>8.4</b> 本章小结</a></li>
 <li class="chapter" data-level="8.5" data-path="运算器设计.html"><a href="运算器设计.html#习题-7"><i class="fa fa-check"></i><b>8.5</b> 习题</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="指令流水线.html"><a href="指令流水线.html"><i class="fa fa-check"></i><b>9</b> 指令流水线</a><ul>
+<li class="chapter" data-level="9" data-path="指令流水线.html"><a href="指令流水线.html"><i class="fa fa-check"></i><b>9</b> 指令流水线</a>
+<ul>
 <li class="chapter" data-level="9.1" data-path="指令流水线.html"><a href="指令流水线.html#单周期处理器"><i class="fa fa-check"></i><b>9.1</b> 单周期处理器</a></li>
 <li class="chapter" data-level="9.2" data-path="指令流水线.html"><a href="指令流水线.html#sec-pipeline-cpu"><i class="fa fa-check"></i><b>9.2</b> 流水线处理器</a></li>
-<li class="chapter" data-level="9.3" data-path="指令流水线.html"><a href="指令流水线.html#sec-hazard"><i class="fa fa-check"></i><b>9.3</b> 指令相关和流水线冲突</a><ul>
+<li class="chapter" data-level="9.3" data-path="指令流水线.html"><a href="指令流水线.html#sec-hazard"><i class="fa fa-check"></i><b>9.3</b> 指令相关和流水线冲突</a>
+<ul>
 <li class="chapter" data-level="9.3.1" data-path="指令流水线.html"><a href="指令流水线.html#数据相关引发的冲突及解决办法"><i class="fa fa-check"></i><b>9.3.1</b> 数据相关引发的冲突及解决办法</a></li>
 <li class="chapter" data-level="9.3.2" data-path="指令流水线.html"><a href="指令流水线.html#sec-control-hazard"><i class="fa fa-check"></i><b>9.3.2</b> 控制相关引发冲突及解决方法</a></li>
 <li class="chapter" data-level="9.3.3" data-path="指令流水线.html"><a href="指令流水线.html#结构相关引发冲突及解决办法"><i class="fa fa-check"></i><b>9.3.3</b> 结构相关引发冲突及解决办法</a></li>
 </ul></li>
 <li class="chapter" data-level="9.4" data-path="指令流水线.html"><a href="指令流水线.html#sec-precise-exception"><i class="fa fa-check"></i><b>9.4</b> 流水线与异常处理</a></li>
-<li class="chapter" data-level="9.5" data-path="指令流水线.html"><a href="指令流水线.html#提高流水线效率的技术"><i class="fa fa-check"></i><b>9.5</b> 提高流水线效率的技术</a><ul>
+<li class="chapter" data-level="9.5" data-path="指令流水线.html"><a href="指令流水线.html#提高流水线效率的技术"><i class="fa fa-check"></i><b>9.5</b> 提高流水线效率的技术</a>
+<ul>
 <li class="chapter" data-level="9.5.1" data-path="指令流水线.html"><a href="指令流水线.html#多发射数据通路"><i class="fa fa-check"></i><b>9.5.1</b> 多发射数据通路</a></li>
 <li class="chapter" data-level="9.5.2" data-path="指令流水线.html"><a href="指令流水线.html#sec-dynamic"><i class="fa fa-check"></i><b>9.5.2</b> 动态调度</a></li>
 <li class="chapter" data-level="9.5.3" data-path="指令流水线.html"><a href="指令流水线.html#sec-branch-predict"><i class="fa fa-check"></i><b>9.5.3</b> 转移预测</a></li>
@@ -336,19 +391,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.7" data-path="指令流水线.html"><a href="指令流水线.html#习题-8"><i class="fa fa-check"></i><b>9.7</b> 习题</a></li>
 </ul></li>
 <li class="part"><span><b>V 并行处理结构</b></span></li>
-<li class="chapter" data-level="10" data-path="并行编程基础.html"><a href="并行编程基础.html"><i class="fa fa-check"></i><b>10</b> 并行编程基础</a><ul>
-<li class="chapter" data-level="10.1" data-path="并行编程基础.html"><a href="并行编程基础.html#程序的并行行为"><i class="fa fa-check"></i><b>10.1</b> 程序的并行行为</a><ul>
+<li class="chapter" data-level="10" data-path="并行编程基础.html"><a href="并行编程基础.html"><i class="fa fa-check"></i><b>10</b> 并行编程基础</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="并行编程基础.html"><a href="并行编程基础.html#程序的并行行为"><i class="fa fa-check"></i><b>10.1</b> 程序的并行行为</a>
+<ul>
 <li class="chapter" data-level="10.1.1" data-path="并行编程基础.html"><a href="并行编程基础.html#指令级并行性"><i class="fa fa-check"></i><b>10.1.1</b> 指令级并行性</a></li>
 <li class="chapter" data-level="10.1.2" data-path="并行编程基础.html"><a href="并行编程基础.html#数据级并行性"><i class="fa fa-check"></i><b>10.1.2</b> 数据级并行性</a></li>
 <li class="chapter" data-level="10.1.3" data-path="并行编程基础.html"><a href="并行编程基础.html#任务级并行性"><i class="fa fa-check"></i><b>10.1.3</b> 任务级并行性</a></li>
 </ul></li>
-<li class="chapter" data-level="10.2" data-path="并行编程基础.html"><a href="并行编程基础.html#并行编程模型"><i class="fa fa-check"></i><b>10.2</b> 并行编程模型</a><ul>
+<li class="chapter" data-level="10.2" data-path="并行编程基础.html"><a href="并行编程基础.html#并行编程模型"><i class="fa fa-check"></i><b>10.2</b> 并行编程模型</a>
+<ul>
 <li class="chapter" data-level="10.2.1" data-path="并行编程基础.html"><a href="并行编程基础.html#单任务数据并行模型"><i class="fa fa-check"></i><b>10.2.1</b> 单任务数据并行模型</a></li>
 <li class="chapter" data-level="10.2.2" data-path="并行编程基础.html"><a href="并行编程基础.html#多任务共享存储编程模型"><i class="fa fa-check"></i><b>10.2.2</b> 多任务共享存储编程模型</a></li>
 <li class="chapter" data-level="10.2.3" data-path="并行编程基础.html"><a href="并行编程基础.html#多任务消息传递编程模型"><i class="fa fa-check"></i><b>10.2.3</b> 多任务消息传递编程模型</a></li>
 <li class="chapter" data-level="10.2.4" data-path="并行编程基础.html"><a href="并行编程基础.html#共享存储与消息传递编程模型的编程复杂度"><i class="fa fa-check"></i><b>10.2.4</b> 共享存储与消息传递编程模型的编程复杂度</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="并行编程基础.html"><a href="并行编程基础.html#典型并行编程环境"><i class="fa fa-check"></i><b>10.3</b> 典型并行编程环境</a><ul>
+<li class="chapter" data-level="10.3" data-path="并行编程基础.html"><a href="并行编程基础.html#典型并行编程环境"><i class="fa fa-check"></i><b>10.3</b> 典型并行编程环境</a>
+<ul>
 <li class="chapter" data-level="10.3.1" data-path="并行编程基础.html"><a href="并行编程基础.html#数据并行simd编程"><i class="fa fa-check"></i><b>10.3.1</b> 数据并行SIMD编程</a></li>
 <li class="chapter" data-level="10.3.2" data-path="并行编程基础.html"><a href="并行编程基础.html#posix编程标准"><i class="fa fa-check"></i><b>10.3.2</b> POSIX编程标准</a></li>
 <li class="chapter" data-level="10.3.3" data-path="并行编程基础.html"><a href="并行编程基础.html#openmp标准"><i class="fa fa-check"></i><b>10.3.3</b> OpenMP标准</a></li>
@@ -356,16 +415,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="10.4" data-path="并行编程基础.html"><a href="并行编程基础.html#习题-9"><i class="fa fa-check"></i><b>10.4</b> 习题</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="多核处理结构.html"><a href="多核处理结构.html"><i class="fa fa-check"></i><b>11</b> 多核处理结构</a><ul>
+<li class="chapter" data-level="11" data-path="多核处理结构.html"><a href="多核处理结构.html"><i class="fa fa-check"></i><b>11</b> 多核处理结构</a>
+<ul>
 <li class="chapter" data-level="11.1" data-path="多核处理结构.html"><a href="多核处理结构.html#多核处理器的发展演化"><i class="fa fa-check"></i><b>11.1</b> 多核处理器的发展演化</a></li>
-<li class="chapter" data-level="11.2" data-path="多核处理结构.html"><a href="多核处理结构.html#多核处理器的访存结构"><i class="fa fa-check"></i><b>11.2</b> 多核处理器的访存结构</a><ul>
+<li class="chapter" data-level="11.2" data-path="多核处理结构.html"><a href="多核处理结构.html#多核处理器的访存结构"><i class="fa fa-check"></i><b>11.2</b> 多核处理器的访存结构</a>
+<ul>
 <li class="chapter" data-level="11.2.1" data-path="多核处理结构.html"><a href="多核处理结构.html#通用多核处理器的片上cache结构"><i class="fa fa-check"></i><b>11.2.1</b> 通用多核处理器的片上Cache结构</a></li>
 <li class="chapter" data-level="11.2.2" data-path="多核处理结构.html"><a href="多核处理结构.html#存储一致性模型"><i class="fa fa-check"></i><b>11.2.2</b> 存储一致性模型</a></li>
 <li class="chapter" data-level="11.2.3" data-path="多核处理结构.html"><a href="多核处理结构.html#cache一致性协议"><i class="fa fa-check"></i><b>11.2.3</b> Cache一致性协议</a></li>
 </ul></li>
 <li class="chapter" data-level="11.3" data-path="多核处理结构.html"><a href="多核处理结构.html#多核处理器的互连结构"><i class="fa fa-check"></i><b>11.3</b> 多核处理器的互连结构</a></li>
 <li class="chapter" data-level="11.4" data-path="多核处理结构.html"><a href="多核处理结构.html#多核处理器的同步机制"><i class="fa fa-check"></i><b>11.4</b> 多核处理器的同步机制</a></li>
-<li class="chapter" data-level="11.5" data-path="多核处理结构.html"><a href="多核处理结构.html#典型多核处理器"><i class="fa fa-check"></i><b>11.5</b> 典型多核处理器</a><ul>
+<li class="chapter" data-level="11.5" data-path="多核处理结构.html"><a href="多核处理结构.html#典型多核处理器"><i class="fa fa-check"></i><b>11.5</b> 典型多核处理器</a>
+<ul>
 <li class="chapter" data-level="11.5.1" data-path="多核处理结构.html"><a href="多核处理结构.html#龙芯3a5000处理器"><i class="fa fa-check"></i><b>11.5.1</b> 龙芯3A5000处理器</a></li>
 <li class="chapter" data-level="11.5.2" data-path="多核处理结构.html"><a href="多核处理结构.html#intel-sandybridge架构"><i class="fa fa-check"></i><b>11.5.2</b> Intel SandyBridge架构</a></li>
 <li class="chapter" data-level="11.5.3" data-path="多核处理结构.html"><a href="多核处理结构.html#ibm-cell处理器"><i class="fa fa-check"></i><b>11.5.3</b> IBM Cell处理器</a></li>
@@ -376,23 +438,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.7" data-path="多核处理结构.html"><a href="多核处理结构.html#习题-10"><i class="fa fa-check"></i><b>11.7</b> 习题</a></li>
 </ul></li>
 <li class="part"><span><b>VI 系统性能评价与分析</b></span></li>
-<li class="chapter" data-level="12" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html"><i class="fa fa-check"></i><b>12</b> 计算机系统性能评价与性能分析</a><ul>
-<li class="chapter" data-level="12.1" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#计算机系统性能评价指标"><i class="fa fa-check"></i><b>12.1</b> 计算机系统性能评价指标</a><ul>
+<li class="chapter" data-level="12" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html"><i class="fa fa-check"></i><b>12</b> 计算机系统性能评价与性能分析</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#计算机系统性能评价指标"><i class="fa fa-check"></i><b>12.1</b> 计算机系统性能评价指标</a>
+<ul>
 <li class="chapter" data-level="12.1.1" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#计算机系统常用性能评价指标"><i class="fa fa-check"></i><b>12.1.1</b> 计算机系统常用性能评价指标</a></li>
 <li class="chapter" data-level="12.1.2" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#并行系统的性能评价指标"><i class="fa fa-check"></i><b>12.1.2</b> 并行系统的性能评价指标</a></li>
 </ul></li>
-<li class="chapter" data-level="12.2" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#测试程序集"><i class="fa fa-check"></i><b>12.2</b> 测试程序集</a><ul>
+<li class="chapter" data-level="12.2" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#测试程序集"><i class="fa fa-check"></i><b>12.2</b> 测试程序集</a>
+<ul>
 <li class="chapter" data-level="12.2.1" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#微基准测试程序"><i class="fa fa-check"></i><b>12.2.1</b> 微基准测试程序</a></li>
 <li class="chapter" data-level="12.2.2" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#spec-cpu基准测试程序"><i class="fa fa-check"></i><b>12.2.2</b> SPEC CPU基准测试程序</a></li>
 <li class="chapter" data-level="12.2.3" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#并行系统基准测试程序"><i class="fa fa-check"></i><b>12.2.3</b> 并行系统基准测试程序</a></li>
 <li class="chapter" data-level="12.2.4" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#其他常见的基准测试程序集"><i class="fa fa-check"></i><b>12.2.4</b> 其他常见的基准测试程序集</a></li>
 </ul></li>
-<li class="chapter" data-level="12.3" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#性能分析方法"><i class="fa fa-check"></i><b>12.3</b> 性能分析方法</a><ul>
+<li class="chapter" data-level="12.3" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#性能分析方法"><i class="fa fa-check"></i><b>12.3</b> 性能分析方法</a>
+<ul>
 <li class="chapter" data-level="12.3.1" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#分析建模的方法"><i class="fa fa-check"></i><b>12.3.1</b> 分析建模的方法</a></li>
 <li class="chapter" data-level="12.3.2" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#模拟建模的方法和模拟器"><i class="fa fa-check"></i><b>12.3.2</b> 模拟建模的方法和模拟器</a></li>
 <li class="chapter" data-level="12.3.3" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#性能测量的方法"><i class="fa fa-check"></i><b>12.3.3</b> 性能测量的方法</a></li>
 </ul></li>
-<li class="chapter" data-level="12.4" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#性能测试和分析实例"><i class="fa fa-check"></i><b>12.4</b> 性能测试和分析实例</a><ul>
+<li class="chapter" data-level="12.4" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#性能测试和分析实例"><i class="fa fa-check"></i><b>12.4</b> 性能测试和分析实例</a>
+<ul>
 <li class="chapter" data-level="12.4.1" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#spec-cpu基准测试程序的分值对比"><i class="fa fa-check"></i><b>12.4.1</b> SPEC CPU基准测试程序的分值对比</a></li>
 <li class="chapter" data-level="12.4.2" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#微结构相关统计数据"><i class="fa fa-check"></i><b>12.4.2</b> 微结构相关统计数据</a></li>
 <li class="chapter" data-level="12.4.3" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#基础性能参数"><i class="fa fa-check"></i><b>12.4.3</b> 基础性能参数</a></li>
@@ -422,11 +489,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="计算机组成原理和结构" class="section level1">
+<div id="计算机组成原理和结构" class="section level1" number="5">
 <h1><span class="header-section-number">第 5 章</span> 计算机组成原理和结构</h1>
 <p>前面章节介绍的计算机指令系统结构从软件的角度描述了计算机功能，从本章开始将介绍计算机组成结构，从硬件的角度来看看计算机是怎样构成的。</p>
 <p>如果说图灵机是现代计算机的计算理论模型，冯·诺依曼结构就是现代计算机的结构理论模型。本章从冯·诺依曼的理论模型开始，介绍计算机系统的各个组成部分，并与现代计算机的具体实现相对应。</p>
-<div id="冯诺依曼结构" class="section level2">
+<div id="冯诺依曼结构" class="section level2" number="5.1">
 <h2><span class="header-section-number">5.1</span> 冯·诺依曼结构</h2>
 <p>现代计算机都采用存储程序结构，又称为冯·诺依曼结构，是1945年匈牙利籍数学家冯·诺依曼受宾夕法尼亚大学研制的ENIAC计算机结构的启发提出的，是世界上第一个完整的计算机体系结构。</p>
 <p>冯·诺依曼结构的主要特点是：①计算机由存储器、运算器、控制器、输入设备和输出设备五部分组成，其中运算器和控制器合称为中央处理器（Central Processing Processor，简称CPU）。②存储器是按地址访问的线性编址的一维结构，每个单元的位数固定。③采用存储程序方式，即指令和数据不加区别混合存储在同一个存储器中。④控制器通过执行指令发出控制信号控制计算机的操作。指令在存储器中按其执行顺序存放，由指令计数器指明要执行的指令所在的单元地址。指令计数器一般按顺序递增，但执行顺序可按运算结果或当时的外界条件而改变。⑤以运算器为中心，输入输出设备与存储器之间的数据传送都经过运算器。冯·诺依曼计算机的工作原理如图<a href="计算机组成原理和结构.html#fig:von-architecture">5.1</a>所示。</p>
@@ -440,16 +507,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>虽然经过了长期的发展，现代计算机系统占据主要地位的仍然是以存储程序和指令驱动执行为主要特点的冯·诺依曼结构。</p>
 <p>作为冯·诺依曼结构的一个变种，哈佛结构把程序和数据分开存储。控制器使用两条独立的总线读取程序和访问数据，程序空间和数据空间完成分开。在通用计算机领域，由于应用软件的多样性，要求计算机不断地变化所执行的程序内容，并且频繁地对数据与程序占用的存储器资源进行重新分配，使用统一编址可以最大限度地利用资源。但是在嵌入式应用中，系统要执行的任务相对单一，程序一般是固化在硬件里的，同时嵌入式系统对安全性、可靠性的要求更高，哈佛结构独立的程序空间更有利于代码保护。因此，在嵌入式领域，哈佛结构得到了广泛应用。需要指出的是，哈佛结构并没有改变冯·诺依曼结构存储程序和指令驱动执行的本质，它只是冯·诺依曼结构的一个变种，并不是独立于冯·诺依曼结构的一种新型结构。</p>
 </div>
-<div id="计算机的组成部件" class="section level2">
+<div id="计算机的组成部件" class="section level2" number="5.2">
 <h2><span class="header-section-number">5.2</span> 计算机的组成部件</h2>
 <p>本节对计算机的主要组成部件进行介绍。按照冯·诺依曼结构，计算机包含五大部分，即运算器、控制器、存储器、输入设备和输出设备。</p>
-<div id="运算器" class="section level3">
+<div id="运算器" class="section level3" number="5.2.1">
 <h3><span class="header-section-number">5.2.1</span> 运算器</h3>
 <p>运算器是计算机中负责计算（包括算术计算和逻辑计算等）的部件。运算器包括算术和逻辑运算部件（Arithmetic Logic Units，简称ALU）、移位部件、浮点运算部件（Floating Point Units，简称FPU）、向量运算部件、寄存器等。其中，复杂运算如乘除法、开方及浮点运算可用程序实现或由运算器实现。寄存器既可用于保存数据，也可用于保存地址。运算器还可设置条件码寄存器等专用寄存器，条件码寄存器保存当前运算结果的状态，如运算结果是正数、负数或零，是否溢出等。</p>
 <p>运算器支持的运算类型经历了从简单到复杂的过程。最初的运算器只有简单的定点加减和基本逻辑运算，复杂运算如乘除通过加减、移位指令构成的数学库完成；后来逐渐出现硬件定点乘法器和除法器。在早期的微处理器中，浮点运算器以协处理器的形式出现在计算机中（如Intel 8087协处理器），包含二进制浮点数的加、减、乘、除等运算，现代的通用微处理器则普遍包含完整的浮点运算部件。20世纪90年代开始，微处理器中出现了单指令多数据（Single Instruction Multiple Data，简称SIMD）的向量运算器，部分处理器还实现了超越函数硬件运算单元，如sin、cos、exp、log等。部分用于银行业务处理的计算机（如IBM Power系列）还实现了十进制定、浮点数的运算器。</p>
 <p>随着晶体管集成度的不断提升，处理器中所集成的运算器的数量也持续增加，通常将具有相近属性的一类运算组织在一起构成一个运算单元。不同的处理器有不同的运算单元组织，有的倾向于每个单元大而全，有的倾向于每个单元的功能相对单一。处理器中包含的运算单元数目也逐渐增加，从早期的单个运算单元逐渐增加到多个运算单元。由于运算单元都需要从寄存器中读取操作数，并把结果写回寄存器，因此处理器中运算单元的个数主要受限于寄存器堆读写端口个数。运算单元一般按照定点、浮点、访存、向量等大类来组织，也有混合的，如SIMD部件既能做定点也能做浮点运算，定点部件也可以做访存地址计算等。</p>
 <p>表<a href="计算机组成原理和结构.html#tab:alu">5.1</a>给出了几种经典处理器的运算器结构。其中Alpha 21264、MIPS R10000、HP PA8700、Ultra Sparc III、Power 4是20世纪90年代RISC处理器鼎盛时期经典的微处理器，而Intel Skylake、AMD Zen、Power 8、龙芯3A5000则是最新处理器。</p>
-<template id="03e049db-1f73-4cc4-a7c2-8bad95efbc94"><style>
+<template id="7e96bbd4-ea59-4c02-9c61-798a57b5816d"><style>
 .tabwid table{
   border-spacing:0px !important;
   border-collapse:collapse;
@@ -483,48 +550,48 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 .tabwid table tr {
 background-color: transparent;
 }
-</style><div class="tabwid"><style>.cl-feedfb66{}.cl-fee85c9c{font-family:'Noto Sans CJK SC';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-fee85ca6{font-family:'Noto Sans CJK SC';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-fee86d04{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-fee89c2a{width:187.2pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-fee89c34{width:144pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-fee89c3e{width:93.6pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-fee89c3f{width:93.6pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-fee89c48{width:187.2pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-fee89c49{width:144pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-feedfb66'>
+</style><div class="tabwid"><style>.cl-3eaf256e{}.cl-3ea750fa{font-family:'Noto Sans CJK SC';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-3ea7510e{font-family:'Noto Sans CJK SC';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-3ea766c6{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-3ea7a3de{width:187.2pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3ea7a3e8{width:144pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3ea7a3f2{width:93.6pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3ea7a3f3{width:93.6pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3ea7a3f4{width:187.2pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3ea7a3fc{width:144pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-3eaf256e'>
 <caption class="Table Caption">
 <p><span id="tab:alu">表 5.1: </span>经典处理器的运算器结构</p>
 </caption>
-<thead><tr style="overflow-wrap:break-word;"><td class="cl-fee89c3f"><p class="cl-fee86d04"><span class="cl-fee85c9c">处理器</span></p></td><td class="cl-fee89c49"><p class="cl-fee86d04"><span class="cl-fee85c9c">寄存器</span></p></td><td class="cl-fee89c48"><p class="cl-fee86d04"><span class="cl-fee85c9c">运算部件</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-fee89c3e"><p class="cl-fee86d04"><span class="cl-fee85ca6">Alpha 21264</span></p></td><td class="cl-fee89c34"><p class="cl-fee86d04"><span class="cl-fee85ca6">Int regfile (80 4r6w)
-<br>FP regfile (72 4r4w)</span></p></td><td class="cl-fee89c2a"><p class="cl-fee86d04"><span class="cl-fee85ca6">arith./logic unit; shift unit;
+<thead><tr style="overflow-wrap:break-word;"><td class="cl-3ea7a3f3"><p class="cl-3ea766c6"><span class="cl-3ea750fa">处理器</span></p></td><td class="cl-3ea7a3fc"><p class="cl-3ea766c6"><span class="cl-3ea750fa">寄存器</span></p></td><td class="cl-3ea7a3f4"><p class="cl-3ea766c6"><span class="cl-3ea750fa">运算部件</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-3ea7a3f2"><p class="cl-3ea766c6"><span class="cl-3ea7510e">Alpha 21264</span></p></td><td class="cl-3ea7a3e8"><p class="cl-3ea766c6"><span class="cl-3ea7510e">Int regfile (80 4r6w)
+<br>FP regfile (72 4r4w)</span></p></td><td class="cl-3ea7a3de"><p class="cl-3ea766c6"><span class="cl-3ea7510e">arith./logic unit; shift unit;
 <br> mult unit; add/logic unit;
 <br> shift unit; MVI/PLZ unit;
 <br> arith/logic; arith/logic unit;
 <br> FP add unit; FP mult unit;
-<br> FP div/sqrt unit</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-fee89c3f"><p class="cl-fee86d04"><span class="cl-fee85ca6">MIPS R10000</span></p></td><td class="cl-fee89c49"><p class="cl-fee86d04"><span class="cl-fee85ca6">Int regfile (64 7r3w)
-<br>FP regfile (64 5r3w)</span></p></td><td class="cl-fee89c48"><p class="cl-fee86d04"><span class="cl-fee85ca6">arith./logic unit; shift unit;
+<br> FP div/sqrt unit</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-3ea7a3f3"><p class="cl-3ea766c6"><span class="cl-3ea7510e">MIPS R10000</span></p></td><td class="cl-3ea7a3fc"><p class="cl-3ea766c6"><span class="cl-3ea7510e">Int regfile (64 7r3w)
+<br>FP regfile (64 5r3w)</span></p></td><td class="cl-3ea7a3f4"><p class="cl-3ea766c6"><span class="cl-3ea7510e">arith./logic unit; shift unit;
 <br> arith./logic unit; mult/div unit;
 <br> FP add/sub unit;
 <br> FP compae/coversion unit;
-<br> FP mult unit; FP div/sqrt unit</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-fee89c3f"><p class="cl-fee86d04"><span class="cl-fee85ca6">HP PA8700</span></p></td><td class="cl-fee89c49"><p class="cl-fee86d04"><span class="cl-fee85ca6">Intarchregfile (32 8r4w)
+<br> FP mult unit; FP div/sqrt unit</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-3ea7a3f3"><p class="cl-3ea766c6"><span class="cl-3ea7510e">HP PA8700</span></p></td><td class="cl-3ea7a3fc"><p class="cl-3ea766c6"><span class="cl-3ea7510e">Intarchregfile (32 8r4w)
 <br> Int renregfile (56 9r4w) 
 <br> FP archregfile (32 8r4w)
-<br> FP renregfile (56 9r4w)</span></p></td><td class="cl-fee89c48"><p class="cl-fee86d04"><span class="cl-fee85ca6">2 arithlogic units;
+<br> FP renregfile (56 9r4w)</span></p></td><td class="cl-3ea7a3f4"><p class="cl-3ea766c6"><span class="cl-3ea7510e">2 arithlogic units;
 <br> 2 shift merge units;
 <br> 2 FP MAC units;
-<br> 2 FP div/sqrt units</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-fee89c3f"><p class="cl-fee86d04"><span class="cl-fee85ca6">Ultra Sparc III</span></p></td><td class="cl-fee89c49"><p class="cl-fee86d04"><span class="cl-fee85ca6">Int regfile (144 7r3w)
-<br>FP regfile (32 5r4w)</span></p></td><td class="cl-fee89c48"><p class="cl-fee86d04"><span class="cl-fee85ca6">2 arith units; logic unit; shift unit;
+<br> 2 FP div/sqrt units</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-3ea7a3f3"><p class="cl-3ea766c6"><span class="cl-3ea7510e">Ultra Sparc III</span></p></td><td class="cl-3ea7a3fc"><p class="cl-3ea766c6"><span class="cl-3ea7510e">Int regfile (144 7r3w)
+<br>FP regfile (32 5r4w)</span></p></td><td class="cl-3ea7a3f4"><p class="cl-3ea766c6"><span class="cl-3ea7510e">2 arith units; logic unit; shift unit;
 <br> FP adder unit; graphic unit;
-<br> FP div/sqrt unit; FP mult unit; graphic unit</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-fee89c3f"><p class="cl-fee86d04"><span class="cl-fee85ca6">Power4</span></p></td><td class="cl-fee89c49"><p class="cl-fee86d04"><span class="cl-fee85ca6">GPRS (80)
-<br>FPRS (72)</span></p></td><td class="cl-fee89c48"><p class="cl-fee86d04"><span class="cl-fee85ca6">2 fixed-point units;
-<br> 2 floating-point units</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-fee89c3f"><p class="cl-fee86d04"><span class="cl-fee85ca6">Zen</span></p></td><td class="cl-fee89c49"><p class="cl-fee86d04"><span class="cl-fee85ca6">Int regfile (168)
-<br> FP regfile (160)</span></p></td><td class="cl-fee89c48"><p class="cl-fee86d04"><span class="cl-fee85ca6">4 floating-point/vector units;
-<br>4 fixed-point units</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-fee89c3f"><p class="cl-fee86d04"><span class="cl-fee85ca6">Skylake</span></p></td><td class="cl-fee89c49"><p class="cl-fee86d04"><span class="cl-fee85ca6">Int regfile (180)
-<br> FP regfile (168)</span></p></td><td class="cl-fee89c48"><p class="cl-fee86d04"><span class="cl-fee85ca6">4 fixed-point units;
-<br> 3 floating-point/vector units</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-fee89c3f"><p class="cl-fee86d04"><span class="cl-fee85ca6">Power8</span></p></td><td class="cl-fee89c49"><p class="cl-fee86d04"><span class="cl-fee85ca6">GPRS (2×124)
-<br>VSRS (2×144)</span></p></td><td class="cl-fee89c48"><p class="cl-fee86d04"><span class="cl-fee85ca6">2 fixed-point units;
+<br> FP div/sqrt unit; FP mult unit; graphic unit</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-3ea7a3f3"><p class="cl-3ea766c6"><span class="cl-3ea7510e">Power4</span></p></td><td class="cl-3ea7a3fc"><p class="cl-3ea766c6"><span class="cl-3ea7510e">GPRS (80)
+<br>FPRS (72)</span></p></td><td class="cl-3ea7a3f4"><p class="cl-3ea766c6"><span class="cl-3ea7510e">2 fixed-point units;
+<br> 2 floating-point units</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-3ea7a3f3"><p class="cl-3ea766c6"><span class="cl-3ea7510e">Zen</span></p></td><td class="cl-3ea7a3fc"><p class="cl-3ea766c6"><span class="cl-3ea7510e">Int regfile (168)
+<br> FP regfile (160)</span></p></td><td class="cl-3ea7a3f4"><p class="cl-3ea766c6"><span class="cl-3ea7510e">4 floating-point/vector units;
+<br>4 fixed-point units</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-3ea7a3f3"><p class="cl-3ea766c6"><span class="cl-3ea7510e">Skylake</span></p></td><td class="cl-3ea7a3fc"><p class="cl-3ea766c6"><span class="cl-3ea7510e">Int regfile (180)
+<br> FP regfile (168)</span></p></td><td class="cl-3ea7a3f4"><p class="cl-3ea766c6"><span class="cl-3ea7510e">4 fixed-point units;
+<br> 3 floating-point/vector units</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-3ea7a3f3"><p class="cl-3ea766c6"><span class="cl-3ea7510e">Power8</span></p></td><td class="cl-3ea7a3fc"><p class="cl-3ea766c6"><span class="cl-3ea7510e">GPRS (2×124)
+<br>VSRS (2×144)</span></p></td><td class="cl-3ea7a3f4"><p class="cl-3ea766c6"><span class="cl-3ea7510e">2 fixed-point units;
 <br>4 floating-point units; 
 <br> 2 vector units;
 <br> decimal floating-point unit;
-<br> crypto unit</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-fee89c3f"><p class="cl-fee86d04"><span class="cl-fee85ca6">龙芯3A5000</span></p></td><td class="cl-fee89c49"><p class="cl-fee86d04"><span class="cl-fee85ca6">Int regfile (128 12r8w)
-<br> FP regfile (128 8r6w)</span></p></td><td class="cl-fee89c48"><p class="cl-fee86d04"><span class="cl-fee85ca6">4 fixed-point units; 
+<br> crypto unit</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-3ea7a3f3"><p class="cl-3ea766c6"><span class="cl-3ea7510e">龙芯3A5000</span></p></td><td class="cl-3ea7a3fc"><p class="cl-3ea766c6"><span class="cl-3ea7510e">Int regfile (128 12r8w)
+<br> FP regfile (128 8r6w)</span></p></td><td class="cl-3ea7a3f4"><p class="cl-3ea766c6"><span class="cl-3ea7510e">4 fixed-point units; 
 <br> 2 floating-point/vector units</span></p></td></tr></tbody></table></div></template>
-<div class="flextable-shadow-host" id="6563fdbd-c3d8-4a67-85d3-eef4fa8ca2cc"></div>
+<div class="flextable-shadow-host" id="714dd44d-4c99-4997-b674-26c0039a6999"></div>
 <script>
-var dest = document.getElementById("6563fdbd-c3d8-4a67-85d3-eef4fa8ca2cc");
-var template = document.getElementById("03e049db-1f73-4cc4-a7c2-8bad95efbc94");
+var dest = document.getElementById("714dd44d-4c99-4997-b674-26c0039a6999");
+var template = document.getElementById("7e96bbd4-ea59-4c02-9c61-798a57b5816d");
 var caption = template.content.querySelector("caption");
 if(caption) {
   caption.style.cssText = "display:block;text-align:center;";
@@ -538,7 +605,7 @@ fantome.appendChild(templateContent);
 </script>
 
 </div>
-<div id="控制器" class="section level3">
+<div id="控制器" class="section level3" number="5.2.2">
 <h3><span class="header-section-number">5.2.2</span> 控制器</h3>
 <p>控制器是计算机中发出控制命令以控制计算机各部件自动、协调地工作的装置。控制器控制指令流和每条指令的执行，内含程序计数器和指令寄存器等。程序计数器存放当前执行指令的地址，指令寄存器存放当前正在执行的指令。指令通过译码产生控制信号，用于控制运算器、存储器、IO设备的工作以及后续指令的获取。这些控制信号可以用硬连线逻辑产生，也可以用微程序产生，也可以两者结合产生。为了获得高指令吞吐率，可以采用指令重叠执行的流水线技术，以及同时执行多条指令的超标量技术。当遇到执行时间较长或条件不具备的指令时，把条件具备的后续指令提前执行（称为乱序执行）可以提高流水线效率。控制器还产生一定频率的时钟脉冲，用于计算机各组成部分的同步。</p>
 <p>由于控制器和运算器的紧密耦合关系，现代计算机通常把控制器和运算器集成在一起，称为中央处理器，即CPU。随着芯片集成度的不断提高，现代CPU除了含有运算器和控制器外，常常还集成了其他部件，比如高速缓存（Cache）部件、内存控制器等。</p>
@@ -553,7 +620,7 @@ fantome.appendChild(templateContent);
 <p>（3）超标量技术。工艺技术的发展使得在20世纪80年代后期出现了超标量处理器。超标量结构允许指令流水线的每一阶段同时处理多条指令。例如Alpha 21264处理器每拍可以取4条指令，发射6条指令，写回6条指令，提交11条指令。如果把单发射结构比作单车道马路，多发射结构就是多车道马路。</p>
 <p>由于超标量结构的指令和数据通路都变宽了，使得寄存器端口、保留站端口、ROB端口、功能部件数都需要增加，例如Alpha 21264的寄存器堆有8个读端口和6个写端口，数据Cache的RAM通过倍频支持一拍两次访问。现代超标量处理器一般包含两个以上访存部件，两个以上定点运算部件以及两个以上浮点运算部件。超标量结构在指令译码或寄存器重命名时不仅要判断前后拍指令的数据相关，还需要判断同一拍中多条指令间的数据相关。</p>
 </div>
-<div id="存储器" class="section level3">
+<div id="存储器" class="section level3" number="5.2.3">
 <h3><span class="header-section-number">5.2.3</span> 存储器</h3>
 <p>存储器存储程序和数据，又称主存储器或内存，一般用动态随机访问存储器（Dynamic Random Access Memory，简称DRAM）实现。CPU可以直接访问它，IO设备也频繁地与它交换数据。存储器的存取速度往往满足不了CPU的快速要求，容量也满足不了应用的需要，为此将存储系统分为高速缓存（Cache)、主存储器和辅助存储器三个层次。Cache存放当前CPU最频繁访问的部分主存储器内容，可以采用比DRAM速度快但容量小的静态随机访问存储器（Static Random Access Memory，简称SRAM）实现。数据和指令在Cache和主存储器之间的调动由硬件自动完成。为扩大存储器容量，使用磁盘、磁带、光盘等能存储大量数据的存储器作为辅助存储器。计算机运行时所需的应用程序、系统软件和数据等都先存放在辅助存储器中，在运行过程中分批调入主存储器。数据和指令在主存储器和辅助存储器之间的调动由操作系统完成。CPU访问存储器时，面对的是一个高速（接近于Cache的速度）、大容量（接近于辅助存储器的容量）的存储器。现代计算机中还有少量只读存储器（Read Only Memory，简称ROM）用来存放引导程序和基本输入输出系统（Basic Input Output System，简称BIOS）等。现代计算机访问内存时采用虚拟地址，操作系统负责维护虚拟地址和物理地址转换的页表，集成在CPU中的存储管理部件（Memory Management Unit，简称MMU）负责把虚拟地址转换为物理地址。</p>
 <p>存储器的主要评价指标为存储容量和访问速度。存储容量越大，可以存放的程序和数据越多。访问速度越快，处理器访问的时间越短。对相同容量的存储器，速度越快的存储介质成本越高，而成本越低的存储介质则速度越低。目前人们发明的用于计算机系统的存储介质主要包括以下几类：</p>
@@ -598,7 +665,7 @@ fantome.appendChild(templateContent);
 <p>2）Bank级并行度。SDRAM芯片包含的多个Bank是相互独立的，它们可以同时执行不同的操作，比如，对Bank 0激活的同时，可以对Bank 1发出预充电操作，因此，访问不同Bank的多个操作可以并行执行。Bank级并行度可以降低冲突命令的等待时间，容忍单个Bank访问的延迟。</p>
 <p>利用内存的这两个特性，可以在内存控制器上对并发访问进行调度，尽可能降低读写访问的平均延迟，提高内存的有效带宽。内存控制器可以对十几甚至几十个访存请求进行调度，有效并发的访存请求数越多，可用于调度的空间就越大，可能得到的访存性能就更优。</p>
 </div>
-<div id="输入输出设备" class="section level3">
+<div id="输入输出设备" class="section level3" number="5.2.4">
 <h3><span class="header-section-number">5.2.4</span> 输入/输出设备</h3>
 <p>输入/输出设备（简称IO设备）实现计算机与外部世界的信息交换。传统的IO设备有键盘、鼠标、打印机和显示器等；新型的IO设备能进行语音、图像、影视的输入、输出和手写体文字输入，并支持计算机之间通过网络进行通信。磁盘等辅助存储器在计算机中也当作IO设备来管理。</p>
 <p>处理器通过读写IO设备控制器中的寄存器来访问及控制IO设备。高速IO设备可以在处理器安排下直接与主存储器成批交换数据，称为直接存储器访问（Directly Memory Access，简称DMA）。处理器可以通过查询设备控制器状态与IO设备进行同步，也可以通过中断与IO设备进行同步。</p>
@@ -637,14 +704,14 @@ fantome.appendChild(templateContent);
 <p>使用闪存技术构建的永久存储器存在一个问题，即闪存的存储单元随着擦写次数的增多存在损坏的风险。为了解决这个问题，大多数NAND型闪存产品内部的控制器采用地址块重映射的方式来分布写操作，目的是将写次数多的地址转移到写次数少的块中。该技术被称为磨损均衡（Wear Leveling）。闪存的平均擦写次数在10万次左右。这样，通过磨损均衡技术，移动电话、数码相机、MP3播放器等消费类产品在使用周期内就不太可能达到闪存的写次数限制。闪存产品内部的控制器还能屏蔽制造过程中损坏的块，从而提高产品的良率。</p>
 </div>
 </div>
-<div id="计算机系统硬件结构发展" class="section level2">
+<div id="计算机系统硬件结构发展" class="section level2" number="5.3">
 <h2><span class="header-section-number">5.3</span> 计算机系统硬件结构发展</h2>
 <p>前面章节从冯·诺依曼结构出发，介绍了现代计算机的理论结构及其组成部分。随着应用需求的变化和工艺水平的不断提升，冯·诺依曼结构中的控制器和运算器逐渐演变为计算机系统中的中央处理器部分，而输入、输出设备统一通过北桥和南桥与中央处理器连接，中央处理器中的图形处理功能则从中央处理器中分化出来形成专用的图形处理器。因此，现代计算机系统的硬件结构主要包括了中央处理器、图形处理器、北桥及南桥等部分。</p>
 <p><strong>中央处理器</strong>（Central Processing Unit，简称CPU）主要包含控制器和运算器，在发展的过程中不断与其他部分融合。传统意义上的中央处理器在处理器芯片中更多地体现为处理器核，现代的处理器芯片上往往集成多个处理器核。</p>
 <p><strong>图形处理器</strong>（Graphic Processing Unit，简称GPU）是一种面向2D和3D图形、视频、可视化计算和显示优化的处理器。作为人机交互的重要界面，GPU在计算机体系结构发展的过程中，担任了越来越重要的角色。除了对图形处理本身之外，还开始担负科学计算加速器的任务。</p>
 <p><strong>北桥</strong>（North Bridge）是离CPU最近的芯片，主要负责控制显卡、内存与CPU之间的数据交换，向上连接处理器，向下连接南桥。</p>
 <p><strong>南桥</strong>（South Bridge）主要负责硬盘、键盘以及各种对带宽要求较低的IO接口与内存、CPU之间的数据交换。</p>
-<div id="cpu-gpu-北桥-南桥四片结构" class="section level3">
+<div id="cpu-gpu-北桥-南桥四片结构" class="section level3" number="5.3.1">
 <h3><span class="header-section-number">5.3.1</span> CPU-GPU-北桥-南桥四片结构</h3>
 <p>现代计算机的一种早期结构是CPU-GPU-北桥-南桥结构。在该结构中，计算机系统包含四个主要芯片，其中CPU（处理器）芯片、北桥芯片和南桥芯片一般是直接以芯片的形式安装或焊接在计算机主板上，而GPU则以显卡的形式安装在计算机主板的插槽上。</p>
 <p>在CPU-GPU-北桥-南桥四片结构中，计算机的各个部件根据速度快慢以及与处理器交换数据的频繁程度被安排在北桥和南桥中。CPU通过处理器总线（也称系统总线）和北桥直接相连，北桥再通过南北桥总线和南桥相连，GPU一般以显卡的形式连接北桥。内存控制器集成在北桥芯片中，硬盘接口、USB接口、网络接口、音频接口以及鼠标、键盘等接口放在南桥芯片中。此外，在北桥上还会提供各种扩展接口用于其他功能卡的连接。采用该结构的微机系统如图<a href="计算机组成原理和结构.html#fig:structure-4part">5.6</a>所示。</p>
@@ -656,7 +723,7 @@ fantome.appendChild(templateContent);
 </div>
 <p>与英特尔奔腾处理器搭配的430HX芯片组就采用了这样的四片结构。其北桥芯片使用82439HX，南桥芯片采用82371SB，通过PCI总线扩展外接显卡，与处理器组成四片结构，作为计算机系统的主要部分。</p>
 </div>
-<div id="cpu-北桥-南桥三片结构" class="section level3">
+<div id="cpu-北桥-南桥三片结构" class="section level3" number="5.3.2">
 <h3><span class="header-section-number">5.3.2</span> CPU-北桥-南桥三片结构</h3>
 <p>现代计算机的一种典型结构是CPU-北桥-南桥结构。在该结构中，系统包含三个主要芯片，分别为CPU芯片、北桥芯片和南桥芯片。三片结构与四片结构最大的区别是，前者GPU功能被集成到北桥，即一般所说的集成显卡。</p>
 <p>在CPU-北桥-南桥三片结构中，CPU通过处理器总线和北桥直接相连，北桥再通过南北桥总线和南桥相连。内存控制器、显示功能以及高速IO接口（如PCIE等）集成在北桥芯片中，硬盘接口、USB接口、网络接口、音频接口以及鼠标、键盘等接口部件放在南桥芯片中。随着计算机技术的发展，更多的高速接口被引入计算机体系结构中，在北桥上集成的IO接口的速率也不断提升。</p>
@@ -669,7 +736,7 @@ fantome.appendChild(templateContent);
 </div>
 <p>英特尔845G芯片组就采用类似的三片结构。其北桥芯片使用82845G，集成显示接口，南桥芯片采用82801DB，与处理器组成三片结构，作为计算机系统的主要部分。</p>
 </div>
-<div id="cpu-弱北桥-南桥三片结构" class="section level3">
+<div id="cpu-弱北桥-南桥三片结构" class="section level3" number="5.3.3">
 <h3><span class="header-section-number">5.3.3</span> CPU-弱北桥-南桥三片结构</h3>
 <p>随着工艺和设计水平的不断提高，芯片的集成度不断提高，单一芯片中能够实现的功能越来越复杂。内存接口的带宽需求超过了处理器与北桥之间连接的处理器总线接口，导致内存的实际访问性能受限于处理器总线的性能。而伴随着处理器核计算性能的大幅提升，存储器的性能提升却显得幅度较小，这两者的差异导致计算机系统性能受到存储器系统发展的制约，这就是存储墙问题。</p>
 <p>因此，对计算机系统性能影响显著的内存控制器开始被集成到CPU芯片中，从而大幅降低了内存访问延迟，提升了内存访问带宽，这在一定程度上缓解了存储墙问题。</p>
@@ -683,7 +750,7 @@ fantome.appendChild(templateContent);
 </div>
 <p>相比英特尔，AMD的处理器最早将内存控制器集成到处理器芯片中，780E芯片组就采用上述三片结构，北桥芯片使用RS780E，集成HD3200 GPU，南桥芯片使用SB710，与处理器组成三片结构，作为计算机系统的主要部分。</p>
 </div>
-<div id="cpu-南桥两片结构" class="section level3">
+<div id="cpu-南桥两片结构" class="section level3" number="5.3.4">
 <h3><span class="header-section-number">5.3.4</span> CPU-南桥两片结构</h3>
 <p>在计算机系统不断发展的过程中，图形处理器性能也在飞速发展，其在系统中的作用也不断被开发出来。除了图形加速以外，对于一些科学计算类的应用，或者是一些特定的算法加速程序，图形处理器发挥着越来越大的作用，成为特定的运算加速器，其与中央处理器之间的数据共享也越来越频繁，联系越来越密切。</p>
 <p>随着芯片集成度的进一步提高，图形处理器也开始被集成到CPU芯片中，于是，北桥存在的必要性就进一步降低，开始和南桥合二为一，形成CPU-南桥结构，如图<a href="计算机组成原理和结构.html#fig:structure-2part">5.9</a>所示。</p>
@@ -696,7 +763,7 @@ fantome.appendChild(templateContent);
 </p>
 </div>
 </div>
-<div id="soc单片结构" class="section level3">
+<div id="soc单片结构" class="section level3" number="5.3.5">
 <h3><span class="header-section-number">5.3.5</span> SoC单片结构</h3>
 <p>片上系统（System on Chip，简称SoC）是一种单片计算机系统解决方案，它在单个芯片上集成了处理器、内存控制器、GPU以及硬盘、USB、网络等IO接口，使得用户搭建计算机系统时只需要使用单个主要芯片即可，如图<a href="计算机组成原理和结构.html#fig:soc">5.10</a>所示。</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:soc"></span>
@@ -709,17 +776,17 @@ fantome.appendChild(templateContent);
 <p>目前，主流商用处理器中面向中高端领域的处理器普遍采用两片结构，而面向中低端及嵌入式领域的处理器普遍采用单片结构。SoC单片结构最常见的是在手机等移动设备中。</p>
 </div>
 </div>
-<div id="处理器和io设备间的通信" class="section level2">
+<div id="处理器和io设备间的通信" class="section level2" number="5.4">
 <h2><span class="header-section-number">5.4</span> 处理器和IO设备间的通信</h2>
 <p>前面介绍了组成计算机系统的各个部分，在冯·诺依曼结构中，处理器（准确地说是内部的控制器）处于中心位置，需要控制其他各个部件的运行。</p>
 <p>对存储器的控制是通过读写指令来完成的。存储器是存储单元阵列，对某个地址的读写不会影响其他存储单元。</p>
 <p>而IO设备大都是具有特定功能的部件，不能当作简单的存储阵列来处理。由于IO设备的底层控制相当复杂，它们一般都是由一个设备控制器进行控制。设备控制器会提供一组寄存器接口，寄存器的内容变化会引起设备控制器执行一系列复杂的动作。设备控制器的接口寄存器也被称为IO寄存器。处理器通过读写IO寄存器来访问设备。写入这些寄存器的数据，会被设备控制器解析成命令，因此有些情况下将处理器对IO寄存器的访问称为命令字。处理器对内存和IO的访问模式有所不同，对访问的延迟和带宽需求也有较大差异。现代计算机系统的程序和数据都存放在内存中，内存访问性能直接影响处理器流水线的执行效率，也正是因为这样，才导致了各个Cache层次的出现。对处理器的内存访问来说，要求是高带宽和低延迟。IO设备一般用于外部交互，而IO操作一般会要求顺序的访问控制，从而导致执行效率低下，访问带宽低，延迟高，只能通过IO的DMA操作来提升性能。IO的DMA操作也是访问内存，因为DMA访存模式一般是大块的连续数据读写，所以对带宽的需求远高于对延迟的需求。</p>
-<div id="io寄存器寻址" class="section level3">
+<div id="io寄存器寻址" class="section level3" number="5.4.1">
 <h3><span class="header-section-number">5.4.1</span> IO寄存器寻址</h3>
 <p>为了访问IO寄存器，处理器必须能够寻址这些寄存器。IO寄存器的寻址方式有两种：内存映射IO和特殊IO指令。</p>
 <p>内存映射IO是把IO寄存器的地址映射到内存地址空间中，这些寄存器和内存存储单元被统一编址。读写IO地址和读写内存地址使用相同的指令来执行。处理器需要通过它所处的状态来限制应用程序可以访问的地址空间，使其不能直接访问IO地址空间，从而保证应用程序不能直接操作IO设备。与内存映射IO不同，特殊IO指令使用专用指令来执行IO操作。因此，IO地址空间可以和内存地址空间重叠，但实际指向不同的位置。操作系统可以通过禁止应用程序执行IO指令的方式来阻止应用程序直接访问IO设备。MIPS或LoongArch结构并没有特殊IO指令，通过普通的访存指令访问特定的内存地址空间进行IO访问。而X86结构使用专门的IO指令来执行IO操作。</p>
 </div>
-<div id="处理器和io设备之间的同步" class="section level3">
+<div id="处理器和io设备之间的同步" class="section level3" number="5.4.2">
 <h3><span class="header-section-number">5.4.2</span> 处理器和IO设备之间的同步</h3>
 <p>处理器和IO设备之间需要协同工作，通过一系列软件程序来共同发挥设备功能。处理器和IO设备之间的同步有两种方式：查询和中断。</p>
 <p>处理器通过向IO寄存器写入命令字来控制IO设备。大部分的控制操作不是通过一次寄存器写入就能完成的，处理器一般需要对IO寄存器进行多次访问，才能完成一次任务。绝大多数设备的IO寄存器不是无条件写入的，处理器在写入命令字之前，先要获取设备的当前状态，只有当设备进入特定的状态后，处理器才能执行特定的操作，这些特定的软件操作流程是在驱动程序中实现的。比如，对于一台打印机，打印机控制器会提供两个寄存器：数据寄存器和状态寄存器。数据寄存器用来存放当前需要打印的数据，状态寄存器用来指示打印机的状态，它包含两个基本位：完成位和错误位。完成位表示上一个字符打印完毕，可以打印下一个字符；错误位用来在打印机出现异常时指示出错的状态，比如卡纸或者缺纸。处理器在打印一串数据时，首先把数据写入数据寄存器，然后不断读取状态寄存器的值，当读出的完成位等于1时，才能把下一个字符写入数据寄存器。同时，处理器还需要检查错误位的值，当发生错误时，去执行对应的错误处理程序。</p>
@@ -735,7 +802,7 @@ fantome.appendChild(templateContent);
 <p>8259A内部包含3个寄存器：中断请求寄存器(Interrupt Request Register，简称IRR)，用来存放当前的中断请求；中断在服务寄存器(In-Service Register，简称ISR)，用来存放当前CPU正在服务的中断请求；中断Mask寄存器(Interrupt Mask Register，简称IMR)，用来存放中断屏蔽位。</p>
 <p>当中断源产生中断信号后，会将中断请求寄存器的某一位设置为1，如果该位没有被屏蔽，则产生一个中断信号（比如中断线）给处理器。处理器检测到该中断信号，并跳转到固定的地址执行中断服务例程。在中断服务例程中，处理器通过读取8259A获得中断向量号，进而调用对应的中断服务程序。在中断服务程序返回之前，要保证本次中断的中断信号被清除掉，否则CPU从中断服务程序返回之后，会被再次触发中断。8259A在中断响应时会自动将IRR的对应位复位。对于电平触发的中断，中断服务程序一般会读写中断源的相关寄存器，从而保证在中断返回之前，中断源的中断信号被撤掉，这样8259A的中断请求寄存器的对应位不会被再次置位。对于脉冲触发的中断，则不需要对设备IO寄存器进行处理。</p>
 </div>
-<div id="存储器和io设备之间的数据传送" class="section level3">
+<div id="存储器和io设备之间的数据传送" class="section level3" number="5.4.3">
 <h3><span class="header-section-number">5.4.3</span> 存储器和IO设备之间的数据传送</h3>
 <p>存储器和IO设备之间需要进行大量的数据传输。例如，系统在启动时，需要把操作系统代码从硬盘搬运到内存中；计算机想要输出图形时，需要把准备显示的数据从内存搬运到显示控制器中。</p>
 <p>那么存储器和IO设备之间是如何进行数据交换的呢？</p>
@@ -751,7 +818,7 @@ fantome.appendChild(templateContent);
 <p>DMA方式对于存在大量数据传输的高速设备是一个很好的选择，硬盘、网络、显示等设备普遍都采用DMA方式。一个计算机系统中通常包含多个DMA控制器，比如有特定设备专用的SATA接口DMA控制器、USB接口DMA控制器等，也有通用的DMA控制器用于可编程的源地址与目标地址之间的数据传输。</p>
 <p>DMA控制器的功能可以很简单，也可以很复杂。例如，DMA控制器可以仅仅支持对一段连续地址空间的读写，也可以支持对多段地址空间的读写以及执行其他的IO操作。不同的IO设备的DMA行为各不相同，因此现代的IO控制器大多会实现专用的DMA控制器用于自身的数据传输。</p>
 <p>表<a href="计算机组成原理和结构.html#tab:pio-vs-dma">5.2</a>举例说明了PIO和DMA两种数据传输方式的不同。</p>
-<template id="d3c54a24-6c8e-463c-a8da-1c7436f9393f"><style>
+<template id="63160f81-f4ff-43ba-ba34-8f653a824b12"><style>
 .tabwid table{
   border-spacing:0px !important;
   border-collapse:collapse;
@@ -785,15 +852,15 @@ fantome.appendChild(templateContent);
 .tabwid table tr {
 background-color: transparent;
 }
-</style><div class="tabwid"><style>.cl-ff0c74ce{}.cl-ff0680f0{font-family:'Noto Sans CJK SC';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-ff068104{font-family:'Noto Sans CJK SC';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-ff06925c{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-ff076e16{width:252pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ff076e2a{width:180pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ff076e2b{width:252pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ff076e34{width:180pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-ff0c74ce'>
+</style><div class="tabwid"><style>.cl-3ed9baa4{}.cl-3ed27302{font-family:'Noto Sans CJK SC';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-3ed27316{font-family:'Noto Sans CJK SC';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-3ed28b76{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-3ed2bfec{width:252pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3ed2bff6{width:180pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3ed2c000{width:252pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3ed2c001{width:180pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-3ed9baa4'>
 <caption class="Table Caption">
 <p><span id="tab:pio-vs-dma">表 5.2: </span>PIO和DMA两种数据传输方式</p>
 </caption>
-<thead><tr style="overflow-wrap:break-word;"><td class="cl-ff076e34"><p class="cl-ff06925c"><span class="cl-ff0680f0">PIO方式</span></p></td><td class="cl-ff076e2b"><p class="cl-ff06925c"><span class="cl-ff0680f0">DMA方式</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-ff076e2a"><p class="cl-ff06925c"><span class="cl-ff068104">键盘输入</span></p></td><td class="cl-ff076e16"><p class="cl-ff06925c"><span class="cl-ff068104">网卡收包</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-ff076e34"><p class="cl-ff06925c"><span class="cl-ff068104">敲击键盘</span></p></td><td class="cl-ff076e2b"><p class="cl-ff06925c"><span class="cl-ff068104">接收端收到网络包</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-ff076e34"><p class="cl-ff06925c"><span class="cl-ff068104">键盘输入被记录在PS/2控制器内</span></p></td><td class="cl-ff076e2b"><p class="cl-ff06925c"><span class="cl-ff068104">网卡将收到的网络包写入内存中预先分配好的内存中</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-ff076e34"><p class="cl-ff06925c"><span class="cl-ff068104">PS/2控制器向处理器发送中断</span></p></td><td class="cl-ff076e2b"><p class="cl-ff06925c"><span class="cl-ff068104">网卡向处理器发送中断</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-ff076e34"><p class="cl-ff06925c"><span class="cl-ff068104">CPU查询中断源，发现键盘中断</span></p></td><td class="cl-ff076e2b"><p class="cl-ff06925c"><span class="cl-ff068104">CPU查询中断源，发现网卡接收中断</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-ff076e34"><p class="cl-ff06925c"><span class="cl-ff068104">CPU从PS/2控制器内读回键盘值</span></p></td><td class="cl-ff076e2b"><p class="cl-ff06925c"><span class="cl-ff068104">CPU从内存中读到网络包，并进行处理，初始化新的接收缓冲供网卡使用</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-ff076e34"><p class="cl-ff06925c"><span class="cl-ff068104">CPU清中断</span></p></td><td class="cl-ff076e2b"><p class="cl-ff06925c"><span class="cl-ff068104">CPU清中断</span></p></td></tr></tbody></table></div></template>
-<div class="flextable-shadow-host" id="cc716f3a-a592-4803-a037-b8989fae9752"></div>
+<thead><tr style="overflow-wrap:break-word;"><td class="cl-3ed2c001"><p class="cl-3ed28b76"><span class="cl-3ed27302">PIO方式</span></p></td><td class="cl-3ed2c000"><p class="cl-3ed28b76"><span class="cl-3ed27302">DMA方式</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-3ed2bff6"><p class="cl-3ed28b76"><span class="cl-3ed27316">键盘输入</span></p></td><td class="cl-3ed2bfec"><p class="cl-3ed28b76"><span class="cl-3ed27316">网卡收包</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-3ed2c001"><p class="cl-3ed28b76"><span class="cl-3ed27316">敲击键盘</span></p></td><td class="cl-3ed2c000"><p class="cl-3ed28b76"><span class="cl-3ed27316">接收端收到网络包</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-3ed2c001"><p class="cl-3ed28b76"><span class="cl-3ed27316">键盘输入被记录在PS/2控制器内</span></p></td><td class="cl-3ed2c000"><p class="cl-3ed28b76"><span class="cl-3ed27316">网卡将收到的网络包写入内存中预先分配好的内存中</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-3ed2c001"><p class="cl-3ed28b76"><span class="cl-3ed27316">PS/2控制器向处理器发送中断</span></p></td><td class="cl-3ed2c000"><p class="cl-3ed28b76"><span class="cl-3ed27316">网卡向处理器发送中断</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-3ed2c001"><p class="cl-3ed28b76"><span class="cl-3ed27316">CPU查询中断源，发现键盘中断</span></p></td><td class="cl-3ed2c000"><p class="cl-3ed28b76"><span class="cl-3ed27316">CPU查询中断源，发现网卡接收中断</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-3ed2c001"><p class="cl-3ed28b76"><span class="cl-3ed27316">CPU从PS/2控制器内读回键盘值</span></p></td><td class="cl-3ed2c000"><p class="cl-3ed28b76"><span class="cl-3ed27316">CPU从内存中读到网络包，并进行处理，初始化新的接收缓冲供网卡使用</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-3ed2c001"><p class="cl-3ed28b76"><span class="cl-3ed27316">CPU清中断</span></p></td><td class="cl-3ed2c000"><p class="cl-3ed28b76"><span class="cl-3ed27316">CPU清中断</span></p></td></tr></tbody></table></div></template>
+<div class="flextable-shadow-host" id="6b6c3bd5-7a7d-48f2-8b1f-1cbe55eaa516"></div>
 <script>
-var dest = document.getElementById("cc716f3a-a592-4803-a037-b8989fae9752");
-var template = document.getElementById("d3c54a24-6c8e-463c-a8da-1c7436f9393f");
+var dest = document.getElementById("6b6c3bd5-7a7d-48f2-8b1f-1cbe55eaa516");
+var template = document.getElementById("63160f81-f4ff-43ba-ba34-8f653a824b12");
 var caption = template.content.querySelector("caption");
 if(caption) {
   caption.style.cssText = "display:block;text-align:center;";
@@ -810,7 +877,7 @@ fantome.appendChild(templateContent);
 上面两个例子中可以看到，PIO方式和DMA方式处理的流程一致，区别在于：首先键盘的数据是被记录在IO设备本身的，而网卡的数据则直接由网卡写入内存之中；其次CPU处理时，对键盘是直接从IO寄存器读数据，而对网卡则直接从内存读数据。</p>
 <p>看起来似乎差别不大。但需要考虑的是，IO访问相比内存访问慢很多，而且对于内存访问，CPU可以通过Cache、预取等方式进行加速，IO访问则缺少这种有效的优化方式。在上面的例子中，如果网卡采用PIO的方式使用CPU，对网卡的包一个字一个字地进行读访问，效率将非常低下。而对于键盘来说，一次输入仅仅只有8位数据，而且相比处理器的处理速度，键盘输入的速度相当低，采用PIO的处理方式能够很简单地完成数据输入任务。</p>
 </div>
-<div id="龙芯3a30007a1000桥片系统中的cpugpudc通信" class="section level3">
+<div id="龙芯3a30007a1000桥片系统中的cpugpudc通信" class="section level3" number="5.4.4">
 <h3><span class="header-section-number">5.4.4</span> 龙芯3A3000+7A1000桥片系统中的CPU、GPU、DC通信</h3>
 <p>下面以龙芯3A3000+7A1000桥片中CPU、GPU、DC间的同步与通信为例说明处理器与IO间的通信。如图<a href="计算机组成原理和结构.html#fig:loongson-3A3000">5.11</a>所示，龙芯3A3000处理器和龙芯7A1000桥片通过HyperTransport总线相连，7A1000桥片中集成GPU、DC（显示控制器）以及专供GPU和DC使用的显存控制器。CPU可以通过PIO方式读写GPU中的控制寄存器、DC中的控制寄存器以及显存；GPU和DC可以通过DMA方式读写内存，GPU和DC还可以读写显存。</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:loongson-3A3000"></span>
@@ -832,11 +899,11 @@ fantome.appendChild(templateContent);
 </div>
 </div>
 </div>
-<div id="本章小结-4" class="section level2">
+<div id="本章小结-4" class="section level2" number="5.5">
 <h2><span class="header-section-number">5.5</span> 本章小结</h2>
 <p>本章介绍了计算机系统的基本原理和硬件组成结构。冯·诺依曼结构将计算机分为控制器、运算器、存储器、输入设备和输出设备五大部分，这一章重点介绍了冯·诺依曼结构组成部分的结构及各部分之间的关系，尤其是CPU、内存、IO之间的相互关系。</p>
 </div>
-<div id="习题-4" class="section level2">
+<div id="习题-4" class="section level2" number="5.6">
 <h2><span class="header-section-number">5.6</span> 习题</h2>
 <ol style="list-style-type: decimal">
 <li><p>分别说明图<a href="计算机组成原理和结构.html#fig:structure-4part">5.6</a> – <a href="计算机组成原理和结构.html#fig:structure-2part">5.9</a>中四种结构中每个芯片包含冯·诺依曼结构五个部分的哪部分功能。</p></li>

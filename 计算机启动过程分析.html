@@ -33,6 +33,7 @@
   
 <link rel="prev" href="计算机总线接口技术.html"/>
 <link rel="next" href="运算器设计.html"/>
+<script src="libs/header-attrs/header-attrs.js"></script>
 <script src="libs/jquery/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
@@ -50,25 +51,23 @@
 
 
 
-<script src="libs/accessible-code-block/empty-anchor.js"></script>
 <link href="libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections/anchor-sections.js"></script>
 <link href="libs/tabwid/tabwid.css" rel="stylesheet" />
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -88,7 +87,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -121,6 +120,28 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
@@ -145,23 +166,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="前言.html"><a href="前言.html"><i class="fa fa-check"></i>前言</a></li>
 <li class="chapter" data-level="" data-path="关于本书的在线版本.html"><a href="关于本书的在线版本.html"><i class="fa fa-check"></i>关于本书的在线版本</a></li>
 <li class="part"><span><b>I 引言</b></span></li>
-<li class="chapter" data-level="1" data-path="引言.html"><a href="引言.html"><i class="fa fa-check"></i><b>1</b> 引言</a><ul>
-<li class="chapter" data-level="1.1" data-path="引言.html"><a href="引言.html#计算机体系结构的研究内容"><i class="fa fa-check"></i><b>1.1</b> 计算机体系结构的研究内容</a><ul>
+<li class="chapter" data-level="1" data-path="引言.html"><a href="引言.html"><i class="fa fa-check"></i><b>1</b> 引言</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="引言.html"><a href="引言.html#计算机体系结构的研究内容"><i class="fa fa-check"></i><b>1.1</b> 计算机体系结构的研究内容</a>
+<ul>
 <li class="chapter" data-level="1.1.1" data-path="引言.html"><a href="引言.html#一以贯之"><i class="fa fa-check"></i><b>1.1.1</b> 一以贯之</a></li>
 <li class="chapter" data-level="1.1.2" data-path="引言.html"><a href="引言.html#什么是计算机"><i class="fa fa-check"></i><b>1.1.2</b> 什么是计算机</a></li>
 <li class="chapter" data-level="1.1.3" data-path="引言.html"><a href="引言.html#计算机的基本组成"><i class="fa fa-check"></i><b>1.1.3</b> 计算机的基本组成</a></li>
 </ul></li>
-<li class="chapter" data-level="1.2" data-path="引言.html"><a href="引言.html#衡量计算机的指标"><i class="fa fa-check"></i><b>1.2</b> 衡量计算机的指标</a><ul>
+<li class="chapter" data-level="1.2" data-path="引言.html"><a href="引言.html#衡量计算机的指标"><i class="fa fa-check"></i><b>1.2</b> 衡量计算机的指标</a>
+<ul>
 <li class="chapter" data-level="1.2.1" data-path="引言.html"><a href="引言.html#计算机的性能"><i class="fa fa-check"></i><b>1.2.1</b> 计算机的性能</a></li>
 <li class="chapter" data-level="1.2.2" data-path="引言.html"><a href="引言.html#计算机的价格"><i class="fa fa-check"></i><b>1.2.2</b> 计算机的价格</a></li>
 <li class="chapter" data-level="1.2.3" data-path="引言.html"><a href="引言.html#计算机的功耗"><i class="fa fa-check"></i><b>1.2.3</b> 计算机的功耗</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="引言.html"><a href="引言.html#计算机体系结构的发展"><i class="fa fa-check"></i><b>1.3</b> 计算机体系结构的发展</a><ul>
+<li class="chapter" data-level="1.3" data-path="引言.html"><a href="引言.html#计算机体系结构的发展"><i class="fa fa-check"></i><b>1.3</b> 计算机体系结构的发展</a>
+<ul>
 <li class="chapter" data-level="1.3.1" data-path="引言.html"><a href="引言.html#摩尔定律和工艺的发展"><i class="fa fa-check"></i><b>1.3.1</b> 摩尔定律和工艺的发展</a></li>
 <li class="chapter" data-level="1.3.2" data-path="引言.html"><a href="引言.html#计算机应用和体系结构"><i class="fa fa-check"></i><b>1.3.2</b> 计算机应用和体系结构</a></li>
 <li class="chapter" data-level="1.3.3" data-path="引言.html"><a href="引言.html#计算机体系结构发展"><i class="fa fa-check"></i><b>1.3.3</b> 计算机体系结构发展</a></li>
 </ul></li>
-<li class="chapter" data-level="1.4" data-path="引言.html"><a href="引言.html#体系结构设计的基本原则"><i class="fa fa-check"></i><b>1.4</b> 体系结构设计的基本原则</a><ul>
+<li class="chapter" data-level="1.4" data-path="引言.html"><a href="引言.html#体系结构设计的基本原则"><i class="fa fa-check"></i><b>1.4</b> 体系结构设计的基本原则</a>
+<ul>
 <li class="chapter" data-level="1.4.1" data-path="引言.html"><a href="引言.html#平衡性"><i class="fa fa-check"></i><b>1.4.1</b> 平衡性</a></li>
 <li class="chapter" data-level="1.4.2" data-path="引言.html"><a href="引言.html#局部性"><i class="fa fa-check"></i><b>1.4.2</b> 局部性</a></li>
 <li class="chapter" data-level="1.4.3" data-path="引言.html"><a href="引言.html#并行性"><i class="fa fa-check"></i><b>1.4.3</b> 并行性</a></li>
@@ -171,26 +197,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.6" data-path="引言.html"><a href="引言.html#习题"><i class="fa fa-check"></i><b>1.6</b> 习题</a></li>
 </ul></li>
 <li class="part"><span><b>II 指令系统结构</b></span></li>
-<li class="chapter" data-level="2" data-path="sec-ISA.html"><a href="sec-ISA.html"><i class="fa fa-check"></i><b>2</b> 指令系统</a><ul>
+<li class="chapter" data-level="2" data-path="sec-ISA.html"><a href="sec-ISA.html"><i class="fa fa-check"></i><b>2</b> 指令系统</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="sec-ISA.html"><a href="sec-ISA.html#指令系统简介"><i class="fa fa-check"></i><b>2.1</b> 指令系统简介</a></li>
 <li class="chapter" data-level="2.2" data-path="sec-ISA.html"><a href="sec-ISA.html#指令系统设计原则"><i class="fa fa-check"></i><b>2.2</b> 指令系统设计原则</a></li>
-<li class="chapter" data-level="2.3" data-path="sec-ISA.html"><a href="sec-ISA.html#指令系统发展历程"><i class="fa fa-check"></i><b>2.3</b> 指令系统发展历程</a><ul>
+<li class="chapter" data-level="2.3" data-path="sec-ISA.html"><a href="sec-ISA.html#指令系统发展历程"><i class="fa fa-check"></i><b>2.3</b> 指令系统发展历程</a>
+<ul>
 <li class="chapter" data-level="2.3.1" data-path="sec-ISA.html"><a href="sec-ISA.html#指令内容的演变"><i class="fa fa-check"></i><b>2.3.1</b> 指令内容的演变</a></li>
 <li class="chapter" data-level="2.3.2" data-path="sec-ISA.html"><a href="sec-ISA.html#存储管理的演变"><i class="fa fa-check"></i><b>2.3.2</b> 存储管理的演变</a></li>
 <li class="chapter" data-level="2.3.3" data-path="sec-ISA.html"><a href="sec-ISA.html#运行级别的演变"><i class="fa fa-check"></i><b>2.3.3</b> 运行级别的演变</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="sec-ISA.html"><a href="sec-ISA.html#指令系统组成"><i class="fa fa-check"></i><b>2.4</b> 指令系统组成</a><ul>
+<li class="chapter" data-level="2.4" data-path="sec-ISA.html"><a href="sec-ISA.html#指令系统组成"><i class="fa fa-check"></i><b>2.4</b> 指令系统组成</a>
+<ul>
 <li class="chapter" data-level="2.4.1" data-path="sec-ISA.html"><a href="sec-ISA.html#地址空间"><i class="fa fa-check"></i><b>2.4.1</b> 地址空间</a></li>
 <li class="chapter" data-level="2.4.2" data-path="sec-ISA.html"><a href="sec-ISA.html#操作数"><i class="fa fa-check"></i><b>2.4.2</b> 操作数</a></li>
 <li class="chapter" data-level="2.4.3" data-path="sec-ISA.html"><a href="sec-ISA.html#指令操作和编码"><i class="fa fa-check"></i><b>2.4.3</b> 指令操作和编码</a></li>
 </ul></li>
-<li class="chapter" data-level="2.5" data-path="sec-ISA.html"><a href="sec-ISA.html#risc指令集比较"><i class="fa fa-check"></i><b>2.5</b> RISC指令集比较</a><ul>
+<li class="chapter" data-level="2.5" data-path="sec-ISA.html"><a href="sec-ISA.html#risc指令集比较"><i class="fa fa-check"></i><b>2.5</b> RISC指令集比较</a>
+<ul>
 <li class="chapter" data-level="2.5.1" data-path="sec-ISA.html"><a href="sec-ISA.html#指令格式比较"><i class="fa fa-check"></i><b>2.5.1</b> 指令格式比较</a></li>
 <li class="chapter" data-level="2.5.2" data-path="sec-ISA.html"><a href="sec-ISA.html#寻址方式比较"><i class="fa fa-check"></i><b>2.5.2</b> 寻址方式比较</a></li>
 <li class="chapter" data-level="2.5.3" data-path="sec-ISA.html"><a href="sec-ISA.html#公共指令功能"><i class="fa fa-check"></i><b>2.5.3</b> 公共指令功能</a></li>
 <li class="chapter" data-level="2.5.4" data-path="sec-ISA.html"><a href="sec-ISA.html#不同指令系统的特色"><i class="fa fa-check"></i><b>2.5.4</b> 不同指令系统的特色</a></li>
 </ul></li>
-<li class="chapter" data-level="2.6" data-path="sec-ISA.html"><a href="sec-ISA.html#c语言的机器表示"><i class="fa fa-check"></i><b>2.6</b> C语言的机器表示</a><ul>
+<li class="chapter" data-level="2.6" data-path="sec-ISA.html"><a href="sec-ISA.html#c语言的机器表示"><i class="fa fa-check"></i><b>2.6</b> C语言的机器表示</a>
+<ul>
 <li class="chapter" data-level="2.6.1" data-path="sec-ISA.html"><a href="sec-ISA.html#过程调用"><i class="fa fa-check"></i><b>2.6.1</b> 过程调用</a></li>
 <li class="chapter" data-level="2.6.2" data-path="sec-ISA.html"><a href="sec-ISA.html#流程控制语句"><i class="fa fa-check"></i><b>2.6.2</b> 流程控制语句</a></li>
 <li class="chapter" data-level="2.6.3" data-path="sec-ISA.html"><a href="sec-ISA.html#循环语句"><i class="fa fa-check"></i><b>2.6.3</b> 循环语句</a></li>
@@ -198,14 +229,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.7" data-path="sec-ISA.html"><a href="sec-ISA.html#本章小结-1"><i class="fa fa-check"></i><b>2.7</b> 本章小结</a></li>
 <li class="chapter" data-level="2.8" data-path="sec-ISA.html"><a href="sec-ISA.html#习题-1"><i class="fa fa-check"></i><b>2.8</b> 习题</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html"><i class="fa fa-check"></i><b>3</b> 特权指令系统</a><ul>
+<li class="chapter" data-level="3" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html"><i class="fa fa-check"></i><b>3</b> 特权指令系统</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#特权指令系统简介"><i class="fa fa-check"></i><b>3.1</b> 特权指令系统简介</a></li>
-<li class="chapter" data-level="3.2" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#sec-exception"><i class="fa fa-check"></i><b>3.2</b> 异常与中断</a><ul>
+<li class="chapter" data-level="3.2" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#sec-exception"><i class="fa fa-check"></i><b>3.2</b> 异常与中断</a>
+<ul>
 <li class="chapter" data-level="3.2.1" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#异常分类"><i class="fa fa-check"></i><b>3.2.1</b> 异常分类</a></li>
 <li class="chapter" data-level="3.2.2" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#异常处理"><i class="fa fa-check"></i><b>3.2.2</b> 异常处理</a></li>
 <li class="chapter" data-level="3.2.3" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#中断"><i class="fa fa-check"></i><b>3.2.3</b> 中断</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#sec-memory-management"><i class="fa fa-check"></i><b>3.3</b> 存储管理</a><ul>
+<li class="chapter" data-level="3.3" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#sec-memory-management"><i class="fa fa-check"></i><b>3.3</b> 存储管理</a>
+<ul>
 <li class="chapter" data-level="3.3.1" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#存储管理的原理"><i class="fa fa-check"></i><b>3.3.1</b> 存储管理的原理</a></li>
 <li class="chapter" data-level="3.3.2" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#tlb的结构和使用"><i class="fa fa-check"></i><b>3.3.2</b> TLB的结构和使用</a></li>
 <li class="chapter" data-level="3.3.3" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#sec-tlb-ex"><i class="fa fa-check"></i><b>3.3.3</b> TLB地址翻译相关异常的处理</a></li>
@@ -213,14 +247,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.4" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#本章小结-2"><i class="fa fa-check"></i><b>3.4</b> 本章小结</a></li>
 <li class="chapter" data-level="3.5" data-path="sec-privileged-ISA.html"><a href="sec-privileged-ISA.html#习题-2"><i class="fa fa-check"></i><b>3.5</b> 习题</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="软硬件协同.html"><a href="软硬件协同.html"><i class="fa fa-check"></i><b>4</b> 软硬件协同</a><ul>
-<li class="chapter" data-level="4.1" data-path="软硬件协同.html"><a href="软硬件协同.html#应用程序二进制接口"><i class="fa fa-check"></i><b>4.1</b> 应用程序二进制接口</a><ul>
+<li class="chapter" data-level="4" data-path="软硬件协同.html"><a href="软硬件协同.html"><i class="fa fa-check"></i><b>4</b> 软硬件协同</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="软硬件协同.html"><a href="软硬件协同.html#应用程序二进制接口"><i class="fa fa-check"></i><b>4.1</b> 应用程序二进制接口</a>
+<ul>
 <li class="chapter" data-level="4.1.1" data-path="软硬件协同.html"><a href="软硬件协同.html#寄存器约定"><i class="fa fa-check"></i><b>4.1.1</b> 寄存器约定</a></li>
 <li class="chapter" data-level="4.1.2" data-path="软硬件协同.html"><a href="软硬件协同.html#函数调用约定"><i class="fa fa-check"></i><b>4.1.2</b> 函数调用约定</a></li>
 <li class="chapter" data-level="4.1.3" data-path="软硬件协同.html"><a href="软硬件协同.html#进程虚拟地址空间"><i class="fa fa-check"></i><b>4.1.3</b> 进程虚拟地址空间</a></li>
 <li class="chapter" data-level="4.1.4" data-path="软硬件协同.html"><a href="软硬件协同.html#栈帧布局"><i class="fa fa-check"></i><b>4.1.4</b> 栈帧布局</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="软硬件协同.html"><a href="软硬件协同.html#六种常见的上下文切换场景"><i class="fa fa-check"></i><b>4.2</b> 六种常见的上下文切换场景</a><ul>
+<li class="chapter" data-level="4.2" data-path="软硬件协同.html"><a href="软硬件协同.html#六种常见的上下文切换场景"><i class="fa fa-check"></i><b>4.2</b> 六种常见的上下文切换场景</a>
+<ul>
 <li class="chapter" data-level="4.2.1" data-path="软硬件协同.html"><a href="软硬件协同.html#函数调用"><i class="fa fa-check"></i><b>4.2.1</b> 函数调用</a></li>
 <li class="chapter" data-level="4.2.2" data-path="软硬件协同.html"><a href="软硬件协同.html#异常和中断"><i class="fa fa-check"></i><b>4.2.2</b> 异常和中断</a></li>
 <li class="chapter" data-level="4.2.3" data-path="软硬件协同.html"><a href="软硬件协同.html#系统调用"><i class="fa fa-check"></i><b>4.2.3</b> 系统调用</a></li>
@@ -229,7 +266,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.2.6" data-path="软硬件协同.html"><a href="软硬件协同.html#虚拟机"><i class="fa fa-check"></i><b>4.2.6</b> 虚拟机</a></li>
 <li class="chapter" data-level="4.2.7" data-path="软硬件协同.html"><a href="软硬件协同.html#六种上下文切换场景的对比"><i class="fa fa-check"></i><b>4.2.7</b> 六种上下文切换场景的对比</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="软硬件协同.html"><a href="软硬件协同.html#同步机制"><i class="fa fa-check"></i><b>4.3</b> 同步机制</a><ul>
+<li class="chapter" data-level="4.3" data-path="软硬件协同.html"><a href="软硬件协同.html#同步机制"><i class="fa fa-check"></i><b>4.3</b> 同步机制</a>
+<ul>
 <li class="chapter" data-level="4.3.1" data-path="软硬件协同.html"><a href="软硬件协同.html#基于互斥的同步机制"><i class="fa fa-check"></i><b>4.3.1</b> 基于互斥的同步机制</a></li>
 <li class="chapter" data-level="4.3.2" data-path="软硬件协同.html"><a href="软硬件协同.html#非阻塞的同步机制"><i class="fa fa-check"></i><b>4.3.2</b> 非阻塞的同步机制</a></li>
 </ul></li>
@@ -237,22 +275,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.5" data-path="软硬件协同.html"><a href="软硬件协同.html#习题-3"><i class="fa fa-check"></i><b>4.5</b> 习题</a></li>
 </ul></li>
 <li class="part"><span><b>III 计算机硬件结构</b></span></li>
-<li class="chapter" data-level="5" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html"><i class="fa fa-check"></i><b>5</b> 计算机组成原理和结构</a><ul>
+<li class="chapter" data-level="5" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html"><i class="fa fa-check"></i><b>5</b> 计算机组成原理和结构</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#冯诺依曼结构"><i class="fa fa-check"></i><b>5.1</b> 冯·诺依曼结构</a></li>
-<li class="chapter" data-level="5.2" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#计算机的组成部件"><i class="fa fa-check"></i><b>5.2</b> 计算机的组成部件</a><ul>
+<li class="chapter" data-level="5.2" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#计算机的组成部件"><i class="fa fa-check"></i><b>5.2</b> 计算机的组成部件</a>
+<ul>
 <li class="chapter" data-level="5.2.1" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#运算器"><i class="fa fa-check"></i><b>5.2.1</b> 运算器</a></li>
 <li class="chapter" data-level="5.2.2" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#控制器"><i class="fa fa-check"></i><b>5.2.2</b> 控制器</a></li>
 <li class="chapter" data-level="5.2.3" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#存储器"><i class="fa fa-check"></i><b>5.2.3</b> 存储器</a></li>
 <li class="chapter" data-level="5.2.4" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#输入输出设备"><i class="fa fa-check"></i><b>5.2.4</b> 输入/输出设备</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#计算机系统硬件结构发展"><i class="fa fa-check"></i><b>5.3</b> 计算机系统硬件结构发展</a><ul>
+<li class="chapter" data-level="5.3" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#计算机系统硬件结构发展"><i class="fa fa-check"></i><b>5.3</b> 计算机系统硬件结构发展</a>
+<ul>
 <li class="chapter" data-level="5.3.1" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#cpu-gpu-北桥-南桥四片结构"><i class="fa fa-check"></i><b>5.3.1</b> CPU-GPU-北桥-南桥四片结构</a></li>
 <li class="chapter" data-level="5.3.2" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#cpu-北桥-南桥三片结构"><i class="fa fa-check"></i><b>5.3.2</b> CPU-北桥-南桥三片结构</a></li>
 <li class="chapter" data-level="5.3.3" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#cpu-弱北桥-南桥三片结构"><i class="fa fa-check"></i><b>5.3.3</b> CPU-弱北桥-南桥三片结构</a></li>
 <li class="chapter" data-level="5.3.4" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#cpu-南桥两片结构"><i class="fa fa-check"></i><b>5.3.4</b> CPU-南桥两片结构</a></li>
 <li class="chapter" data-level="5.3.5" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#soc单片结构"><i class="fa fa-check"></i><b>5.3.5</b> SoC单片结构</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#处理器和io设备间的通信"><i class="fa fa-check"></i><b>5.4</b> 处理器和IO设备间的通信</a><ul>
+<li class="chapter" data-level="5.4" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#处理器和io设备间的通信"><i class="fa fa-check"></i><b>5.4</b> 处理器和IO设备间的通信</a>
+<ul>
 <li class="chapter" data-level="5.4.1" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#io寄存器寻址"><i class="fa fa-check"></i><b>5.4.1</b> IO寄存器寻址</a></li>
 <li class="chapter" data-level="5.4.2" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#处理器和io设备之间的同步"><i class="fa fa-check"></i><b>5.4.2</b> 处理器和IO设备之间的同步</a></li>
 <li class="chapter" data-level="5.4.3" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#存储器和io设备之间的数据传送"><i class="fa fa-check"></i><b>5.4.3</b> 存储器和IO设备之间的数据传送</a></li>
@@ -261,12 +303,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.5" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#本章小结-4"><i class="fa fa-check"></i><b>5.5</b> 本章小结</a></li>
 <li class="chapter" data-level="5.6" data-path="计算机组成原理和结构.html"><a href="计算机组成原理和结构.html#习题-4"><i class="fa fa-check"></i><b>5.6</b> 习题</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html"><i class="fa fa-check"></i><b>6</b> 计算机总线接口技术</a><ul>
+<li class="chapter" data-level="6" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html"><i class="fa fa-check"></i><b>6</b> 计算机总线接口技术</a>
+<ul>
 <li class="chapter" data-level="6.1" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#总线概述"><i class="fa fa-check"></i><b>6.1</b> 总线概述</a></li>
 <li class="chapter" data-level="6.2" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#总线分类"><i class="fa fa-check"></i><b>6.2</b> 总线分类</a></li>
 <li class="chapter" data-level="6.3" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#片上总线"><i class="fa fa-check"></i><b>6.3</b> 片上总线</a></li>
 <li class="chapter" data-level="6.4" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#内存总线"><i class="fa fa-check"></i><b>6.4</b> 内存总线</a></li>
-<li class="chapter" data-level="6.5" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#系统总线"><i class="fa fa-check"></i><b>6.5</b> 系统总线</a><ul>
+<li class="chapter" data-level="6.5" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#系统总线"><i class="fa fa-check"></i><b>6.5</b> 系统总线</a>
+<ul>
 <li class="chapter" data-level="6.5.1" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#hypertransport总线"><i class="fa fa-check"></i><b>6.5.1</b> HyperTransport总线</a></li>
 <li class="chapter" data-level="6.5.2" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#ht包格式"><i class="fa fa-check"></i><b>6.5.2</b> HT包格式</a></li>
 <li class="chapter" data-level="6.5.3" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#设备总线"><i class="fa fa-check"></i><b>6.5.3</b> 设备总线</a></li>
@@ -276,19 +320,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.6" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#本章小结-5"><i class="fa fa-check"></i><b>6.6</b> 本章小结</a></li>
 <li class="chapter" data-level="6.7" data-path="计算机总线接口技术.html"><a href="计算机总线接口技术.html#习题-5"><i class="fa fa-check"></i><b>6.7</b> 习题</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html"><i class="fa fa-check"></i><b>7</b> 计算机启动过程分析</a><ul>
-<li class="chapter" data-level="7.1" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#处理器核初始化"><i class="fa fa-check"></i><b>7.1</b> 处理器核初始化</a><ul>
+<li class="chapter" data-level="7" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html"><i class="fa fa-check"></i><b>7</b> 计算机启动过程分析</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#处理器核初始化"><i class="fa fa-check"></i><b>7.1</b> 处理器核初始化</a>
+<ul>
 <li class="chapter" data-level="7.1.1" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#sec-cpu-reset"><i class="fa fa-check"></i><b>7.1.1</b> 处理器复位</a></li>
 <li class="chapter" data-level="7.1.2" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#调试接口初始化"><i class="fa fa-check"></i><b>7.1.2</b> 调试接口初始化</a></li>
 <li class="chapter" data-level="7.1.3" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#tlb初始化"><i class="fa fa-check"></i><b>7.1.3</b> TLB初始化</a></li>
 <li class="chapter" data-level="7.1.4" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#cache初始化"><i class="fa fa-check"></i><b>7.1.4</b> Cache初始化</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#总线接口初始化"><i class="fa fa-check"></i><b>7.2</b> 总线接口初始化</a><ul>
+<li class="chapter" data-level="7.2" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#总线接口初始化"><i class="fa fa-check"></i><b>7.2</b> 总线接口初始化</a>
+<ul>
 <li class="chapter" data-level="7.2.1" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#内存初始化"><i class="fa fa-check"></i><b>7.2.1</b> 内存初始化</a></li>
 <li class="chapter" data-level="7.2.2" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#io总线初始化"><i class="fa fa-check"></i><b>7.2.2</b> IO总线初始化</a></li>
 </ul></li>
 <li class="chapter" data-level="7.3" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#设备的探测及驱动加载"><i class="fa fa-check"></i><b>7.3</b> 设备的探测及驱动加载</a></li>
-<li class="chapter" data-level="7.4" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#多核启动过程"><i class="fa fa-check"></i><b>7.4</b> 多核启动过程</a><ul>
+<li class="chapter" data-level="7.4" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#多核启动过程"><i class="fa fa-check"></i><b>7.4</b> 多核启动过程</a>
+<ul>
 <li class="chapter" data-level="7.4.1" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#初始化时的多核协同"><i class="fa fa-check"></i><b>7.4.1</b> 初始化时的多核协同</a></li>
 <li class="chapter" data-level="7.4.2" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#操作系统启动时的多核唤醒"><i class="fa fa-check"></i><b>7.4.2</b> 操作系统启动时的多核唤醒</a></li>
 <li class="chapter" data-level="7.4.3" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#核间同步与通信"><i class="fa fa-check"></i><b>7.4.3</b> 核间同步与通信</a></li>
@@ -297,19 +345,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.6" data-path="计算机启动过程分析.html"><a href="计算机启动过程分析.html#习题-6"><i class="fa fa-check"></i><b>7.6</b> 习题</a></li>
 </ul></li>
 <li class="part"><span><b>IV Part IV CPU的微结构</b></span></li>
-<li class="chapter" data-level="8" data-path="运算器设计.html"><a href="运算器设计.html"><i class="fa fa-check"></i><b>8</b> 运算器设计</a><ul>
-<li class="chapter" data-level="8.1" data-path="运算器设计.html"><a href="运算器设计.html#二进制与逻辑电路"><i class="fa fa-check"></i><b>8.1</b> 二进制与逻辑电路</a><ul>
+<li class="chapter" data-level="8" data-path="运算器设计.html"><a href="运算器设计.html"><i class="fa fa-check"></i><b>8</b> 运算器设计</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="运算器设计.html"><a href="运算器设计.html#二进制与逻辑电路"><i class="fa fa-check"></i><b>8.1</b> 二进制与逻辑电路</a>
+<ul>
 <li class="chapter" data-level="8.1.1" data-path="运算器设计.html"><a href="运算器设计.html#sec-number-presentation"><i class="fa fa-check"></i><b>8.1.1</b> 计算机中数的表示</a></li>
 <li class="chapter" data-level="8.1.2" data-path="运算器设计.html"><a href="运算器设计.html#sec-MOS-principle"><i class="fa fa-check"></i><b>8.1.2</b> MOS晶体管工作原理</a></li>
 <li class="chapter" data-level="8.1.3" data-path="运算器设计.html"><a href="运算器设计.html#cmos逻辑电路"><i class="fa fa-check"></i><b>8.1.3</b> CMOS逻辑电路</a></li>
 </ul></li>
-<li class="chapter" data-level="8.2" data-path="运算器设计.html"><a href="运算器设计.html#简单运算器设计"><i class="fa fa-check"></i><b>8.2</b> 简单运算器设计</a><ul>
+<li class="chapter" data-level="8.2" data-path="运算器设计.html"><a href="运算器设计.html#简单运算器设计"><i class="fa fa-check"></i><b>8.2</b> 简单运算器设计</a>
+<ul>
 <li class="chapter" data-level="8.2.1" data-path="运算器设计.html"><a href="运算器设计.html#定点补码加法器"><i class="fa fa-check"></i><b>8.2.1</b> 定点补码加法器</a></li>
 <li class="chapter" data-level="8.2.2" data-path="运算器设计.html"><a href="运算器设计.html#减法运算实现"><i class="fa fa-check"></i><b>8.2.2</b> 减法运算实现</a></li>
 <li class="chapter" data-level="8.2.3" data-path="运算器设计.html"><a href="运算器设计.html#比较运算实现"><i class="fa fa-check"></i><b>8.2.3</b> 比较运算实现</a></li>
 <li class="chapter" data-level="8.2.4" data-path="运算器设计.html"><a href="运算器设计.html#移位器"><i class="fa fa-check"></i><b>8.2.4</b> 移位器</a></li>
 </ul></li>
-<li class="chapter" data-level="8.3" data-path="运算器设计.html"><a href="运算器设计.html#定点补码乘法器"><i class="fa fa-check"></i><b>8.3</b> 定点补码乘法器</a><ul>
+<li class="chapter" data-level="8.3" data-path="运算器设计.html"><a href="运算器设计.html#定点补码乘法器"><i class="fa fa-check"></i><b>8.3</b> 定点补码乘法器</a>
+<ul>
 <li class="chapter" data-level="8.3.1" data-path="运算器设计.html"><a href="运算器设计.html#补码乘法器"><i class="fa fa-check"></i><b>8.3.1</b> 补码乘法器</a></li>
 <li class="chapter" data-level="8.3.2" data-path="运算器设计.html"><a href="运算器设计.html#booth乘法器"><i class="fa fa-check"></i><b>8.3.2</b> Booth乘法器</a></li>
 <li class="chapter" data-level="8.3.3" data-path="运算器设计.html"><a href="运算器设计.html#华莱士树"><i class="fa fa-check"></i><b>8.3.3</b> 华莱士树</a></li>
@@ -317,16 +369,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.4" data-path="运算器设计.html"><a href="运算器设计.html#本章小结-7"><i class="fa fa-check"></i><b>8.4</b> 本章小结</a></li>
 <li class="chapter" data-level="8.5" data-path="运算器设计.html"><a href="运算器设计.html#习题-7"><i class="fa fa-check"></i><b>8.5</b> 习题</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="指令流水线.html"><a href="指令流水线.html"><i class="fa fa-check"></i><b>9</b> 指令流水线</a><ul>
+<li class="chapter" data-level="9" data-path="指令流水线.html"><a href="指令流水线.html"><i class="fa fa-check"></i><b>9</b> 指令流水线</a>
+<ul>
 <li class="chapter" data-level="9.1" data-path="指令流水线.html"><a href="指令流水线.html#单周期处理器"><i class="fa fa-check"></i><b>9.1</b> 单周期处理器</a></li>
 <li class="chapter" data-level="9.2" data-path="指令流水线.html"><a href="指令流水线.html#sec-pipeline-cpu"><i class="fa fa-check"></i><b>9.2</b> 流水线处理器</a></li>
-<li class="chapter" data-level="9.3" data-path="指令流水线.html"><a href="指令流水线.html#sec-hazard"><i class="fa fa-check"></i><b>9.3</b> 指令相关和流水线冲突</a><ul>
+<li class="chapter" data-level="9.3" data-path="指令流水线.html"><a href="指令流水线.html#sec-hazard"><i class="fa fa-check"></i><b>9.3</b> 指令相关和流水线冲突</a>
+<ul>
 <li class="chapter" data-level="9.3.1" data-path="指令流水线.html"><a href="指令流水线.html#数据相关引发的冲突及解决办法"><i class="fa fa-check"></i><b>9.3.1</b> 数据相关引发的冲突及解决办法</a></li>
 <li class="chapter" data-level="9.3.2" data-path="指令流水线.html"><a href="指令流水线.html#sec-control-hazard"><i class="fa fa-check"></i><b>9.3.2</b> 控制相关引发冲突及解决方法</a></li>
 <li class="chapter" data-level="9.3.3" data-path="指令流水线.html"><a href="指令流水线.html#结构相关引发冲突及解决办法"><i class="fa fa-check"></i><b>9.3.3</b> 结构相关引发冲突及解决办法</a></li>
 </ul></li>
 <li class="chapter" data-level="9.4" data-path="指令流水线.html"><a href="指令流水线.html#sec-precise-exception"><i class="fa fa-check"></i><b>9.4</b> 流水线与异常处理</a></li>
-<li class="chapter" data-level="9.5" data-path="指令流水线.html"><a href="指令流水线.html#提高流水线效率的技术"><i class="fa fa-check"></i><b>9.5</b> 提高流水线效率的技术</a><ul>
+<li class="chapter" data-level="9.5" data-path="指令流水线.html"><a href="指令流水线.html#提高流水线效率的技术"><i class="fa fa-check"></i><b>9.5</b> 提高流水线效率的技术</a>
+<ul>
 <li class="chapter" data-level="9.5.1" data-path="指令流水线.html"><a href="指令流水线.html#多发射数据通路"><i class="fa fa-check"></i><b>9.5.1</b> 多发射数据通路</a></li>
 <li class="chapter" data-level="9.5.2" data-path="指令流水线.html"><a href="指令流水线.html#sec-dynamic"><i class="fa fa-check"></i><b>9.5.2</b> 动态调度</a></li>
 <li class="chapter" data-level="9.5.3" data-path="指令流水线.html"><a href="指令流水线.html#sec-branch-predict"><i class="fa fa-check"></i><b>9.5.3</b> 转移预测</a></li>
@@ -336,19 +391,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.7" data-path="指令流水线.html"><a href="指令流水线.html#习题-8"><i class="fa fa-check"></i><b>9.7</b> 习题</a></li>
 </ul></li>
 <li class="part"><span><b>V 并行处理结构</b></span></li>
-<li class="chapter" data-level="10" data-path="并行编程基础.html"><a href="并行编程基础.html"><i class="fa fa-check"></i><b>10</b> 并行编程基础</a><ul>
-<li class="chapter" data-level="10.1" data-path="并行编程基础.html"><a href="并行编程基础.html#程序的并行行为"><i class="fa fa-check"></i><b>10.1</b> 程序的并行行为</a><ul>
+<li class="chapter" data-level="10" data-path="并行编程基础.html"><a href="并行编程基础.html"><i class="fa fa-check"></i><b>10</b> 并行编程基础</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="并行编程基础.html"><a href="并行编程基础.html#程序的并行行为"><i class="fa fa-check"></i><b>10.1</b> 程序的并行行为</a>
+<ul>
 <li class="chapter" data-level="10.1.1" data-path="并行编程基础.html"><a href="并行编程基础.html#指令级并行性"><i class="fa fa-check"></i><b>10.1.1</b> 指令级并行性</a></li>
 <li class="chapter" data-level="10.1.2" data-path="并行编程基础.html"><a href="并行编程基础.html#数据级并行性"><i class="fa fa-check"></i><b>10.1.2</b> 数据级并行性</a></li>
 <li class="chapter" data-level="10.1.3" data-path="并行编程基础.html"><a href="并行编程基础.html#任务级并行性"><i class="fa fa-check"></i><b>10.1.3</b> 任务级并行性</a></li>
 </ul></li>
-<li class="chapter" data-level="10.2" data-path="并行编程基础.html"><a href="并行编程基础.html#并行编程模型"><i class="fa fa-check"></i><b>10.2</b> 并行编程模型</a><ul>
+<li class="chapter" data-level="10.2" data-path="并行编程基础.html"><a href="并行编程基础.html#并行编程模型"><i class="fa fa-check"></i><b>10.2</b> 并行编程模型</a>
+<ul>
 <li class="chapter" data-level="10.2.1" data-path="并行编程基础.html"><a href="并行编程基础.html#单任务数据并行模型"><i class="fa fa-check"></i><b>10.2.1</b> 单任务数据并行模型</a></li>
 <li class="chapter" data-level="10.2.2" data-path="并行编程基础.html"><a href="并行编程基础.html#多任务共享存储编程模型"><i class="fa fa-check"></i><b>10.2.2</b> 多任务共享存储编程模型</a></li>
 <li class="chapter" data-level="10.2.3" data-path="并行编程基础.html"><a href="并行编程基础.html#多任务消息传递编程模型"><i class="fa fa-check"></i><b>10.2.3</b> 多任务消息传递编程模型</a></li>
 <li class="chapter" data-level="10.2.4" data-path="并行编程基础.html"><a href="并行编程基础.html#共享存储与消息传递编程模型的编程复杂度"><i class="fa fa-check"></i><b>10.2.4</b> 共享存储与消息传递编程模型的编程复杂度</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="并行编程基础.html"><a href="并行编程基础.html#典型并行编程环境"><i class="fa fa-check"></i><b>10.3</b> 典型并行编程环境</a><ul>
+<li class="chapter" data-level="10.3" data-path="并行编程基础.html"><a href="并行编程基础.html#典型并行编程环境"><i class="fa fa-check"></i><b>10.3</b> 典型并行编程环境</a>
+<ul>
 <li class="chapter" data-level="10.3.1" data-path="并行编程基础.html"><a href="并行编程基础.html#数据并行simd编程"><i class="fa fa-check"></i><b>10.3.1</b> 数据并行SIMD编程</a></li>
 <li class="chapter" data-level="10.3.2" data-path="并行编程基础.html"><a href="并行编程基础.html#posix编程标准"><i class="fa fa-check"></i><b>10.3.2</b> POSIX编程标准</a></li>
 <li class="chapter" data-level="10.3.3" data-path="并行编程基础.html"><a href="并行编程基础.html#openmp标准"><i class="fa fa-check"></i><b>10.3.3</b> OpenMP标准</a></li>
@@ -356,16 +415,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="10.4" data-path="并行编程基础.html"><a href="并行编程基础.html#习题-9"><i class="fa fa-check"></i><b>10.4</b> 习题</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="多核处理结构.html"><a href="多核处理结构.html"><i class="fa fa-check"></i><b>11</b> 多核处理结构</a><ul>
+<li class="chapter" data-level="11" data-path="多核处理结构.html"><a href="多核处理结构.html"><i class="fa fa-check"></i><b>11</b> 多核处理结构</a>
+<ul>
 <li class="chapter" data-level="11.1" data-path="多核处理结构.html"><a href="多核处理结构.html#多核处理器的发展演化"><i class="fa fa-check"></i><b>11.1</b> 多核处理器的发展演化</a></li>
-<li class="chapter" data-level="11.2" data-path="多核处理结构.html"><a href="多核处理结构.html#多核处理器的访存结构"><i class="fa fa-check"></i><b>11.2</b> 多核处理器的访存结构</a><ul>
+<li class="chapter" data-level="11.2" data-path="多核处理结构.html"><a href="多核处理结构.html#多核处理器的访存结构"><i class="fa fa-check"></i><b>11.2</b> 多核处理器的访存结构</a>
+<ul>
 <li class="chapter" data-level="11.2.1" data-path="多核处理结构.html"><a href="多核处理结构.html#通用多核处理器的片上cache结构"><i class="fa fa-check"></i><b>11.2.1</b> 通用多核处理器的片上Cache结构</a></li>
 <li class="chapter" data-level="11.2.2" data-path="多核处理结构.html"><a href="多核处理结构.html#存储一致性模型"><i class="fa fa-check"></i><b>11.2.2</b> 存储一致性模型</a></li>
 <li class="chapter" data-level="11.2.3" data-path="多核处理结构.html"><a href="多核处理结构.html#cache一致性协议"><i class="fa fa-check"></i><b>11.2.3</b> Cache一致性协议</a></li>
 </ul></li>
 <li class="chapter" data-level="11.3" data-path="多核处理结构.html"><a href="多核处理结构.html#多核处理器的互连结构"><i class="fa fa-check"></i><b>11.3</b> 多核处理器的互连结构</a></li>
 <li class="chapter" data-level="11.4" data-path="多核处理结构.html"><a href="多核处理结构.html#多核处理器的同步机制"><i class="fa fa-check"></i><b>11.4</b> 多核处理器的同步机制</a></li>
-<li class="chapter" data-level="11.5" data-path="多核处理结构.html"><a href="多核处理结构.html#典型多核处理器"><i class="fa fa-check"></i><b>11.5</b> 典型多核处理器</a><ul>
+<li class="chapter" data-level="11.5" data-path="多核处理结构.html"><a href="多核处理结构.html#典型多核处理器"><i class="fa fa-check"></i><b>11.5</b> 典型多核处理器</a>
+<ul>
 <li class="chapter" data-level="11.5.1" data-path="多核处理结构.html"><a href="多核处理结构.html#龙芯3a5000处理器"><i class="fa fa-check"></i><b>11.5.1</b> 龙芯3A5000处理器</a></li>
 <li class="chapter" data-level="11.5.2" data-path="多核处理结构.html"><a href="多核处理结构.html#intel-sandybridge架构"><i class="fa fa-check"></i><b>11.5.2</b> Intel SandyBridge架构</a></li>
 <li class="chapter" data-level="11.5.3" data-path="多核处理结构.html"><a href="多核处理结构.html#ibm-cell处理器"><i class="fa fa-check"></i><b>11.5.3</b> IBM Cell处理器</a></li>
@@ -376,23 +438,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.7" data-path="多核处理结构.html"><a href="多核处理结构.html#习题-10"><i class="fa fa-check"></i><b>11.7</b> 习题</a></li>
 </ul></li>
 <li class="part"><span><b>VI 系统性能评价与分析</b></span></li>
-<li class="chapter" data-level="12" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html"><i class="fa fa-check"></i><b>12</b> 计算机系统性能评价与性能分析</a><ul>
-<li class="chapter" data-level="12.1" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#计算机系统性能评价指标"><i class="fa fa-check"></i><b>12.1</b> 计算机系统性能评价指标</a><ul>
+<li class="chapter" data-level="12" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html"><i class="fa fa-check"></i><b>12</b> 计算机系统性能评价与性能分析</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#计算机系统性能评价指标"><i class="fa fa-check"></i><b>12.1</b> 计算机系统性能评价指标</a>
+<ul>
 <li class="chapter" data-level="12.1.1" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#计算机系统常用性能评价指标"><i class="fa fa-check"></i><b>12.1.1</b> 计算机系统常用性能评价指标</a></li>
 <li class="chapter" data-level="12.1.2" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#并行系统的性能评价指标"><i class="fa fa-check"></i><b>12.1.2</b> 并行系统的性能评价指标</a></li>
 </ul></li>
-<li class="chapter" data-level="12.2" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#测试程序集"><i class="fa fa-check"></i><b>12.2</b> 测试程序集</a><ul>
+<li class="chapter" data-level="12.2" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#测试程序集"><i class="fa fa-check"></i><b>12.2</b> 测试程序集</a>
+<ul>
 <li class="chapter" data-level="12.2.1" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#微基准测试程序"><i class="fa fa-check"></i><b>12.2.1</b> 微基准测试程序</a></li>
 <li class="chapter" data-level="12.2.2" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#spec-cpu基准测试程序"><i class="fa fa-check"></i><b>12.2.2</b> SPEC CPU基准测试程序</a></li>
 <li class="chapter" data-level="12.2.3" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#并行系统基准测试程序"><i class="fa fa-check"></i><b>12.2.3</b> 并行系统基准测试程序</a></li>
 <li class="chapter" data-level="12.2.4" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#其他常见的基准测试程序集"><i class="fa fa-check"></i><b>12.2.4</b> 其他常见的基准测试程序集</a></li>
 </ul></li>
-<li class="chapter" data-level="12.3" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#性能分析方法"><i class="fa fa-check"></i><b>12.3</b> 性能分析方法</a><ul>
+<li class="chapter" data-level="12.3" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#性能分析方法"><i class="fa fa-check"></i><b>12.3</b> 性能分析方法</a>
+<ul>
 <li class="chapter" data-level="12.3.1" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#分析建模的方法"><i class="fa fa-check"></i><b>12.3.1</b> 分析建模的方法</a></li>
 <li class="chapter" data-level="12.3.2" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#模拟建模的方法和模拟器"><i class="fa fa-check"></i><b>12.3.2</b> 模拟建模的方法和模拟器</a></li>
 <li class="chapter" data-level="12.3.3" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#性能测量的方法"><i class="fa fa-check"></i><b>12.3.3</b> 性能测量的方法</a></li>
 </ul></li>
-<li class="chapter" data-level="12.4" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#性能测试和分析实例"><i class="fa fa-check"></i><b>12.4</b> 性能测试和分析实例</a><ul>
+<li class="chapter" data-level="12.4" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#性能测试和分析实例"><i class="fa fa-check"></i><b>12.4</b> 性能测试和分析实例</a>
+<ul>
 <li class="chapter" data-level="12.4.1" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#spec-cpu基准测试程序的分值对比"><i class="fa fa-check"></i><b>12.4.1</b> SPEC CPU基准测试程序的分值对比</a></li>
 <li class="chapter" data-level="12.4.2" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#微结构相关统计数据"><i class="fa fa-check"></i><b>12.4.2</b> 微结构相关统计数据</a></li>
 <li class="chapter" data-level="12.4.3" data-path="计算机系统性能评价与性能分析.html"><a href="计算机系统性能评价与性能分析.html#基础性能参数"><i class="fa fa-check"></i><b>12.4.3</b> 基础性能参数</a></li>
@@ -422,12 +489,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="计算机启动过程分析" class="section level1">
+<div id="计算机启动过程分析" class="section level1" number="7">
 <h1><span class="header-section-number">第 7 章</span> 计算机启动过程分析</h1>
 <p>前面章节主要从计算机硬件的角度对构成计算机系统的各个主要部分进行了介绍。为了描述计算机硬件系统各部分之间的相互关系，本章将对计算机从开机到点亮屏幕，接收键盘输入，再到引导并启动整个操作系统的具体过程进行探讨。与本书其他章节一样，本章基于LoongArch架构进行介绍，具体则以龙芯3号处理器的启动过程为例。</p>
 <p>无论采用何种指令系统的处理器，复位后的第一条指令都会从一个预先定义的特定地址取回。处理器的执行就从这条指令开始。处理器的启动过程，实际上就是一个特定程序的执行过程。这个程序我们称之为固件，又称为BIOS（Basic Input Output System，基本输入输出系统）。对于LoongArch，处理器复位后的第一条指令将固定从地址0x1C000000的位置获取。这个地址需要对应一个能够给处理器核提供指令的设备，这个设备以前是各种ROM，现在通常是闪存（Flash）。从获取第一条指令开始，计算机系统的启动过程也就开始了。</p>
 <p>为了使计算机达到一个最终可控和可用的状态，在启动过程中，需要对包括处理器核、内存、外设等在内的各个部分分别进行初始化，再对必要的外设进行驱动管理。本章的后续内容将对这些具体工作进行讨论。</p>
-<div id="处理器核初始化" class="section level2">
+<div id="处理器核初始化" class="section level2" number="7.1">
 <h2><span class="header-section-number">7.1</span> 处理器核初始化</h2>
 <p>在讨论这个过程之前，先来定义什么叫作初始化。所谓初始化，实际上是将计算机内部的各种寄存器状态从不确定设置为确定，将一些模块状态从无序强制为有序的过程。简单来说，就是通过load/store指令或其他方法将指定寄存器或结构设置为特定数值。</p>
 <p>举例来说，在MIPS和LoongArch结构中，都只将0号寄存器的值强制规定为0，而其他的通用寄存器值是没有要求的。在处理器复位后开始运行的时候，这些寄存器的值可能是任意值。如果需要用到寄存器内容，就需要先对其进行赋值，将这个寄存器的内容设置为软件期望的值。这个赋值操作可以是加载立即数，也可以是对内存或者其他特定地址进行load操作，又可以是以其他已初始化的寄存器作为源操作数进行运算得到的结果。</p>
@@ -435,7 +502,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>举一个简单的例子。计算机系统中使用约定的ABI（Application Binary Interface，应用程序二进制接口）作为软件接口规范。LoongArch约定使用1号寄存器（＄r1）作为函数返回指针寄存器（ra，Return Address）。函数返回时，一般使用指令“jirl”。这条指令的格式为“jirl rd,rj,offset”，其中rj与offset表示跳转的目标地址，rd为计算得到的返回地址，为当前PC+4，用于函数调用返回。当不需要保存时，可以指定为＄r0，也就是0号寄存器。因此，函数返回时，一般可用“jirl ＄r0,＄r1,0”来实现。这样，一种可行的转移预测优化方法是在指令译码得到“jirl”指令时，立即使用＄r1作为跳转地址进行猜测取指，以加速后续的指令执行。</p>
 <p>如果程序中没有使用“jirl ＄r0,＄r1,0”，而是采用了诸如“jirl ＄r0,＄r2,0”这样的指令，就会导致这个猜测机制出错。而如果此时＄r1的寄存器是一个随机值，就有可能导致取指猜测错误，发出一个对非法地址的猜测请求。如果此时处理器没有对猜测访问通路进行控制或初始化，就可能会发生严重问题，例如猜测访问落入地址空洞而失去响应并导致死机等。</p>
 <p>为了防止这个问题，在处理器开始执行之后，一方面需要先对相关的寄存器内容进行初始化，设置为一个正常地址值，另一方面则需要对地址空间进行处理，防止出现一般情况下不可访问的地址空洞。这样即使发生了这种猜测访问，也可以得到响应，避免系统出错或死机。</p>
-<div id="sec-cpu-reset" class="section level3">
+<div id="sec-cpu-reset" class="section level3" number="7.1.1">
 <h3><span class="header-section-number">7.1.1</span> 处理器复位</h3>
 <p>处理器的第一条指令实际上是由复位信号控制的，但受限于各种其他因素，复位信号并没有对处理器内部的所有部分进行控制，例如TLB、Cache等复杂结构，而是只保证从取指部件到BIOS取指令的通路畅通。如果把CPU比作一个大房间，复位后的房间内部漆黑一片，大门（内存接口）、窗户（IO接口）都是关着的，只有微弱的灯光照亮了通向一扇小门（BIOS接口）的通路。</p>
 <p>在LoongArch架构下，处理器复位后工作在直接地址翻译模式下。该模式下的地址为虚实地址直接对应的关系，也就是不经TLB映射，也不经窗口映射。默认情况下，无论是取指访问还是数据访问，都是Uncache模式，也即不经缓存。这样即使硬件不对TLB、Cache两个结构进行初始化，处理器也能正常启动并通过软件在后续的执行中对这些结构进行初始化。尤其是早期的处理器设计由于对资源或时序的考虑，出于简化硬件设计的目标，将很多初始化工作交由软件进行。但现在大部分处理器在硬件上自动处理，从而减轻软件负担，缩短系统启动时间。例如，龙芯3A1000和龙芯3B1500都没有实现硬件初始化功能，只能通过软件对Cache进行初始化。本身Cache的初始化就需要运行在Uncache的空间上，执行效率低下，而且当Cache越来越大时，所需要的执行时间就越来越长。从龙芯3A2000开始，龙芯处理器也实现了TLB、各级Cache等结构的硬件初始化。硬件初始化的时机是在系统复位解除之后、取指访问开始之前，以此来缩短BIOS的启动时间。</p>
@@ -492,13 +559,13 @@ lu52i.d    $r2, $r2, 0x900</code></pre>
 </div>
 <p>整个处理器由系统复位到操作系统启动的简要流程如图<a href="计算机启动过程分析.html#fig:boot-flow">7.1</a>所示。其中第一列为处理器核初始化过程，第二列为芯片核外部分初始化过程，第三列为设备初始化过程，第四列为内核加载过程，第五列为多核芯片中的从核（Slave Core）独有的启动过程。</p>
 </div>
-<div id="调试接口初始化" class="section level3">
+<div id="调试接口初始化" class="section level3" number="7.1.2">
 <h3><span class="header-section-number">7.1.2</span> 调试接口初始化</h3>
 <p>那么，在启动过程中优先初始化的是什么呢？首先是用于调试的接口部分。比如开机时听到的蜂鸣器响声，或者在一些主板上看到的数码管显示，都是最基本的调试用接口。对于龙芯3号处理器来说，最先初始化的结构是芯片内集成的串口控制器。串口控制器作为一个人机交互的界面，可以提供简单方便的调试手段，以此为基础，再进一步对计算机系统中其他更复杂的部分进行管理。</p>
 <p>对串口的初始化操作实际上是处理器对串口执行一连串约定好的IO操作。在X86结构下，IO地址空间与内存地址空间相互独立，IO操作与访存操作是通过不同的指令实现的。MIPS和LoongArch等结构并不显式区分IO和内存地址，而是采用全局编址，使用地址空间将IO和内存隐式分离，并通过地址空间或TLB映射对访问方式进行定序及缓存等的控制。只有理解IO与内存访问的区别，才能很好地理解计算机启动中的各种初始化过程。</p>
 <p>内存空间对应的是存储器，存储器不会发生存储内容的自行更新。也就是说，如果处理器核向存储单元A中写入了0x5a5a的数值，除非有其他的主控设备（例如其他的处理器核或是其他的设备DMA）对它也进行写入操作，否则这个0x5a5a的数值是不会发生变化的。</p>
 <p>IO空间一般对应的是控制寄存器或状态寄存器，是受IO设备的工作状态影响的。此时，写入的数据与读出的数据可能会不一致，而多次读出的数据也可能不一致，其读出数据是受具体设备状态影响的。例如，对串口的线路状态寄存器（寄存器偏移0x5）的读取在不同的情况下会产生不同的返回值。该寄存器定义如表<a href="计算机启动过程分析.html#tab:serial-status">7.1</a>所示。</p>
-<template id="7461946b-1743-4ac0-8800-f21b4735e7e7"><style>
+<template id="dc54a27e-fcfe-427a-9bd6-c6b1f6cb7f67"><style>
 .tabwid table{
   border-spacing:0px !important;
   border-collapse:collapse;
@@ -532,31 +599,31 @@ lu52i.d    $r2, $r2, 0x900</code></pre>
 .tabwid table tr {
 background-color: transparent;
 }
-</style><div class="tabwid"><style>.cl-00204d22{}.cl-001a06c4{font-family:'Noto Sans CJK SC';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-001a06d8{font-family:'Noto Sans CJK SC';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-001a17a4{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-001a17b8{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-001a552a{width:33.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-001a5534{width:33.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-001a553e{width:59.1pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-001a553f{width:254.6pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-001a5548{width:33.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-001a5549{width:59.1pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-001a554a{width:33.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-001a5552{width:254.6pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-001a5553{width:33.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-001a555c{width:33.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-001a555d{width:254.6pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-001a5566{width:59.1pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-001a5567{width:254.6pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-001a5568{width:33.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-001a5570{width:59.1pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-001a5571{width:33.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-001a557a{width:33.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-001a557b{width:59.1pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-001a5584{width:254.6pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-001a5585{width:33.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-00204d22'>
+</style><div class="tabwid"><style>.cl-40570e54{}.cl-404e01c4{font-family:'Noto Sans CJK SC';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-404e01d8{font-family:'Noto Sans CJK SC';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-404e15f6{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-404e1600{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-404e62a4{width:33.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-404e62ae{width:33.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-404e62af{width:59.1pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-404e62b8{width:254.6pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-404e62c2{width:33.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-404e62c3{width:59.1pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-404e62cc{width:33.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-404e62cd{width:254.6pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-404e62ce{width:33.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-404e62d6{width:33.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-404e62d7{width:254.6pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-404e62e0{width:59.1pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-404e62e1{width:254.6pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-404e62ea{width:33.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-404e62eb{width:59.1pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-404e62f4{width:33.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-404e62f5{width:33.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-404e62f6{width:59.1pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-404e62fe{width:254.6pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-404e62ff{width:33.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-40570e54'>
 <caption class="Table Caption">
 <p><span id="tab:serial-status">表 7.1: </span>串口线路状态寄存器定义</p>
 </caption>
-<thead><tr style="overflow-wrap:break-word;"><td class="cl-001a557a"><p class="cl-001a17a4"><span class="cl-001a06c4">位域</span></p></td><td class="cl-001a557b"><p class="cl-001a17b8"><span class="cl-001a06c4">位域名称</span></p></td><td class="cl-001a557a"><p class="cl-001a17a4"><span class="cl-001a06c4">位宽</span></p></td><td class="cl-001a5585"><p class="cl-001a17b8"><span class="cl-001a06c4">访问</span></p></td><td class="cl-001a5584"><p class="cl-001a17b8"><span class="cl-001a06c4">描述</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-001a552a"><p class="cl-001a17a4"><span class="cl-001a06d8">7</span></p></td><td class="cl-001a553e"><p class="cl-001a17b8"><span class="cl-001a06d8">ERROR</span></p></td><td class="cl-001a552a"><p class="cl-001a17a4"><span class="cl-001a06d8">1</span></p></td><td class="cl-001a5534"><p class="cl-001a17b8"><span class="cl-001a06d8">R</span></p></td><td class="cl-001a553f"><p class="cl-001a17b8"><span class="cl-001a06d8">错误表示位
+<thead><tr style="overflow-wrap:break-word;"><td class="cl-404e62f5"><p class="cl-404e15f6"><span class="cl-404e01c4">位域</span></p></td><td class="cl-404e62f6"><p class="cl-404e1600"><span class="cl-404e01c4">位域名称</span></p></td><td class="cl-404e62f5"><p class="cl-404e15f6"><span class="cl-404e01c4">位宽</span></p></td><td class="cl-404e62ff"><p class="cl-404e1600"><span class="cl-404e01c4">访问</span></p></td><td class="cl-404e62fe"><p class="cl-404e1600"><span class="cl-404e01c4">描述</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-404e62a4"><p class="cl-404e15f6"><span class="cl-404e01d8">7</span></p></td><td class="cl-404e62af"><p class="cl-404e1600"><span class="cl-404e01d8">ERROR</span></p></td><td class="cl-404e62a4"><p class="cl-404e15f6"><span class="cl-404e01d8">1</span></p></td><td class="cl-404e62ae"><p class="cl-404e1600"><span class="cl-404e01d8">R</span></p></td><td class="cl-404e62b8"><p class="cl-404e1600"><span class="cl-404e01d8">错误表示位
 <br>‘1’ – 至少有奇偶校验位错误，帧错误或打断中断的一个。
-<br>‘0’–没有错误</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-001a5548"><p class="cl-001a17a4"><span class="cl-001a06d8">6</span></p></td><td class="cl-001a5549"><p class="cl-001a17b8"><span class="cl-001a06d8">TE</span></p></td><td class="cl-001a5548"><p class="cl-001a17a4"><span class="cl-001a06d8">1</span></p></td><td class="cl-001a554a"><p class="cl-001a17b8"><span class="cl-001a06d8">R</span></p></td><td class="cl-001a5552"><p class="cl-001a17b8"><span class="cl-001a06d8">传输为空表示位
+<br>‘0’–没有错误</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-404e62c2"><p class="cl-404e15f6"><span class="cl-404e01d8">6</span></p></td><td class="cl-404e62c3"><p class="cl-404e1600"><span class="cl-404e01d8">TE</span></p></td><td class="cl-404e62c2"><p class="cl-404e15f6"><span class="cl-404e01d8">1</span></p></td><td class="cl-404e62cc"><p class="cl-404e1600"><span class="cl-404e01d8">R</span></p></td><td class="cl-404e62cd"><p class="cl-404e1600"><span class="cl-404e01d8">传输为空表示位
 <br>‘1’ – 传输FIFO和传输移位寄存器都为空。给传输FIFO写数据时清零
-<br>‘0’–有数据</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-001a5553"><p class="cl-001a17a4"><span class="cl-001a06d8">5</span></p></td><td class="cl-001a5566"><p class="cl-001a17b8"><span class="cl-001a06d8">TFE</span></p></td><td class="cl-001a5553"><p class="cl-001a17a4"><span class="cl-001a06d8">1</span></p></td><td class="cl-001a555c"><p class="cl-001a17b8"><span class="cl-001a06d8">R</span></p></td><td class="cl-001a555d"><p class="cl-001a17b8"><span class="cl-001a06d8">传输FIFO 位空表示位
+<br>‘0’–有数据</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-404e62ce"><p class="cl-404e15f6"><span class="cl-404e01d8">5</span></p></td><td class="cl-404e62e0"><p class="cl-404e1600"><span class="cl-404e01d8">TFE</span></p></td><td class="cl-404e62ce"><p class="cl-404e15f6"><span class="cl-404e01d8">1</span></p></td><td class="cl-404e62d6"><p class="cl-404e1600"><span class="cl-404e01d8">R</span></p></td><td class="cl-404e62d7"><p class="cl-404e1600"><span class="cl-404e01d8">传输FIFO 位空表示位
 <br>‘1’ – 当前传输FIFO为空，给传输FIFO写数据时清零
-<br>‘0’–有数据</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-001a5548"><p class="cl-001a17a4"><span class="cl-001a06d8">4</span></p></td><td class="cl-001a5549"><p class="cl-001a17b8"><span class="cl-001a06d8">BI</span></p></td><td class="cl-001a5548"><p class="cl-001a17a4"><span class="cl-001a06d8">1</span></p></td><td class="cl-001a554a"><p class="cl-001a17b8"><span class="cl-001a06d8">R</span></p></td><td class="cl-001a5552"><p class="cl-001a17b8"><span class="cl-001a06d8">打断中断表示位
+<br>‘0’–有数据</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-404e62c2"><p class="cl-404e15f6"><span class="cl-404e01d8">4</span></p></td><td class="cl-404e62c3"><p class="cl-404e1600"><span class="cl-404e01d8">BI</span></p></td><td class="cl-404e62c2"><p class="cl-404e15f6"><span class="cl-404e01d8">1</span></p></td><td class="cl-404e62cc"><p class="cl-404e1600"><span class="cl-404e01d8">R</span></p></td><td class="cl-404e62cd"><p class="cl-404e1600"><span class="cl-404e01d8">打断中断表示位
 <br>‘1’ –接收到起始位＋数据＋奇偶位＋停止位都是0，即有打断中断
-<br>‘0’–没有打断</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-001a5568"><p class="cl-001a17a4"><span class="cl-001a06d8">3</span></p></td><td class="cl-001a5570"><p class="cl-001a17b8"><span class="cl-001a06d8">FE</span></p></td><td class="cl-001a5568"><p class="cl-001a17a4"><span class="cl-001a06d8">1</span></p></td><td class="cl-001a5571"><p class="cl-001a17b8"><span class="cl-001a06d8">R</span></p></td><td class="cl-001a5567"><p class="cl-001a17b8"><span class="cl-001a06d8">帧错误表示位
+<br>‘0’–没有打断</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-404e62ea"><p class="cl-404e15f6"><span class="cl-404e01d8">3</span></p></td><td class="cl-404e62eb"><p class="cl-404e1600"><span class="cl-404e01d8">FE</span></p></td><td class="cl-404e62ea"><p class="cl-404e15f6"><span class="cl-404e01d8">1</span></p></td><td class="cl-404e62f4"><p class="cl-404e1600"><span class="cl-404e01d8">R</span></p></td><td class="cl-404e62e1"><p class="cl-404e1600"><span class="cl-404e01d8">帧错误表示位
 <br>‘1’ – 接收的数据没有停止位
-<br>‘0’–没有错误</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-001a5568"><p class="cl-001a17a4"><span class="cl-001a06d8">2</span></p></td><td class="cl-001a5570"><p class="cl-001a17b8"><span class="cl-001a06d8">PE</span></p></td><td class="cl-001a5568"><p class="cl-001a17a4"><span class="cl-001a06d8">1</span></p></td><td class="cl-001a5571"><p class="cl-001a17b8"><span class="cl-001a06d8">R</span></p></td><td class="cl-001a5567"><p class="cl-001a17b8"><span class="cl-001a06d8">奇偶校验位错误表示位
+<br>‘0’–没有错误</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-404e62ea"><p class="cl-404e15f6"><span class="cl-404e01d8">2</span></p></td><td class="cl-404e62eb"><p class="cl-404e1600"><span class="cl-404e01d8">PE</span></p></td><td class="cl-404e62ea"><p class="cl-404e15f6"><span class="cl-404e01d8">1</span></p></td><td class="cl-404e62f4"><p class="cl-404e1600"><span class="cl-404e01d8">R</span></p></td><td class="cl-404e62e1"><p class="cl-404e1600"><span class="cl-404e01d8">奇偶校验位错误表示位
 <br>‘1’ – 当前接收数据有奇偶错误
-<br>‘0’–没有奇偶错误</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-001a5568"><p class="cl-001a17a4"><span class="cl-001a06d8">1</span></p></td><td class="cl-001a5570"><p class="cl-001a17b8"><span class="cl-001a06d8">OE</span></p></td><td class="cl-001a5568"><p class="cl-001a17a4"><span class="cl-001a06d8">1</span></p></td><td class="cl-001a5571"><p class="cl-001a17b8"><span class="cl-001a06d8">R</span></p></td><td class="cl-001a5567"><p class="cl-001a17b8"><span class="cl-001a06d8">数据溢出表示位
+<br>‘0’–没有奇偶错误</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-404e62ea"><p class="cl-404e15f6"><span class="cl-404e01d8">1</span></p></td><td class="cl-404e62eb"><p class="cl-404e1600"><span class="cl-404e01d8">OE</span></p></td><td class="cl-404e62ea"><p class="cl-404e15f6"><span class="cl-404e01d8">1</span></p></td><td class="cl-404e62f4"><p class="cl-404e1600"><span class="cl-404e01d8">R</span></p></td><td class="cl-404e62e1"><p class="cl-404e1600"><span class="cl-404e01d8">数据溢出表示位
 <br>‘1’ – 有数据溢出
-<br>‘0’–无溢出</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-001a5548"><p class="cl-001a17a4"><span class="cl-001a06d8">0</span></p></td><td class="cl-001a5549"><p class="cl-001a17b8"><span class="cl-001a06d8">DR</span></p></td><td class="cl-001a5548"><p class="cl-001a17a4"><span class="cl-001a06d8">1</span></p></td><td class="cl-001a554a"><p class="cl-001a17b8"><span class="cl-001a06d8">R</span></p></td><td class="cl-001a5552"><p class="cl-001a17b8"><span class="cl-001a06d8">接收数据有效表示位
+<br>‘0’–无溢出</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-404e62c2"><p class="cl-404e15f6"><span class="cl-404e01d8">0</span></p></td><td class="cl-404e62c3"><p class="cl-404e1600"><span class="cl-404e01d8">DR</span></p></td><td class="cl-404e62c2"><p class="cl-404e15f6"><span class="cl-404e01d8">1</span></p></td><td class="cl-404e62cc"><p class="cl-404e1600"><span class="cl-404e01d8">R</span></p></td><td class="cl-404e62cd"><p class="cl-404e1600"><span class="cl-404e01d8">接收数据有效表示位
 <br>‘0’ – 在FIFO中无数据
 <br>‘1’–在FIFO中有数据</span></p></td></tr></tbody></table></div></template>
-<div class="flextable-shadow-host" id="14f1f5e5-6f43-4f98-9298-84c2d95d779f"></div>
+<div class="flextable-shadow-host" id="fae84c87-30be-4bf0-b34c-ce1a1401ec8f"></div>
 <script>
-var dest = document.getElementById("14f1f5e5-6f43-4f98-9298-84c2d95d779f");
-var template = document.getElementById("7461946b-1743-4ac0-8800-f21b4735e7e7");
+var dest = document.getElementById("fae84c87-30be-4bf0-b34c-ce1a1401ec8f");
+var template = document.getElementById("dc54a27e-fcfe-427a-9bd6-c6b1f6cb7f67");
 var caption = template.content.querySelector("caption");
 if(caption) {
   caption.style.cssText = "display:block;text-align:center;";
@@ -601,7 +668,7 @@ fantome.appendChild(templateContent);
     nop
 END(initserial)</code></pre>
 <p>这里有一个值得注意的地方，串口设备使用相同的地址映射了两套功能完全不同的寄存器，通过线路控制寄存器的最高位（就是串口寄存器中偏移为3的寄存器的最高位）进行切换。因为其中一套寄存器主要用于串口波特率的设置，只需要在初始化时进行访问，在正常工作状态下完全不用再次读写，所以能够将其访问地址与另一套正常工作用的寄存器相复用来节省地址空间。表<a href="计算机启动过程分析.html#tab:reg-multiplex">7.2</a>中是两组不同寄存器的定义。</p>
-<template id="3c9f3c9f-25ce-4f6a-84a3-85ada908059d"><style>
+<template id="fd3659cc-ca13-4fc1-8105-8d76a8723b69"><style>
 .tabwid table{
   border-spacing:0px !important;
   border-collapse:collapse;
@@ -635,15 +702,15 @@ END(initserial)</code></pre>
 .tabwid table tr {
 background-color: transparent;
 }
-</style><div class="tabwid"><style>.cl-0081933e{}.cl-007c37ea{font-family:'Noto Sans CJK SC';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-007c37f4{font-family:'Noto Sans CJK SC';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-007c487a{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-007c7732{width:194.4pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-007c773c{width:43.2pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-007c773d{width:194.4pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-007c7746{width:43.2pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-0081933e'>
+</style><div class="tabwid"><style>.cl-40c9df9c{}.cl-40c2dd6e{font-family:'Noto Sans CJK SC';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-40c2dd82{font-family:'Noto Sans CJK SC';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-40c2f268{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-40c31f68{width:194.4pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-40c31f72{width:43.2pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-40c31f73{width:194.4pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-40c31f74{width:43.2pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-40c9df9c'>
 <caption class="Table Caption">
 <p><span id="tab:reg-multiplex">表 7.2: </span>串口的部分地址复用寄存器</p>
 </caption>
-<thead><tr style="overflow-wrap:break-word;"><td class="cl-007c7746"><p class="cl-007c487a"><span class="cl-007c37ea">偏移</span></p></td><td class="cl-007c773d"><p class="cl-007c487a"><span class="cl-007c37ea">名称（初始化设置下，0x3[7] = 1）</span></p></td><td class="cl-007c773d"><p class="cl-007c487a"><span class="cl-007c37ea">名称（工作模式下，0x3[7] = 0）</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-007c773c"><p class="cl-007c487a"><span class="cl-007c37f4">0x0</span></p></td><td class="cl-007c7732"><p class="cl-007c487a"><span class="cl-007c37f4">分频锁存器低位</span></p></td><td class="cl-007c7732"><p class="cl-007c487a"><span class="cl-007c37f4">数据寄存器</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-007c7746"><p class="cl-007c487a"><span class="cl-007c37f4">0x1</span></p></td><td class="cl-007c773d"><p class="cl-007c487a"><span class="cl-007c37f4">分频锁存器高位</span></p></td><td class="cl-007c773d"><p class="cl-007c487a"><span class="cl-007c37f4">中断使能寄存器</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-007c7746"><p class="cl-007c487a"><span class="cl-007c37f4">0x2</span></p></td><td  colspan="2"class="cl-007c773d"><p class="cl-007c487a"><span class="cl-007c37f4">读的时候为中断标识寄存器，写的时候为FIFO控制寄存器</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-007c7746"><p class="cl-007c487a"><span class="cl-007c37f4">0x3</span></p></td><td  colspan="2"class="cl-007c773d"><p class="cl-007c487a"><span class="cl-007c37f4">线路控制寄存器。其中比特7为分频控制访问使能。该位为1时可以访问表中</span><span class="cl-007c37f4">“</span><span class="cl-007c37f4">初始化设置</span><span class="cl-007c37f4">”</span><span class="cl-007c37f4">寄存器，为0时访问表中</span><span class="cl-007c37f4">“</span><span class="cl-007c37f4">工作模式</span><span class="cl-007c37f4">”</span><span class="cl-007c37f4">寄存器</span></p></td></tr></tbody></table></div></template>
-<div class="flextable-shadow-host" id="963a791b-9ba6-49bb-9815-ba1ac443d6eb"></div>
+<thead><tr style="overflow-wrap:break-word;"><td class="cl-40c31f74"><p class="cl-40c2f268"><span class="cl-40c2dd6e">偏移</span></p></td><td class="cl-40c31f73"><p class="cl-40c2f268"><span class="cl-40c2dd6e">名称（初始化设置下，0x3[7] = 1）</span></p></td><td class="cl-40c31f73"><p class="cl-40c2f268"><span class="cl-40c2dd6e">名称（工作模式下，0x3[7] = 0）</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-40c31f72"><p class="cl-40c2f268"><span class="cl-40c2dd82">0x0</span></p></td><td class="cl-40c31f68"><p class="cl-40c2f268"><span class="cl-40c2dd82">分频锁存器低位</span></p></td><td class="cl-40c31f68"><p class="cl-40c2f268"><span class="cl-40c2dd82">数据寄存器</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-40c31f74"><p class="cl-40c2f268"><span class="cl-40c2dd82">0x1</span></p></td><td class="cl-40c31f73"><p class="cl-40c2f268"><span class="cl-40c2dd82">分频锁存器高位</span></p></td><td class="cl-40c31f73"><p class="cl-40c2f268"><span class="cl-40c2dd82">中断使能寄存器</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-40c31f74"><p class="cl-40c2f268"><span class="cl-40c2dd82">0x2</span></p></td><td  colspan="2"class="cl-40c31f73"><p class="cl-40c2f268"><span class="cl-40c2dd82">读的时候为中断标识寄存器，写的时候为FIFO控制寄存器</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-40c31f74"><p class="cl-40c2f268"><span class="cl-40c2dd82">0x3</span></p></td><td  colspan="2"class="cl-40c31f73"><p class="cl-40c2f268"><span class="cl-40c2dd82">线路控制寄存器。其中比特7为分频控制访问使能。该位为1时可以访问表中</span><span class="cl-40c2dd82">“</span><span class="cl-40c2dd82">初始化设置</span><span class="cl-40c2dd82">”</span><span class="cl-40c2dd82">寄存器，为0时访问表中</span><span class="cl-40c2dd82">“</span><span class="cl-40c2dd82">工作模式</span><span class="cl-40c2dd82">”</span><span class="cl-40c2dd82">寄存器</span></p></td></tr></tbody></table></div></template>
+<div class="flextable-shadow-host" id="a0d973e3-7e75-4d8d-8703-44477bef1ebc"></div>
 <script>
-var dest = document.getElementById("963a791b-9ba6-49bb-9815-ba1ac443d6eb");
-var template = document.getElementById("3c9f3c9f-25ce-4f6a-84a3-85ada908059d");
+var dest = document.getElementById("a0d973e3-7e75-4d8d-8703-44477bef1ebc");
+var template = document.getElementById("fd3659cc-ca13-4fc1-8105-8d76a8723b69");
 var caption = template.content.querySelector("caption");
 if(caption) {
   caption.style.cssText = "display:block;text-align:center;";
@@ -704,7 +771,7 @@ END(tgt_getchar)</code></pre>
 <p>（10）上位机将接收的字符A交给minicom进程，minicom将其显示在界面上。</p>
 <p>从CPU对串口的初始化过程可以看出，当Load与Store指令访问IO设备时，与访问内存“直来直去”的行为是完全不同的。</p>
 </div>
-<div id="tlb初始化" class="section level3">
+<div id="tlb初始化" class="section level3" number="7.1.3">
 <h3><span class="header-section-number">7.1.3</span> TLB初始化</h3>
 <p>接下来对TLB进行初始化。TLB作为一个地址映射的管理模块，主要负责操作系统里用户进程地址空间的管理，用以支持多用户多任务并发。然而在处理器启动的过程中，处理器核处于特权态，整个BIOS都工作在统一的地址空间里，并不需要对用户地址空间进行过多干预。此时TLB的作用更多是地址转换，以映射更大的地址空间供程序使用。</p>
 <p>下面具体来看看TLB在这一过程中的作用。</p>
@@ -735,7 +802,7 @@ END(tgt_getchar)</code></pre>
 END(CPU_TLBClear)</code></pre>
 <p>前面提到过，越来越多的处理器已经实现了在芯片复位时由硬件进行TLB表项的初始化，这样在BIOS代码中可以不用再使用类似的软件初始化流程，比如从龙芯3A2000开始的桌面或服务器用的处理器就不再需要软件初始化，这能够减少所需的启动时间。但是在一些嵌入式类的处理器上还是需要上面提到的软件初始化流程。</p>
 </div>
-<div id="cache初始化" class="section level3">
+<div id="cache初始化" class="section level3" number="7.1.4">
 <h3><span class="header-section-number">7.1.4</span> Cache初始化</h3>
 <p>Cache在处理器内的作用在前面的章节已经介绍过了，Cache的引入能够减小处理器执行和访存延迟之间的性能差异，即缓解存储墙的问题。引入Cache结构，能够大大提高处理器的整体运行效率。</p>
 <p>在系统复位之后，Cache同样也处于一个未经初始化的状态，也就是说Cache里面可能包含残留的或随机的数据，如果不经初始化，对于Cache空间的访问也可能会导致错误的命中。</p>
@@ -777,7 +844,7 @@ END(godson2_cache_init)</code></pre>
 <p>如果把CPU比作一个大房间，完成对TLB、Cache等的初始化后，房间内已是灯火通明，但大门（内存接口）和窗口（IO接口）还是紧闭的。</p>
 </div>
 </div>
-<div id="总线接口初始化" class="section level2">
+<div id="总线接口初始化" class="section level2" number="7.2">
 <h2><span class="header-section-number">7.2</span> 总线接口初始化</h2>
 <p>在使用同一款处理器的不同系统上，TLB、Cache这些体系结构紧密相关的芯片组成部分的初始化方法是基本一致的，不需要进行特别的改动。与此不同的是，内存和IO设备的具体组成在计算机系统中则可以比较灵活地搭配，不同系统间的差异可能会比较大。</p>
 <p>在计算机系统硬件设计中，内存可以使用不同的总线类型，例如DDR、DDR2、DDR3或者DDR4。在主板上使用时，也可以灵活地增加或者减小内存容量，甚至改变内存条种类，例如将UDIMM（Unbuffered DIMM，非缓冲型内存模组）改为RDIMM（Registered DIMM，寄存型内存模组）。</p>
@@ -798,7 +865,7 @@ END(godson2_cache_init)</code></pre>
   addi.d  a2, a2, 0x8
   addi.d  v0, v0, 0x8
   bnez    t1, 1b</code></pre>
-<div id="内存初始化" class="section level3">
+<div id="内存初始化" class="section level3" number="7.2.1">
 <h3><span class="header-section-number">7.2.1</span> 内存初始化</h3>
 <p>内存是计算机系统的重要组成部分。冯·诺依曼结构下，计算机运行时的程序和数据都被保存在内存之中。相对复位时用于取指的ROM或是Flash器件来说，内存的读写性能大幅提高。以SPI接口的Flash为例，即使不考虑传输效率的损失，当SPI接口运行在50MHz时，其带宽最高也只有50MHz×2b=100Mb/s，而一个DDR3-1600的接口在内存宽度为64位时，其带宽可以达到最高1600MHz×64b=102400Mb/s。由此可见内存的使用对系统性能的重要程度。</p>
 <p>越来越多的处理器已经集成内存控制器。因为内存的使用和设置与外接内存芯片的种类、配置相关，所以在计算机系统启动的过程中需要先获取内存的配置信息，再根据该信息对内存控制器进行配置。正如上一章对内存总线的介绍，这些信息包含内存条的类型、容量、行列地址数、运行频率等。</p>
@@ -807,7 +874,7 @@ END(godson2_cache_init)</code></pre>
 <p>内存控制器的初始化包括两个相对独立的部分，一是根据内存的行地址、列地址等对内存地址映射进行配置，二是根据协议对内存信号调整的支持方式对内存读写信号相关的寄存器进行训练，以保证传输时的数据完整性。</p>
 <p>在内存初始化完成后，可能还需要根据内存的大小对系统可用的物理地址空间进行相应的调整和设置。</p>
 </div>
-<div id="io总线初始化" class="section level3">
+<div id="io总线初始化" class="section level3" number="7.2.2">
 <h3><span class="header-section-number">7.2.2</span> IO总线初始化</h3>
 <p>前面提到，受外围桥片搭配及可插拔设备变化的影响，系统每次启动时需要对IO总线进行有针对性的初始化操作。</p>
 <p>对于龙芯3A5000处理器，对应的IO总线主要为HyperTransport总线。在IO总线初始化时，做了三件事：一是对IO总线的访问地址空间进行设置，划定设备的配置访问空间、IO访问空间和Memory访问空间；二是对IO设备的DMA访问空间进行规定，对处理器能接收的DMA内存地址进行设置；三是对HyperTransport总线进行升频，从复位时1.0模式的200MHz升频到了3.0模式的2.0GHz，并将总线宽度由8位升至16位。</p>
@@ -819,7 +886,7 @@ END(godson2_cache_init)</code></pre>
 <p>此后，还需要对处理器的运行频率进行测量，对BIOS中的计时函数进行校准，以便在需要等待的位置进行精确的时间同步。在经过对各种软件结构必要的初始化之后，BIOS将开始一个比较通用的设备枚举和驱动加载的过程。下一节将对这个标准的设备枚举和加载过程进行专门的说明。</p>
 </div>
 </div>
-<div id="设备的探测及驱动加载" class="section level2">
+<div id="设备的探测及驱动加载" class="section level2" number="7.3">
 <h2><span class="header-section-number">7.3</span> 设备的探测及驱动加载</h2>
 <p>PCI总线于20世纪90年代初提出，发展到现在已经逐渐被PCIE等高速接口所替代，但其软件配置结构却基本没有发生变化，包括HyperTransport、PCIE等新一代高速总线都兼容PCI协议的软件框架。</p>
 <p>在PCI软件框架下，系统可以灵活地支持设备的自动识别和驱动的自动加载。下面对PCI的软件框架进行简要说明。</p>
@@ -931,7 +998,7 @@ void _pci_query_dev_func(struct pci_device *dev, pcitag tag, int initialise)
     }
 }</code></pre>
 <p>假设Memory空间的起始地址为0x40000000，在设备扫描过程中发现了USB控制器、显示控制器和网络控制器，三个设备对于Memory空间的需求如表<a href="计算机启动过程分析.html#tab:space-requirement">7.3</a>所示。</p>
-<template id="97c5c059-b42d-4440-82c2-e41367495e05"><style>
+<template id="df832a7e-d8c4-4c0d-b5f5-0ff8599a530a"><style>
 .tabwid table{
   border-spacing:0px !important;
   border-collapse:collapse;
@@ -965,15 +1032,15 @@ void _pci_query_dev_func(struct pci_device *dev, pcitag tag, int initialise)
 .tabwid table tr {
 background-color: transparent;
 }
-</style><div class="tabwid"><style>.cl-00a51d72{}.cl-009e3336{font-family:'Noto Sans CJK SC';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-009e3340{font-family:'Noto Sans CJK SC';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-009e440c{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-009e4416{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-009e77ba{width:52.5pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-009e77ce{width:62.9pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-009e77cf{width:58.6pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-009e77d0{width:40.3pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-009e77d8{width:62.9pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-009e77d9{width:52.5pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-009e77e2{width:40.3pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-009e77ec{width:58.6pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-009e77ed{width:62.9pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-009e77f6{width:52.5pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-009e77f7{width:40.3pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-009e7800{width:58.6pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-009e7801{width:52.5pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-009e7802{width:62.9pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-009e780a{width:58.6pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-009e780b{width:40.3pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-00a51d72'>
+</style><div class="tabwid"><style>.cl-40fa1284{}.cl-40f1fafe{font-family:'Noto Sans CJK SC';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-40f1fb12{font-family:'Noto Sans CJK SC';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-40f20dd2{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-40f20ddc{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-40f27ab0{width:52.5pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-40f27aba{width:62.9pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-40f27abb{width:58.6pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-40f27ac4{width:40.3pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-40f27ac5{width:62.9pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-40f27ace{width:52.5pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-40f27acf{width:40.3pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-40f27ad0{width:58.6pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-40f27ad8{width:62.9pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-40f27ad9{width:52.5pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-40f27ada{width:40.3pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-40f27ae2{width:58.6pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-40f27ae3{width:52.5pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-40f27aec{width:62.9pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-40f27aed{width:58.6pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-40f27af6{width:40.3pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-40fa1284'>
 <caption class="Table Caption">
 <p><span id="tab:space-requirement">表 7.3: </span>三个设备的空间需求</p>
 </caption>
-<thead><tr style="overflow-wrap:break-word;"><td class="cl-009e780b"><p class="cl-009e440c"><span class="cl-009e3336">设备号</span></p></td><td class="cl-009e7802"><p class="cl-009e4416"><span class="cl-009e3336">名称</span></p></td><td class="cl-009e7801"><p class="cl-009e440c"><span class="cl-009e3336">BAR号</span></p></td><td class="cl-009e780a"><p class="cl-009e4416"><span class="cl-009e3336">大小</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-009e77d0"><p class="cl-009e440c"><span class="cl-009e3340">1</span></p></td><td class="cl-009e77ce"><p class="cl-009e4416"><span class="cl-009e3340">USB控制器</span></p></td><td class="cl-009e77ba"><p class="cl-009e440c"><span class="cl-009e3340">0</span></p></td><td class="cl-009e77cf"><p class="cl-009e4416"><span class="cl-009e3340">4KB</span></p></td></tr><tr style="overflow-wrap:break-word;"><td  rowspan="2"class="cl-009e77e2"><p class="cl-009e440c"><span class="cl-009e3340">2</span></p></td><td  rowspan="2"class="cl-009e77d8"><p class="cl-009e4416"><span class="cl-009e3340">显示控制器</span></p></td><td class="cl-009e77d9"><p class="cl-009e440c"><span class="cl-009e3340">0</span></p></td><td class="cl-009e77ec"><p class="cl-009e4416"><span class="cl-009e3340">128MB</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-009e77f6"><p class="cl-009e440c"><span class="cl-009e3340">1</span></p></td><td class="cl-009e7800"><p class="cl-009e4416"><span class="cl-009e3340">64KB</span></p></td></tr><tr style="overflow-wrap:break-word;"><td  rowspan="2"class="cl-009e77e2"><p class="cl-009e440c"><span class="cl-009e3340">3</span></p></td><td  rowspan="2"class="cl-009e77d8"><p class="cl-009e4416"><span class="cl-009e3340">网络控制器</span></p></td><td class="cl-009e77d9"><p class="cl-009e440c"><span class="cl-009e3340">0</span></p></td><td class="cl-009e77ec"><p class="cl-009e4416"><span class="cl-009e3340">4KB</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-009e77f6"><p class="cl-009e440c"><span class="cl-009e3340">1</span></p></td><td class="cl-009e7800"><p class="cl-009e4416"><span class="cl-009e3340">16KB</span></p></td></tr></tbody></table></div></template>
-<div class="flextable-shadow-host" id="3d0ba681-d66c-4f6f-8fce-97a2a4f0af95"></div>
+<thead><tr style="overflow-wrap:break-word;"><td class="cl-40f27af6"><p class="cl-40f20dd2"><span class="cl-40f1fafe">设备号</span></p></td><td class="cl-40f27aec"><p class="cl-40f20ddc"><span class="cl-40f1fafe">名称</span></p></td><td class="cl-40f27ae3"><p class="cl-40f20dd2"><span class="cl-40f1fafe">BAR号</span></p></td><td class="cl-40f27aed"><p class="cl-40f20ddc"><span class="cl-40f1fafe">大小</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-40f27ac4"><p class="cl-40f20dd2"><span class="cl-40f1fb12">1</span></p></td><td class="cl-40f27aba"><p class="cl-40f20ddc"><span class="cl-40f1fb12">USB控制器</span></p></td><td class="cl-40f27ab0"><p class="cl-40f20dd2"><span class="cl-40f1fb12">0</span></p></td><td class="cl-40f27abb"><p class="cl-40f20ddc"><span class="cl-40f1fb12">4KB</span></p></td></tr><tr style="overflow-wrap:break-word;"><td  rowspan="2"class="cl-40f27acf"><p class="cl-40f20dd2"><span class="cl-40f1fb12">2</span></p></td><td  rowspan="2"class="cl-40f27ac5"><p class="cl-40f20ddc"><span class="cl-40f1fb12">显示控制器</span></p></td><td class="cl-40f27ace"><p class="cl-40f20dd2"><span class="cl-40f1fb12">0</span></p></td><td class="cl-40f27ad0"><p class="cl-40f20ddc"><span class="cl-40f1fb12">128MB</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-40f27ad9"><p class="cl-40f20dd2"><span class="cl-40f1fb12">1</span></p></td><td class="cl-40f27ae2"><p class="cl-40f20ddc"><span class="cl-40f1fb12">64KB</span></p></td></tr><tr style="overflow-wrap:break-word;"><td  rowspan="2"class="cl-40f27acf"><p class="cl-40f20dd2"><span class="cl-40f1fb12">3</span></p></td><td  rowspan="2"class="cl-40f27ac5"><p class="cl-40f20ddc"><span class="cl-40f1fb12">网络控制器</span></p></td><td class="cl-40f27ace"><p class="cl-40f20dd2"><span class="cl-40f1fb12">0</span></p></td><td class="cl-40f27ad0"><p class="cl-40f20ddc"><span class="cl-40f1fb12">4KB</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-40f27ad9"><p class="cl-40f20dd2"><span class="cl-40f1fb12">1</span></p></td><td class="cl-40f27ae2"><p class="cl-40f20ddc"><span class="cl-40f1fb12">16KB</span></p></td></tr></tbody></table></div></template>
+<div class="flextable-shadow-host" id="8437c1f1-4e6b-41eb-a592-770e9a72170c"></div>
 <script>
-var dest = document.getElementById("3d0ba681-d66c-4f6f-8fce-97a2a4f0af95");
-var template = document.getElementById("97c5c059-b42d-4440-82c2-e41367495e05");
+var dest = document.getElementById("8437c1f1-4e6b-41eb-a592-770e9a72170c");
+var template = document.getElementById("df832a7e-d8c4-4c0d-b5f5-0ff8599a530a");
 var caption = template.content.querySelector("caption");
 if(caption) {
   caption.style.cssText = "display:block;text-align:center;";
@@ -987,7 +1054,7 @@ fantome.appendChild(templateContent);
 </script>
 
 <p>在得到以上信息后，软件对各个设备的空间需求进行排序，并依次从Memory空间的起始地址开始分配，最终得到的设备地址空间分布如表<a href="计算机启动过程分析.html#tab:space-allocation">7.4</a>所示。</p>
-<template id="a5908168-c215-47ab-a563-9735c74b011b"><style>
+<template id="94771b86-a0c7-40b3-bbf4-24225eefb396"><style>
 .tabwid table{
   border-spacing:0px !important;
   border-collapse:collapse;
@@ -1021,15 +1088,15 @@ fantome.appendChild(templateContent);
 .tabwid table tr {
 background-color: transparent;
 }
-</style><div class="tabwid"><style>.cl-00c70932{}.cl-00bfd5fe{font-family:'Noto Sans CJK SC';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-00bfd61c{font-family:'Noto Sans CJK SC';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-00bfe6ac{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-00bfe6b6{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-00c01f78{width:52.5pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-00c01f82{width:58.6pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-00c01f83{width:40.3pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-00c01f8c{width:62.9pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-00c01f8d{width:88pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-00c01f96{width:90pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-00c01f97{width:52.5pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-00c01f98{width:90pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-00c01f99{width:58.6pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-00c01fa0{width:40.3pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-00c01fa1{width:62.9pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-00c01faa{width:88pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-00c01fab{width:52.5pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-00c01fac{width:58.6pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-00c01fb4{width:90pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-00c01fb5{width:40.3pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-00c01fbe{width:62.9pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-00c01fc8{width:88pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-00c01fc9{width:52.5pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-00c01fd2{width:62.9pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-00c01fd3{width:40.3pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-00c01fd4{width:90pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-00c01fdc{width:88pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-00c01fdd{width:58.6pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-00c70932'>
+</style><div class="tabwid"><style>.cl-412c033e{}.cl-412326f6{font-family:'Noto Sans CJK SC';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-41232700{font-family:'Noto Sans CJK SC';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-41233dd0{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-41233dd1{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-41238ff6{width:52.5pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-41239000{width:58.6pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-4123900a{width:40.3pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-4123900b{width:62.9pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-41239014{width:88pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-41239015{width:90pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-41239016{width:52.5pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-4123901e{width:90pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-4123901f{width:58.6pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-41239020{width:40.3pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-41239028{width:62.9pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-41239029{width:88pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-41239032{width:52.5pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-41239033{width:58.6pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-41239034{width:90pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-4123903c{width:40.3pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-4123903d{width:62.9pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-4123903e{width:88pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-41239046{width:52.5pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-41239047{width:62.9pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-41239050{width:40.3pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-41239051{width:90pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-4123905a{width:88pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-4123905b{width:58.6pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 1pt solid rgba(102, 102, 102, 1.00);border-right: 1pt solid rgba(102, 102, 102, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-412c033e'>
 <caption class="Table Caption">
 <p><span id="tab:space-allocation">表 7.4: </span>三个设备的地址空间分布</p>
 </caption>
-<thead><tr style="overflow-wrap:break-word;"><td class="cl-00c01fd3"><p class="cl-00bfe6ac"><span class="cl-00bfd5fe">设备号</span></p></td><td class="cl-00c01fd2"><p class="cl-00bfe6b6"><span class="cl-00bfd5fe">名称</span></p></td><td class="cl-00c01fc9"><p class="cl-00bfe6ac"><span class="cl-00bfd5fe">BAR号</span></p></td><td class="cl-00c01fdd"><p class="cl-00bfe6b6"><span class="cl-00bfd5fe">大小</span></p></td><td class="cl-00c01fd4"><p class="cl-00bfe6b6"><span class="cl-00bfd5fe">起始地址</span></p></td><td class="cl-00c01fdc"><p class="cl-00bfe6b6"><span class="cl-00bfd5fe">结束地址</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-00c01f83"><p class="cl-00bfe6ac"><span class="cl-00bfd61c">1</span></p></td><td class="cl-00c01f8c"><p class="cl-00bfe6b6"><span class="cl-00bfd61c">USB控制器</span></p></td><td class="cl-00c01f78"><p class="cl-00bfe6ac"><span class="cl-00bfd61c">0</span></p></td><td class="cl-00c01f82"><p class="cl-00bfe6b6"><span class="cl-00bfd61c">4KB</span></p></td><td class="cl-00c01f96"><p class="cl-00bfe6b6"><span class="cl-00bfd61c">0x48015000</span></p></td><td class="cl-00c01f8d"><p class="cl-00bfe6b6"><span class="cl-00bfd61c">0x48015FFF</span></p></td></tr><tr style="overflow-wrap:break-word;"><td  rowspan="2"class="cl-00c01fa0"><p class="cl-00bfe6ac"><span class="cl-00bfd61c">2</span></p></td><td  rowspan="2"class="cl-00c01fa1"><p class="cl-00bfe6b6"><span class="cl-00bfd61c">显示控制器</span></p></td><td class="cl-00c01f97"><p class="cl-00bfe6ac"><span class="cl-00bfd61c">0</span></p></td><td class="cl-00c01f99"><p class="cl-00bfe6b6"><span class="cl-00bfd61c">128MB</span></p></td><td class="cl-00c01f98"><p class="cl-00bfe6b6"><span class="cl-00bfd61c">0x40000000</span></p></td><td class="cl-00c01faa"><p class="cl-00bfe6b6"><span class="cl-00bfd61c">0x47FFFFFF</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-00c01fab"><p class="cl-00bfe6ac"><span class="cl-00bfd61c">1</span></p></td><td class="cl-00c01fac"><p class="cl-00bfe6b6"><span class="cl-00bfd61c">64KB</span></p></td><td class="cl-00c01fb4"><p class="cl-00bfe6b6"><span class="cl-00bfd61c">0x48000000</span></p></td><td class="cl-00c01fc8"><p class="cl-00bfe6b6"><span class="cl-00bfd61c">0x4800FFFF</span></p></td></tr><tr style="overflow-wrap:break-word;"><td  rowspan="2"class="cl-00c01fa0"><p class="cl-00bfe6ac"><span class="cl-00bfd61c">3</span></p></td><td  rowspan="2"class="cl-00c01fa1"><p class="cl-00bfe6b6"><span class="cl-00bfd61c">网络控制器</span></p></td><td class="cl-00c01f97"><p class="cl-00bfe6ac"><span class="cl-00bfd61c">0</span></p></td><td class="cl-00c01f99"><p class="cl-00bfe6b6"><span class="cl-00bfd61c">4KB</span></p></td><td class="cl-00c01f98"><p class="cl-00bfe6b6"><span class="cl-00bfd61c">0x48014000</span></p></td><td class="cl-00c01faa"><p class="cl-00bfe6b6"><span class="cl-00bfd61c">0x48014FFF</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-00c01fab"><p class="cl-00bfe6ac"><span class="cl-00bfd61c">1</span></p></td><td class="cl-00c01fac"><p class="cl-00bfe6b6"><span class="cl-00bfd61c">16KB</span></p></td><td class="cl-00c01fb4"><p class="cl-00bfe6b6"><span class="cl-00bfd61c">0x48010000</span></p></td><td class="cl-00c01fc8"><p class="cl-00bfe6b6"><span class="cl-00bfd61c">0x48013FFF</span></p></td></tr></tbody></table></div></template>
-<div class="flextable-shadow-host" id="8d152bc9-98b7-48d2-bd3f-d3a582abfdb3"></div>
+<thead><tr style="overflow-wrap:break-word;"><td class="cl-41239050"><p class="cl-41233dd0"><span class="cl-412326f6">设备号</span></p></td><td class="cl-41239047"><p class="cl-41233dd1"><span class="cl-412326f6">名称</span></p></td><td class="cl-41239046"><p class="cl-41233dd0"><span class="cl-412326f6">BAR号</span></p></td><td class="cl-4123905b"><p class="cl-41233dd1"><span class="cl-412326f6">大小</span></p></td><td class="cl-41239051"><p class="cl-41233dd1"><span class="cl-412326f6">起始地址</span></p></td><td class="cl-4123905a"><p class="cl-41233dd1"><span class="cl-412326f6">结束地址</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-4123900a"><p class="cl-41233dd0"><span class="cl-41232700">1</span></p></td><td class="cl-4123900b"><p class="cl-41233dd1"><span class="cl-41232700">USB控制器</span></p></td><td class="cl-41238ff6"><p class="cl-41233dd0"><span class="cl-41232700">0</span></p></td><td class="cl-41239000"><p class="cl-41233dd1"><span class="cl-41232700">4KB</span></p></td><td class="cl-41239015"><p class="cl-41233dd1"><span class="cl-41232700">0x48015000</span></p></td><td class="cl-41239014"><p class="cl-41233dd1"><span class="cl-41232700">0x48015FFF</span></p></td></tr><tr style="overflow-wrap:break-word;"><td  rowspan="2"class="cl-41239020"><p class="cl-41233dd0"><span class="cl-41232700">2</span></p></td><td  rowspan="2"class="cl-41239028"><p class="cl-41233dd1"><span class="cl-41232700">显示控制器</span></p></td><td class="cl-41239016"><p class="cl-41233dd0"><span class="cl-41232700">0</span></p></td><td class="cl-4123901f"><p class="cl-41233dd1"><span class="cl-41232700">128MB</span></p></td><td class="cl-4123901e"><p class="cl-41233dd1"><span class="cl-41232700">0x40000000</span></p></td><td class="cl-41239029"><p class="cl-41233dd1"><span class="cl-41232700">0x47FFFFFF</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-41239032"><p class="cl-41233dd0"><span class="cl-41232700">1</span></p></td><td class="cl-41239033"><p class="cl-41233dd1"><span class="cl-41232700">64KB</span></p></td><td class="cl-41239034"><p class="cl-41233dd1"><span class="cl-41232700">0x48000000</span></p></td><td class="cl-4123903e"><p class="cl-41233dd1"><span class="cl-41232700">0x4800FFFF</span></p></td></tr><tr style="overflow-wrap:break-word;"><td  rowspan="2"class="cl-41239020"><p class="cl-41233dd0"><span class="cl-41232700">3</span></p></td><td  rowspan="2"class="cl-41239028"><p class="cl-41233dd1"><span class="cl-41232700">网络控制器</span></p></td><td class="cl-41239016"><p class="cl-41233dd0"><span class="cl-41232700">0</span></p></td><td class="cl-4123901f"><p class="cl-41233dd1"><span class="cl-41232700">4KB</span></p></td><td class="cl-4123901e"><p class="cl-41233dd1"><span class="cl-41232700">0x48014000</span></p></td><td class="cl-41239029"><p class="cl-41233dd1"><span class="cl-41232700">0x48014FFF</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-41239032"><p class="cl-41233dd0"><span class="cl-41232700">1</span></p></td><td class="cl-41239033"><p class="cl-41233dd1"><span class="cl-41232700">16KB</span></p></td><td class="cl-41239034"><p class="cl-41233dd1"><span class="cl-41232700">0x48010000</span></p></td><td class="cl-4123903e"><p class="cl-41233dd1"><span class="cl-41232700">0x48013FFF</span></p></td></tr></tbody></table></div></template>
+<div class="flextable-shadow-host" id="f31d9a10-644a-4c9c-b27d-82f04029eb88"></div>
 <script>
-var dest = document.getElementById("8d152bc9-98b7-48d2-bd3f-d3a582abfdb3");
-var template = document.getElementById("a5908168-c215-47ab-a563-9735c74b011b");
+var dest = document.getElementById("f31d9a10-644a-4c9c-b27d-82f04029eb88");
+var template = document.getElementById("94771b86-a0c7-40b3-bbf4-24225eefb396");
 var caption = template.content.querySelector("caption");
 if(caption) {
   caption.style.cssText = "display:block;text-align:center;";
@@ -1045,11 +1112,11 @@ fantome.appendChild(templateContent);
 <p>经过这样的设备探测和驱动加载过程，可以将键盘、显卡、硬盘或者网卡等设备驱动起来，在这些设备上加载预存的操作系统，就完成了整个系统的正常启动。</p>
 <p>如果把CPU比作一个大房间，至此，房间内灯火通明，门窗均已打开，门窗外四通八达。CPU及相关硬件处于就绪状态。</p>
 </div>
-<div id="多核启动过程" class="section level2">
+<div id="多核启动过程" class="section level2" number="7.4">
 <h2><span class="header-section-number">7.4</span> 多核启动过程</h2>
 <p>上面几节主要讨论了从处理器核初始化、总线初始化、外设初始化到操作系统加载的启动过程。启动过程中多处理器核间的相互配合将在本节进行讨论。</p>
 <p>实现不同处理器核之间相互同步与通信的一种手段是核间中断与通信信箱机制。在龙芯3号处理器中，为每个处理器核实现了一组核间通信寄存器，包括一组中断寄存器和一组信箱寄存器。这组核间通信寄存器也属于IO寄存器的一种。实际上，信箱寄存器完全可以通过在内存中分配一块地址空间实现，这样CPU访问延迟更短。而专门使用寄存器实现的信箱寄存器更多是为了在内存还没有初始化前就让不同的核间能够有效通信。</p>
-<div id="初始化时的多核协同" class="section level3">
+<div id="初始化时的多核协同" class="section level3" number="7.4.1">
 <h3><span class="header-section-number">7.4.1</span> 初始化时的多核协同</h3>
 <p>在BIOS启动过程中，为了简化处理流程，实际上并没有用到中断寄存器，对于各种外设也没有使用中断机制，都是依靠处理器的轮询来实现与其他设备的协同工作。</p>
 <p>为了简化多核计算机系统的启动过程，我们将多核处理器中的一个核定为主核，其他核定为从核。主核除了对本处理器核进行初始化之外，还要负责对各种总线及外设进行初始化；而从核只需要对本处理器核的私有部件进行初始化，之后在启动过程中就可以保持空闲状态，直至进入操作系统再由主核进行调度。</p>
@@ -1059,7 +1126,7 @@ fantome.appendChild(templateContent);
 <p>在主核完成了共享Cache的初始化后，向自已的信箱寄存器写入0x3。而从核在初始化自己的私有Cache之后，还不能直接跳转到Cache空间执行，必须等待信号，以确信主核已将全部的共享Cache初始化完成，然后再开始Cache执行才是安全的。</p>
 <p>在主核完成了内存初始化后，其他核才能使用内存进行数据的读写操作。那么从核在第一次用到内存之前就必须等待表示内存初始化完成的0x7标志。</p>
 </div>
-<div id="操作系统启动时的多核唤醒" class="section level3">
+<div id="操作系统启动时的多核唤醒" class="section level3" number="7.4.2">
 <h3><span class="header-section-number">7.4.2</span> 操作系统启动时的多核唤醒</h3>
 <p>当从核完成了自身的初始化之后，如果没有其他工作需要进行，就会跳转到一段等待唤醒的程序。在这个等待程序里，从核定时查询自己的信箱寄存器。如果为0，则表示没有得到唤醒标志。如果非0，则表示主核开始唤醒从核，此时从核还需要从其他几个信箱寄存器里得到唤醒程序的目标地址，以及执行时的参数。然后从核将跳转到目标地址开始执行。</p>
 <p>以下为龙芯3A5000的BIOS中从核等待唤醒的相关代码。</p>
@@ -1102,19 +1169,19 @@ idle1000:
         jirl    zero, ra, 0x0</code></pre>
 <p>在操作系统中，主核在各种数据结构准备好的情况下就可以开始依次唤醒每一个从核。唤醒的过程也是串行的，主核唤醒从核之后也会进入一个等待过程，直到从核执行完毕再通知主核，再唤醒一个新的从核，如此往复，直至系统中所有的处理器核都被唤醒并交由操作系统管理。</p>
 </div>
-<div id="核间同步与通信" class="section level3">
+<div id="核间同步与通信" class="section level3" number="7.4.3">
 <h3><span class="header-section-number">7.4.3</span> 核间同步与通信</h3>
 <p>操作系统启动之前，利用信箱寄存器进行了大量的多核同步与通信操作，但在操作系统启动之后，除了休眠唤醒一类的操作，却基本不会用到信箱寄存器。Linux内核中，只需要使用核间中断就可以完成各种核间的同步与通信操作。</p>
 <p>核间中断也是利用一组IO寄存器实现的。通过将目标核的核间中断寄存器置1来产生一个中断信号，使目标核进入中断处理。中断处理的具体内容则是通过内存进行交互的。内核中为每个核维护一个队列（内存中的一个数据结构），当一个核想要中断其他核时，它将需要处理的内容加入目标核的这个队列，然后再向目标核发出核间中断（设置其核间中断寄存器）。当目标核被中断之后，开始处理其核间通信队列，如果其间还收到了更多的核间中断请求，也会一并处理。</p>
 <p>为什么Linux内核中的核间中断处理不通过信箱寄存器进行呢？首先信箱寄存器只有一组，也就是说如果通过信箱寄存器发送通信消息，在这个消息没被处理之前，是不能有其他核再向其发出新的核间中断的。这样无疑会导致核间中断发送方的阻塞。另外，核间中断寄存器实际上是IO寄存器，前面我们提到，对于IO寄存器的访问是通过不经缓存这种严格访问序的方式进行的，相比于Cache访问方式，不经缓存读写效率极其低下，本身延迟开销很大，还可能会导致流水线的停顿。因此在实际的内核中，只有类似休眠唤醒这种特定的同步操作才会利用信箱寄存器进行，其他的同步通信操作则是利用内存传递信息，并利用核间中断寄存器产生中断的方式共同完成的。</p>
 </div>
 </div>
-<div id="本章小结-6" class="section level2">
+<div id="本章小结-6" class="section level2" number="7.5">
 <h2><span class="header-section-number">7.5</span> 本章小结</h2>
 <p>本章的目的是使读者了解最基本的计算机软硬件协同。计算机系统从上电复位到引导操作系统启动的基本过程是从处理器核的初始化开始，经过芯片的各种接口总线的初始化，再到各种外围设备的初始化，最终完成了操作系统引导的准备工作。整个启动过程的大部分工作是串行的。对于多核处理器，启动过程中还会穿插着一些多核协同的处理工作。</p>
 <p>系统启动的整个过程中，计算机系统在软件的控制下由无序到有序，所有的组成部分都由程序管理，按照程序的执行发挥各自的功能，最终将系统的控制权安全交到操作系统手中，完成整个启动过程。</p>
 </div>
-<div id="习题-6" class="section level2">
+<div id="习题-6" class="section level2" number="7.6">
 <h2><span class="header-section-number">7.6</span> 习题</h2>
 <ol style="list-style-type: decimal">
 <li>什么情况下需要对Cache进行初始化？LoongArch中Cache初始化过程中所使用的Cache指令Index Store Tag的作用是什么？</li>
