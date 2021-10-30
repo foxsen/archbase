@@ -17,9 +17,11 @@ jobs:
       - uses: r-lib/actions/setup-pandoc@v1
         with:
           pandoc-version: '2.11'
-      - uses: foxsen/actions/setup-renv
+      - uses: foxsen/actions/setup-renv@v1
         with:
           cache-version: 1
+        env: 
+          RENV_PATHS_ROOT: $HOME/.local/share/renv
       - name: Install Noto CJK fonts
         run: sudo apt-get install -y fonts-noto-cjk
       - name: Render Book
