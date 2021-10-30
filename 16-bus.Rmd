@@ -233,7 +233,7 @@ knitr::include_graphics("images/chapter6/ddr3_read.png")
 knitr::include_graphics("images/chapter6/ddr3_write.png")
 ```
 
-DDR3 SDRAM写操作的协议如图\@ref(fig:ddr3-write)所示。当RAS_n为高电平，CAS_n为高电平，WE_n为低电平时，表示一个写操作。读写操作命令的区别是WE_n信号的电平不同，读操作时该信号为高，写操作时该信号为低。写操作使用额外的数据掩码（Data Mask，DM）信号来标识数据是否有效。当DM为高时，对应时钟沿的数据并不写入SDRAM，当DM为低时，对应时钟沿的数据才写入SDRAM。DM信号与DQ信号同步。在写操作时，DQS信号和DQ信号是由内存控制器驱动的。同样，在DQS的起始、DQ传输数据之前，DQS信号也存在一个写前导（Write Preamble）。DDR3 SDRAM的写前导为一个周期的时钟信号，DDR2 SDRAM的写前导为半个时钟周期的低电平信号。
+DDR3 SDRAM写操作的协议如图\@ref(fig:ddr3-write)所示。当RAS_n为高电平，CAS_n为低电平，WE_n为低电平时，表示一个写操作。读写操作命令的区别是WE_n信号的电平不同，读操作时该信号为高，写操作时该信号为低。写操作使用额外的数据掩码（Data Mask，DM）信号来标识数据是否有效。当DM为高时，对应时钟沿的数据并不写入SDRAM，当DM为低时，对应时钟沿的数据才写入SDRAM。DM信号与DQ信号同步。在写操作时，DQS信号和DQ信号是由内存控制器驱动的。同样，在DQS的起始、DQ传输数据之前，DQS信号也存在一个写前导（Write Preamble）。DDR3 SDRAM的写前导为一个周期的时钟信号，DDR2 SDRAM的写前导为半个时钟周期的低电平信号。
 
 前面讲过SDRAM的基本操作包括激活（Activate）、读写（Read/Write）和预充电（Precharge）。当SDRAM接收到一个操作后，它需要在固定的时钟周期之后开始进行相应的动作，并且这些动作是需要经过一定的时间才能完成的。因此，对DRAM不同操作命令之间是有时间限制的。例如，对于DDR3-1600内存来说，当软件访问的两个地址正好位于内存的同一个Bank的不同行时，内存控制器需要首先针对第一个访问地址发出激活操作，经过13.75ns的时间，才可以发出读写操作。如果第一个访问是读操作，则需要经过至少7.5ns（此外还需满足tRASmin的要求，这里进行简化说明）的时间才可以发送预充电操作。预充电操作发送后，需要经过13.75ns的时间才可以针对第二个访问的行地址发送新的激活操作，然后经过13.75ns的时间，发送读写操作。因此，对SDRAM的同一个Bank的不同行进行读写存在较大的访问延迟。为了掩盖访问延迟，SDRAM允许针对不同Bank的操作并发执行。上述访问过程如图\@ref(fig:sdram-timing)所示。
 
