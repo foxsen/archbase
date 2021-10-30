@@ -17,7 +17,7 @@ jobs:
       - uses: r-lib/actions/setup-pandoc@v1
         with:
           pandoc-version: '2.11'
-      - uses: r-lib/actions/setup-renv@v1
+      - uses: foxsen/actions/setup-renv
         with:
           cache-version: 1
       - name: Install Noto CJK fonts
