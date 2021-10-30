@@ -12,7 +12,11 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - uses: r-lib/actions/setup-r@v1
+        with:
+          r-version: '3.6.3"
       - uses: r-lib/actions/setup-pandoc@v1
+        with:
+          pandoc-version: '2.11'
       - uses: r-lib/actions/setup-renv@v1
         with:
           cache-version: 1
