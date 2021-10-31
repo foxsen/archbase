@@ -1009,7 +1009,7 @@ theme_box()
 
 ### SPEC CPU基准测试程序的分值对比
 
-三款处理器的测试机采用的编译器均为GCC 8，使用基本相同（除个别处理器相关选项）的SPEC CPU peak优化配置文件。表\@ref(tab:2006speed)和\@ref(tab:2006rate4)分别给出了三款处理器的SPEC CPU2006 speed4核rate分值对比^[SPEC CPU基准测试提供了两种分值指标：一种是测试计算机能多快完成一个任务，官方称为speed指标；另一种是测试计算机完成多个任务的吞吐率，官方称为rate指标。我们把同时启动4个任务的运行结果指标称为4核rate指标。]。
+三款处理器的测试机采用的编译器均为GCC 8，使用基本相同（除个别处理器相关选项）的SPEC CPU peak优化配置文件。表\@ref(tab:2006speed)和\@ref(tab:2006rate4)分别给出了三款处理器的SPEC CPU2006 speed和4核rate分值对比^[SPEC CPU基准测试提供了两种分值指标：一种是测试计算机能多快完成一个任务，官方称为speed指标；另一种是测试计算机完成多个任务的吞吐率，官方称为rate指标。我们把同时启动4个任务的运行结果指标称为4核rate指标。]。
 
 ```{r 2006speed, echo=FALSE, message=FALSE}
 autonum <- run_autonum(seq_id = "tab", bkm = "2006speed", bkm_all = TRUE)
@@ -1021,8 +1021,6 @@ FitFlextableToPage() %>%
 set_caption(caption="SPEC CPU2006 speed分值对比", autonum = autonum) %>%
 theme_box()
 ```
-
-这三款处理器总体微结构设计比较相近，但又各有特点。龙芯3A5000的“架子”（ROQ等队列大小和重命名寄存器数量等）明显小于其他两款，浮点功能部件数量少于其他两款，但它的三级Cache容量却是最大的；Skylake“架子”最大，有三个访存部件，但三级Cache容量最小，内存也相对慢。
 
 ```{r 2006rate4, echo=FALSE, message=FALSE}
 autonum <- run_autonum(seq_id = "tab", bkm = "2006rate4", bkm_all = TRUE)
