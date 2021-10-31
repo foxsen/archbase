@@ -22,6 +22,16 @@
 
 本书开源版本也得到了中国科学院大学研究生程轶涵、穆热迪力、徐淮、叶锦鹏、王铭剑（按姓氏拼音顺序）等同学的大力支持，他们协助完成了bookdown格式部分源代码的编辑和校对，在此表示感谢！
 
+## 本书配套的网站
+
+本书的正式网站还在建设之中，完成之后将在这里提供链接。
+
+本项目的github actions已经配置为自动生成HTML/PDF/DOCX三种输出格式并部署到github pages。三种格式的链接分别如下：
+
+* [HTML](https://foxsen.github.io/archbase). 在线HTML版本。
+* [PDF](https://foxsen.github.io/archbase/bookdown.pdf). PDF版下载链接。
+* [DOCX](https://foxsen.github.io/archbase/bookdown.docx). Word版下载链接，其中目录部分需要手工选择下“更新域”才能显示。
+
 ## 意见反馈
 
 提供开源版本的一个主要目的是为了更好地收集反馈意见。如果您对本书有任何意见或者建议，欢迎与我们联系。您可以利用github的各种交互功能与我们联系：提交issue、pull request或者私信作者等。
