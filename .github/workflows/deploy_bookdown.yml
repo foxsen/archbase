@@ -22,8 +22,9 @@ jobs:
           cache-version: 1
       - name: Install Noto CJK fonts
         run: sudo apt-get install -y fonts-noto-cjk
+      - uses: foxsen/actions/setup-tinytex-new@tinytex-v2
       - name: Render Book
-        run: make
+        run: make -j8
       - uses: actions/upload-artifact@v1
         with:
           name: _book

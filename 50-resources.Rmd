@@ -1,0 +1,7 @@
+# 相关资源 {-}
+
+## 自动生成的各种格式
+
+* [HTML](https://foxsen.github.io/). 在线HTML版本。
+* [PDF](https://foxsen.github.io/bookdown.pdf). PDF版下载链接。
+* [DOCX](https://foxsen.github.io/bookdown.docx). Word版下载链接，其中目录部分需要手工选择下“更新域”才能显示。

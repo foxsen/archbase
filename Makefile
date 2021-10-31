@@ -1,4 +1,7 @@
-all:
+all: html pdf doc
+	echo "done"
+
+html:
 	Rscript -e 'bookdown::render_book()'
 
 pdf:
