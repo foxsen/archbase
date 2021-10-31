@@ -32,6 +32,18 @@
 * [PDF](https://foxsen.github.io/archbase/bookdown.pdf). PDF版下载链接。
 * [DOCX](https://foxsen.github.io/archbase/bookdown.docx). Word版下载链接，其中目录部分需要手工选择下“更新域”才能显示。
 
+## docker环境
+
+虽然github actions已经能够全自动地完成代码编译和部署，不过似乎它的环境不太容易在本地复现。为了方便大家复现我们的工作环境，写了一个简单的Dockerfile(参见docker/Dockerfile)，它安装了能够完整编译本项目代码的相关软件工具。
+
+使用方法：
+
+* 安装docker环境。
+* cd docker && sudo docker build -t bookdown .
+* docker run -it bookdown /bin/bash，然后在docker环境中可以更新代码，编译代码。例如: cd /opt/archbase; git pull; make
+
+有兴趣的读者可以参考这个环境来编写自己的书籍或者其他文档，然后大家可以切磋具体的使用方法和技巧。 我们也都是bookdown新手，估计有很多用法有改进的空间，期待得到大家的反馈。
+
 ## 意见反馈
 
 提供开源版本的一个主要目的是为了更好地收集反馈意见。如果您对本书有任何意见或者建议，欢迎与我们联系。您可以利用github的各种交互功能与我们联系：提交issue、pull request或者私信作者等。
