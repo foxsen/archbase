@@ -25,9 +25,16 @@ jobs:
           cache-version: 1
       - name: Install Noto CJK fonts
         run: sudo apt-get install -y fonts-noto-cjk
+      - name: setup locale
+        run: |
+          apt-get install -y locales
+          sed -i -e 's/# zh_CN.UTF-8 UTF-8/zh_CN.UTF-8 UTF-8/' /etc/locale.gen && locale-gen
+        shell: bash
+        env:
+          LC_ALL: zh_CN.UTF-8
       - uses: foxsen/actions/setup-tinytex-new@tinytex-v2
         with:
-          cache-version: 5
+          cache-version: 6
       - name: Render Book
         run: export PATH=$PATH:$HOME/bin; make -j8
         shell: bash
