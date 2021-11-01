@@ -379,7 +379,7 @@ C语言等高级语言编写的程序必须经过编译器转换为汇编语言�
 
 一个简单的C语言过程调用程序及其LoongArch汇编码如表\@ref(tab:c-vs-as)所示。
 
-```{r c-vs-as, echo = FALSE, message=FALSE, tab.cap='C程序和对应的汇编代码', tab.id='c-vs-as'}
+```{r c-vs-as, echo = FALSE, message=FALSE, tab.cap='过程调用及其LoongArch机器表示', tab.id='c-vs-as'}
 autonum <- run_autonum(seq_id = "tab", bkm = "c-vs-as", bkm_all = TRUE)
 
 dt <- data.frame('C代码' = read_file('./materials/chapter2/add_and_ref.c'),
@@ -387,13 +387,15 @@ dt <- data.frame('C代码' = read_file('./materials/chapter2/add_and_ref.c'),
 
 flextable(dt) %>%
 # colformat_md(md_extensions = "+hard_line_breaks") %>%
-set_caption(caption="C程序和对应的汇编代码", autonum = autonum) %>%
+set_caption(caption="过程调用及其LoongArch机器表示", autonum = autonum) %>%
 theme_box() %>%
 autofit()
 
 ```
 
-ref程序是add程序的调用者，通过BL指令进行调用，BL指令会修改$ra寄存器的值，因此在ref中需要将$ra寄存器的值保存到栈中，栈顶指针和RA值存放的位置遵循LoongArch函数调用规范，这部分内容将在4.1节中进行介绍。add程序的返回值放在$a0寄存器中，这同时也是ref程序的返回值，因此无须进行更多搬运。
+add程序是被调用的子程序，由于程序功能很简单，因此无须使用栈来存储任何信息，其输入参数存放在\$a0、\$a1两个寄存器中，计算的结果存放在\$a0寄存器中。
+
+ref程序是add程序的调用者，通过BL指令进行调用，BL指令会修改\$ra寄存器的值，因此在ref中需要将\$ra寄存器的值保存到栈中，栈顶指针和RA值存放的位置遵循LoongArch函数调用规范，这部分内容将在4.1节中进行介绍。add程序的返回值放在\$a0寄存器中，这同时也是ref程序的返回值，因此无须进行更多搬运。
                                                                                
 ### 流程控制语句                                                               
 
@@ -437,7 +439,7 @@ autofit()
 ```
 这里的if \~ else实现采用了BEQZ指令，当\$t0寄存器的值等于0时进行跳转，跳转到标号.L1执行“else”分支中的操作，当\$t0寄存器的值不等于0时，则顺序执行“then”分支中的操作并在完成后无条件跳转到标号.L2处绕开“else”分支。
 
-switch \~ case语句的结构更为复杂，由于可能的分支数较多，通常会被映射为跳转表的形式，如表\@ref(tab:switch-case)所示。如果在编译选项中加入-fno-jump-tables的选项，那么switch \~ case语句还可以被映射为跳转级联的形式，如表\@ref(tab:switch-case-chain)所示。
+switch \~ case语句的结构更为复杂，由于可能的分支数较多，通常会被映射为跳转表的形式，如表\@ref(tab:switch-case)所示。如果在编译选项中加入-fno-jump-tables的选项，那么switch \~ case语句还可以被映射为跳转级联的形式，如表\@ref(tab:switch-case-chain)所示。表中"alsl.d rd, rj, rk, sa"所进行的操作是：GR[rd] = (GR[rj] << sa) + GR[rk]。即将rj号通用寄存器中的值先左移sa位再与rk号通用寄存器中的值相加，结果写入rd号通用寄存器中。
 
 ```{r switch-case, echo = FALSE, message=FALSE, tab.cap='switch~case语句及其跳转表形式的LoongArch机器表示', tab.id='switch-case'}
 autonum <- run_autonum(seq_id = "tab", bkm = "switch-case", bkm_all = TRUE)
@@ -445,10 +447,6 @@ dt <- data.frame('C代码' = read_file('./materials/chapter2/switch_case.c'),
                  'LoongArch汇编' = read_file('./materials/chapter2/switch_case.S'))
 
 flextable(dt) %>%
-footnote(i=1, j=2,
-         value = as_paragraph(c("alsl.d rd, rj, rk, sa所进行的操作是：GR[rd]=(GR[rj]<<sa)+GR[rk]。即将rj号通用寄存器中的值先左移sa位再与rk号通用寄存器中的值相加，结果写入rd号通用寄存器中。")),
-         ref_symbols = NULL,
-         part='body') %>%
 # colformat_md(md_extensions = "+hard_line_breaks") %>%
 set_caption(caption="switch~case语句及其跳转表形式的LoongArch机器表示", autonum = autonum) %>%
 theme_box() %>%
