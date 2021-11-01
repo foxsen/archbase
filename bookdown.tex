@@ -131,6 +131,9 @@
 
 \usepackage{gbt7714}
 
+\usepackage{fontspec}
+\setmainfont{Noto Sans CJK SC}
+
 \renewcommand{\textfraction}{0.05}
 \renewcommand{\topfraction}{0.8}
 \renewcommand{\bottomfraction}{0.8}
@@ -216,7 +219,7 @@
 \providecommand{\subtitle}[1]{}
 \subtitle{第3版}
 \author{胡伟武~汪文祥~苏孟豪~张福新~王焕东~章隆兵~肖俊华~刘~苏~陈新科~吴瑞阳~李晓钰~高燕萍}
-\date{2021-10-31}
+\date{2021-11-01}
 
 \begin{document}
 \maketitle
@@ -1037,7 +1040,7 @@ CMOS工艺正在面临物理极限。在21世纪之前的35年（或者说在0.1
 
 （3）功耗障碍
 
-随着晶体管数目的增加以及主频的提高，功耗问题越来越突出。现代的通用处理器功耗峰值已经高达上百瓦，按照硅片面积为1～2cm2计算，其单位面积的热密度已经远远超过了普通的电炉。以Intel放弃4GHz以上的Pentium IV项目为标志，功耗问题成为导致处理器主频难以进一步提高的直接因素。在移动计算领域，功耗更是压倒一切的指标。因此如何降低功耗的问题已经十分迫切。
+随着晶体管数目的增加以及主频的提高，功耗问题越来越突出。现代的通用处理器功耗峰值已经高达上百瓦，按照硅片面积为1～2平方厘米计算，其单位面积的热密度已经远远超过了普通的电炉。以Intel放弃4GHz以上的Pentium IV项目为标志，功耗问题成为导致处理器主频难以进一步提高的直接因素。在移动计算领域，功耗更是压倒一切的指标。因此如何降低功耗的问题已经十分迫切。
 
 如果说传统的CPU设计追求的是每秒运行的次数（运算速度）以及每一块钱所能买到的性能（性能价格比），那么在今天，每瓦特功耗所得到的性能（性能功耗比）已经成为越来越重要的指标。就像买汽车，汽车的最高时速是200公里还是300公里大部分人不在意，更在意的是汽车的价格要便宜，百公里油耗要低。
 
@@ -2558,7 +2561,7 @@ C语言等高级语言编写的程序必须经过编译器转换为汇编语言�
 
 \begin{longtable}[c]{|p{1.38in}|p{2.83in}}
 
-\caption{C程序和对应的汇编代码}\label{tab:c-vs-as}\\
+\caption{过程调用及其LoongArch机器表示}\label{tab:c-vs-as}\\
 
 \hhline{>{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=1pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=1pt}-}
 
@@ -2584,7 +2587,9 @@ C语言等高级语言编写的程序必须经过编译器转换为汇编语言�
 
 \end{longtable}
 
-ref程序是add程序的调用者，通过BL指令进行调用，BL指令会修改\(ra寄存器的值，因此在ref中需要将\)ra寄存器的值保存到栈中，栈顶指针和RA值存放的位置遵循LoongArch函数调用规范，这部分内容将在4.1节中进行介绍。add程序的返回值放在\$a0寄存器中，这同时也是ref程序的返回值，因此无须进行更多搬运。
+add程序是被调用的子程序，由于程序功能很简单，因此无须使用栈来存储任何信息，其输入参数存放在\$a0、\$a1两个寄存器中，计算的结果存放在\$a0寄存器中。
+
+ref程序是add程序的调用者，通过BL指令进行调用，BL指令会修改\$ra寄存器的值，因此在ref中需要将\$ra寄存器的值保存到栈中，栈顶指针和RA值存放的位置遵循LoongArch函数调用规范，这部分内容将在4.1节中进行介绍。add程序的返回值放在\$a0寄存器中，这同时也是ref程序的返回值，因此无须进行更多搬运。
 
 \hypertarget{ux6d41ux7a0bux63a7ux5236ux8bedux53e5}{%
 \subsection{流程控制语句}\label{ux6d41ux7a0bux63a7ux5236ux8bedux53e5}}
@@ -2707,7 +2712,7 @@ if\textasciitilde else语句及其对应的LoongArch汇编码如表\ref{tab:if-e
 
 这里的if \textasciitilde{} else实现采用了BEQZ指令，当\$t0寄存器的值等于0时进行跳转，跳转到标号.L1执行``else''分支中的操作，当\$t0寄存器的值不等于0时，则顺序执行``then''分支中的操作并在完成后无条件跳转到标号.L2处绕开``else''分支。
 
-switch \textasciitilde{} case语句的结构更为复杂，由于可能的分支数较多，通常会被映射为跳转表的形式，如表\ref{tab:switch-case}所示。如果在编译选项中加入-fno-jump-tables的选项，那么switch \textasciitilde{} case语句还可以被映射为跳转级联的形式，如表\ref{tab:switch-case-chain}所示。
+switch \textasciitilde{} case语句的结构更为复杂，由于可能的分支数较多，通常会被映射为跳转表的形式，如表\ref{tab:switch-case}所示。如果在编译选项中加入-fno-jump-tables的选项，那么switch \textasciitilde{} case语句还可以被映射为跳转级联的形式，如表\ref{tab:switch-case-chain}所示。表中``alsl.d rd, rj, rk, sa''所进行的操作是：GR{[}rd{]} = (GR{[}rj{]} \textless\textless{} sa) + GR{[}rk{]}。即将rj号通用寄存器中的值先左移sa位再与rk号通用寄存器中的值相加，结果写入rd号通用寄存器中。
 
 \providecommand{\docline}[3]{\noalign{\global\setlength{\arrayrulewidth}{#1}}\arrayrulecolor[HTML]{#2}\cline{#3}}
 
@@ -2715,13 +2720,13 @@ switch \textasciitilde{} case语句的结构更为复杂，由于可能的分支
 
 \renewcommand*{\arraystretch}{1.5}
 
-\begin{longtable}[c]{|p{1.55in}|p{2.72in}}
+\begin{longtable}[c]{|p{1.55in}|p{2.68in}}
 
 \caption{switch~case语句及其跳转表形式的LoongArch机器表示}\label{tab:switch-case}\\
 
 \hhline{>{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=1pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=1pt}-}
 
-\multicolumn{1}{!{\color[HTML]{666666}\vrule width 1pt}>{\raggedright}p{\dimexpr 1.55in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Noto Sans CJK SC}{\textbf{C代码}}}}} & \multicolumn{1}{!{\color[HTML]{666666}\vrule width 1pt}>{\raggedright}p{\dimexpr 2.72in+0\tabcolsep+0\arrayrulewidth}!{\color[HTML]{666666}\vrule width 1pt}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Noto Sans CJK SC}{\textbf{LoongArch汇编}}}}} \\
+\multicolumn{1}{!{\color[HTML]{666666}\vrule width 1pt}>{\raggedright}p{\dimexpr 1.55in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Noto Sans CJK SC}{\textbf{C代码}}}}} & \multicolumn{1}{!{\color[HTML]{666666}\vrule width 1pt}>{\raggedright}p{\dimexpr 2.68in+0\tabcolsep+0\arrayrulewidth}!{\color[HTML]{666666}\vrule width 1pt}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Noto Sans CJK SC}{\textbf{LoongArch汇编}}}}} \\
 
 \hhline{>{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=1pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=1pt}-}
 
@@ -2729,19 +2734,13 @@ switch \textasciitilde{} case语句的结构更为复杂，由于可能的分支
 
 \hhline{>{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=1pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=1pt}-}
 
-\multicolumn{1}{!{\color[HTML]{666666}\vrule width 1pt}>{\raggedright}p{\dimexpr 1.55in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Noto Sans CJK SC}{\textbf{C代码}}}}} & \multicolumn{1}{!{\color[HTML]{666666}\vrule width 1pt}>{\raggedright}p{\dimexpr 2.72in+0\tabcolsep+0\arrayrulewidth}!{\color[HTML]{666666}\vrule width 1pt}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Noto Sans CJK SC}{\textbf{LoongArch汇编}}}}} \\
+\multicolumn{1}{!{\color[HTML]{666666}\vrule width 1pt}>{\raggedright}p{\dimexpr 1.55in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Noto Sans CJK SC}{\textbf{C代码}}}}} & \multicolumn{1}{!{\color[HTML]{666666}\vrule width 1pt}>{\raggedright}p{\dimexpr 2.68in+0\tabcolsep+0\arrayrulewidth}!{\color[HTML]{666666}\vrule width 1pt}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Noto Sans CJK SC}{\textbf{LoongArch汇编}}}}} \\
 
 \hhline{>{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=1pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=1pt}-}\endhead
 
 
 
-\multicolumn{2}{!{\color[HTML]{666666}\vrule width 1pt}>{\raggedright}p{\dimexpr 4.27in+2\tabcolsep+1\arrayrulewidth}!{\color[HTML]{666666}\vrule width 1pt}}{\fontsize{11}{11}\selectfont{\textsuperscript{\textcolor[HTML]{000000}{\global\setmainfont{Noto Sans CJK SC}{\textit{1}}}}}\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Noto Sans CJK SC}{\textit{alsl.d\ rd,\ rj,\ rk,\ sa所进行的操作是：GR[rd]=(GR[rj]<<sa)+GR[rk]。即将rj号通用寄存器中的值先左移sa位再与rk号通用寄存器中的值相加，结果写入rd号通用寄存器中。}}}}} \\
-
-\hhline{>{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=1pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=1pt}-}\endfoot
-
-
-
-\multicolumn{1}{!{\color[HTML]{666666}\vrule width 1pt}>{\raggedright}p{\dimexpr 1.55in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Noto Sans CJK SC}{int\ st(int\ a,\ int\ b,\ int\ c)\linebreak \{\linebreak \null\quad switch\ (a)\ \{\linebreak \null\quad \null\quad case\ 15:\linebreak \null\quad \null\quad \null\quad c\ =\ b\ \&\ 0xf;\linebreak \null\quad \null\quad case\ 10:\linebreak \null\quad \null\quad \null\quad return\ c\ +\ 50;\linebreak \null\quad \null\quad case\ 12:\linebreak \null\quad \null\quad case\ 17:\linebreak \null\quad \null\quad \null\quad return\ b\ +\ 50;\linebreak \null\quad \null\quad case\ 14:\linebreak \null\quad \null\quad \null\quad return\ b;\linebreak \null\quad \null\quad default:\linebreak \null\quad \null\quad \null\quad return\ a;\linebreak \null\quad \}\linebreak \}\linebreak \linebreak }}}} & \multicolumn{1}{!{\color[HTML]{666666}\vrule width 1pt}>{\raggedright}p{\dimexpr 2.72in+0\tabcolsep+0\arrayrulewidth}!{\color[HTML]{666666}\vrule width 1pt}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Noto Sans CJK SC}{st:\linebreak \null\quad addi.w\null\quad \$t0,\$a0,\ -10\null\quad //a-10\linebreak \null\quad sltiu\null\quad \$t1,\$t0,\ 8\linebreak \null\quad beqz\null\quad \$t1,\ default\null\quad //if\ (a-10)>=8\ \linebreak \null\quad \null\quad \null\quad \null\quad \null\quad \null\quad \null\quad //goto\ default\linebreak \null\quad la\null\quad \null\quad \$t2,\ jr\_table\linebreak \null\quad alsl.d\null\quad \$t1,\ \$t1,\ \$t2,\ 3\linebreak \null\quad \null\quad \null\quad \null\quad \null\quad \null\quad \null\quad //(a-10)*8+jr\_table\linebreak \null\quad ld.d\null\quad \$t0,\ \$t1,\ 0\linebreak \null\quad jr\null\quad \null\quad \$t0\linebreak default:\linebreak \null\quad or\null\quad \null\quad \$a1,\$a0,\$r0\linebreak case\_14:\linebreak \null\quad or\null\quad \null\quad \$a0,\$a1,\$r0\linebreak \null\quad jr\null\quad \null\quad \$ra\null\quad \null\quad //return\ b\ for\ case\_14,\linebreak \null\quad \null\quad \null\quad \null\quad \null\quad //return\ a\ for\ default\linebreak case\_15:\linebreak \null\quad andi\null\quad \$a2,\$a1,0xf\null\quad \null\quad //b\ \&\ 0xf\linebreak case\_10:\linebreak \null\quad addi.w\null\quad \$a1,\$a2,50\null\quad \null\quad //c+50\linebreak \null\quad b\null\quad \null\quad case\_14\linebreak case\_12\_17:\linebreak \null\quad addi.w\null\quad \$a1,\$a1,50\null\quad \null\quad //b+50\linebreak \null\quad b\null\quad \null\quad case\_14\linebreak \null\quad \null\quad \null\quad \null\quad \null\quad \null\quad \null\quad \#\ jump\ table\linebreak \null\quad .section\null\quad .rodata\linebreak \null\quad .align\null\quad 3\linebreak jr\_table:\linebreak \null\quad .dword\null\quad case\_10\linebreak \null\quad .dword\null\quad default\linebreak \null\quad .dword\null\quad case\_12\_17\linebreak \null\quad .dword\null\quad default\linebreak \null\quad .dword\null\quad case\_14\linebreak \null\quad .dword\null\quad case\_15\linebreak \null\quad .dword\null\quad default\linebreak \null\quad .dword\null\quad case\_12\_17\linebreak }}}\fontsize{11}{11}\selectfont{\textsuperscript{\textcolor[HTML]{000000}{\global\setmainfont{Noto Sans CJK SC}{1}}}}} \\
+\multicolumn{1}{!{\color[HTML]{666666}\vrule width 1pt}>{\raggedright}p{\dimexpr 1.55in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Noto Sans CJK SC}{int\ st(int\ a,\ int\ b,\ int\ c)\linebreak \{\linebreak \null\quad switch\ (a)\ \{\linebreak \null\quad \null\quad case\ 15:\linebreak \null\quad \null\quad \null\quad c\ =\ b\ \&\ 0xf;\linebreak \null\quad \null\quad case\ 10:\linebreak \null\quad \null\quad \null\quad return\ c\ +\ 50;\linebreak \null\quad \null\quad case\ 12:\linebreak \null\quad \null\quad case\ 17:\linebreak \null\quad \null\quad \null\quad return\ b\ +\ 50;\linebreak \null\quad \null\quad case\ 14:\linebreak \null\quad \null\quad \null\quad return\ b;\linebreak \null\quad \null\quad default:\linebreak \null\quad \null\quad \null\quad return\ a;\linebreak \null\quad \}\linebreak \}\linebreak \linebreak }}}} & \multicolumn{1}{!{\color[HTML]{666666}\vrule width 1pt}>{\raggedright}p{\dimexpr 2.68in+0\tabcolsep+0\arrayrulewidth}!{\color[HTML]{666666}\vrule width 1pt}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Noto Sans CJK SC}{st:\linebreak \null\quad addi.w\null\quad \$t0,\$a0,\ -10\null\quad //a-10\linebreak \null\quad sltiu\null\quad \$t1,\$t0,\ 8\linebreak \null\quad beqz\null\quad \$t1,\ default\null\quad //if\ (a-10)>=8\ \linebreak \null\quad \null\quad \null\quad \null\quad \null\quad \null\quad \null\quad //goto\ default\linebreak \null\quad la\null\quad \null\quad \$t2,\ jr\_table\linebreak \null\quad alsl.d\null\quad \$t1,\ \$t1,\ \$t2,\ 3\linebreak \null\quad \null\quad \null\quad \null\quad \null\quad \null\quad \null\quad //(a-10)*8+jr\_table\linebreak \null\quad ld.d\null\quad \$t0,\ \$t1,\ 0\linebreak \null\quad jr\null\quad \null\quad \$t0\linebreak default:\linebreak \null\quad or\null\quad \null\quad \$a1,\$a0,\$r0\linebreak case\_14:\linebreak \null\quad or\null\quad \null\quad \$a0,\$a1,\$r0\linebreak \null\quad jr\null\quad \null\quad \$ra\null\quad \null\quad //return\ b\ for\ case\_14,\linebreak \null\quad \null\quad \null\quad \null\quad \null\quad //return\ a\ for\ default\linebreak case\_15:\linebreak \null\quad andi\null\quad \$a2,\$a1,0xf\null\quad \null\quad //b\ \&\ 0xf\linebreak case\_10:\linebreak \null\quad addi.w\null\quad \$a1,\$a2,50\null\quad \null\quad //c+50\linebreak \null\quad b\null\quad \null\quad case\_14\linebreak case\_12\_17:\linebreak \null\quad addi.w\null\quad \$a1,\$a1,50\null\quad \null\quad //b+50\linebreak \null\quad b\null\quad \null\quad case\_14\linebreak \null\quad \null\quad \null\quad \null\quad \null\quad \null\quad \null\quad \#\ jump\ table\linebreak \null\quad .section\null\quad .rodata\linebreak \null\quad .align\null\quad 3\linebreak jr\_table:\linebreak \null\quad .dword\null\quad case\_10\linebreak \null\quad .dword\null\quad default\linebreak \null\quad .dword\null\quad case\_12\_17\linebreak \null\quad .dword\null\quad default\linebreak \null\quad .dword\null\quad case\_14\linebreak \null\quad .dword\null\quad case\_15\linebreak \null\quad .dword\null\quad default\linebreak \null\quad .dword\null\quad case\_12\_17\linebreak }}}} \\
 
 \hhline{>{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=1pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=1pt}-}
 
@@ -4775,9 +4774,9 @@ test_and_set:                              selfspin:
 \def\labelenumi{\arabic{enumi}.}
 \setcounter{enumi}{1}
 \item
-  1). 用LoongArch汇编程序来举例并分析在未同步的线程之间进行共享数据访问出错的情况。
+  1). 用LoongArch汇编程序片段来举例并分析在未同步的线程之间(假设有多个线程可以并发运行该片段)进行共享数据访问出错的情况。
 
-  2). 用LL/SC指令改写你的程序，使它们的共享数据访问正确。
+  2). 用LL/SC指令改写你的程序片段，使它们的共享数据访问正确。
 \item
   1). 写一段包含冒泡排序算法实现函数的C程序，在你的机器上安装LoongArch交叉编译器，通过编译-反汇编的方式提取该算法的汇编代码。
 
