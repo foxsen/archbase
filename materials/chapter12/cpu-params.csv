@@ -3,7 +3,7 @@
 上市时间,2021,2017,2019
 工艺,12nm,14nm,14nm
 指令集,LoongArch,X86-64,X86-64
-微结构型号,GS464V,Zen1,SkyLake
+微结构型号,LA464,Zen1,SkyLake
 频率,2.5GHz,2.5GHz,2.5GHz
 内存类型和频率,DDR4 3200MHz,DDR4 3200MHz,DDR4 2400MHz
 Cache层次,"64KB以及ICache

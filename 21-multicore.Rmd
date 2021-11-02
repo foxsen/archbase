@@ -305,15 +305,15 @@ Intel TSX（Transactional Synchronization Extensions）是Intel公司针对事�
 
 ### 龙芯3A5000处理器
 
-龙芯3A5000于2020年研制成功，是龙芯中科技术股份有限公司研发的首款支持龙芯自主指令集（LoongArch）的通用多核处理器，主要面向桌面计算机和服务器应用。龙芯3A5000片内集成4个64位GS464V高性能处理器核、16MB的分体共享三级Cache、2个DDR4内存控制器（支持DDR4-3200）、2个16位HT（HyperTransport）控制器、2个I2C、1个UART、1个SPI、16路GPIO接口等。龙芯3A5000中多个GS464V核及共享三级Cache模块，通过AXI互连网络形成一个分布式共享片上末级Cache的多核结构。采用基于目录的Cache一致性协议来维护Cache一致性。另外，龙芯3A5000还支持多片扩展，将多个芯片的HT总线直接互连就形成更大规模的共享存储系统（最多可支持16片互连）。
+龙芯3A5000于2020年研制成功，是龙芯中科技术股份有限公司研发的首款支持龙芯自主指令集（LoongArch）的通用多核处理器，主要面向桌面计算机和服务器应用。龙芯3A5000片内集成4个64位LA464高性能处理器核、16MB的分体共享三级Cache、2个DDR4内存控制器（支持DDR4-3200）、2个16位HT（HyperTransport）控制器、2个I2C、1个UART、1个SPI、16路GPIO接口等。龙芯3A5000中多个LA464核及共享三级Cache模块，通过AXI互连网络形成一个分布式共享片上末级Cache的多核结构。采用基于目录的Cache一致性协议来维护Cache一致性。另外，龙芯3A5000还支持多片扩展，将多个芯片的HT总线直接互连就形成更大规模的共享存储系统（最多可支持16片互连）。
 
-GS464V是支持Loongarch指令集的四发射64位高性能处理器核，具有256位向量部件。GS464V的结构如图\@ref(fig:gs464v-uarch)所示，主要特点如下：四发射超标量结构，具有四个定点、两个向量、两个访存部件；支持寄存器重命名、动态调度、转移预测等乱序执行技术；每个向量部件宽度为256位，可支持8个双32位浮点乘加运算或4个64位浮点运算；一级指令Cache和数据Cache大小各为64KB，4路组相联；牺牲者Cache（Victim Cache）作为私有二级Cache，大小为256KB，16路组相连；支持非阻塞（Non-blocking）访问及装入猜测（Load Speculation）等访存优化技术；支持标准的JTAG调试接口，方便软硬件调试。
+LA464是支持Loongarch指令集的四发射64位高性能处理器核，具有256位向量部件。LA464的结构如图\@ref(fig:la464-uarch)所示，主要特点如下：四发射超标量结构，具有四个定点、两个向量、两个访存部件；支持寄存器重命名、动态调度、转移预测等乱序执行技术；每个向量部件宽度为256位，可支持8个双32位浮点乘加运算或4个64位浮点运算；一级指令Cache和数据Cache大小各为64KB，4路组相联；牺牲者Cache（Victim Cache）作为私有二级Cache，大小为256KB，16路组相连；支持非阻塞（Non-blocking）访问及装入猜测（Load Speculation）等访存优化技术；支持标准的JTAG调试接口，方便软硬件调试。
 
-```{r gs464v-uarch, fig.cap='GS464V处理器核结构', fig.align='center', echo = FALSE, out.width='100%'}
-knitr::include_graphics('./images/chapter11/gs464v_uarch.png')
+```{r la464-uarch, fig.cap='LA464处理器核结构', fig.align='center', echo = FALSE, out.width='100%'}
+knitr::include_graphics('./images/chapter11/la464_uarch.png')
 ```
 
-龙芯3A5000芯片整体架构基于多级互连实现，结构如图\@ref(fig:ls3a5000-arch)所示（图\@ref(fig:ls3a5000-layout)为芯片版图）。第一级互连采用5x5的交叉开关，用于连接四个GS464V核（作为主设备）、四个共享Cache模块（作为从设备）、以及一个IO端口连接IO-RING。IO端口使用一个Master和一个Slave。第二级互连采用5x3的交叉开关，连接4个共享Cache模块（作为主设备），两个DDR3/4内存控制器、以及一个IO端口连接IO-RING。IO-RING连接包括4个HT控制器，MISC模块，SE模块与两级交叉开关。两个HT控制器（lo/hi）共用16位HT总线，作为两个8位的HT总线使用，也可以由lo独占16位HT总线。HT控制器内集成一个DMA控制器，DMA控制器负责IO的DMA控制并负责片间一致性的维护。上述互连结构都采用读写分离的数据通道，数据通道宽度为128bit，与处理器核同频，用以提供高速的片上数据传输。此外，一级交叉开关连接4个处理器核与Scache的读数据通道为256位，以提高片内处理器核访问Scache的读带宽。
+龙芯3A5000芯片整体架构基于多级互连实现，结构如图\@ref(fig:ls3a5000-arch)所示（图\@ref(fig:ls3a5000-layout)为芯片版图）。第一级互连采用5x5的交叉开关，用于连接四个LA464核（作为主设备）、四个共享Cache模块（作为从设备）、以及一个IO端口连接IO-RING。IO端口使用一个Master和一个Slave。第二级互连采用5x3的交叉开关，连接4个共享Cache模块（作为主设备），两个DDR3/4内存控制器、以及一个IO端口连接IO-RING。IO-RING连接包括4个HT控制器，MISC模块，SE模块与两级交叉开关。两个HT控制器（lo/hi）共用16位HT总线，作为两个8位的HT总线使用，也可以由lo独占16位HT总线。HT控制器内集成一个DMA控制器，DMA控制器负责IO的DMA控制并负责片间一致性的维护。上述互连结构都采用读写分离的数据通道，数据通道宽度为128bit，与处理器核同频，用以提供高速的片上数据传输。此外，一级交叉开关连接4个处理器核与Scache的读数据通道为256位，以提高片内处理器核访问Scache的读带宽。
 
 龙芯3A5000主频可达2.5GHz,峰值浮点运算能力达到160GFLOPS。
 
