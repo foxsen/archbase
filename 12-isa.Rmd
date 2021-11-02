@@ -439,7 +439,7 @@ autofit()
 ```
 这里的if \~ else实现采用了BEQZ指令，当\$t0寄存器的值等于0时进行跳转，跳转到标号.L1执行“else”分支中的操作，当\$t0寄存器的值不等于0时，则顺序执行“then”分支中的操作并在完成后无条件跳转到标号.L2处绕开“else”分支。
 
-switch \~ case语句的结构更为复杂，由于可能的分支数较多，通常会被映射为跳转表的形式，如表\@ref(tab:switch-case)所示。如果在编译选项中加入-fno-jump-tables的选项，那么switch \~ case语句还可以被映射为跳转级联的形式，如表\@ref(tab:switch-case-chain)所示。表中"alsl.d rd, rj, rk, sa"所进行的操作是：GR[rd] = (GR[rj] << sa) + GR[rk]。即将rj号通用寄存器中的值先左移sa位再与rk号通用寄存器中的值相加，结果写入rd号通用寄存器中。
+switch \~ case语句的结构更为复杂，由于可能的分支数较多，通常会被映射为跳转表的形式，如表\@ref(tab:switch-case)所示。如果在编译选项中加入-fno-jump-tables的选项，那么switch \~ case语句还可以被映射为跳转级联的形式，如表\@ref(tab:switch-case-chain)所示。表中"alsl.d rd, rj, rk, sa"所进行的操作是：GR[rd] = (GR[rj] \<\< sa) + GR[rk]。即将rj号通用寄存器中的值先左移sa位再与rk号通用寄存器中的值相加，结果写入rd号通用寄存器中。
 
 ```{r switch-case, echo = FALSE, message=FALSE, tab.cap='switch~case语句及其跳转表形式的LoongArch机器表示', tab.id='switch-case'}
 autonum <- run_autonum(seq_id = "tab", bkm = "switch-case", bkm_all = TRUE)
