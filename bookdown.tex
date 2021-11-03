@@ -219,7 +219,7 @@
 \providecommand{\subtitle}[1]{}
 \subtitle{第3版}
 \author{胡伟武~汪文祥~苏孟豪~张福新~王焕东~章隆兵~肖俊华~刘~苏~陈新科~吴瑞阳~李晓钰~高燕萍}
-\date{2021-11-01}
+\date{2021-11-03}
 
 \begin{document}
 \maketitle
@@ -2740,7 +2740,7 @@ switch \textasciitilde{} case语句的结构更为复杂，由于可能的分支
 
 
 
-\multicolumn{1}{!{\color[HTML]{666666}\vrule width 1pt}>{\raggedright}p{\dimexpr 1.55in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Noto Sans CJK SC}{int\ st(int\ a,\ int\ b,\ int\ c)\linebreak \{\linebreak \null\quad switch\ (a)\ \{\linebreak \null\quad \null\quad case\ 15:\linebreak \null\quad \null\quad \null\quad c\ =\ b\ \&\ 0xf;\linebreak \null\quad \null\quad case\ 10:\linebreak \null\quad \null\quad \null\quad return\ c\ +\ 50;\linebreak \null\quad \null\quad case\ 12:\linebreak \null\quad \null\quad case\ 17:\linebreak \null\quad \null\quad \null\quad return\ b\ +\ 50;\linebreak \null\quad \null\quad case\ 14:\linebreak \null\quad \null\quad \null\quad return\ b;\linebreak \null\quad \null\quad default:\linebreak \null\quad \null\quad \null\quad return\ a;\linebreak \null\quad \}\linebreak \}\linebreak \linebreak }}}} & \multicolumn{1}{!{\color[HTML]{666666}\vrule width 1pt}>{\raggedright}p{\dimexpr 2.68in+0\tabcolsep+0\arrayrulewidth}!{\color[HTML]{666666}\vrule width 1pt}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Noto Sans CJK SC}{st:\linebreak \null\quad addi.w\null\quad \$t0,\$a0,\ -10\null\quad //a-10\linebreak \null\quad sltiu\null\quad \$t1,\$t0,\ 8\linebreak \null\quad beqz\null\quad \$t1,\ default\null\quad //if\ (a-10)>=8\ \linebreak \null\quad \null\quad \null\quad \null\quad \null\quad \null\quad \null\quad //goto\ default\linebreak \null\quad la\null\quad \null\quad \$t2,\ jr\_table\linebreak \null\quad alsl.d\null\quad \$t1,\ \$t1,\ \$t2,\ 3\linebreak \null\quad \null\quad \null\quad \null\quad \null\quad \null\quad \null\quad //(a-10)*8+jr\_table\linebreak \null\quad ld.d\null\quad \$t0,\ \$t1,\ 0\linebreak \null\quad jr\null\quad \null\quad \$t0\linebreak default:\linebreak \null\quad or\null\quad \null\quad \$a1,\$a0,\$r0\linebreak case\_14:\linebreak \null\quad or\null\quad \null\quad \$a0,\$a1,\$r0\linebreak \null\quad jr\null\quad \null\quad \$ra\null\quad \null\quad //return\ b\ for\ case\_14,\linebreak \null\quad \null\quad \null\quad \null\quad \null\quad //return\ a\ for\ default\linebreak case\_15:\linebreak \null\quad andi\null\quad \$a2,\$a1,0xf\null\quad \null\quad //b\ \&\ 0xf\linebreak case\_10:\linebreak \null\quad addi.w\null\quad \$a1,\$a2,50\null\quad \null\quad //c+50\linebreak \null\quad b\null\quad \null\quad case\_14\linebreak case\_12\_17:\linebreak \null\quad addi.w\null\quad \$a1,\$a1,50\null\quad \null\quad //b+50\linebreak \null\quad b\null\quad \null\quad case\_14\linebreak \null\quad \null\quad \null\quad \null\quad \null\quad \null\quad \null\quad \#\ jump\ table\linebreak \null\quad .section\null\quad .rodata\linebreak \null\quad .align\null\quad 3\linebreak jr\_table:\linebreak \null\quad .dword\null\quad case\_10\linebreak \null\quad .dword\null\quad default\linebreak \null\quad .dword\null\quad case\_12\_17\linebreak \null\quad .dword\null\quad default\linebreak \null\quad .dword\null\quad case\_14\linebreak \null\quad .dword\null\quad case\_15\linebreak \null\quad .dword\null\quad default\linebreak \null\quad .dword\null\quad case\_12\_17\linebreak }}}} \\
+\multicolumn{1}{!{\color[HTML]{666666}\vrule width 1pt}>{\raggedright}p{\dimexpr 1.55in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Noto Sans CJK SC}{int\ st(int\ a,\ int\ b,\ int\ c)\linebreak \{\linebreak \null\quad switch\ (a)\ \{\linebreak \null\quad \null\quad case\ 15:\linebreak \null\quad \null\quad \null\quad c\ =\ b\ \&\ 0xf;\linebreak \null\quad \null\quad case\ 10:\linebreak \null\quad \null\quad \null\quad return\ c\ +\ 50;\linebreak \null\quad \null\quad case\ 12:\linebreak \null\quad \null\quad case\ 17:\linebreak \null\quad \null\quad \null\quad return\ b\ +\ 50;\linebreak \null\quad \null\quad case\ 14:\linebreak \null\quad \null\quad \null\quad return\ b;\linebreak \null\quad \null\quad default:\linebreak \null\quad \null\quad \null\quad return\ a;\linebreak \null\quad \}\linebreak \}\linebreak \linebreak }}}} & \multicolumn{1}{!{\color[HTML]{666666}\vrule width 1pt}>{\raggedright}p{\dimexpr 2.68in+0\tabcolsep+0\arrayrulewidth}!{\color[HTML]{666666}\vrule width 1pt}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Noto Sans CJK SC}{st:\linebreak \null\quad addi.w\null\quad \$t0,\$a0,\ -10\null\quad //a-10\linebreak \null\quad sltiu\null\quad \$t1,\$t0,\ 8\linebreak \null\quad beqz\null\quad \$t1,\ default\null\quad //if\ (a-10)>=8\ \linebreak \null\quad \null\quad \null\quad \null\quad \null\quad \null\quad \null\quad //goto\ default\linebreak \null\quad la\null\quad \null\quad \$t2,\ jr\_table\linebreak \null\quad alsl.d\null\quad \$t1,\ \$t0,\ \$t2,\ 3\linebreak \null\quad \null\quad \null\quad \null\quad \null\quad \null\quad \null\quad //(a-10)*8+jr\_table\linebreak \null\quad ld.d\null\quad \$t0,\ \$t1,\ 0\linebreak \null\quad jr\null\quad \null\quad \$t0\linebreak default:\linebreak \null\quad or\null\quad \null\quad \$a1,\$a0,\$r0\linebreak case\_14:\linebreak \null\quad or\null\quad \null\quad \$a0,\$a1,\$r0\linebreak \null\quad jr\null\quad \null\quad \$ra\null\quad \null\quad //return\ b\ for\ case\_14,\linebreak \null\quad \null\quad \null\quad \null\quad \null\quad //return\ a\ for\ default\linebreak case\_15:\linebreak \null\quad andi\null\quad \$a2,\$a1,0xf\null\quad \null\quad //b\ \&\ 0xf\linebreak case\_10:\linebreak \null\quad addi.w\null\quad \$a1,\$a2,50\null\quad \null\quad //c+50\linebreak \null\quad b\null\quad \null\quad case\_14\linebreak case\_12\_17:\linebreak \null\quad addi.w\null\quad \$a1,\$a1,50\null\quad \null\quad //b+50\linebreak \null\quad b\null\quad \null\quad case\_14\linebreak \null\quad \null\quad \null\quad \null\quad \null\quad \null\quad \null\quad \#\ jump\ table\linebreak \null\quad .section\null\quad .rodata\linebreak \null\quad .align\null\quad 3\linebreak jr\_table:\linebreak \null\quad .dword\null\quad case\_10\linebreak \null\quad .dword\null\quad default\linebreak \null\quad .dword\null\quad case\_12\_17\linebreak \null\quad .dword\null\quad default\linebreak \null\quad .dword\null\quad case\_14\linebreak \null\quad .dword\null\quad case\_15\linebreak \null\quad .dword\null\quad default\linebreak \null\quad .dword\null\quad case\_12\_17\linebreak }}}} \\
 
 \hhline{>{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=1pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=1pt}-}
 
@@ -7632,7 +7632,7 @@ IEEE 754标准中定义了两种基本的浮点数格式：32位的单精度格�
 
 IEEE 754标准中，尾数用原码表示。由于表示同一个数的时候尾数可以有多种表示，例如\(0.001_{2}\)可以表示为\(0.1_{2}\times 2^{-2}\)，也可以表示成\(1.0_{2}\times 2^{-3}\)，因此需要一个规格化的表示来使得表示唯一。IEEE 754标准中规格化尾数的表示统一为1.xxxx的形式。尾数规格化后第一位总为1，因而可以在尾数中缺省这一位1。隐藏该位后尾数可以多一位表示，精度提高一位。
 
-IEEE 754标准中，阶码是用减偏置常量的移码表示，但是所用的偏置常量并不是通常n位移码所用的\(2^{n-1}\)，而是\((2^{n-1}-1)\)，因此，单精度和双精度浮点数的偏置常量分别为127和1023。
+IEEE 754标准中，阶码是用加偏置常量的移码表示，但是所用的偏置常量并不是通常n位移码所用的\(2^{n-1}\)，而是\((2^{n-1}-1)\)，因此，单精度和双精度浮点数的偏置常量分别为127和1023。
 
 IEEE 754标准对浮点数的一些情况做了特殊的规定，总的来说可以分为5种情况，主要用阶码进行区分，表\ref{tab:tabIEEE754float}给出了IEEE 754标准中单精度和双精度不同浮点数的表示。
 
@@ -9057,17 +9057,21 @@ A+B+C=S+(C≪1)
 
 本节先引入一个简单的CPU模型。这个CPU可以取指令并执行，实现程序员的期望。根据第\ref{sec-ISA}章的介绍，指令系统按照功能可以分为运算指令、访存指令、转移指令和特殊指令四类。根据指令集的定义，可以得知CPU的数据通路包括以下组成要素：
 
-1）程序计数器，又称PC，指示当前指令的地址；
-
-2）指令存储器，按照指令地址存储指令码，接收PC，读出指令；
-
-3）译码部件，用于分析指令，判定指令类别；
-
-4）通用寄存器堆，用于承载寄存器的值，绝大多数指令都需要读取及修改寄存器；
-
-5）运算器，用于执行指令所指示的运算操作；
-
-6）数据存储器，按照地址存储数据，主要用于访存指令。
+\begin{itemize}
+\tightlist
+\item
+  程序计数器，又称PC，指示当前指令的地址；
+\item
+  指令存储器，按照指令地址存储指令码，接收PC，读出指令；
+\item
+  译码部件，用于分析指令，判定指令类别；
+\item
+  通用寄存器堆，用于承载寄存器的值，绝大多数指令都需要读取及修改寄存器；
+\item
+  运算器，用于执行指令所指示的运算操作；
+\item
+  数据存储器，按照地址存储数据，主要用于访存指令。
+\end{itemize}
 
 将这些组成要素通过一定规则连接起来，就形成了CPU的数据通路。图\ref{fig:chapter9-simpleCPUdatapath}给出了这个简单CPU的数据通路。
 
@@ -9106,11 +9110,16 @@ A+B+C=S+(C≪1)
 
 简要描述一下这个处理器的执行过程：
 
-1）复位信号将复位的PC装载到PC触发器内，之后的第一个时钟周期内，使用PC取指、译码、执行、读数据存储器、生成结果；
-
-2）当第二个时钟周期上升沿到来时，根据时序逻辑的特性，将新的PC锁存，将上一个时钟周期的结果写入寄存器堆，执行可能的数据存储器写操作；
-
-3）第二个时钟周期内，就可以执行第二条指令了，同样按照上面两步来执行。
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  复位信号将复位的PC装载到PC触发器内，之后的第一个时钟周期内，使用PC取指、译码、执行、读数据存储器、生成结果；
+\item
+  当第二个时钟周期上升沿到来时，根据时序逻辑的特性，将新的PC锁存，将上一个时钟周期的结果写入寄存器堆，执行可能的数据存储器写操作；
+\item
+  第二个时钟周期内，就可以执行第二条指令了，同样按照上面两步来执行。
+\end{enumerate}
 
 依此类推，由一系列指令构成的程序就在处理器中执行了。由于每条指令的执行基本在一拍内完成，因此这个模型被称为单周期处理器。
 
@@ -9132,17 +9141,22 @@ A+B+C=S+(C≪1)
 
 为了清晰，图中省略了控制逻辑的部分连线，没有画出通用寄存器和数据存储器的写入时钟。先将原始时钟接到所有的触发器，按照这个示意图设计的处理器是否可以使用呢？按照时序逻辑特性，每个时钟上升沿，触发器的值就会变成其驱动端D端口的新值，因此推算一下：
 
-1）在第1个时钟周期，通过PC取出指令，在第2个时钟上升沿锁存到指令码触发器R1；
-
-2）在第2个时钟周期，将R1译码并生成控制逻辑，读取通用寄存器，读出结果在第3个时钟上升沿锁存到触发器R2；
-
-3）在第3个时钟周期，使用控制逻辑和R2进行ALU运算。
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  在第1个时钟周期，通过PC取出指令，在第2个时钟上升沿锁存到指令码触发器R1；
+\item
+  在第2个时钟周期，将R1译码并生成控制逻辑，读取通用寄存器，读出结果在第3个时钟上升沿锁存到触发器R2；
+\item
+  在第3个时钟周期，使用控制逻辑和R2进行ALU运算。
+\end{enumerate}
 
 推算到这里就会发现，此时离控制逻辑的生成（第2个时钟周期）已经隔了一个时钟周期了，怎么保证这时候控制逻辑还没有发生变化呢？
 
 使用分频时钟或门控时钟可以做到这一点。如图\ref{fig:chapter9-multicycle}右下方所示，将原始的时钟通过分频的方式产生出5个时钟，分别控制图中PC、R1\textasciitilde R4这5组触发器。这样，在进行ALU运算时，可以保证触发器R1没有接收到下一个时钟上升沿，故不可能变化，因此可以进行正确的ALU运算。同理，包括写寄存器、执行访存等，都受到正确的控制。
 
-经过推算，可以将这种处理器执行指令时的指令-时钟周期的对照图画出来，如\ref{fig:chapter9-multicycleflow}。这种图可以被称为处理器执行的时空图，也被称为流水线图。画出流水线图是分析处理器行为的直观、有效的方法。
+经过推算，可以将这种处理器执行指令时的指令-时钟周期的对照图画出来，如图\ref{fig:chapter9-multicycleflow}。这种图可以被称为处理器执行的时空图，也被称为流水线图。画出流水线图是分析处理器行为的直观、有效的方法。
 
 \begin{figure}
 
@@ -9155,7 +9169,7 @@ A+B+C=S+(C≪1)
 
 这种增加触发器并采用分频时钟的处理器模型称为多周期处理器。多周期处理器设计可以提高运行频率，但是每条指令的执行时间并不能降低（考虑到触发器的Setup时间和Clk-to-Q延迟则执行时间会增加）。我们可以将各个执行阶段以流水方式组织起来，同一时刻不同指令的不同执行阶段（流水线中的``阶段''也称为``级''）重叠在一起，进一步提高CPU执行效率。
 
-从多周期处理器演进到流水线处理器，核心在于控制逻辑和数据通路对应关系维护机制的变化。多周期处理器通过使用分频时钟，可以确保在同一条指令的后面几个时钟周期执行时，控制逻辑因没有接收到下一个时钟上升沿所以不会发生变化。流水线处理器则通过另一个方法来保证这一点，就是在每级流水的触发器旁边，再添加一批用于存储控制逻辑的触发器。指令的控制逻辑藉由这些触发器沿着流水线逐级传递下去，从而保证了各阶段执行时使用的控制逻辑都是属于该指令的，如\ref{fig:chapter9-pipelinestruct}所示。
+从多周期处理器演进到流水线处理器，核心在于控制逻辑和数据通路对应关系维护机制的变化。多周期处理器通过使用分频时钟，可以确保在同一条指令的后面几个时钟周期执行时，控制逻辑因没有接收到下一个时钟上升沿所以不会发生变化。流水线处理器则通过另一个方法来保证这一点，就是在每级流水的触发器旁边，再添加一批用于存储控制逻辑的触发器。指令的控制逻辑藉由这些触发器沿着流水线逐级传递下去，从而保证了各阶段执行时使用的控制逻辑都是属于该指令的，如图\ref{fig:chapter9-pipelinestruct}所示。
 
 \begin{figure}
 
@@ -9212,13 +9226,12 @@ A+B+C=S+(C≪1)
 
 下面重点分析RAW相关所引起的流水线冲突并讨论其解决方法。对于如下指令序列
 
-add.w \$r2, \$r1, \$r1
-
-add.w \$r3, \$r2, \$r2
-
-ld.w \$r4, \$r3, 0
-
-add.w \$r5, \$r4, \$r4
+\begin{verbatim}
+add.w $r2, $r1, $r1
+add.w $r3, $r2, $r2
+ld.w $r4, $r3, 0
+add.w $r5, $r4, $r4
+\end{verbatim}
 
 其中第1、2条指令间，第2、3条指令间，第3、4条指令间存在RAW相关。这3条指令在\ref{sec-pipeline-cpu}节所介绍的5级简单流水线处理器中执行的流水线时空图如图\ref{fig:chapter9-raw}所示。
 
@@ -9298,16 +9311,25 @@ add.w \$r5, \$r4, \$r4
 
 按照图\ref{fig:chapter9-pipelinestruct}给出的处理器设计，执行阶段R2触发器所存储的值经过计算之后才能给出转移指令的正确目标并在下一个时钟上升沿更新PC，但是图\ref{fig:chapter9-instHazardPipeline}中转移指令尚未执行结束时，PC已经更新完毕并取指了，从而可能导致取回了错误的指令。为了解决这个问题，可以通过在取指阶段引入2拍的流水线阻塞来解决，如图\ref{fig:chapter9-ctrlHazardFlow}所示。
 
+在单发射5级静态流水线中，如果增加专用的运算资源将转移指令条件判断和计算下一条指令PC的处理调整到译码阶段，那么转移指令后面的指令只需要在取指阶段等1拍。调整后的前述代码序列的执行流水线的时空图如图\ref{fig:chapter9-ctrlHazardFlow1}所示。采用这种解决控制相关的方式，继续改进流水线处理器结构，得到如图\ref{fig:chapter9-ctrlHazardStruct}所示的结构设计。
+
 \begin{figure}
 
 {\centering \includegraphics[width=1\linewidth]{./images/chapter9/ctrlHazardFlow} 
 
 }
 
-\caption{解决控制相关的流水线结构图}\label{fig:chapter9-ctrlHazardFlow}
+\caption{解决控制相关的流水线时空图}\label{fig:chapter9-ctrlHazardFlow}
 \end{figure}
 
-在单发射5级静态流水线中，如果增加专用的运算资源将转移指令条件判断和计算下一条指令PC的处理调整到译码阶段，那么转移指令后面的指令只需要在取指阶段等1拍。采用这种解决控制相关的方式，继续改进流水线处理器结构，得到如图\ref{fig:chapter9-ctrlHazardStruct}所示的结构设计。
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{./images/chapter9/ctrlHazardFlow1} 
+
+}
+
+\caption{优化控制相关处理后的流水线时空图}\label{fig:chapter9-ctrlHazardFlow1}
+\end{figure}
 
 \begin{figure}
 
@@ -9315,7 +9337,7 @@ add.w \$r5, \$r4, \$r4
 
 }
 
-\caption{处理控制相关的流水线结构图}\label{fig:chapter9-ctrlHazardStruct}
+\caption{改进后的解决控制相关的流水线结构图}\label{fig:chapter9-ctrlHazardStruct}
 \end{figure}
 
 为更进一步减少由控制相关引起的阻塞，可以采用转移指令的延迟槽技术，在定义指令系统的时候就明确转移指令延迟槽指令的执行不依赖于转移指令的结果，这样转移指令后面的指令在取指阶段1拍也不用等。总之，在单发射5级静态流水线处理器中，通过在译码阶段对转移指令进行处理和利用转移指令延迟槽技术，就可以避免控制相关引起的流水线阻塞。但是这两项技术并不一定适用于其他结构，后面\ref{sec-branch-predict}小节讨论转移预测技术时将做进一步分析。
@@ -9334,17 +9356,22 @@ add.w \$r5, \$r4, \$r4
 
 在流水线处理器中，同时会有多条指令处于不同阶段，不同阶段都有发生异常的可能，那么如何实现精确异常呢？这里给出一种可行的设计方案。为什么说是可行的以及结构设计该如何修改，作为课后作业留给同学们思考。
 
-1）任何一级流水发生异常时，在流水线中记录下发生异常的事件，直到写回阶段再处理。
-
-2）如果在执行阶段要修改机器状态（如状态寄存器），保存下来直到写回阶段再修改。
-
-3）指令的PC值随指令流水前进到写回阶段为异常处理专用。
-
-4）将外部中断作为取指的异常处理。
-
-5）指定一个通用寄存器（或一个专用寄存器）为异常处理时保存PC值专用。
-
-6）当发生异常的指令处在写回阶段时，保存该指令的PC及必需的其他状态，置取指的PC值为异常处理程序入口地址。
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  任何一级流水发生异常时，在流水线中记录下发生异常的事件，直到写回阶段再处理。
+\item
+  如果在执行阶段要修改机器状态（如状态寄存器），保存下来直到写回阶段再修改。
+\item
+  指令的PC值随指令流水前进到写回阶段为异常处理专用。
+\item
+  将外部中断作为取指的异常处理。
+\item
+  指定一个通用寄存器（或一个专用寄存器）为异常处理时保存PC值专用。
+\item
+  当发生异常的指令处在写回阶段时，保存该指令的PC及必需的其他状态，置取指的PC值为异常处理程序入口地址。
+\end{enumerate}
 
 在前面3节的介绍中，由简至繁地搭建出一个可以正常执行各种指令的流水线处理器。回顾设计过程，其中的设计要点有两个：第一是通过加入大量触发器，实现了流水线功能；第二是通过加入大量控制逻辑，解决了指令相关问题。
 
@@ -9353,7 +9380,7 @@ add.w \$r5, \$r4, \$r4
 
 我们通常以应用的执行时间来衡量一款处理器的性能。应用的执行时间等于指令数乘以CPI（Cycles Per Instruction，每指令执行周期数）再乘以时钟周期。当算法、程序、指令系统、编译器都确定之后，一个应用的指令数就确定下来了。时钟周期与结构设计、电路设计、生产工艺以及工作环境都有关系，不作为这里讨论的重点。我们主要关注CPI的降低，即如何通过结构设计提高流水线效率。上一节中提到指令相关容易引起流水线的阻塞。因此，流水线处理器实际的CPI等于指令的理想执行周期数加上由于指令相关引起的阻塞周期数：
 
-流水线CPI=理想CPI+结构相关阻塞周期数+RAW阻塞周期数+WAR阻塞周期数+WAW阻塞周期数+控制相关阻塞周期数
+\[流水线CPI=理想CPI+结构相关阻塞周期数+RAW阻塞周期数+WAR阻塞周期数+WAW阻塞周期数+控制相关阻塞周期数\]
 
 从上面的公式可知，要想提高流水线效率（即降低Pipeline CPI），可以从降低理想CPI和降低各类流水线阻塞这些方面入手。
 
@@ -9382,21 +9409,21 @@ add.w \$r5, \$r4, \$r4
 
 如果我们用道路交通来类比的话，多发射数据通路就类似于把马路从单车道改造为多车道，但是这个多车道的马路有个奇怪的景象------速度快的车（如跑车）不能超过前面速度慢的车（如马车），即使马车前面的车道是空闲的。直觉上我们肯定觉得这样做效率低，只要车道有空闲，就应该允许后面速度快的车超过前面速度慢的车。这就是动态调度的基本出发点。用本领域的概念来描述动态的基本思想就是：把相关的解决尽量往后拖延，同时前面指令的等待不影响后面指令继续前进。下面我们通过一个例子来加深理解：假定现在有一个双发射流水线，所有的运算单元都有两份，那么在执行下列指令序列时：
 
-div.w \$r3, \$r2, \$r1
-
-add.w \$r5, \$r4, \$r3
-
-sub.w \$r8, \$r7, \$r6
+\begin{verbatim}
+div.w $r3, $r2, $r1
+add.w $r5, $r4, $r3
+sub.w $r8, $r7, $r6
+\end{verbatim}
 
 由于除法单元采用迭代算法实现，所以div.w指令需要多个执行周期，与它有RAW相关的add.w指令最早也只能等到div.w指令执行完毕后才能开始执行。但是sub.w指令何时可以开始执行呢？可以看到sub.w指令与前两条指令没有任何相关，采用动态调度的流水线就允许sub.w指令越过前面尚未执行完毕的div.w指令和add.w指令，提前开始执行。因为sub.w是在流水线由于指令间的相关引起阻塞而空闲的情况下``见缝插针''地提前执行了，所以这段程序整体的执行延迟就减少了。
 
 要完成上述功能，需要对原有的流水线做一些改动。首先，要将原有的译码阶段拆分成``译码''和``读操作数''两个阶段。译码阶段进行指令译码并检查结构相关，随后在读操作数阶段则一直等待直至操作数可以读取。处在等待状态的指令不能一直停留在原有的译码流水级上，因为这样它后面的指令就没法前进甚至是进入流水线，更不用说什么提前执行了。所以我们会利用一个结构存放这些等待的指令，这个结构被称为保留站，有的文献中也称之为发射队列，这是动态调度中必需的核心部件。除了存储指令的功能，保留站还要负责控制其中的指令何时去执行，因此保留站中还会记录下描述指令间相关关系的信息，同时监测各条指令的执行状态。如果指令是在进入保留站前读取寄存器，那么保留站还需要监听每条结果总线，获得源操作数的最新值。
 
-保留站在处理器中的大致位置如图\ref{fig:chapter9-dynamic}中的虚线框所示。保留站按指令来组织，每个指令占据一项，每一项有多个域，存放这个指令所需要的所有信息，包括有效位、就绪位异常信息、控制信息和寄存器源操作数。译码并读寄存器的指令进入保留站，保留站会每个时钟周期选择一条没有被阻塞的指令，送往执行逻辑，并退出保留站，这个动作称为``发射''。
+保留站在处理器中的大致位置如图\ref{fig:chapter9-dynamic}所示。保留站通常组织为一个无序的队列结构，其中每一项对应一条指令，包含多个域，存放这个指令的监听结果和后续执行所需各类信息，包括有效位、指令执行控制信息（如操作码）、源操作数的就绪状态、源操作的监听对象以及源操作数的数据。如果采用了后面将要提到的寄存器重命名技术，那么保留站通常还要存放该指令目的寄存器重命名后的信息。译码并读寄存器的指令进入保留站，保留站会每个时钟周期选择一条没有被阻塞的指令，送往执行逻辑，并退出保留站，这个动作称为``发射''。
 
 \begin{figure}
 
-{\centering \includegraphics[width=1\linewidth]{./images/chapter9/dynamic} 
+{\centering \includegraphics[width=1\linewidth]{./images/chapter9/dynamic1} 
 
 }
 
@@ -9407,21 +9434,21 @@ sub.w \$r8, \$r7, \$r6
 
 为了讨论清楚保留站如何处理数据相关所引起的阻塞，先回顾一下\ref{sec-hazard}节关于RAW、WAR、WAW三种数据相关的介绍，在那里我们曾提到在5级简单流水线上WAR和WAW两种数据相关不会产生冲突，但是在动态调度的情况下就可能会产生。下面来看两个例子。例如下面的指令序列：
 
-div.w \$r3, \$r2, \$r1
-
-add.w \$r5, \$r4, \$r3
-
-sub.w \$r4, \$r7, \$r6
+\begin{verbatim}
+div.w $r3, $r2, $r1
+add.w $r5, $r4, $r3
+sub.w $r4, $r7, $r6
+\end{verbatim}
 
 add.w指令和sub.w指令之间存在WAR相关，在乱序调度的情况下，sub.w指令自身的源操作数不依赖于div.w和add.w指令，可以读取操作数执行得到正确的结果。那么这个结果能否在执行结束后就立即写入寄存器呢？回答是否定的。假设sub.w执行完毕的时候，add.w指令因为等待div.w指令的结果还没有开始执行，那么sub.w指令如果在这个时候就修改了\$r4寄存器的值，那么等到add.w开始执行时，就会产生错误的结果。
 
 WAW相关的例子与上面WAR相关的例子很相似，如下面的指令序列：
 
-div.w \$r3, \$r2, \$r1
-
-add.w \$r5, \$r4, \$r3
-
-sub.w \$r5, \$r7, \$r6
+\begin{verbatim}
+div.w $r3, $r2, $r1
+add.w $r5, $r4, $r3
+sub.w $r5, $r7, $r6
+\end{verbatim}
 
 add.w指令和sub.w指令之间存在WAW相关，在乱序调度的情况下，sub.w指令可以先于add.w指令执行，如果sub.w执行完毕的时候，add.w指令因为等待div.w指令的结果还没有开始执行，那么sub.w指令若是在这个时候就修改了\$r5寄存器的值，那就会被add.w指令执行完写回的结果覆盖掉。从程序的角度看，sub.w后面的指令读取\$r5寄存器会得到错误的结果。
 
@@ -9429,23 +9456,21 @@ add.w指令和sub.w指令之间存在WAW相关，在乱序调度的情况下，s
 
 事实上，WAR和WAW同RAW是有本质区别的，它们并不是由程序中真正的数据依赖关系所引起的相关关系，而仅仅是由于恰好使用具有同一个名字的寄存器所引起的名字相关。打个比方来说，32项的寄存器文件就好比一个有32个储物格的储物柜，每条指令把自己的结果数据放到一个储物格中，然后后面的指令依照储物格的号（寄存器名字）从相应的格子中取出数据，储物柜只是一个中转站，问题的核心是要把数据从生产者传递到指定的消费者，至于说这个数据通过哪个格子做中转并不是绝对的。WAR和WAW相关产生冲突意味着两对``生产者-消费者''之间恰好准备用同一个格子做中转，而且双方在``存放-取出''这个动作的操作时间上产生了重叠，所以就引发了混乱。如果双方谁都不愿意等（记分板的策略）怎么办？再找一个不受干扰的空闲格子，后来的一方换用这个新格子做中转，就不用等待了。这就是寄存器重命名技术。通过寄存器重命名技术，可以消除WAR和WAW相关。例如，存在WAR和WAW相关指令序列：
 
-div.w \$r3, \$r2, \$r1
-
-add.w \$r5, \$r4, \$r3
-
-sub.w \$r3, \$r7, \$r6
-
-mul.w \$r9, \$r8, \$r3
+\begin{verbatim}
+div.w   $r3, $r2, $r1
+add.w   $r5, $r4, $r3
+sub.w   $r3, $r7, $r6
+mul.w   $r9, $r8, $r3
+\end{verbatim}
 
 可以通过寄存器重命名变为：
 
-div.w \$r3,\$r2,\$r1
-
-add.w \$r5,\$r4,\$r3
-
-sub.w \$r3,\$r7,\$r6
-
-mul.w \$r9,\$r8,\$r3
+\begin{verbatim}
+div.w   $r3,$r2,$r1
+add.w   $r5,$r4,$r3
+sub.w   $r3,$r7,$r6
+mul.w   $r9,$r8,$r3
+\end{verbatim}
 
 重命名之后就没有WAR和WAW相关了。
 
@@ -9495,13 +9520,30 @@ mul.w \$r9,\$r8,\$r3
 \caption{转移指令之间的相关性}\label{fig:chapter9-brachRelation}
 \end{figure}
 
-下面具体介绍一种最基本的转移预测结构，即根据单条转移指令的转移历史来进行转移预测。这种转移预测主要依据转移指令重复性的规律，对于重复性特征明显的转移指令（如循环）可以取得很好的预测效果。例如，对于循环语句for (i=0; i\textless10; i++) \{\ldots\}，可以假设其对应的汇编代码中是由一条回跳的条件转移指令来控制循环的执行。该转移指令前9次跳转，第10次不跳转，如果我们用1表示跳转，0表示不跳转，那么这个转移指令的转移模式就记为（1111111110）。这个转移模式的特点是，如果上一次是跳转，那么这一次也是跳转的概率比较大。这个特点启发我们将该转移指令的执行历史记录下来用于猜测该转移指令是否跳转。这种用于记录转移指令执行历史信息的表称为转移历史表（Branch History Table, 简称BHT）。最简单的BHT利用PC的低位进行索引，每项只有1位，记录索引到该项的转移指令上一次执行时的跳转情况，1表示跳转，0表示不跳转。由于存储的信息表征了转移的模式，所以这种BHT又被称为转移模式历史表（Pattern History Table, 简称PHT）。利用这种1位PHT进行预测时，首先根据转移指令的PC低位去索引PHT，如果表项值为1，则预测跳转，否则预测不跳转；其次要根据该转移指令实际的跳转情况来更新对应PHT的表项中的值。仍以前面的for循环为例，假设PHT的表项初始值都为0，那么转移指令第1次执行时，读出的表项为0所以预测不跳转，但这是一次错误的预测，第1次执行结束时会根据实际是跳转的结果将对应的表项值更新为1；转移指令第2次执行时，从表项中读出1所以预测跳转，这是一次正确的预测，第2次执行结束时会根据实际是跳转的结果将对应的表项值更新为1；\ldots\ldots；转移指令第10次执行时，从表项中读出1所以预测跳转，这是一次错误的预测，第10次执行结束时会根据实际是不跳转的结果将对应的表项值更新为0。可以看到进入和退出循环都要猜错一次。这种PHT在应对不会多次执行的单层循环时，或者循环次数特别多的循环时还比较有效。但是对于如下的两重循环：
+流水线中最早可以在取指阶段进行转移预测, 此时只有 PC{[}\^{}其实还可以补充采用转移历史信息进行预测, 不过此处囿于篇幅暂不展开。{]} 信息可以用来进行预测, 且预测出的信息需要同时包括转移的方向和目标地址。 这里介绍此类预测器中一种最基本的结构---------分支目标缓冲 (Branch Target Buffer, 简称 BTB) 。 BTB 逻辑上通常组织为一个基于内容寻址的查找表, 其结构如图 \ref{fig:chapter9-BTB}所示。 每个表项包含 PC、 跳转目标 (Target) 和饱和计数器 (Counter) 三个部分。 BTB 的预测过程是: 用取指 PC 与表中各项的 PC 进行比较, 如果某项置相等且该项的饱和计数器值指示预测跳转, 则取出该项所存的跳转目标并跳转过去。
 
-for (i=0; i\textless10; i++) for (j=0; j\textless10; j++) \{\ldots\}
+\begin{figure}
 
-使用上述1位PHT，则内外循环每次执行都会猜错2次，这样总的转移预测正确率仅有80\%。
+{\centering \includegraphics[width=1\linewidth]{./images/chapter9/BTB} 
 
-为了提高上述情况下的转移预测正确率，可以采用每项2位的PHT。这种PHT中每一项都是一个2位饱和计数器，相应的转移指令每次执行跳转就加1（加到3为止），不跳转就减1（减到0为止）。预测时，如果相应的PHT表项的高位为1（计数器的值为2或3）就预测跳转，高位为0（计数器的值为0或1）就预测不跳转。也就是说，只有连续两次猜错，才会改变预测的方向。使用上述2位PHT后，前面两重循环的例子中，内层循环的预测正确率从80\%提高到(7+81)/100=88\%。图\ref{fig:chapter9-PHT}给出了2位PHT转移预测机制的示意。
+}
+
+\caption{BTB结构示意图}\label{fig:chapter9-BTB}
+\end{figure}
+
+对于那些采用 PC 相对跳转的指令, 其在译码阶段就可以根据 PC 和指令码明确计算得到, 因此只需要对转移方向 ( 即是否跳转) 进行预测。 下面介绍此类预测器中一种最基本的结构, 即根据单条转移指令的转移历史来预测转移指令的跳转方向。 这种转移预测主要依据转移指令重复性的规律, 对于重复性特征明显的转移指令 ( 如循环) 可以取得很好的预测效果。 例如, 对于循环语句 for( i = 0; i\textless10; i ++ ) \{ \ldots\} , 可以假设其对应的汇编代码中是由一条回跳的条件转移指令来控制循环的执行。 该转移指令前 9 次跳转, 第 10 次不跳转, 如果我们用 1 表示跳转, 0 表示不跳转, 那么这个转移指令的转移模式就记为 ( 1111111110) 。 这个转移模式的特点是, 如果上一次是跳转, 那么这一次也是跳转的概率比较大。 这个特点启发我们将该转移指令的执行历史记录下来用于猜测该转移指令是否跳转。 这种用于记录转移指令执行历史信息的表称为转移历史表 ( Branch History Table, 简称 BHT) 。 最简单的 BHT 利用 PC 的低位进行索引, 每项只有 1 位, 记录索引到该项的转移指令上一次执行时的跳转情况, 1 表示跳转, 0 表示不跳转。 由于存储的信息表征了转移的模式, 所以这种 BHT又被称为转移模式历史表(Pattern History Table, 简称 PHT) 。 利用这种 1 位 PHT 进行预测时, 首先根据转移指令的 PC 低位去索引 PHT, 如果表项值为 1, 则预测跳转, 否则预测不跳转; 其次要根据该转移指令实际的跳转情况来更新对应 PHT 的表项中的值。 仍以前面的 for 循环为例, 假设 PHT 的表项初始值都为 0, 那么转移指令第 1 次执行时, 读出的表项为 0 所以预测不跳转, 但这是一次错误的 预测, 第 1 次执行结束时会根据实际是跳转的结果将对应的表项值更新为 1; 转移指令第 2 次执行时, 从表项中读出 1 所以预测跳转, 这是一次正确的预测, 第 2 次执行结束时会根据实际是跳转的结果将对应的表项值更新为 1; \ldots; 转移指令第 10 次执行时, 从表项中读出 1 所以预测跳转, 这是一次错误的预测, 第 10 次执行结束时会根据实际是不跳转的结果将对应的表项值更新为 0。 可以看到进入和退出循环都要猜错一次。 这种 PHT 在应对不会多次执行的单层循环时, 或者循环次数特别多的循环时还比较有效。 但是对于如下的两重循环:
+
+\begin{verbatim}
+for(i =0;i<10;i++)
+  for(j =0;j<10;j++)
+    {
+      ...
+    }
+\end{verbatim}
+
+使用上述 1 位 PHT, 则内外循环每次执行都会猜错 2 次, 这样总的转移预测正确率仅有 80\%。
+
+为了提高上述情况下的转移预测正确率, 可以采用每项 2 位的 PHT。 这种 PHT 中每一项都是一个 2 位饱和计数器, 相应的转移指令每次执行跳转就加 1 ( 加到 3 为止) , 不跳转就减 1 ( 减到 0 为止) 。 预测时, 如果相应的 PHT 表项的高位为 1 ( 计数器的值为 2 或 3) 就预测跳转, 高位为 0 ( 计数器的值为 0 或 1) 就预测不跳转。 也就是说, 只有连续两次猜错, 才会改变预测的方向。 使用上述 2 位 PHT 后, 前面两重循环的例子中, 内层循环的预测正确率从 80\%提高到 (7 + 81) / 100 = 88\%。 图\ref{fig:chapter9-PHT}给出了 2 位 PHT 转移预测机制的示意。
 
 \begin{figure}
 
@@ -9536,11 +9578,16 @@ Cache为了追求访问速度，容量通常较小，其中存放的内容只是
 
 设计Cache结构主要考虑3方面问题：
 
-1）Cache块索引的方式。Cache的容量远小于内存，会涉及多个内存单元映射到同一个Cache单元的情况，具体怎么映射需要考虑。通常分为3种索引方式：直接相连、全相连和组相连。
-
-2）Cache与下一层存储的数据关系，即写策略，分为写穿透和写回两种。存数指令需要修改下一层存储的值，如果将修改后的值暂时放在Cache中，当Cache替换回下一层存储时再写回，则称为写回Cache；如果每条存数指令都要立即更新下一层存储的值，则称为写穿透Cache。
-
-3）Cache的替换策略，分为随机替换、LRU替换和FIFO替换。当发生Cache失效而需要取回想要的Cache行，此时如果Cache满了，则需要进行替换。进行Cache替换时，如果有多个Cache行可供替换，可以选择随机进行替换，也可以替换掉最先进入Cache的Cache行（FIFO替换），或者替换掉最近最少使用的Cache行（LRU替换）。
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  Cache块索引的方式。Cache的容量远小于内存，会涉及多个内存单元映射到同一个Cache单元的情况，具体怎么映射需要考虑。通常分为3种索引方式：直接相连、全相连和组相连。
+\item
+  Cache与下一层存储的数据关系，即写策略，分为写穿透和写回两种。存数指令需要修改下一层存储的值，如果将修改后的值暂时放在Cache中，当Cache替换回下一层存储时再写回，则称为写回Cache；如果每条存数指令都要立即更新下一层存储的值，则称为写穿透Cache。
+\item
+  Cache的替换策略，分为随机替换、LRU替换和FIFO替换。当发生Cache失效而需要取回想要的Cache行，此时如果Cache满了，则需要进行替换。进行Cache替换时，如果有多个Cache行可供替换，可以选择随机进行替换，也可以替换掉最先进入Cache的Cache行（FIFO替换），或者替换掉最近最少使用的Cache行（LRU替换）。
+\end{enumerate}
 
 直接相联、全相联和组相联中内存和Cache的映射关系原理如图\ref{fig:chapter9-cacheMap}所示。将内存和Cache都分为大小一样的块，假设内存有32项，Cache有8项。在直接相联方式中，每个内存块只能放到Cache的一个位置上，假设要把内存的第12号块放到Cache中，因为Cache只有8项，所以只能放在第(12 mod 8=4)项上，其他地方都不能放；由此可知第4、12、20、28号内存块都对应到Cache的第4项上，如果冲突了就只能替换。这就是直接相联，硬件简单但效率低，如图\ref{fig:chapter9-cacheMap}(a)所示。在全相联方式中，每个内存块都可以放到Cache的任一位置上，这样第4、12、20、28号内存块可以同时放入Cache中。这就是全相联，硬件复杂但效率高，如图\ref{fig:chapter9-cacheMap}(b)所示。组相联是直接相联和全相联的折中。以两路组相联为例，Cache中第0、2、4、6号位置为一路（这里称为第0路），第1、3、5、7为另一路（这里称为第1路），每路4个Cache块。对于内存的第12号块，因为12除以4余数为0，所以既可以把第12号块放到Cache第0路的第0号位置（即Cache的第0号位置），也可以放到第1路的第0号位置（即Cache的第1号位置），如图\ref{fig:chapter9-cacheMap}(c)所示。
 
@@ -9589,7 +9636,6 @@ Cache为了追求访问速度，容量通常较小，其中存放的内容只是
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
-\tightlist
 \item
   请给出下列程序在多周期处理器（如图\ref{fig:chapter9-multicycle}所示）上执行所需要的时钟周期数，并给出前三次循环执行的时空图。
 \item
@@ -9603,18 +9649,21 @@ Cache为了追求访问速度，容量通常较小，其中存放的内容只是
 \item
   请问数据相关分为哪几种？静态流水线处理器是如何解决这几种相关的？采用寄存器重命名的动态流水线处理器是如何解决这几种相关的？
 \item
-  假设在包含前递机制的单发射5级静态流水线处理器（如图@ref(fig:chapter9-instHazardPipeline所示）的译码级添加了一个永远预测跳转的静态分支预测器，那么题1中的程序在这个处理器上执行需要花费多少时钟周期？
+  假设在包含前递机制的单发射5级静态流水线处理器（如图\ref{fig:chapter9-instHazardPipeline}所示的译码级添加了一个永远预测跳转的静态分支预测器，那么题1中的程序在这个处理器上执行需要花费多少时钟周期？
 \item
-  对于程序段for(i=0; i\textless10; i++)
-  for(j=0; i\textless10; j++)
-  for(k=0; k\textless10; k++)
-  \{\ldots\}
-  计算分别使用一位BHT表和使用两位BHT表进行转移猜测时三重循环的转移猜测准确率，假设BHT表的初始值均为0。
-\item
-  在一个32位处理器中实现一个Cache块大小为64字节、总容量为32KB的数据Cache，该数据Cache仅使用32位物理地址访问。请问，当分别采用直接映射、两路组相联和四路组相联的组织结构时，Cache访问地址中Tag、Index和Offset三部分各自如何划分？
-\item
-  假设程序动态执行过程中load、store指令占40\%。现在有两种数据Cache的设计方案，其中第一种方案的Cache容量小于第二种方案，因此采用第一种方案的Cache命中率为85\%，第二种方案的Cache命中率为95\%，但是采用第二种方案时处理器的主频会比第一种低10\%。请问哪种设计方案性能更优？（假设Cache不命中情况下会阻塞流水线100个时钟周期。）
+  对于程序段
+
+\begin{verbatim}
+for(i=0; i<10; i++)
+  for(j=0; j<10; j++)
+    for(k=0; k<10; k++)
+      {…}
+\end{verbatim}
 \end{enumerate}
+
+计算分别使用一位BHT表和使用两位BHT表进行转移猜测时三重循环的转移猜测准确率，假设BHT表的初始值均为0。
+9. 在一个32位处理器中实现一个Cache块大小为64字节、总容量为32KB的数据Cache，该数据Cache仅使用32位物理地址访问。请问，当分别采用直接映射、两路组相联和四路组相联的组织结构时，Cache访问地址中Tag、Index和Offset三部分各自如何划分？
+10. 假设程序动态执行过程中load、store指令占40\%。现在有两种数据Cache的设计方案，其中第一种方案的Cache容量小于第二种方案，因此采用第一种方案的Cache命中率为85\%，第二种方案的Cache命中率为95\%，但是采用第二种方案时处理器的主频会比第一种低10\%。请问哪种设计方案性能更优？（假设Cache不命中情况下会阻塞流水线100个时钟周期。）
 
 \newpage
 
@@ -11041,20 +11090,20 @@ Intel TSX（Transactional Synchronization Extensions）是Intel公司针对事�
 \hypertarget{ux9f99ux82af3a5000ux5904ux7406ux5668}{%
 \subsection{龙芯3A5000处理器}\label{ux9f99ux82af3a5000ux5904ux7406ux5668}}
 
-龙芯3A5000于2020年研制成功，是龙芯中科技术股份有限公司研发的首款支持龙芯自主指令集（LoongArch）的通用多核处理器，主要面向桌面计算机和服务器应用。龙芯3A5000片内集成4个64位GS464V高性能处理器核、16MB的分体共享三级Cache、2个DDR4内存控制器（支持DDR4-3200）、2个16位HT（HyperTransport）控制器、2个I2C、1个UART、1个SPI、16路GPIO接口等。龙芯3A5000中多个GS464V核及共享三级Cache模块，通过AXI互连网络形成一个分布式共享片上末级Cache的多核结构。采用基于目录的Cache一致性协议来维护Cache一致性。另外，龙芯3A5000还支持多片扩展，将多个芯片的HT总线直接互连就形成更大规模的共享存储系统（最多可支持16片互连）。
+龙芯3A5000于2020年研制成功，是龙芯中科技术股份有限公司研发的首款支持龙芯自主指令集（LoongArch）的通用多核处理器，主要面向桌面计算机和服务器应用。龙芯3A5000片内集成4个64位LA464高性能处理器核、16MB的分体共享三级Cache、2个DDR4内存控制器（支持DDR4-3200）、2个16位HT（HyperTransport）控制器、2个I2C、1个UART、1个SPI、16路GPIO接口等。龙芯3A5000中多个LA464核及共享三级Cache模块，通过AXI互连网络形成一个分布式共享片上末级Cache的多核结构。采用基于目录的Cache一致性协议来维护Cache一致性。另外，龙芯3A5000还支持多片扩展，将多个芯片的HT总线直接互连就形成更大规模的共享存储系统（最多可支持16片互连）。
 
-GS464V是支持Loongarch指令集的四发射64位高性能处理器核，具有256位向量部件。GS464V的结构如图\ref{fig:gs464v-uarch}所示，主要特点如下：四发射超标量结构，具有四个定点、两个向量、两个访存部件；支持寄存器重命名、动态调度、转移预测等乱序执行技术；每个向量部件宽度为256位，可支持8个双32位浮点乘加运算或4个64位浮点运算；一级指令Cache和数据Cache大小各为64KB，4路组相联；牺牲者Cache（Victim Cache）作为私有二级Cache，大小为256KB，16路组相连；支持非阻塞（Non-blocking）访问及装入猜测（Load Speculation）等访存优化技术；支持标准的JTAG调试接口，方便软硬件调试。
+LA464是支持Loongarch指令集的四发射64位高性能处理器核，具有256位向量部件。LA464的结构如图\ref{fig:la464-uarch}所示，主要特点如下：四发射超标量结构，具有四个定点、两个向量、两个访存部件；支持寄存器重命名、动态调度、转移预测等乱序执行技术；每个向量部件宽度为256位，可支持8个双32位浮点乘加运算或4个64位浮点运算；一级指令Cache和数据Cache大小各为64KB，4路组相联；牺牲者Cache（Victim Cache）作为私有二级Cache，大小为256KB，16路组相连；支持非阻塞（Non-blocking）访问及装入猜测（Load Speculation）等访存优化技术；支持标准的JTAG调试接口，方便软硬件调试。
 
 \begin{figure}
 
-{\centering \includegraphics[width=1\linewidth]{./images/chapter11/gs464v_uarch} 
+{\centering \includegraphics[width=1\linewidth]{./images/chapter11/la464_uarch} 
 
 }
 
-\caption{GS464V处理器核结构}\label{fig:gs464v-uarch}
+\caption{LA464处理器核结构}\label{fig:la464-uarch}
 \end{figure}
 
-龙芯3A5000芯片整体架构基于多级互连实现，结构如图\ref{fig:ls3a5000-arch}所示（图\ref{fig:ls3a5000-layout}为芯片版图）。第一级互连采用5x5的交叉开关，用于连接四个GS464V核（作为主设备）、四个共享Cache模块（作为从设备）、以及一个IO端口连接IO-RING。IO端口使用一个Master和一个Slave。第二级互连采用5x3的交叉开关，连接4个共享Cache模块（作为主设备），两个DDR3/4内存控制器、以及一个IO端口连接IO-RING。IO-RING连接包括4个HT控制器，MISC模块，SE模块与两级交叉开关。两个HT控制器（lo/hi）共用16位HT总线，作为两个8位的HT总线使用，也可以由lo独占16位HT总线。HT控制器内集成一个DMA控制器，DMA控制器负责IO的DMA控制并负责片间一致性的维护。上述互连结构都采用读写分离的数据通道，数据通道宽度为128bit，与处理器核同频，用以提供高速的片上数据传输。此外，一级交叉开关连接4个处理器核与Scache的读数据通道为256位，以提高片内处理器核访问Scache的读带宽。
+龙芯3A5000芯片整体架构基于多级互连实现，结构如图\ref{fig:ls3a5000-arch}所示（图\ref{fig:ls3a5000-layout}为芯片版图）。第一级互连采用5x5的交叉开关，用于连接四个LA464核（作为主设备）、四个共享Cache模块（作为从设备）、以及一个IO端口连接IO-RING。IO端口使用一个Master和一个Slave。第二级互连采用5x3的交叉开关，连接4个共享Cache模块（作为主设备），两个DDR3/4内存控制器、以及一个IO端口连接IO-RING。IO-RING连接包括4个HT控制器，MISC模块，SE模块与两级交叉开关。两个HT控制器（lo/hi）共用16位HT总线，作为两个8位的HT总线使用，也可以由lo独占16位HT总线。HT控制器内集成一个DMA控制器，DMA控制器负责IO的DMA控制并负责片间一致性的维护。上述互连结构都采用读写分离的数据通道，数据通道宽度为128bit，与处理器核同频，用以提供高速的片上数据传输。此外，一级交叉开关连接4个处理器核与Scache的读数据通道为256位，以提高片内处理器核访问Scache的读带宽。
 
 龙芯3A5000主频可达2.5GHz,峰值浮点运算能力达到160GFLOPS。
 
@@ -13988,7 +14037,7 @@ Perf是一款优秀的性能分析工具，能够实现对单个进程或者整�
 
 
 
-\multicolumn{1}{!{\color[HTML]{666666}\vrule width 1pt}>{\raggedright}p{\dimexpr 0.45in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Noto Sans CJK SC}{微结构型号}}}} & \multicolumn{1}{!{\color[HTML]{666666}\vrule width 1pt}>{\raggedright}p{\dimexpr 2.19in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Noto Sans CJK SC}{GS464V}}}} & \multicolumn{1}{!{\color[HTML]{666666}\vrule width 1pt}>{\raggedright}p{\dimexpr 1.77in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Noto Sans CJK SC}{Zen1}}}} & \multicolumn{1}{!{\color[HTML]{666666}\vrule width 1pt}>{\raggedright}p{\dimexpr 1.59in+0\tabcolsep+0\arrayrulewidth}!{\color[HTML]{666666}\vrule width 1pt}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Noto Sans CJK SC}{SkyLake}}}} \\
+\multicolumn{1}{!{\color[HTML]{666666}\vrule width 1pt}>{\raggedright}p{\dimexpr 0.45in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Noto Sans CJK SC}{微结构型号}}}} & \multicolumn{1}{!{\color[HTML]{666666}\vrule width 1pt}>{\raggedright}p{\dimexpr 2.19in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Noto Sans CJK SC}{LA464}}}} & \multicolumn{1}{!{\color[HTML]{666666}\vrule width 1pt}>{\raggedright}p{\dimexpr 1.77in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Noto Sans CJK SC}{Zen1}}}} & \multicolumn{1}{!{\color[HTML]{666666}\vrule width 1pt}>{\raggedright}p{\dimexpr 1.59in+0\tabcolsep+0\arrayrulewidth}!{\color[HTML]{666666}\vrule width 1pt}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Noto Sans CJK SC}{SkyLake}}}} \\
 
 \hhline{>{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=1pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=1pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=1pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=1pt}-}
 

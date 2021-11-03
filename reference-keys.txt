@@ -178,10 +178,12 @@ fig:chapter9-forwarding
 fig:chapter9-instHazardPipeline
 fig:chapter9-ctrlHazard
 fig:chapter9-ctrlHazardFlow
+fig:chapter9-ctrlHazardFlow1
 fig:chapter9-ctrlHazardStruct
 fig:chapter9-dualIssue
 fig:chapter9-dynamic
 fig:chapter9-brachRelation
+fig:chapter9-BTB
 fig:chapter9-PHT
 fig:chapter9-cache
 fig:chapter9-cacheMap
@@ -210,7 +212,7 @@ fig:different-results
 fig:ll-sc-atomic
 fig:test-and-set
 fig:centralized-barrier
-fig:gs464v-uarch
+fig:la464-uarch
 fig:ls3a5000-arch
 fig:ls3a5000-layout
 fig:sandybridge-arch
