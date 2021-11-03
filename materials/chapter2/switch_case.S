@@ -4,7 +4,7 @@ st:
 	beqz	$t1, default	//if (a-10)>=8 
 							//goto default
 	la		$t2, jr_table
-	alsl.d	$t1, $t1, $t2, 3
+	alsl.d	$t1, $t0, $t2, 3
 							//(a-10)*8+jr_table
 	ld.d	$t0, $t1, 0
 	jr		$t0
