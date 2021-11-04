@@ -208,7 +208,7 @@ knitr::include_graphics("materials/chapter4/simple.S.png")
 knitr::include_graphics("materials/chapter4/simple_nofp.S.png")
 ```
 
-大部分函数可以只用\$sp来管理栈帧。如果在编译时能够确定函数的栈帧大小，编译器可以在函数头分配所需的栈空间（通过调整\$sp）,这样在函数栈帧里的内容都有一个编译时确定的相对于$sp的偏移，也就不需要帧指针\$fp了。例如图\@ref(fig:normal-c)中的normal函数，用gcc -O2 -S编译的结果如图\@ref(fig:normal-as)所示。normal函数调用了一个有9个整数参数的外部函数，这样它必须有栈帧来为调用的子函数准备参数。可以看到，编译器生成了一个32字节的栈帧，把最后一个浮点参数9保存到偏移0，把返回地址\$ra保存到偏移24。
+大部分函数可以只用\$sp来管理栈帧。如果在编译时能够确定函数的栈帧大小，编译器可以在函数头分配所需的栈空间（通过调整\$sp）,这样在函数栈帧里的内容都有一个编译时确定的相对于$sp的偏移，也就不需要帧指针\$fp了。例如图\@ref(fig:normal-c)中的normal函数，用gcc -O2 -S编译的结果如图\@ref(fig:normal-as)所示。normal函数调用了一个有9个整数参数的外部函数，这样它必须有栈帧来为调用的子函数准备参数。可以看到，编译器生成了一个32字节的栈帧，把最后一个参数9保存到偏移0，把返回地址\$ra保存到偏移24。
 
 ```{r normal-c, echo=FALSE, fig.align='center', fig.cap="normal函数代码", out.width='100%'}
 knitr::include_graphics("materials/chapter4/normal.c.png")
