@@ -341,7 +341,6 @@ LWL和LWR指令设计巧妙，兼顾了使用的便利性和硬件实现的简�
 
 4）PowerPC部分指令特色。在RISC结构中，PowerPC的寻址方式、指令格式和转移指令都是最多的，甚至支持十进制运算，因此又被称为“RISC中的CISC”。表\@ref(tab:ppc-vs-alpha)给出了分别用PowerPC指令和Alpha指令实现的简单程序示例。实现同样的循环程序，PowerPC只需要6条指令，Alpha则需要10条指令，原因就在于PowerPC的指令功能较强。例如其中的LFU（load with update）和STFU（store with update）指令，除了访存外还能自动修改基址寄存器的值；FMADD可以在一条指令中完成乘法和加法；转移指令BC可同时完成计数值减1和条件转移。
 
-
 ```{r ppc-vs-alpha, echo = FALSE, message=FALSE, tab.cap='PowerPC和Alpha汇编对比', tab.id='ppc-vs-alpha'}
 
 dt <- data.frame('PowerPC代码' = c(read_file('./materials/chapter2/ppc_note.txt'),read_file('./materials/chapter2/ppc.S')),
@@ -356,6 +355,8 @@ valign(i = NULL, j = NULL, valign = "top", part = "body") %>%
 theme_box()
 
 ```
+
+5）LoongArch部分指令特色。LoongArch指令集的一个特色是其二进制翻译扩展^[二进制翻译是一种跨指令软件兼容的技术，它把二进制软件代码从一种指令集翻译到另一种指令集以实现跨平台运行。新指令集发展过程中经常会利用这个技术来运行现有的软件，为新生态的建设实现平稳过渡。]。LoongArch的二进制翻译扩展提供了百余条指令和一些系统资源来支持软件实现高效的二进制翻译。例如，把X86指令翻译为RISC类的指令集有个影响翻译效率的因素：eflags标志位处理。因为X86指令集中，一个运算指令除了产生运算结果，还会同时产生是否进位、是否溢出等多>个标志位。完全模拟这样的一条指令的语义一般需要30条以上常规RISC指令。LoongArch提供了一系列专门指令用于产生和使用相应的标志位，在保持RISC指令风格的同时消除了这个瓶颈。目前业界最先进的二进制翻译系统可以实现80%左右的翻译运行效率，LoongArch致力于通过深度的软硬件协同进一步提升效率，实现多个主流指令集到龙芯指令集几乎无损的翻译，最终达到“消灭指令集”或者说软件定义指令集的目的。
 
 ## C语言的机器表示
 
