@@ -777,6 +777,21 @@ int main(int argc, char **argv)
                 C[i*n+j]=0;
                 for(k=0;k<n;k++)
                     C[i*n+j]+=A[i*n+k]*B[k*n+j];
+            }
+    } else {
+        //其他进程接收数据，计算结果，发送给主进程
+        MPI_Recv(B,n*n,MPI_DOUBLE,0,0,MPI_COMM_WORLD,&status);
+        MPI_Recv(A+(ID-1)*line*n,line*n,MPI_DOUBLE,0,1,MPI_COMM_WORLD,&status);
+        for(i=(ID-1)*line;i<ID*line;i++)
+            for(j=0;j<n;j++) {
+                C[i*n+j]=0;
+                for(k=0;k<n;k++)
+                    C[i*n+j]+=A[i*n+k]*B[k*n+j];
+            }
+        MPI_SEND(C+(num_procs-1)*line*n,line*n,MPI_DOUBLE,0,2,MPI_COMM_WORLD);
+    }
+    MPI_Finalize();
+    return 0;
 }
 ```
 
