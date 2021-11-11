@@ -24,7 +24,7 @@
 <meta name="author" content="胡伟武 汪文祥 苏孟豪 张福新 王焕东 章隆兵 肖俊华 刘 苏 陈新科 吴瑞阳 李晓钰 高燕萍" />
 
 
-<meta name="date" content="2021-11-06" />
+<meta name="date" content="2021-11-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -506,7 +506,7 @@ div.csl-indent {
 <div id="数据级并行性" class="section level3" number="10.1.2">
 <h3><span class="header-section-number">10.1.2</span> 数据级并行性</h3>
 <p>数据级并行性（Data Level Parallelism，简称DLP）是指对集合或者数组中的元素同时执行相同的操作。这种并行性通常来源于程序中的循环语句。下列代码块所示的代码就是一个数据并行的例子。对于数组local中的元素local[i],执行相同的操作(i+0.5)*w。可以采用将不同的数据分布到不同的处理单元的方式来实现数据级并行。</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb30-1"><a href="并行编程基础.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i = <span class="dv">0</span>;i&lt;N;i++){</span>
+<div class="sourceCode" id="cb30"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb30-1"><a href="并行编程基础.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i=<span class="dv">0</span>;i&lt;N;i++) {</span>
 <span id="cb30-2"><a href="并行编程基础.html#cb30-2" aria-hidden="true" tabindex="-1"></a>    local[i] = (i+<span class="fl">0.5</span>)*w;</span>
 <span id="cb30-3"><a href="并行编程基础.html#cb30-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>数据级并行性是比较易于处理的，可以在计算机体系结构的多个层次来利用数据级并行性。例如：可以在处理器中设计向量功能部件，采用SIMD设计方法，如一个256位向量部件一次可以执行4个64位的操作；设计专门的向量处理器，如CRAY公司的CRAY-1、CRAY-2、X-MP、Y-MP等；在多处理器中，可以采用SPMD（Single Program Multi-Data）的编程方式，将数据分布到不同的处理器上执行同一个程序控制流。数据级并行性常见于科学和工程计算领域中，例如大规模线性方程组的求解等。正是由于这个原因，向量处理器在科学计算领域还是比较成功的。</p>
@@ -558,7 +558,7 @@ div.csl-indent {
 </p>
 </div>
 <p>在消息传递编程模型中，程序员需要对计算任务和数据进行划分，并安排并行程序执行过程中进程间的所有通信。在共享存储编程模型中，由于程序的多进程（或者线程）之间存在一个统一编址的共享存储空间，程序员只需进行计算任务划分，不必进行数据划分，也不用确切地知道并行程序执行过程中进程间的通信。MPP（Massive Parallel Processing）系统和机群系统往往是消息传递系统。消息传递系统的可伸缩性通常比共享存储系统要好，可支持更多处理器。</p>
-<p>从进程（或者线程）间通信的角度看，消息传递并行10.6程序比共享存储并行程序复杂一些，体现在时间管理和空间管理两方面。在空间管理方面，发送数据的进程需要关心自己产生的数据被谁用到，而接收数据的进程需要关心它用到了谁产生的数据；在时间管理方面，发送数据的进程通常需要在数据被接收后才能继续，而接收数据的进程通常需要等到接收数据后才能继续。在共享存储并行程序中，各进程间的通信通过访问共享存储器完成，程序员只需考虑进程间同步，不用考虑进程间通信。尤其是比较复杂的数据结构的通信，如struct{int<em>pa；int</em> pb；int*pc;}，消息传递并行程序比共享存储并行程序复杂得多。此外，对于一些在编程时难以确切知道进程间通信的程序，用消息传递的方法很难进行并行化，如{for (i,j){ x=…; y=…; a[i][j]=b[x][y];}}。这段代码中，通信特征在程序运行时才能确定，编写代码时难以确定，改写成消息传递程序就比较困难。</p>
+<p>从进程（或者线程）间通信的角度看，消息传递并行10.6程序比共享存储并行程序复杂一些，体现在时间管理和空间管理两方面。在空间管理方面，发送数据的进程需要关心自己产生的数据被谁用到，而接收数据的进程需要关心它用到了谁产生的数据；在时间管理方面，发送数据的进程通常需要在数据被接收后才能继续，而接收数据的进程通常需要等到接收数据后才能继续。在共享存储并行程序中，各进程间的通信通过访问共享存储器完成，程序员只需考虑进程间同步，不用考虑进程间通信。尤其是比较复杂的数据结构的通信，如struct{int<em>pa;int</em> pb;int*pc;}，消息传递并行程序比共享存储并行程序复杂得多。此外，对于一些在编程时难以确切知道进程间通信的程序，用消息传递的方法很难进行并行化，如{for (i,j){ x=…; y=…; a[i][j]=b[x][y];}}。这段代码中，通信特征在程序运行时才能确定，编写代码时难以确定，改写成消息传递程序就比较困难。</p>
 <p>从数据划分的角度看，消息传递并行程序必须考虑诸如数组名称以及下标变换等因素，在将一个串行程序改写成并行程序的过程中，需要修改大量的程序代码。而在共享存储编程模型中进行串行程序的并行化改写时，不用进行数组名称以及下标变换，对代码的修改量少。虽说共享存储程序无须考虑数据划分，但是在实际应用中，为了获得更高的系统性能，有时也需要考虑数据分布，使得数据尽量分布在对其进行计算的处理器上，例如OpenMP中就有进行数据分布的扩展指导。不过，相对于消息传递程序中的数据划分考虑数据分布还是要简单得多。</p>
 <p>总的来说，共享存储编程像BBS应用，一个人向BBS上发帖子，其他人都看得见；消息传递编程则像电子邮件(E-mail)，你得想好给谁发邮件，发什么内容。</p>
 <p>下面举两个共享存储和消息传递程序的例子。第一个例子是通过积分求圆周率。积分求圆周率的公式如下：
@@ -693,7 +693,7 @@ lb  $6, 0x0($src0)
 <div class="sourceCode" id="cb35"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb35-1"><a href="并行编程基础.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
 <span id="cb35-2"><a href="并行编程基础.html#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;math.h&gt;</span></span>
 <span id="cb35-3"><a href="并行编程基础.html#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main(){</span>
-<span id="cb35-4"><a href="并行编程基础.html#cb35-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> i；</span>
+<span id="cb35-4"><a href="并行编程基础.html#cb35-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> i;</span>
 <span id="cb35-5"><a href="并行编程基础.html#cb35-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> num_steps=<span class="dv">1000000</span>;</span>
 <span id="cb35-6"><a href="并行编程基础.html#cb35-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">double</span> x,pi,step,sum=<span class="fl">0.0</span>;</span>
 <span id="cb35-7"><a href="并行编程基础.html#cb35-7" aria-hidden="true" tabindex="-1"></a>    step = <span class="fl">1.0</span>/(<span class="dt">double</span>) num_steps;</span>
@@ -702,7 +702,7 @@ lb  $6, 0x0($src0)
 <span id="cb35-10"><a href="并行编程基础.html#cb35-10" aria-hidden="true" tabindex="-1"></a>        sum = sum+<span class="fl">4.0</span>/(<span class="fl">1.0</span>+x*x);</span>
 <span id="cb35-11"><a href="并行编程基础.html#cb35-11" aria-hidden="true" tabindex="-1"></a>    }</span>
 <span id="cb35-12"><a href="并行编程基础.html#cb35-12" aria-hidden="true" tabindex="-1"></a>    pi = step*sum;</span>
-<span id="cb35-13"><a href="并行编程基础.html#cb35-13" aria-hidden="true" tabindex="-1"></a>    printf(“pi %<span class="dv">1</span><span class="er">f</span>\n”, pi);</span>
+<span id="cb35-13"><a href="并行编程基础.html#cb35-13" aria-hidden="true" tabindex="-1"></a>    printf(<span class="st">&quot;pi %1f</span><span class="sc">\n</span><span class="st">&quot;</span>, pi);</span>
 <span id="cb35-14"><a href="并行编程基础.html#cb35-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span>;</span>
 <span id="cb35-15"><a href="并行编程基础.html#cb35-15" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>为采用Pthreads的并行化代码。</p>
@@ -759,11 +759,11 @@ lb  $6, 0x0($src0)
 <span id="cb37-5"><a href="并行编程基础.html#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="pp">#define n 1000</span></span>
 <span id="cb37-6"><a href="并行编程基础.html#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> *A,*B,*C;</span>
 <span id="cb37-7"><a href="并行编程基础.html#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> *matrixMult(<span class="dt">void</span> *id) {<span class="co">//计算矩阵乘</span></span>
-<span id="cb37-8"><a href="并行编程基础.html#cb37-8" aria-hidden="true" tabindex="-1"></a>    intmy_id = (<span class="dt">int</span> ) id;</span>
-<span id="cb37-9"><a href="并行编程基础.html#cb37-9" aria-hidden="true" tabindex="-1"></a>    inti,j,k,start,end;</span>
+<span id="cb37-8"><a href="并行编程基础.html#cb37-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> my_id = (<span class="dt">int</span>)id;</span>
+<span id="cb37-9"><a href="并行编程基础.html#cb37-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> i,j,k,start,end;</span>
 <span id="cb37-10"><a href="并行编程基础.html#cb37-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">//计算进程负责的部分</span></span>
 <span id="cb37-11"><a href="并行编程基础.html#cb37-11" aria-hidden="true" tabindex="-1"></a>    start = my_id*(n/NUM_THREADS);</span>
-<span id="cb37-12"><a href="并行编程基础.html#cb37-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(my_id == NUMTHREADS-<span class="dv">1</span>)</span>
+<span id="cb37-12"><a href="并行编程基础.html#cb37-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(my_id == NUM_THREADS-<span class="dv">1</span>)</span>
 <span id="cb37-13"><a href="并行编程基础.html#cb37-13" aria-hidden="true" tabindex="-1"></a>    end = n;</span>
 <span id="cb37-14"><a href="并行编程基础.html#cb37-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
 <span id="cb37-15"><a href="并行编程基础.html#cb37-15" aria-hidden="true" tabindex="-1"></a>    end = start+(n/NUM_THREADS);</span>
@@ -772,11 +772,11 @@ lb  $6, 0x0($src0)
 <span id="cb37-18"><a href="并行编程基础.html#cb37-18" aria-hidden="true" tabindex="-1"></a>        C[i*n+j] = <span class="dv">0</span>;</span>
 <span id="cb37-19"><a href="并行编程基础.html#cb37-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span>(k=<span class="dv">0</span>;k&lt;n;k++)</span>
 <span id="cb37-20"><a href="并行编程基础.html#cb37-20" aria-hidden="true" tabindex="-1"></a>            C[i*n+j]+=A[i*n+k]*B[k*n+j];</span>
-<span id="cb37-21"><a href="并行编程基础.html#cb37-21" aria-hidden="true" tabindex="-1"></a>        }</span>
-<span id="cb37-22"><a href="并行编程基础.html#cb37-22" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb37-21"><a href="并行编程基础.html#cb37-21" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb37-22"><a href="并行编程基础.html#cb37-22" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb37-23"><a href="并行编程基础.html#cb37-23" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb37-24"><a href="并行编程基础.html#cb37-24" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main() {</span>
-<span id="cb37-25"><a href="并行编程基础.html#cb37-25" aria-hidden="true" tabindex="-1"></a>    inti,j;</span>
+<span id="cb37-25"><a href="并行编程基础.html#cb37-25" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> i,j;</span>
 <span id="cb37-26"><a href="并行编程基础.html#cb37-26" aria-hidden="true" tabindex="-1"></a>    pthread_t tids[NUM_THREADS];</span>
 <span id="cb37-27"><a href="并行编程基础.html#cb37-27" aria-hidden="true" tabindex="-1"></a>    <span class="co">//分配数据空间</span></span>
 <span id="cb37-28"><a href="并行编程基础.html#cb37-28" aria-hidden="true" tabindex="-1"></a>    A = (<span class="dt">double</span> *)malloc(<span class="kw">sizeof</span>(<span class="dt">double</span>)*n*n);</span>
@@ -786,7 +786,7 @@ lb  $6, 0x0($src0)
 <span id="cb37-32"><a href="并行编程基础.html#cb37-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span>(i=<span class="dv">0</span>;i&lt;n;i++)</span>
 <span id="cb37-33"><a href="并行编程基础.html#cb37-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span>(j=<span class="dv">0</span>;j&lt;n;j++){ </span>
 <span id="cb37-34"><a href="并行编程基础.html#cb37-34" aria-hidden="true" tabindex="-1"></a>        A[i*n+j] = <span class="fl">1.0</span>;</span>
-<span id="cb37-35"><a href="并行编程基础.html#cb37-35" aria-hidden="true" tabindex="-1"></a>        B[i*n+j] = <span class="fl">1.0</span>；</span>
+<span id="cb37-35"><a href="并行编程基础.html#cb37-35" aria-hidden="true" tabindex="-1"></a>        B[i*n+j] = <span class="fl">1.0</span>;</span>
 <span id="cb37-36"><a href="并行编程基础.html#cb37-36" aria-hidden="true" tabindex="-1"></a>    }</span>
 <span id="cb37-37"><a href="并行编程基础.html#cb37-37" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb37-38"><a href="并行编程基础.html#cb37-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span>(i=<span class="dv">0</span>; i&lt;NUM_THREADS; i++)</span>
@@ -935,7 +935,7 @@ lb  $6, 0x0($src0)
 <div class="sourceCode" id="cb57"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb57-1"><a href="并行编程基础.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
 <span id="cb57-2"><a href="并行编程基础.html#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;omp.h&gt;</span></span>
 <span id="cb57-3"><a href="并行编程基础.html#cb57-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main(){</span>
-<span id="cb57-4"><a href="并行编程基础.html#cb57-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> i；</span>
+<span id="cb57-4"><a href="并行编程基础.html#cb57-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> i;</span>
 <span id="cb57-5"><a href="并行编程基础.html#cb57-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> num_steps=<span class="dv">1000000</span>;</span>
 <span id="cb57-6"><a href="并行编程基础.html#cb57-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">double</span> x,pi,step,sum=<span class="fl">0.0</span>;</span>
 <span id="cb57-7"><a href="并行编程基础.html#cb57-7" aria-hidden="true" tabindex="-1"></a>    step = <span class="fl">1.0</span>/(<span class="dt">double</span>) num_steps;</span>
@@ -946,7 +946,7 @@ lb  $6, 0x0($src0)
 <span id="cb57-12"><a href="并行编程基础.html#cb57-12" aria-hidden="true" tabindex="-1"></a>        sum = sum+<span class="fl">4.0</span>/(<span class="fl">1.0</span>+x*x);</span>
 <span id="cb57-13"><a href="并行编程基础.html#cb57-13" aria-hidden="true" tabindex="-1"></a>    }</span>
 <span id="cb57-14"><a href="并行编程基础.html#cb57-14" aria-hidden="true" tabindex="-1"></a>    pi = step*sum;</span>
-<span id="cb57-15"><a href="并行编程基础.html#cb57-15" aria-hidden="true" tabindex="-1"></a>    printf(“pi %<span class="dv">1</span><span class="er">f</span>\n”, pi);</span>
+<span id="cb57-15"><a href="并行编程基础.html#cb57-15" aria-hidden="true" tabindex="-1"></a>    printf(<span class="st">&quot;pi %1f</span><span class="sc">\n</span><span class="st">&quot;</span>, pi);</span>
 <span id="cb57-16"><a href="并行编程基础.html#cb57-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span>;</span>
 <span id="cb57-17"><a href="并行编程基础.html#cb57-17" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>将两个n阶的方阵A和B相乘，结果存放在方阵C中，矩阵乘的OpenMP并行代码示例</p>
@@ -972,7 +972,7 @@ lb  $6, 0x0($src0)
 <span id="cb58-20"><a href="并行编程基础.html#cb58-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span>(k=<span class="dv">0</span>;k&lt;n;k++)</span>
 <span id="cb58-21"><a href="并行编程基础.html#cb58-21" aria-hidden="true" tabindex="-1"></a>        C[i][j]+=A[i][k]*B[k][j];</span>
 <span id="cb58-22"><a href="并行编程基础.html#cb58-22" aria-hidden="true" tabindex="-1"></a>     }</span>
-<span id="cb58-23"><a href="并行编程基础.html#cb58-23" aria-hidden="true" tabindex="-1"></a>    Return <span class="dv">0</span>;</span>
+<span id="cb58-23"><a href="并行编程基础.html#cb58-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span>;</span>
 <span id="cb58-24"><a href="并行编程基础.html#cb58-24" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <div id="消息传递编程接口" class="section level3" number="10.3.4">
@@ -1057,13 +1057,13 @@ lb  $6, 0x0($src0)
 <span id="cb59-32"><a href="并行编程基础.html#cb59-32" aria-hidden="true" tabindex="-1"></a>IN   comm     communicator(handle)</span>
 <span id="cb59-33"><a href="并行编程基础.html#cb59-33" aria-hidden="true" tabindex="-1"></a>OUT  status   status object (Status)</span></code></pre></div>
 <p>以下代码是一个简单C语言的MPI程序的例子，其中MPI_COMM_WORLD是一个缺省的进程组，它指明所有的进程都参与计算。</p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb60-1"><a href="并行编程基础.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include “mpi.h”</span></span>
-<span id="cb60-2"><a href="并行编程基础.html#cb60-2" aria-hidden="true" tabindex="-1"></a>Int main(<span class="dt">int</span> argc,<span class="dt">char</span> *argv[])</span>
+<div class="sourceCode" id="cb60"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb60-1"><a href="并行编程基础.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&quot;mpi.h&quot;</span></span>
+<span id="cb60-2"><a href="并行编程基础.html#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main(<span class="dt">int</span> argc,<span class="dt">char</span> *argv[])</span>
 <span id="cb60-3"><a href="并行编程基础.html#cb60-3" aria-hidden="true" tabindex="-1"></a>{  <span class="dt">int</span> myid,count;</span>
 <span id="cb60-4"><a href="并行编程基础.html#cb60-4" aria-hidden="true" tabindex="-1"></a>   MPI_Init(&amp;agrc,&amp;argv); <span class="co">/*启动计算*/</span></span>
 <span id="cb60-5"><a href="并行编程基础.html#cb60-5" aria-hidden="true" tabindex="-1"></a>   MPI_Comm_size(MPI_COMM_WORLD,&amp;count); <span class="co">/*获得进程总数*/</span></span>
 <span id="cb60-6"><a href="并行编程基础.html#cb60-6" aria-hidden="true" tabindex="-1"></a>   MPI_Comm_rank(MPI_COMM_WORLD, &amp;myid);<span class="co">/*获得自己进程号*/</span></span>
-<span id="cb60-7"><a href="并行编程基础.html#cb60-7" aria-hidden="true" tabindex="-1"></a>   printf(“I am %d of %d\n)”, myid,count);  <span class="co">/*打印消息*/</span></span>
+<span id="cb60-7"><a href="并行编程基础.html#cb60-7" aria-hidden="true" tabindex="-1"></a>   printf(<span class="st">&quot;I am %d of %d</span><span class="sc">\n</span><span class="st">)&quot;</span>, myid,count);  <span class="co">/*打印消息*/</span></span>
 <span id="cb60-8"><a href="并行编程基础.html#cb60-8" aria-hidden="true" tabindex="-1"></a>   MPI_Finalize();<span class="co">/*结束计算*/</span></span>
 <span id="cb60-9"><a href="并行编程基础.html#cb60-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>2.集体通信</p>
@@ -1078,7 +1078,7 @@ lb  $6, 0x0($src0)
 <p>上述函数中，关于MPI_SEND和MPI_RECV的功能和定义可以参考下代码块，其他函数的描述可参考MPI3.0标准。</p>
 <p>以下代码是计算π的C语言MPI程序的例子。</p>
 <div class="sourceCode" id="cb61"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb61-1"><a href="并行编程基础.html#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
-<span id="cb61-2"><a href="并行编程基础.html#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include “mpi.h”</span></span>
+<span id="cb61-2"><a href="并行编程基础.html#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&quot;mpi.h&quot;</span></span>
 <span id="cb61-3"><a href="并行编程基础.html#cb61-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main(<span class="dt">int</span> argc, <span class="dt">char</span> **argv){</span>
 <span id="cb61-4"><a href="并行编程基础.html#cb61-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> num_steps=<span class="dv">1000000</span>;</span>
 <span id="cb61-5"><a href="并行编程基础.html#cb61-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">double</span> x,pi,step,sum,sumallprocs;</span>
@@ -1086,9 +1086,9 @@ lb  $6, 0x0($src0)
 <span id="cb61-7"><a href="并行编程基础.html#cb61-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">//进程编号及组中的进程数量, 进程编号的范围为0到num_procs-1</span></span>
 <span id="cb61-8"><a href="并行编程基础.html#cb61-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> ID,num_procs;</span>
 <span id="cb61-9"><a href="并行编程基础.html#cb61-9" aria-hidden="true" tabindex="-1"></a>    MPI_Status status;</span>
-<span id="cb61-10"><a href="并行编程基础.html#cb61-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">//Initialize the MPI environment</span></span>
+<span id="cb61-10"><a href="并行编程基础.html#cb61-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">//初始化MPI环境</span></span>
 <span id="cb61-11"><a href="并行编程基础.html#cb61-11" aria-hidden="true" tabindex="-1"></a>    MPI_Init(&amp;argc,&amp;argv);</span>
-<span id="cb61-12"><a href="并行编程基础.html#cb61-12" aria-hidden="true" tabindex="-1"></a>    MPI_Comm_rank(MPI_COMM_WORLD,&amp;ID);<span class="co">//</span></span>
+<span id="cb61-12"><a href="并行编程基础.html#cb61-12" aria-hidden="true" tabindex="-1"></a>    MPI_Comm_rank(MPI_COMM_WORLD,&amp;ID);</span>
 <span id="cb61-13"><a href="并行编程基础.html#cb61-13" aria-hidden="true" tabindex="-1"></a>    MPI_Comm_size(MPI_COMM_WORLD,&amp;num_procs);</span>
 <span id="cb61-14"><a href="并行编程基础.html#cb61-14" aria-hidden="true" tabindex="-1"></a>    <span class="co">//任务划分并计算</span></span>
 <span id="cb61-15"><a href="并行编程基础.html#cb61-15" aria-hidden="true" tabindex="-1"></a>    step = <span class="fl">1.0</span>/num_steps;</span>
@@ -1105,21 +1105,21 @@ lb  $6, 0x0($src0)
 <span id="cb61-26"><a href="并行编程基础.html#cb61-26" aria-hidden="true" tabindex="-1"></a>    MPI_Reduce(&amp;sum,&amp;sumallprocs,<span class="dv">1</span>,MPI_DOUBLE,MPI_SUM,<span class="dv">0</span>, MPI_COMM_WORLD);</span>
 <span id="cb61-27"><a href="并行编程基础.html#cb61-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(ID==<span class="dv">0</span>) {</span>
 <span id="cb61-28"><a href="并行编程基础.html#cb61-28" aria-hidden="true" tabindex="-1"></a>        pi = sumallprocs*step;</span>
-<span id="cb61-29"><a href="并行编程基础.html#cb61-29" aria-hidden="true" tabindex="-1"></a>        printf(“pi %<span class="dv">1</span><span class="er">f</span>\n”, pi);</span>
+<span id="cb61-29"><a href="并行编程基础.html#cb61-29" aria-hidden="true" tabindex="-1"></a>        printf(<span class="st">&quot;pi %1f</span><span class="sc">\n</span><span class="st">&quot;</span>, pi);</span>
 <span id="cb61-30"><a href="并行编程基础.html#cb61-30" aria-hidden="true" tabindex="-1"></a>    }</span>
 <span id="cb61-31"><a href="并行编程基础.html#cb61-31" aria-hidden="true" tabindex="-1"></a>    MPI_Finalize();</span>
 <span id="cb61-32"><a href="并行编程基础.html#cb61-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span>;</span>
 <span id="cb61-33"><a href="并行编程基础.html#cb61-33" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>以下代码是进行矩阵乘的C语言MPI程序的例子。该例子将两个n阶的方阵A和B相乘，结果存放在方阵C中，A、B、C都在节点0上，采用主从进程的计算方法，主进程将数据发送给从进程，从进程将计算结果返回给主进程。</p>
 <div class="sourceCode" id="cb62"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb62-1"><a href="并行编程基础.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
-<span id="cb62-2"><a href="并行编程基础.html#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include “mpi.h”</span></span>
+<span id="cb62-2"><a href="并行编程基础.html#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&quot;mpi.h&quot;</span></span>
 <span id="cb62-3"><a href="并行编程基础.html#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#define n 1000</span></span>
 <span id="cb62-4"><a href="并行编程基础.html#cb62-4" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main(<span class="dt">int</span> argc, <span class="dt">char</span> **argv)</span>
 <span id="cb62-5"><a href="并行编程基础.html#cb62-5" aria-hidden="true" tabindex="-1"></a>{</span>
 <span id="cb62-6"><a href="并行编程基础.html#cb62-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">double</span>*A,*B,*C;</span>
 <span id="cb62-7"><a href="并行编程基础.html#cb62-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> i,j,k;</span>
 <span id="cb62-8"><a href="并行编程基础.html#cb62-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> ID,num_procs,line;</span>
-<span id="cb62-9"><a href="并行编程基础.html#cb62-9" aria-hidden="true" tabindex="-1"></a>    MPI_Status status；</span>
+<span id="cb62-9"><a href="并行编程基础.html#cb62-9" aria-hidden="true" tabindex="-1"></a>    MPI_Status status;</span>
 <span id="cb62-10"><a href="并行编程基础.html#cb62-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb62-11"><a href="并行编程基础.html#cb62-11" aria-hidden="true" tabindex="-1"></a>    MPI_Init(&amp;argc,&amp;argv); <span class="co">//Initialize the MPI environment</span></span>
 <span id="cb62-12"><a href="并行编程基础.html#cb62-12" aria-hidden="true" tabindex="-1"></a>    MPI_Comm_rank(MPI_COMM_WORLD,&amp;ID);<span class="co">//获取当前进程号</span></span>
@@ -1131,12 +1131,12 @@ lb  $6, 0x0($src0)
 <span id="cb62-18"><a href="并行编程基础.html#cb62-18" aria-hidden="true" tabindex="-1"></a>    C = (<span class="dt">double</span> *)malloc(<span class="kw">sizeof</span>(<span class="dt">double</span>)*n*n);</span>
 <span id="cb62-19"><a href="并行编程基础.html#cb62-19" aria-hidden="true" tabindex="-1"></a>    line = n/num_procs;<span class="co">//按进程数来划分数据</span></span>
 <span id="cb62-20"><a href="并行编程基础.html#cb62-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-21"><a href="并行编程基础.html#cb62-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(ID==<span class="dv">0</span>){ <span class="co">//节点0，主进程</span></span>
+<span id="cb62-21"><a href="并行编程基础.html#cb62-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(ID==<span class="dv">0</span>) { <span class="co">//节点0，主进程</span></span>
 <span id="cb62-22"><a href="并行编程基础.html#cb62-22" aria-hidden="true" tabindex="-1"></a>        <span class="co">//初始化数组</span></span>
 <span id="cb62-23"><a href="并行编程基础.html#cb62-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span>(i=<span class="dv">0</span>;i&lt;n;i++)</span>
 <span id="cb62-24"><a href="并行编程基础.html#cb62-24" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span>(j=<span class="dv">0</span>;j&lt;n;j++){ </span>
 <span id="cb62-25"><a href="并行编程基础.html#cb62-25" aria-hidden="true" tabindex="-1"></a>                A[i*n+j] = <span class="fl">1.0</span>;</span>
-<span id="cb62-26"><a href="并行编程基础.html#cb62-26" aria-hidden="true" tabindex="-1"></a>                B[i*n+j] =  <span class="fl">1.0</span>；</span>
+<span id="cb62-26"><a href="并行编程基础.html#cb62-26" aria-hidden="true" tabindex="-1"></a>                B[i*n+j] = <span class="fl">1.0</span>;</span>
 <span id="cb62-27"><a href="并行编程基础.html#cb62-27" aria-hidden="true" tabindex="-1"></a>            }</span>
 <span id="cb62-28"><a href="并行编程基础.html#cb62-28" aria-hidden="true" tabindex="-1"></a>        <span class="co">//将矩阵A、B的相应数据发送给从进程</span></span>
 <span id="cb62-29"><a href="并行编程基础.html#cb62-29" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span>(i=<span class="dv">1</span>;i&lt;num_procs;i++) {</span>
@@ -1152,7 +1152,22 @@ lb  $6, 0x0($src0)
 <span id="cb62-39"><a href="并行编程基础.html#cb62-39" aria-hidden="true" tabindex="-1"></a>                C[i*n+j]=<span class="dv">0</span>;</span>
 <span id="cb62-40"><a href="并行编程基础.html#cb62-40" aria-hidden="true" tabindex="-1"></a>                <span class="cf">for</span>(k=<span class="dv">0</span>;k&lt;n;k++)</span>
 <span id="cb62-41"><a href="并行编程基础.html#cb62-41" aria-hidden="true" tabindex="-1"></a>                    C[i*n+j]+=A[i*n+k]*B[k*n+j];</span>
-<span id="cb62-42"><a href="并行编程基础.html#cb62-42" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<span id="cb62-42"><a href="并行编程基础.html#cb62-42" aria-hidden="true" tabindex="-1"></a>            }</span>
+<span id="cb62-43"><a href="并行编程基础.html#cb62-43" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb62-44"><a href="并行编程基础.html#cb62-44" aria-hidden="true" tabindex="-1"></a>        <span class="co">//其他进程接收数据，计算结果，发送给主进程</span></span>
+<span id="cb62-45"><a href="并行编程基础.html#cb62-45" aria-hidden="true" tabindex="-1"></a>        MPI_Recv(B,n*n,MPI_DOUBLE,<span class="dv">0</span>,<span class="dv">0</span>,MPI_COMM_WORLD,&amp;status);</span>
+<span id="cb62-46"><a href="并行编程基础.html#cb62-46" aria-hidden="true" tabindex="-1"></a>        MPI_Recv(A+(ID-<span class="dv">1</span>)*line*n,line*n,MPI_DOUBLE,<span class="dv">0</span>,<span class="dv">1</span>,MPI_COMM_WORLD,&amp;status);</span>
+<span id="cb62-47"><a href="并行编程基础.html#cb62-47" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span>(i=(ID-<span class="dv">1</span>)*line;i&lt;ID*line;i++)</span>
+<span id="cb62-48"><a href="并行编程基础.html#cb62-48" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span>(j=<span class="dv">0</span>;j&lt;n;j++) {</span>
+<span id="cb62-49"><a href="并行编程基础.html#cb62-49" aria-hidden="true" tabindex="-1"></a>                C[i*n+j]=<span class="dv">0</span>;</span>
+<span id="cb62-50"><a href="并行编程基础.html#cb62-50" aria-hidden="true" tabindex="-1"></a>                <span class="cf">for</span>(k=<span class="dv">0</span>;k&lt;n;k++)</span>
+<span id="cb62-51"><a href="并行编程基础.html#cb62-51" aria-hidden="true" tabindex="-1"></a>                    C[i*n+j]+=A[i*n+k]*B[k*n+j];</span>
+<span id="cb62-52"><a href="并行编程基础.html#cb62-52" aria-hidden="true" tabindex="-1"></a>            }</span>
+<span id="cb62-53"><a href="并行编程基础.html#cb62-53" aria-hidden="true" tabindex="-1"></a>        MPI_SEND(C+(num_procs-<span class="dv">1</span>)*line*n,line*n,MPI_DOUBLE,<span class="dv">0</span>,<span class="dv">2</span>,MPI_COMM_WORLD);</span>
+<span id="cb62-54"><a href="并行编程基础.html#cb62-54" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb62-55"><a href="并行编程基础.html#cb62-55" aria-hidden="true" tabindex="-1"></a>    MPI_Finalize();</span>
+<span id="cb62-56"><a href="并行编程基础.html#cb62-56" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span>;</span>
+<span id="cb62-57"><a href="并行编程基础.html#cb62-57" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 </div>
 <div id="习题-9" class="section level2" number="10.4">

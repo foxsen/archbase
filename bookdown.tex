@@ -219,7 +219,7 @@
 \providecommand{\subtitle}[1]{}
 \subtitle{第3版}
 \author{胡伟武~汪文祥~苏孟豪~张福新~王焕东~章隆兵~肖俊华~刘~苏~陈新科~吴瑞阳~李晓钰~高燕萍}
-\date{2021-11-06}
+\date{2021-11-11}
 
 \begin{document}
 \maketitle
@@ -9696,7 +9696,7 @@ for(i=0; i<10; i++)
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\ControlFlowTok{for}\NormalTok{(i = }\DecValTok{0}\NormalTok{;i\textless{}N;i++)\{}
+\ControlFlowTok{for}\NormalTok{(i=}\DecValTok{0}\NormalTok{;i\textless{}N;i++) \{}
 \NormalTok{    local[i] = (i+}\FloatTok{0.5}\NormalTok{)*w;}
 \NormalTok{\}}
 \end{Highlighting}
@@ -9779,7 +9779,7 @@ for(i=0; i<10; i++)
 
 在消息传递编程模型中，程序员需要对计算任务和数据进行划分，并安排并行程序执行过程中进程间的所有通信。在共享存储编程模型中，由于程序的多进程（或者线程）之间存在一个统一编址的共享存储空间，程序员只需进行计算任务划分，不必进行数据划分，也不用确切地知道并行程序执行过程中进程间的通信。MPP（Massive Parallel Processing）系统和机群系统往往是消息传递系统。消息传递系统的可伸缩性通常比共享存储系统要好，可支持更多处理器。
 
-从进程（或者线程）间通信的角度看，消息传递并行10.6程序比共享存储并行程序复杂一些，体现在时间管理和空间管理两方面。在空间管理方面，发送数据的进程需要关心自己产生的数据被谁用到，而接收数据的进程需要关心它用到了谁产生的数据；在时间管理方面，发送数据的进程通常需要在数据被接收后才能继续，而接收数据的进程通常需要等到接收数据后才能继续。在共享存储并行程序中，各进程间的通信通过访问共享存储器完成，程序员只需考虑进程间同步，不用考虑进程间通信。尤其是比较复杂的数据结构的通信，如struct\{int\emph{pa；int} pb；int*pc;\}，消息传递并行程序比共享存储并行程序复杂得多。此外，对于一些在编程时难以确切知道进程间通信的程序，用消息传递的方法很难进行并行化，如\{for (i,j)\{ x=\ldots; y=\ldots; a{[}i{]}{[}j{]}=b{[}x{]}{[}y{]};\}\}。这段代码中，通信特征在程序运行时才能确定，编写代码时难以确定，改写成消息传递程序就比较困难。
+从进程（或者线程）间通信的角度看，消息传递并行10.6程序比共享存储并行程序复杂一些，体现在时间管理和空间管理两方面。在空间管理方面，发送数据的进程需要关心自己产生的数据被谁用到，而接收数据的进程需要关心它用到了谁产生的数据；在时间管理方面，发送数据的进程通常需要在数据被接收后才能继续，而接收数据的进程通常需要等到接收数据后才能继续。在共享存储并行程序中，各进程间的通信通过访问共享存储器完成，程序员只需考虑进程间同步，不用考虑进程间通信。尤其是比较复杂的数据结构的通信，如struct\{int\emph{pa;int} pb;int*pc;\}，消息传递并行程序比共享存储并行程序复杂得多。此外，对于一些在编程时难以确切知道进程间通信的程序，用消息传递的方法很难进行并行化，如\{for (i,j)\{ x=\ldots; y=\ldots; a{[}i{]}{[}j{]}=b{[}x{]}{[}y{]};\}\}。这段代码中，通信特征在程序运行时才能确定，编写代码时难以确定，改写成消息传递程序就比较困难。
 
 从数据划分的角度看，消息传递并行程序必须考虑诸如数组名称以及下标变换等因素，在将一个串行程序改写成并行程序的过程中，需要修改大量的程序代码。而在共享存储编程模型中进行串行程序的并行化改写时，不用进行数组名称以及下标变换，对代码的修改量少。虽说共享存储程序无须考虑数据划分，但是在实际应用中，为了获得更高的系统性能，有时也需要考虑数据分布，使得数据尽量分布在对其进行计算的处理器上，例如OpenMP中就有进行数据分布的扩展指导。不过，相对于消息传递程序中的数据划分考虑数据分布还是要简单得多。
 
@@ -9928,7 +9928,7 @@ pthread\_cond\_broadcast(\ldots) & 投递一个事件，解锁所有等待进程
 \PreprocessorTok{\#include }\ImportTok{\textless{}stdio.h\textgreater{}}
 \PreprocessorTok{\#include }\ImportTok{\textless{}math.h\textgreater{}}
 \DataTypeTok{int}\NormalTok{ main()\{}
-    \DataTypeTok{int}\NormalTok{ i；}
+    \DataTypeTok{int}\NormalTok{ i;}
     \DataTypeTok{int}\NormalTok{ num\_steps=}\DecValTok{1000000}\NormalTok{;}
     \DataTypeTok{double}\NormalTok{ x,pi,step,sum=}\FloatTok{0.0}\NormalTok{;}
 \NormalTok{    step = }\FloatTok{1.0}\NormalTok{/(}\DataTypeTok{double}\NormalTok{) num\_steps;}
@@ -9937,7 +9937,7 @@ pthread\_cond\_broadcast(\ldots) & 投递一个事件，解锁所有等待进程
 \NormalTok{        sum = sum+}\FloatTok{4.0}\NormalTok{/(}\FloatTok{1.0}\NormalTok{+x*x);}
 \NormalTok{    \}}
 \NormalTok{    pi = step*sum;}
-\NormalTok{    printf(“pi \%}\DecValTok{1}\ErrorTok{f}\NormalTok{\textbackslash{}n”, pi);}
+\NormalTok{    printf(}\StringTok{"pi \%1f}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, pi);}
     \ControlFlowTok{return} \DecValTok{0}\NormalTok{;}
 \NormalTok{\}}
 \end{Highlighting}
@@ -10006,11 +10006,11 @@ pthread\_cond\_broadcast(\ldots) & 投递一个事件，解锁所有等待进程
 \PreprocessorTok{\#define n 1000}
 \DataTypeTok{double}\NormalTok{ *A,*B,*C;}
 \DataTypeTok{void}\NormalTok{ *matrixMult(}\DataTypeTok{void}\NormalTok{ *id) \{}\CommentTok{//计算矩阵乘}
-\NormalTok{    intmy\_id = (}\DataTypeTok{int}\NormalTok{ ) id;}
-\NormalTok{    inti,j,k,start,end;}
+    \DataTypeTok{int}\NormalTok{ my\_id = (}\DataTypeTok{int}\NormalTok{)id;}
+    \DataTypeTok{int}\NormalTok{ i,j,k,start,end;}
     \CommentTok{//计算进程负责的部分}
 \NormalTok{    start = my\_id*(n/NUM\_THREADS);}
-    \ControlFlowTok{if}\NormalTok{(my\_id == NUMTHREADS{-}}\DecValTok{1}\NormalTok{)}
+    \ControlFlowTok{if}\NormalTok{(my\_id == NUM\_THREADS{-}}\DecValTok{1}\NormalTok{)}
 \NormalTok{    end = n;}
     \ControlFlowTok{else}
 \NormalTok{    end = start+(n/NUM\_THREADS);}
@@ -10019,11 +10019,11 @@ pthread\_cond\_broadcast(\ldots) & 投递一个事件，解锁所有等待进程
 \NormalTok{        C[i*n+j] = }\DecValTok{0}\NormalTok{;}
         \ControlFlowTok{for}\NormalTok{(k=}\DecValTok{0}\NormalTok{;k\textless{}n;k++)}
 \NormalTok{            C[i*n+j]+=A[i*n+k]*B[k*n+j];}
-\NormalTok{        \}}
 \NormalTok{    \}}
+\NormalTok{\}}
 
 \DataTypeTok{int}\NormalTok{ main() \{}
-\NormalTok{    inti,j;}
+    \DataTypeTok{int}\NormalTok{ i,j;}
 \NormalTok{    pthread\_t tids[NUM\_THREADS];}
     \CommentTok{//分配数据空间}
 \NormalTok{    A = (}\DataTypeTok{double}\NormalTok{ *)malloc(}\KeywordTok{sizeof}\NormalTok{(}\DataTypeTok{double}\NormalTok{)*n*n);}
@@ -10033,7 +10033,7 @@ pthread\_cond\_broadcast(\ldots) & 投递一个事件，解锁所有等待进程
     \ControlFlowTok{for}\NormalTok{(i=}\DecValTok{0}\NormalTok{;i\textless{}n;i++)}
     \ControlFlowTok{for}\NormalTok{(j=}\DecValTok{0}\NormalTok{;j\textless{}n;j++)\{ }
 \NormalTok{        A[i*n+j] = }\FloatTok{1.0}\NormalTok{;}
-\NormalTok{        B[i*n+j] = }\FloatTok{1.0}\NormalTok{；}
+\NormalTok{        B[i*n+j] = }\FloatTok{1.0}\NormalTok{;}
 \NormalTok{    \}}
 
     \ControlFlowTok{for}\NormalTok{(i=}\DecValTok{0}\NormalTok{; i\textless{}NUM\_THREADS; i++)}
@@ -10349,7 +10349,7 @@ OpenMP中提供了用来控制并行域在多线程队列中执行时的数据�
 \PreprocessorTok{\#include }\ImportTok{\textless{}stdio.h\textgreater{}}
 \PreprocessorTok{\#include }\ImportTok{\textless{}omp.h\textgreater{}}
 \DataTypeTok{int}\NormalTok{ main()\{}
-    \DataTypeTok{int}\NormalTok{ i；}
+    \DataTypeTok{int}\NormalTok{ i;}
     \DataTypeTok{int}\NormalTok{ num\_steps=}\DecValTok{1000000}\NormalTok{;}
     \DataTypeTok{double}\NormalTok{ x,pi,step,sum=}\FloatTok{0.0}\NormalTok{;}
 \NormalTok{    step = }\FloatTok{1.0}\NormalTok{/(}\DataTypeTok{double}\NormalTok{) num\_steps;}
@@ -10360,7 +10360,7 @@ OpenMP中提供了用来控制并行域在多线程队列中执行时的数据�
 \NormalTok{        sum = sum+}\FloatTok{4.0}\NormalTok{/(}\FloatTok{1.0}\NormalTok{+x*x);}
 \NormalTok{    \}}
 \NormalTok{    pi = step*sum;}
-\NormalTok{    printf(“pi \%}\DecValTok{1}\ErrorTok{f}\NormalTok{\textbackslash{}n”, pi);}
+\NormalTok{    printf(}\StringTok{"pi \%1f}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, pi);}
     \ControlFlowTok{return} \DecValTok{0}\NormalTok{;}
 \NormalTok{\}}
 \end{Highlighting}
@@ -10392,7 +10392,7 @@ OpenMP中提供了用来控制并行域在多线程队列中执行时的数据�
     \ControlFlowTok{for}\NormalTok{(k=}\DecValTok{0}\NormalTok{;k\textless{}n;k++)}
 \NormalTok{        C[i][j]+=A[i][k]*B[k][j];}
 \NormalTok{     \}}
-\NormalTok{    Return }\DecValTok{0}\NormalTok{;}
+    \ControlFlowTok{return} \DecValTok{0}\NormalTok{;}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
@@ -10466,13 +10466,13 @@ MPI是个复杂的系统，包括129个函数（根据1994年发布的MPI标准)
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\PreprocessorTok{\#include “mpi.h”}
-\NormalTok{Int main(}\DataTypeTok{int}\NormalTok{ argc,}\DataTypeTok{char}\NormalTok{ *argv[])}
+\PreprocessorTok{\#include }\ImportTok{"mpi.h"}
+\DataTypeTok{int}\NormalTok{ main(}\DataTypeTok{int}\NormalTok{ argc,}\DataTypeTok{char}\NormalTok{ *argv[])}
 \NormalTok{\{  }\DataTypeTok{int}\NormalTok{ myid,count;}
 \NormalTok{   MPI\_Init(\&agrc,\&argv); }\CommentTok{/*启动计算*/}
 \NormalTok{   MPI\_Comm\_size(MPI\_COMM\_WORLD,\&count); }\CommentTok{/*获得进程总数*/}
 \NormalTok{   MPI\_Comm\_rank(MPI\_COMM\_WORLD, \&myid);}\CommentTok{/*获得自己进程号*/}
-\NormalTok{   printf(“I am \%d of \%d\textbackslash{}n)”, myid,count);  }\CommentTok{/*打印消息*/}
+\NormalTok{   printf(}\StringTok{"I am \%d of \%d}\SpecialCharTok{\textbackslash{}n}\StringTok{)"}\NormalTok{, myid,count);  }\CommentTok{/*打印消息*/}
 \NormalTok{   MPI\_Finalize();}\CommentTok{/*结束计算*/}
 \NormalTok{\}}
 \end{Highlighting}
@@ -10503,7 +10503,7 @@ MPI是个复杂的系统，包括129个函数（根据1994年发布的MPI标准)
 \begin{Shaded}
 \begin{Highlighting}[]
 \PreprocessorTok{\#include }\ImportTok{\textless{}stdio.h\textgreater{}}
-\PreprocessorTok{\#include “mpi.h”}
+\PreprocessorTok{\#include }\ImportTok{"mpi.h"}
 \DataTypeTok{int}\NormalTok{ main(}\DataTypeTok{int}\NormalTok{ argc, }\DataTypeTok{char}\NormalTok{ **argv)\{}
     \DataTypeTok{int}\NormalTok{ num\_steps=}\DecValTok{1000000}\NormalTok{;}
     \DataTypeTok{double}\NormalTok{ x,pi,step,sum,sumallprocs;}
@@ -10511,9 +10511,9 @@ MPI是个复杂的系统，包括129个函数（根据1994年发布的MPI标准)
     \CommentTok{//进程编号及组中的进程数量, 进程编号的范围为0到num\_procs{-}1}
     \DataTypeTok{int}\NormalTok{ ID,num\_procs;}
 \NormalTok{    MPI\_Status status;}
-    \CommentTok{//Initialize the MPI environment}
+    \CommentTok{//初始化MPI环境}
 \NormalTok{    MPI\_Init(\&argc,\&argv);}
-\NormalTok{    MPI\_Comm\_rank(MPI\_COMM\_WORLD,\&ID);}\CommentTok{//}
+\NormalTok{    MPI\_Comm\_rank(MPI\_COMM\_WORLD,\&ID);}
 \NormalTok{    MPI\_Comm\_size(MPI\_COMM\_WORLD,\&num\_procs);}
     \CommentTok{//任务划分并计算}
 \NormalTok{    step = }\FloatTok{1.0}\NormalTok{/num\_steps;}
@@ -10530,7 +10530,7 @@ MPI是个复杂的系统，包括129个函数（根据1994年发布的MPI标准)
 \NormalTok{    MPI\_Reduce(\&sum,\&sumallprocs,}\DecValTok{1}\NormalTok{,MPI\_DOUBLE,MPI\_SUM,}\DecValTok{0}\NormalTok{, MPI\_COMM\_WORLD);}
     \ControlFlowTok{if}\NormalTok{(ID==}\DecValTok{0}\NormalTok{) \{}
 \NormalTok{        pi = sumallprocs*step;}
-\NormalTok{        printf(“pi \%}\DecValTok{1}\ErrorTok{f}\NormalTok{\textbackslash{}n”, pi);}
+\NormalTok{        printf(}\StringTok{"pi \%1f}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, pi);}
 \NormalTok{    \}}
 \NormalTok{    MPI\_Finalize();}
     \ControlFlowTok{return} \DecValTok{0}\NormalTok{;}
@@ -10543,14 +10543,14 @@ MPI是个复杂的系统，包括129个函数（根据1994年发布的MPI标准)
 \begin{Shaded}
 \begin{Highlighting}[]
 \PreprocessorTok{\#include }\ImportTok{\textless{}stdio.h\textgreater{}}
-\PreprocessorTok{\#include “mpi.h”}
+\PreprocessorTok{\#include }\ImportTok{"mpi.h"}
 \PreprocessorTok{\#define n 1000}
 \DataTypeTok{int}\NormalTok{ main(}\DataTypeTok{int}\NormalTok{ argc, }\DataTypeTok{char}\NormalTok{ **argv)}
 \NormalTok{\{}
     \DataTypeTok{double}\NormalTok{*A,*B,*C;}
     \DataTypeTok{int}\NormalTok{ i,j,k;}
     \DataTypeTok{int}\NormalTok{ ID,num\_procs,line;}
-\NormalTok{    MPI\_Status status；}
+\NormalTok{    MPI\_Status status;}
 
 \NormalTok{    MPI\_Init(\&argc,\&argv); }\CommentTok{//Initialize the MPI environment}
 \NormalTok{    MPI\_Comm\_rank(MPI\_COMM\_WORLD,\&ID);}\CommentTok{//获取当前进程号}
@@ -10562,12 +10562,12 @@ MPI是个复杂的系统，包括129个函数（根据1994年发布的MPI标准)
 \NormalTok{    C = (}\DataTypeTok{double}\NormalTok{ *)malloc(}\KeywordTok{sizeof}\NormalTok{(}\DataTypeTok{double}\NormalTok{)*n*n);}
 \NormalTok{    line = n/num\_procs;}\CommentTok{//按进程数来划分数据}
 
-    \ControlFlowTok{if}\NormalTok{(ID==}\DecValTok{0}\NormalTok{)\{ }\CommentTok{//节点0，主进程}
+    \ControlFlowTok{if}\NormalTok{(ID==}\DecValTok{0}\NormalTok{) \{ }\CommentTok{//节点0，主进程}
         \CommentTok{//初始化数组}
         \ControlFlowTok{for}\NormalTok{(i=}\DecValTok{0}\NormalTok{;i\textless{}n;i++)}
             \ControlFlowTok{for}\NormalTok{(j=}\DecValTok{0}\NormalTok{;j\textless{}n;j++)\{ }
 \NormalTok{                A[i*n+j] = }\FloatTok{1.0}\NormalTok{;}
-\NormalTok{                B[i*n+j] =  }\FloatTok{1.0}\NormalTok{；}
+\NormalTok{                B[i*n+j] = }\FloatTok{1.0}\NormalTok{;}
 \NormalTok{            \}}
         \CommentTok{//将矩阵A、B的相应数据发送给从进程}
         \ControlFlowTok{for}\NormalTok{(i=}\DecValTok{1}\NormalTok{;i\textless{}num\_procs;i++) \{}
@@ -10583,6 +10583,21 @@ MPI是个复杂的系统，包括129个函数（根据1994年发布的MPI标准)
 \NormalTok{                C[i*n+j]=}\DecValTok{0}\NormalTok{;}
                 \ControlFlowTok{for}\NormalTok{(k=}\DecValTok{0}\NormalTok{;k\textless{}n;k++)}
 \NormalTok{                    C[i*n+j]+=A[i*n+k]*B[k*n+j];}
+\NormalTok{            \}}
+\NormalTok{    \} }\ControlFlowTok{else}\NormalTok{ \{}
+        \CommentTok{//其他进程接收数据，计算结果，发送给主进程}
+\NormalTok{        MPI\_Recv(B,n*n,MPI\_DOUBLE,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,MPI\_COMM\_WORLD,\&status);}
+\NormalTok{        MPI\_Recv(A+(ID{-}}\DecValTok{1}\NormalTok{)*line*n,line*n,MPI\_DOUBLE,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,MPI\_COMM\_WORLD,\&status);}
+        \ControlFlowTok{for}\NormalTok{(i=(ID{-}}\DecValTok{1}\NormalTok{)*line;i\textless{}ID*line;i++)}
+            \ControlFlowTok{for}\NormalTok{(j=}\DecValTok{0}\NormalTok{;j\textless{}n;j++) \{}
+\NormalTok{                C[i*n+j]=}\DecValTok{0}\NormalTok{;}
+                \ControlFlowTok{for}\NormalTok{(k=}\DecValTok{0}\NormalTok{;k\textless{}n;k++)}
+\NormalTok{                    C[i*n+j]+=A[i*n+k]*B[k*n+j];}
+\NormalTok{            \}}
+\NormalTok{        MPI\_SEND(C+(num\_procs{-}}\DecValTok{1}\NormalTok{)*line*n,line*n,MPI\_DOUBLE,}\DecValTok{0}\NormalTok{,}\DecValTok{2}\NormalTok{,MPI\_COMM\_WORLD);}
+\NormalTok{    \}}
+\NormalTok{    MPI\_Finalize();}
+    \ControlFlowTok{return} \DecValTok{0}\NormalTok{;}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
