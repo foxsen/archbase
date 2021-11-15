@@ -102,7 +102,7 @@ knitr::include_graphics("images/chapter5/storage_hierarchy.png")
 
 Cache是内存的映像，其内容是内存内容的子集，处理器访问Cache和访问内存使用相同的地址。从20世纪80年代开始，RISC处理器就开始在处理器芯片内集成KB级的小容量Cache。现代处理器则普遍在片内集成多级Cache，典型的多核处理器的每个处理器核中一级指令Cache和数据Cache各几十KB，二级Cache为几百KB，而多核共享的三级Cache为几MB到几十MB。现代处理器访问寄存器时一拍可以同时读写多个数据，访问一级Cache延迟为1-4拍，访问二级Cache延迟为10-20拍，访问三级Cache延迟为40-60拍，访问内存延迟为100-200拍。
 
-CPU执行一个程序的时间可以描述为程序中的指令数×IPC×时钟周期。其中IPC（Instruction Per Cycle）表示每个时钟周期执行的指令数可以细分为运算指令的IPC×运算指令的比例 + 访存指令的IPC×访存指令的比例。访存指令的IPC为平均访问延迟AMAT（Average Memory Access Latency）的倒数。在具有高速缓存的计算机中，
+CPU执行一个程序的时间可以描述为：程序运行的总动态指令数 * CPI * 时钟周期。其中CPI（Cycle Per Instruction）表示平均每条指令执行花费的时钟周期数。CPI可以进一步细分为每种类型指令的CPI与这类指令占总指令数比例乘积之和，如运算指令CPI * 运算指令比例 + 访存指令CPI * 访存指令比例 + 其他指令CPI * 其他指令比例。访存指令CPI也称为平均访问延迟AMAT（Average Memory Access Latency）。在具有高速缓存的计算机中，
 
 $$AMAT = HitTime + MissRate * MissPenalty$$
 
