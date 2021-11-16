@@ -20,6 +20,7 @@ site: bookdown::bookdown_site
 description: "计算机体系结构基础"
 github-repo: foxsen/archbase
 #cover-image: images/cover.jpg
+lang: zh-CN
 ---
 
 ```{r setup, include=FALSE}
