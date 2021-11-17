@@ -7,8 +7,7 @@ bookdown::gitbook:
         <li><a href="./">计算机体系结构基础</a></li>
       after: |
         <li><a href="http://www.loongson.cn" target="blank">本书电子版由龙芯中科赞助提供</a></li>
-    download: [pdf, epub]
-    edit: https://github.com/foxsen/archbase-book/edit/master/%s
+    download: [pdf, docx]
     sharing:
       github: yes
       facebook: no
