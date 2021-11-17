@@ -11,6 +11,7 @@ bookdown::gitbook:
     sharing:
       github: yes
       facebook: no
+  pandoc_args: "--variable=lang:zh-CN"
 bookdown::pdf_book:
   includes:
     in_header: latex/preamble.tex
