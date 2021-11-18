@@ -22,15 +22,17 @@
 
 本书开源版本也得到了中国科学院大学研究生程轶涵、穆热迪力、王铭剑、徐淮、叶锦鹏（按姓氏拼音顺序）等同学的大力支持，他们协助完成了bookdown格式部分源代码的编辑和校对，在此表示感谢！
 
-## 本书配套的网站
+## 本书相关信息
 
-本书的正式网站还在建设之中，完成之后将在这里提供链接。
+本书的官方信息网页参见[本书信息](https://www.loongson.cn/LoongsonLab/OpenAccessLibrary)。
 
 本项目的github actions已经配置为自动生成HTML/PDF/DOCX三种输出格式并部署到github pages。三种格式的链接分别如下：
 
 * [HTML](https://foxsen.github.io/archbase). 在线HTML版本。
 * [PDF](https://foxsen.github.io/archbase/bookdown.pdf). PDF版下载链接。
 * [DOCX](https://foxsen.github.io/archbase/bookdown.docx). Word版下载链接，其中目录部分需要手工选择下“更新域”才能显示。
+
+机械工业出版社提供的纸质书精排电子版可以从这里获得: [纸质书电子版](https://www.loongson.cn/pdf/computer.pdf)。
 
 ## docker环境
 
