@@ -176,7 +176,7 @@ knitr::include_graphics('./images/chapter9/ctrlHazardFlow.png')
 ```
 
 ```{r chapter9-ctrlHazardFlow1, fig.cap='优化控制相关处理后的流水线时空图', fig.align='center', echo = FALSE, out.width='100%'}
-knitr::include_graphics('./images/chapter9/ctrlHazardFlow1.jpg')
+knitr::include_graphics('./images/chapter9/ctrlHazardFlow1.png')
 ```
 
 ```{r chapter9-ctrlHazardStruct, fig.cap='改进后的解决控制相关的流水线结构图', fig.align='center', echo = FALSE, out.width='100%'}
@@ -243,7 +243,7 @@ knitr::include_graphics('./images/chapter9/dualIssue.png')
 保留站在处理器中的大致位置如图\@ref(fig:chapter9-dynamic)所示。保留站通常组织为一个无序的队列结构，其中每一项对应一条指令，包含多个域，存放这个指令的监听结果和后续执行所需各类信息，包括有效位、指令执行控制信息（如操作码）、源操作数的就绪状态、源操作的监听对象以及源操作数的数据。如果采用了后面将要提到的寄存器重命名技术，那么保留站通常还要存放该指令目的寄存器重命名后的信息。译码并读寄存器的指令进入保留站，保留站会每个时钟周期选择一条没有被阻塞的指令，送往执行逻辑，并退出保留站，这个动作称为“发射”。
 
 ```{r chapter9-dynamic, fig.cap='动态调度流水线结构示意', fig.align='center', echo = FALSE, out.width='100%'}
-knitr::include_graphics('./images/chapter9/dynamic1.jpg')
+knitr::include_graphics('./images/chapter9/dynamic1.png')
 ```
 
 保留站调度算法的核心在于“挑选没有被阻塞的指令”。从保留站在流水线所处的位置来看，保留站中的指令不可能因为控制相关而被阻塞。结构相关所引起的阻塞的判定条件也是直观的，即检查有没有空闲的执行部件和空闲的发射端口。但是在数据相关所引起的阻塞的处理上，存在着不同的设计思路。
@@ -317,7 +317,7 @@ knitr::include_graphics('./images/chapter9/brachRelation.png')
 流水线中最早可以在取指阶段进行转移预测, 此时只有 PC[^其实还可以补充采用转移历史信息进行预测, 不过此处囿于篇幅暂不展开。] 信息可以用来进行预测, 且预测出的信息需要同时包括转移的方向和目标地址。 这里介绍此类预测器中一种最基本的结构———分支目标缓冲 (Branch Target Buffer, 简称 BTB) 。 BTB 逻辑上通常组织为一个基于内容寻址的查找表, 其结构如图 \@ref(fig:chapter9-BTB)所示。 每个表项包含 PC、 跳转目标 (Target) 和饱和计数器 (Counter) 三个部分。 BTB 的预测过程是: 用取指 PC 与表中各项的 PC 进行比较, 如果某项置相等且该项的饱和计数器值指示预测跳转, 则取出该项所存的跳转目标并跳转过去。
 
 ```{r chapter9-BTB, fig.cap='BTB结构示意图', fig.align='center', echo = FALSE, out.width='100%'}
-knitr::include_graphics('./images/chapter9/BTB.jpg')
+knitr::include_graphics('./images/chapter9/BTB.png')
 ```
 
 对于那些采用 PC 相对跳转的指令, 其在译码阶段就可以根据 PC 和指令码明确计算得到, 因此只需要对转移方向 ( 即是否跳转) 进行预测。 下面介绍此类预测器中一种最基本的结构, 即根据单条转移指令的转移历史来预测转移指令的跳转方向。 这种转移预测主要依据转移指令重复性的规律, 对于重复性特征明显的转移指令 ( 如循环) 可以取得很好的预测效果。 例如, 对于循环语句 for( i = 0; i<10; i ++ ) { ...} , 可以假设其对应的汇编代码中是由一条回跳的条件转移指令来控制循环的执行。 该转移指令前 9 次跳转, 第 10 次不跳转, 如果我们用 1 表示跳转, 0 表示不跳转, 那么这个转移指令的转移模式就记为 ( 1111111110) 。 这个转移模式的特点是, 如果上一次是跳转, 那么这一次也是跳转的概率比较大。 这个特点启发我们将该转移指令的执行历史记录下来用于猜测该转移指令是否跳转。 这种用于记录转移指令执行历史信息的表称为转移历史表 ( Branch History Table, 简称 BHT) 。 最简单的 BHT 利用 PC 的低位进行索引, 每项只有 1 位, 记录索引到该项的转移指令上一次执行时的跳转情况, 1 表示跳转, 0 表示不跳转。 由于存储的信息表征了转移的模式, 所以这种 BHT又被称为转移模式历史表(Pattern History Table, 简称 PHT) 。 利用这种 1 位 PHT 进行预测时, 首先根据转移指令的 PC 低位去索引 PHT, 如果表项值为 1, 则预测跳转, 否则预测不跳转; 其次要根据该转移指令实际的跳转情况来更新对应 PHT 的表项中的值。 仍以前面的 for 循环为例, 假设 PHT 的表项初始值都为 0, 那么转移指令第 1 次执行时, 读出的表项为 0 所以预测不跳转, 但这是一次错误的 预测, 第 1 次执行结束时会根据实际是跳转的结果将对应的表项值更新为 1; 转移指令第 2 次执行时, 从表项中读出 1 所以预测跳转, 这是一次正确的预测, 第 2 次执行结束时会根据实际是跳转的结果将对应的表项值更新为 1; ...; 转移指令第 10 次执行时, 从表项中读出 1 所以预测跳转, 这是一次错误的预测, 第 10 次执行结束时会根据实际是不跳转的结果将对应的表项值更新为 0。 可以看到进入和退出循环都要猜错一次。 这种 PHT 在应对不会多次执行的单层循环时, 或者循环次数特别多的循环时还比较有效。 但是对于如下的两重循环:
