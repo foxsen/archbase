@@ -14,8 +14,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: bookdown builder
-        container: foxsen76/archbase-builder:latest
-          volumes: /tmp:/tmp
+        container: 
+          image: foxsen76/archbase-builder:latest
+          volumes: 
+            - /tmp:/tmp
         run: git pull && make -j 8 && cp -a _book /tmp
      - name: Deploy to GitHub Pages
        uses: Cecilapp/GitHub-Pages-deploy@v3
