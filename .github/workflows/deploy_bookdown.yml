@@ -13,58 +13,14 @@ jobs:
     name: Render-Book
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - uses: r-lib/actions/setup-r@v1
-        with:
-          r-version: '3.6.3'
-      - uses: r-lib/actions/setup-pandoc@v1
-        with:
-          pandoc-version: '2.11'
-      - uses: foxsen/actions/setup-renv@renv-v2
-        with:
-          cache-version: 1
-      - name: Install Noto CJK fonts
-        run: sudo apt-get install -y fonts-noto-cjk
-      - name: setup locale
-        run: |
-          sudo apt-get install -y locales
-          sudo sed -i -e 's/# zh_CN.UTF-8 UTF-8/zh_CN.UTF-8 UTF-8/' /etc/locale.gen
-          sudo locale-gen
-        shell: bash
-      - uses: foxsen/actions/setup-tinytex-new@tinytex-v2
-        with:
-          cache-version: 6
-      - name: Render Book
-        run: export PATH=$PATH:$HOME/bin; export LC_ALL=zh_CN.UTF-8; make -j8
-        shell: bash
-      - uses: actions/upload-artifact@v1
-        with:
-          name: _book
-          path: _book/
-  
-# Need to first create an empty gh-pages branch
-# see https://pkgdown.r-lib.org/reference/deploy_site_github.html
-# and also add secrets for a GH_PAT and EMAIL to the repository
-# gh-action from Cecilapp/GitHub-Pages-deploy
-  checkout-and-deploy:
-   runs-on: ubuntu-latest
-   needs: bookdown
-   steps:
-     - name: Checkout
-       uses: actions/checkout@master
-     - name: Download artifact
-       uses: actions/download-artifact@v1.0.0
-       with:
-         # Artifact name
-         name: _book # optional
-         # Destination path
-         path: _book # optional
+      - name: bookdown builder
+        container: foxsen76/archbase-builder:latest
+          volumes: /tmp:/tmp
+        run: git pull && make -j 8 && cp -a _book /tmp
      - name: Deploy to GitHub Pages
        uses: Cecilapp/GitHub-Pages-deploy@v3
        env:
          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
        with:
          email: 2503799872@qq.com
-         build_dir: _book/
-    
- 
+         build_dir: /tmp/_book/
