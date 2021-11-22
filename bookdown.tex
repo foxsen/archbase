@@ -9898,20 +9898,20 @@ pthread\_cond\_wait()自动阻塞等待条件满足的现行线程，并开锁mu
 
 \begin{longtable}[]{@{}ll@{}}
 \toprule
-功能 & 含义\tabularnewline
+功能 & 含义 \\
 \midrule
 \endhead
-pthread\_mutex\_init(\ldots) & 生成新的互斥变量\tabularnewline
-pthread\_mutex\_destroy(\ldots) & 销毁互斥变量\tabularnewline
-pthread\_mutex\_lock(\ldots) & 锁住互斥变量\tabularnewline
-pthread\_mutex\_trylock(\ldots) & 尝试锁住互斥变量\tabularnewline
-pthread\_mutex\_unlock(\ldots) & 解锁互斥变量\tabularnewline
-pthread\_cond\_init(\ldots) & 生成新的条件变量\tabularnewline
-pthread\_cond\_destroy(\ldots) & 销毁条件变量\tabularnewline
-pthread\_cond\_wait(\ldots) & 等待（阻塞）条件变量\tabularnewline
-pthread\_cond\_timedwait(\ldots) & 等待条件变量直至到达时限\tabularnewline
-pthread\_cond\_signal(\ldots) & 投递一个事件，解锁一个等待进程\tabularnewline
-pthread\_cond\_broadcast(\ldots) & 投递一个事件，解锁所有等待进程\tabularnewline
+pthread\_mutex\_init(\ldots) & 生成新的互斥变量 \\
+pthread\_mutex\_destroy(\ldots) & 销毁互斥变量 \\
+pthread\_mutex\_lock(\ldots) & 锁住互斥变量 \\
+pthread\_mutex\_trylock(\ldots) & 尝试锁住互斥变量 \\
+pthread\_mutex\_unlock(\ldots) & 解锁互斥变量 \\
+pthread\_cond\_init(\ldots) & 生成新的条件变量 \\
+pthread\_cond\_destroy(\ldots) & 销毁条件变量 \\
+pthread\_cond\_wait(\ldots) & 等待（阻塞）条件变量 \\
+pthread\_cond\_timedwait(\ldots) & 等待条件变量直至到达时限 \\
+pthread\_cond\_signal(\ldots) & 投递一个事件，解锁一个等待进程 \\
+pthread\_cond\_broadcast(\ldots) & 投递一个事件，解锁所有等待进程 \\
 \bottomrule
 \end{longtable}
 
@@ -10410,15 +10410,15 @@ MPI是个复杂的系统，包括129个函数（根据1994年发布的MPI标准)
 
 \begin{longtable}[]{@{}lll@{}}
 \toprule
-序号 & 函数名 & 用途\tabularnewline
+序号 & 函数名 & 用途 \\
 \midrule
 \endhead
-1 & MPI\_Init() & 初始化MPI执行环境\tabularnewline
-2 & MPI\_Finalize & 结束MPI执行环境\tabularnewline
-3 & MPI\_COMM\_SIZE & 确定进程数\tabularnewline
-4 & MPI\_COMM\_RANK & 确定自己的进程标识符\tabularnewline
-5 & MPI\_SEND & 发送一条消息\tabularnewline
-6 & MPI\_RECV & 接收一条信息\tabularnewline
+1 & MPI\_Init() & 初始化MPI执行环境 \\
+2 & MPI\_Finalize & 结束MPI执行环境 \\
+3 & MPI\_COMM\_SIZE & 确定进程数 \\
+4 & MPI\_COMM\_RANK & 确定自己的进程标识符 \\
+5 & MPI\_SEND & 发送一条消息 \\
+6 & MPI\_RECV & 接收一条信息 \\
 \bottomrule
 \end{longtable}
 
@@ -11639,7 +11639,7 @@ CPI = \frac{\sum^{n}_{i=1}IC_i\times CPI_i}{Instruction\ count} = \sum^{n}_{i=1}
 
 在处理器的设计过程中，尤其是在微体系结构的设计空间探索的过程中，我们希望有一类小的测试程序，能在很短的时间内跑完，可在模拟器、RTL仿真模型或者FPGA平台上执行，覆盖微体系结构的特性，如分支预测器的精度、Cache的行为、流水线的效率、各项队列大小、重命名寄存器数目和功能部件数量的影响等，这就导致了微基准测试程序（下面有时简称微测试程序）的出现。在处理器性能测试和分析中，常用的微基准测试程序包括：Sim-alpha的microbench、bp\_microbench、LMbench、STREAM、Coremark、Coremark-pro和Unixbench等。
 
-微测试程序(microbench)是一系列很小的测试程序或者代码片段。得克萨斯州奥斯丁大学的R.Desikan和Doug Burger在设计Sim-alpha模拟器的时候，为了将Sim-alpha模拟器和真实处理器Alpha21264进行校准，设计了一系列的微测试程序。这些测试程序对处理器核的某个模块进行了测试，同时排除了处理器其他模块的影响，所以特别适合处理器设计时对某个模块的选择和优化，例如分支预测器模块、执行单元模块和访存流水线模块，这几个模块可比较准确地反映流水线的效率。下面的图\ref{fig:Test-procedure}中给出了部分微测试程序，第一行用于测试指令流水线的前端（front-end），例如行预测器的实现和分支预测器的实现，C表示测试的控制流，第二行用于测试指令流水线的执行核心（execution core），例如调度和发射逻辑（scheduler），E表示执行核心，最后一行用于测试内存系统的参数，例如一级Cache的延迟、二级Cache的延迟和内存的延迟，M表示内存系统。微测试程序更为详细的描述见参考文献\textsuperscript{{[}\protect\hyperlink{ref-desikan_sim-alpha_2002}{34}{]}}。Sim-alpha的微测试程序的源代码可以从网站http://www.cs.utexas.edu/users/cart/code/microbench.tgz下载。
+微测试程序(microbench)是一系列很小的测试程序或者代码片段。得克萨斯州奥斯丁大学的R.Desikan和Doug Burger在设计Sim-alpha模拟器的时候，为了将Sim-alpha模拟器和真实处理器Alpha21264进行校准，设计了一系列的微测试程序。这些测试程序对处理器核的某个模块进行了测试，同时排除了处理器其他模块的影响，所以特别适合处理器设计时对某个模块的选择和优化，例如分支预测器模块、执行单元模块和访存流水线模块，这几个模块可比较准确地反映流水线的效率。下面的图\ref{fig:Test-procedure}中给出了部分微测试程序，第一行用于测试指令流水线的前端（front-end），例如行预测器的实现和分支预测器的实现，C表示测试的控制流，第二行用于测试指令流水线的执行核心（execution core），例如调度和发射逻辑（scheduler），E表示执行核心，最后一行用于测试内存系统的参数，例如一级Cache的延迟、二级Cache的延迟和内存的延迟，M表示内存系统。微测试程序更为详细的描述见参考文献\textsuperscript{{[}\protect\hyperlink{ref-desikan_sim-alpha_2002}{1}{]}}。Sim-alpha的微测试程序的源代码可以从网站http://www.cs.utexas.edu/users/cart/code/microbench.tgz下载。
 
 \begin{figure}
 
@@ -16339,141 +16339,141 @@ Cache技术和指令流水线技术相得益彰。访问处理器片外内存的
 
 \hypertarget{refs}{}
 \begin{CSLReferences}{0}{0}
-\leavevmode\hypertarget{ref-radin_801_1982}{}%
+\leavevmode\hypertarget{ref-desikan_sim-alpha_2002}{}%
 \CSLLeftMargin{{[}1{]} }
+\CSLRightInline{DESIKAN R, BURGER D, KECKLER S, 等. Sim-alpha: a {Validated}, {Execution}-{Driven} {Alpha} 21264 {Simulator}{[}J{]}. 2002.}
+
+\leavevmode\hypertarget{ref-radin_801_1982}{}%
+\CSLLeftMargin{{[}2{]} }
 \CSLRightInline{RADIN G. The 801 minicomputer{[}J{]}. ACM SIGPLAN Notices, 1982, 17(4): 39--47.}
 
 \leavevmode\hypertarget{ref-weaver_sparc_1994}{}%
-\CSLLeftMargin{{[}2{]} }
+\CSLLeftMargin{{[}3{]} }
 \CSLRightInline{WEAVER D L, GERMOND T. The {SPARC} architecture manual: version 9{[}M{]}. Englewood Cliffs: PTR Prentice-Hall, 1994.}
 
 \leavevmode\hypertarget{ref-kessler_alpha_1999}{}%
-\CSLLeftMargin{{[}3{]} }
+\CSLLeftMargin{{[}4{]} }
 \CSLRightInline{KESSLER R E. The {Alpha} 21264 microprocessor{[}J{]}. IEEE Micro, 1999, 19(2): 24--36.}
 
 \leavevmode\hypertarget{ref-gronowski_433-mhz_1996}{}%
-\CSLLeftMargin{{[}4{]} }
+\CSLLeftMargin{{[}5{]} }
 \CSLRightInline{GRONOWSKI P E, BOWHILL W J, DONCHIN D R, 等. A 433-{MHz} 64-b quad-issue {RISC} microprocessor{[}J{]}. IEEE Journal of Solid-State Circuits, 1996, 31(11): 1687--1696.}
 
 \leavevmode\hypertarget{ref-may_powerpc_1994}{}%
-\CSLLeftMargin{{[}5{]} }
+\CSLLeftMargin{{[}6{]} }
 \CSLRightInline{The {PowerPC} architecture: a specification for a new family of {RISC} processors{[}M{]}. MAY C. 第2版. San Francisco: Morgan Kaufman Publishers, 1994.}
 
 \leavevmode\hypertarget{ref-yeager_mips_1996}{}%
-\CSLLeftMargin{{[}6{]} }
+\CSLLeftMargin{{[}7{]} }
 \CSLRightInline{YEAGER K C. The {Mips} {R10000} superscalar microprocessor{[}J{]}. IEEE Micro, 1996, 16(2): 28--41.}
 
 \leavevmode\hypertarget{ref-seal_arm_2006}{}%
-\CSLLeftMargin{{[}7{]} }
+\CSLLeftMargin{{[}8{]} }
 \CSLRightInline{{ARM} architecture reference manual{[}M{]}. SEAL D. Harlow: Addison-Wesley, 2006.}
 
 \leavevmode\hypertarget{ref-thorton_considerations_1963}{}%
-\CSLLeftMargin{{[}8{]} }
+\CSLLeftMargin{{[}9{]} }
 \CSLRightInline{THORTON J. Considerations in {Computer} {Design} - {Leading} up to the {Control} {Data} 6600{[}R{]}. 1963.}
 
 \leavevmode\hypertarget{ref-schlansker_michael_epic_2000}{}%
-\CSLLeftMargin{{[}9{]} }
+\CSLLeftMargin{{[}10{]} }
 \CSLRightInline{SCHLANSKER M, RAU B R. {EPIC}: {An} {Architecture} for {Instruction}-{Level} {Parallel} {Processors}{[}R{]}. HPL\_1999-111, HP Laboratories Palo Alto, 2000.}
 
 \leavevmode\hypertarget{ref-arm_amba_1999}{}%
-\CSLLeftMargin{{[}10{]} }
+\CSLLeftMargin{{[}11{]} }
 \CSLRightInline{ARM. {AMBA} specifications ({Rev} 2.0){[}J{]}. 1999.}
 
 \leavevmode\hypertarget{ref-amd_hypertransport_2010}{}%
-\CSLLeftMargin{{[}11{]} }
+\CSLLeftMargin{{[}12{]} }
 \CSLRightInline{AMD. {HyperTransport} {I}/{O} link specification revision 3.10{[}R{]}. HyperTransport Technology Consortium, 2010.}
 
 \leavevmode\hypertarget{ref-pci-sig_pci_2002}{}%
-\CSLLeftMargin{{[}12{]} }
+\CSLLeftMargin{{[}13{]} }
 \CSLRightInline{PCI-SIG. {PCI} {Local} {Bus} {Specification} {Revision} 2.3{[}R{]}. 2002.}
 
 \leavevmode\hypertarget{ref-pci-sig_pci_2006}{}%
-\CSLLeftMargin{{[}13{]} }
+\CSLLeftMargin{{[}14{]} }
 \CSLRightInline{PCI-SIG. {PCI} {Express} 2.0 {Base} {Specification} {Revision} 1.0{[}R{]}. 2006.}
 
 \leavevmode\hypertarget{ref-jedec_ddr2_2009}{}%
-\CSLLeftMargin{{[}14{]} }
+\CSLLeftMargin{{[}15{]} }
 \CSLRightInline{JEDEC. {DDR2} {SDRAM} {SPECIFICATION}{[}R{]}. 2009.}
 
 \leavevmode\hypertarget{ref-alverson_tera_1990}{}%
-\CSLLeftMargin{{[}15{]} }
+\CSLLeftMargin{{[}16{]} }
 \CSLRightInline{ALVERSON R, CALLAHAN D, CUMMINGS D, 等. The {Tera} computer system{[}J{]}. ACM SIGARCH Computer Architecture News, 1990, 18(3b): 1--6.}
 
 \leavevmode\hypertarget{ref-anderson_performance_1990}{}%
-\CSLLeftMargin{{[}16{]} }
+\CSLLeftMargin{{[}17{]} }
 \CSLRightInline{ANDERSON T E. The performance of spin lock alternatives for shared-money multiprocessors{[}J{]}. IEEE Transactions on Parallel and Distributed Systems, 1990, 1(1): 6--16.}
 
 \leavevmode\hypertarget{ref-graunke_synchronization_1990}{}%
-\CSLLeftMargin{{[}17{]} }
+\CSLLeftMargin{{[}18{]} }
 \CSLRightInline{GRAUNKE G, THAKKAR S. Synchronization algorithms for shared-memory multiprocessors{[}J{]}. Computer, 1990, 23(6): 60--69.}
 
 \leavevmode\hypertarget{ref-yew_distributing_1987}{}%
-\CSLLeftMargin{{[}18{]} }
+\CSLLeftMargin{{[}19{]} }
 \CSLRightInline{YEW P-C, TZENG N-F, LAWRIE. Distributing {Hot}-{Spot} {Addressing} in {Large}-{Scale} {Multiprocessors}{[}J{]}. IEEE Transactions on Computers, 1987, C-36(4): 388--395.}
 
 \leavevmode\hypertarget{ref-dally_principles_2004}{}%
-\CSLLeftMargin{{[}19{]} }
+\CSLLeftMargin{{[}20{]} }
 \CSLRightInline{DALLY W J, TOWLES B P. Principles and {Practices} of {Interconnection} {Networks}{[}M{]}. San Francisco, CA, USA: Morgan Kaufmann Publishers Inc., 2004.}
 
 \leavevmode\hypertarget{ref-__2011}{}%
-\CSLLeftMargin{{[}20{]} }
+\CSLLeftMargin{{[}21{]} }
 \CSLRightInline{陈国良. 并行计算: 结构. 算法. 编程{[}M{]}. 高等教育出版社, 2011.}
 
 \leavevmode\hypertarget{ref-__2001}{}%
-\CSLLeftMargin{{[}21{]} }
+\CSLLeftMargin{{[}22{]} }
 \CSLRightInline{胡伟武. 共享存储系统结构{[}M{]}. 高等教育出版社, 2001.}
 
 \leavevmode\hypertarget{ref-_1_2003}{}%
-\CSLLeftMargin{{[}22{]} }
+\CSLLeftMargin{{[}23{]} }
 \CSLRightInline{胡伟武, 唐志敏. 龙芯1号处理器结构设计{[}J{]}. 计算机学报, 2003, 26(004): 385--396.}
 
 \leavevmode\hypertarget{ref-hu_microarchitecture_2005}{}%
-\CSLLeftMargin{{[}23{]} }
+\CSLLeftMargin{{[}24{]} }
 \CSLRightInline{HU W W, ZHANG F X, LI Z S. Microarchitecture of the {Godson}-2 {Processor}{[}J{]}. 计算机科学技术学报(英文版), 2005, 20(2): 243--249.}
 
 \leavevmode\hypertarget{ref-hu_godson-3_2009}{}%
-\CSLLeftMargin{{[}24{]} }
+\CSLLeftMargin{{[}25{]} }
 \CSLRightInline{HU W W, WANG J, GAO X, 等. Godson-3: {A} {Scalable} {Multicore} {RISC} {Processor} with x86 {Emulation}{[}J{]}. IEEE Micro, 2009, 29(2): 17--29.}
 
 \leavevmode\hypertarget{ref-hu_godson-3b_2011}{}%
-\CSLLeftMargin{{[}25{]} }
+\CSLLeftMargin{{[}26{]} }
 \CSLRightInline{HU W W, WANG R, CHEN Y J, 等. Godson-{3B}: {A} {1GHz} {40W} 8-core {128GFLOPS} processor in 65nm {CMOS}{[}C{]}//{IEEE} {International} {Solid}-{State} {Circuits} {Conference}, {ISSCC} 2011, {Digest} of {Technical} {Papers}, {San} {Francisco}, {CA}, {USA}, 20-24 {February}, 2011. San Francisco, CA: 2011.}
 
 \leavevmode\hypertarget{ref-hu_godson-3b1500_2013}{}%
-\CSLLeftMargin{{[}26{]} }
+\CSLLeftMargin{{[}27{]} }
 \CSLRightInline{HU W W, ZHANG Y, YANG L, 等. Godson-{3B1500}: {A} 32nm 1.{35GHz} {40W} 172.{8GFLOPS} 8-core processor{[}C{]}//Solid-{State} {Circuits} {Conference} {Digest} of {Technical} {Papers} ({ISSCC}), 2013 {IEEE} {International}. 2013.}
 
 \leavevmode\hypertarget{ref-hu_8-core_2013}{}%
-\CSLLeftMargin{{[}27{]} }
+\CSLLeftMargin{{[}28{]} }
 \CSLRightInline{HU W, YANG L, FAN B, 等. An 8-{Core} {MIPS}-{Compatible} {Processor} in 32/28 nm {Bulk} {CMOS}{[}J{]}. IEEE Journal of Solid-State Circuits, 2013, 49(1): 41--49.}
 
 \leavevmode\hypertarget{ref-_gs464e_2015}{}%
-\CSLLeftMargin{{[}28{]} }
+\CSLLeftMargin{{[}29{]} }
 \CSLRightInline{吴瑞阳, 汪文祥, 王焕东, 等. {龙芯GS464E处理器核架构设计}{[}J{]}. 中国科学:信息科学, 2015, 45(4): 480--500.}
 
 \leavevmode\hypertarget{ref-rotem_power-management_2012}{}%
-\CSLLeftMargin{{[}29{]} }
+\CSLLeftMargin{{[}30{]} }
 \CSLRightInline{ROTEM E, NAVEH A, ANANTHAKRISHNAN A, 等. Power-{Management} {Architecture} of the {Intel} {Microarchitecture} {Code}-{Named} {Sandy} {Bridge}{[}J{]}. IEEE Micro, 2012, 32(2): 20--27.}
 
 \leavevmode\hypertarget{ref-mellor-crummey_algorithms_1991}{}%
-\CSLLeftMargin{{[}30{]} }
+\CSLLeftMargin{{[}31{]} }
 \CSLRightInline{MELLOR-CRUMMEY J M, SCOTT M L. Algorithms for scalable synchronization on shared-memory multiprocessors{[}J{]}. ACM Transactions on Computer Systems, 1991, 9(1): 21--65.}
 
 \leavevmode\hypertarget{ref-agarwal_mit_1995}{}%
-\CSLLeftMargin{{[}31{]} }
+\CSLLeftMargin{{[}32{]} }
 \CSLRightInline{AGARWAL A, BIANCHINI R, CHAIKEN D, 等. The {MIT} {Alewife} machine: architecture and performance{[}C{]}//Proceedings 22nd {Annual} {International} {Symposium} on {Computer} {Architecture}. 1995: 2--13.}
 
 \leavevmode\hypertarget{ref-nvidia_nvidias_2009}{}%
-\CSLLeftMargin{{[}32{]} }
+\CSLLeftMargin{{[}33{]} }
 \CSLRightInline{NVIDIA. {NVIDIA}'s {Next} {Generation} {CUDA} {Computer} {Architecture}{[}R{]}. 2009.}
 
 \leavevmode\hypertarget{ref-strohmaier_top500_nodate}{}%
-\CSLLeftMargin{{[}33{]} }
-\CSLRightInline{STROHMAIER E, DONGARRA J, SIMON H, 等. {TOP500} list{[}J{]}.}
-
-\leavevmode\hypertarget{ref-desikan_sim-alpha_2002}{}%
 \CSLLeftMargin{{[}34{]} }
-\CSLRightInline{DESIKAN R, BURGER D, KECKLER S, 等. Sim-alpha: a {Validated}, {Execution}-{Driven} {Alpha} 21264 {Simulator}{[}J{]}. 2002.}
+\CSLRightInline{STROHMAIER E, DONGARRA J, SIMON H, 等. {TOP500} list{[}J{]}.}
 
 \leavevmode\hypertarget{ref-bienia_parsec_2008}{}%
 \CSLLeftMargin{{[}35{]} }
