@@ -1,4 +1,5 @@
-all: html pdf doc
+all: 
+	Rscript -e 'bookdown::render_book("index.Rmd", "all")'
 	echo "done"
 
 html:
