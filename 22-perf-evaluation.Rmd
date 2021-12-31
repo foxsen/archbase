@@ -617,8 +617,10 @@ theme_box()
 autonum <- run_autonum(seq_id = "tab", bkm = "SPEC2000", bkm_all = TRUE)
 readr::read_csv('./materials/chapter12/SPEC2000.csv') %>%
 flextable() %>%
-set_table_properties(layout = "autofit") %>%
-FitFlextableToPage() %>%
+width(j=1, width=1) %>%
+width(j=2, width=0.5) %>%
+width(j=3, width=1) %>%
+width(j=4, width=4) %>%
 bold(i=13) %>%
 align(i=13, align="center") %>%
 set_caption(caption="SPEC CPU2000程序及描述", autonum = autonum) %>%
@@ -629,7 +631,10 @@ theme_box()
 autonum <- run_autonum(seq_id = "tab", bkm = "SPEC2006", bkm_all = TRUE)
 readr::read_csv('./materials/chapter12/SPEC2006.csv') %>%
 flextable() %>%
-FitFlextableToPage() %>%
+width(j=1, width=1) %>%
+width(j=2, width=0.5) %>%
+width(j=3, width=1) %>%
+width(j=4, width=4) %>%
 bold(i=13) %>%
 align(i=13, align="center") %>%
 set_caption(caption="SPEC CPU2006程序及描述", autonum = autonum) %>%
@@ -640,8 +645,11 @@ theme_box()
 autonum <- run_autonum(seq_id = "tab", bkm = "SPEC2017", bkm_all = TRUE)
 readr::read_csv('./materials/chapter12/SPEC2017.csv') %>%
 flextable() %>%
-FitFlextableToPage() %>%
 bold(i=11) %>%
+width(j=1, width=1) %>%
+width(j=2, width=1) %>%
+width(j=3, width=0.5) %>%
+width(j=4, width=3.5) %>%
 align(i=11, align="center") %>%
 set_caption(caption="SPEC CPU2017程序及描述", autonum = autonum) %>%
 theme_box()
@@ -1207,7 +1215,6 @@ FitFlextableToPage() %>%
 set_caption(caption="3A5000、Zen1和Skylake的STREAM带宽", autonum = autonum) %>%
 theme_box()
 ```
-
 从测试数据来看，3A5000的定点操作延迟控制较好，多数优于其他两款处理器，但是浮点操作延迟则多数偏长，这也可能是其SPEC浮点程序性能落后的部分原因。当然，这些测试本身是否足够合理需要进一步分析相应的测试代码，不能无条件采用。LMbench的lat_ops说明文档中明确表示，这个测试程序是实验性的，有时（甚至经常）会给出误导的结论。性能分析工作中常见的误区之一就是被不准确甚至错误的数据误导，得出错误的结论。因此使用各种工具时，应该尽可能了解目标系统和工具的工作原理，对数据的合理性进行必要的判断。
 
 从数据可以看到，虽然硬件上3A5000和Zen1都实现了DDR4 3200，但3A5000的实测可持续带宽还是有一定差距。用户程序看到的内存带宽不仅仅和内存的物理频率有关系，也和处理器内部的各种访存队列、内存控制器的调度策略、预取器和内存时序参数设置等相关，需要进行更多分析来定位具体的瓶颈点。像STREAM这样的软件测试工具，能够更好地反映某个子系统的综合能力，因而被广泛采用。
