@@ -51,7 +51,7 @@
 本书的实例和原理介绍以龙芯体系结构为主。关于龙芯体系结构的信息，可以参考[这里](https://github.com/loongson)。那里的内容包括：
 
 1. 龙芯架构的相关[文档](https://github.com/loongson/LoongArch-Documentation)，如指令集手册、ABI文档、龙芯3A5000处理器手册、龙芯7A1000桥片手册等。
-2. 一些龙芯架构的关键基础软件，如[工具链](https://github.com/loongson/build-tools)、[QEMU模拟器](https://github.com/loongson/qemu/tree/tcg-dev/)和[内核](https://github.com/loongson/linux/tree/loongarch-next)等。很多软件正在upstream的过程中，相信不久后大部分软件可以直接从社区上游获得。
+2. 一些龙芯架构的关键基础软件，如[工具链](https://github.com/loongson/build-tools)、[QEMU模拟器](https://github.com/foxsen/qemu-loongarch-runenv)和[内核](https://github.com/loongson/linux/tree/loongarch-next)等。很多软件正在upstream的过程中，相信不久后大部分软件可以直接从社区上游获得。
 
 暂时没有龙芯机器的同学，可以在X86上用交叉编译工具链编译loongarch应用，用qemu模拟运行loongarch程序。后续争取提供一些龙芯云端的开发者账号让大家能在真机上做实验。
 
