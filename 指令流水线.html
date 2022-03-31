@@ -24,7 +24,7 @@
 <meta name="author" content="胡伟武 汪文祥 苏孟豪 张福新 王焕东 章隆兵 肖俊华 刘 苏 陈新科 吴瑞阳 李晓钰 高燕萍" />
 
 
-<meta name="date" content="2021-12-31" />
+<meta name="date" content="2022-03-31" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -749,8 +749,8 @@ mul.w   $r9, $r8, $r3</code></pre>
 <p>可以通过寄存器重命名变为：</p>
 <pre><code>div.w   $r3,$r2,$r1
 add.w   $r5,$r4,$r3
-sub.w   $r3,$r7,$r6
-mul.w   $r9,$r8,$r3</code></pre>
+sub.w   $r10,$r7,$r6
+mul.w   $r9,$r8,$r10</code></pre>
 <p>重命名之后就没有WAR和WAW相关了。</p>
 <p>1966年,Robert Tomasulo在IBM 360/91中首次提出了对于动态调度处理器设计影响深远的Tomasulo算法。该算法在CDC6000记分板方法基础上做了进一步改进。面对RAW相关所引起的阻塞，两者解决思路是一样的，即将相关关系记录下来，有相关的等待，没有相关的尽早送到功能部件开始执行。但是Tomasulo算法实现了硬件的寄存器重命名，从而消除了WAR和WAW相关，也就自然不需要阻塞了。</p>
 <p>在流水线中实现动态调度，还有最后一个需要考虑的问题——精确异常。回顾一下<a href="指令流水线.html#sec-precise-exception">9.4</a>节中关于精确异常的描述，要求在处理异常时，发生异常的指令前面的所有指令都执行完（修改了机器状态），而发生异常的指令及其后面的指令都没有执行（没有修改机器状态）。那么在乱序调度的情况下，指令已经打破了原有的先后顺序在流水线中执行了，“前面”“后面”这样的顺序关系从哪里获得呢？还有一个问题，发生异常的指令后面的指令都不能修改机器的状态，但是这些指令说不定都已经越过发生异常的指令先去执行了，怎么办呢？</p>
