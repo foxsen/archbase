@@ -277,8 +277,8 @@ add.w指令和sub.w指令之间存在WAW相关，在乱序调度的情况下，s
 
     div.w	$r3,$r2,$r1
     add.w  	$r5,$r4,$r3
-    sub.w	$r3,$r7,$r6
-    mul.w	$r9,$r8,$r3
+    sub.w	$r10,$r7,$r6
+    mul.w	$r9,$r8,$r10
 
 重命名之后就没有WAR和WAW相关了。
 
