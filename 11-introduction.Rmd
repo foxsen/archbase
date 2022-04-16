@@ -368,6 +368,6 @@ $$ Speedup_{overall} = \frac{Extime_{old}}{ExTime_{new}} $$
 
 5.	在一台个人计算机上进行SPEC CPU 2000单核性能的测试，分别给出无编译优化选项和编译优化选项为-O2的测试报告。
 
-6.  分别在苹果手机、华为手机以及X86-Windows机器上测试浏览器Octane（参见https：//chromium.github.io/octane/）的分值，并简单评述。
+6.  分别在苹果手机、华为手机以及X86-Windows机器上测试浏览器Octane（参见https://chromium.github.io/octane/）的分值，并简单评述。
 
 \newpage
