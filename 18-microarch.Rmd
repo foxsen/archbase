@@ -1,4 +1,4 @@
-# (PART) Part IV CPU的微结构 {-}
+# (PART) CPU的微结构 {-}
 
 # 运算器设计
 
