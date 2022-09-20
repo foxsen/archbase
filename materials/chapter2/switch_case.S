@@ -1,6 +1,6 @@
 st:
 	addi.w	$t0,$a0, -10	//a-10
-	sltiu	$t1,$t0, 8
+	sltui	$t1,$t0, 8
 	beqz	$t1, default	//if (a-10)>=8 
 							//goto default
 	la		$t2, jr_table
