@@ -1,7 +1,7 @@
 .section .rodata                                                                
     .align 3
 .hello:
-	.ascii	"Hello World!\012\000"
+	.ascii	"Hello World!\n\000"
 
     .text
     .align 3
