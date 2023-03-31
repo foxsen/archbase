@@ -219,7 +219,7 @@
 \providecommand{\subtitle}[1]{}
 \subtitle{第3版}
 \author{胡伟武~汪文祥~苏孟豪~张福新~王焕东~章隆兵~肖俊华~刘~苏~陈新科~吴瑞阳~李晓钰~高燕萍}
-\date{2022-11-20}
+\date{2023-03-31}
 
 \begin{document}
 \maketitle
@@ -9620,15 +9620,15 @@ Cache为了追求访问速度，容量通常较小，其中存放的内容只是
 
 本章从处理器的数据通路开始，先引入流水线技术，并逐渐增加设计复杂度，最终搭建出了5级静态流水线处理器。本章还简要介绍了一些提高流水线效率的方法。
 
-图\ref{fig:chapter9-LS3A2000}是龙芯3A2000处理器的流水线示意图。
+图\ref{fig:chapter9-LS3A3000}是龙芯3A3000处理器的流水线示意图。
 
 \begin{figure}
 
-{\centering \includegraphics[width=1\linewidth]{./images/chapter9/LS3A2000} 
+{\centering \includegraphics[width=1\linewidth]{./images/chapter9/LS3A3000} 
 
 }
 
-\caption{龙芯3A2000流水线示意图}\label{fig:chapter9-LS3A2000}
+\caption{龙芯3A3000流水线示意图}\label{fig:chapter9-LS3A3000}
 \end{figure}
 
 可以看出，现代处理器依然没有脱离教材中讲述的基础原理。图中左侧为PC级和译码级，并加入了分支预测、指令Cache和指令TLB；图的中间部分为重命名和提交单元，重命名后指令进入保留站，也称发射队列，并在就绪后发射并执行；图的右侧为访存执行单元，需要访问数据Cache和数据TLB，并有可能访问图下方的二级Cache。提交单元要负责将指令提交，提交后指令就可以退出流水线了。

@@ -24,7 +24,7 @@
 <meta name="author" content="胡伟武 汪文祥 苏孟豪 张福新 王焕东 章隆兵 肖俊华 刘 苏 陈新科 吴瑞阳 李晓钰 高燕萍" />
 
 
-<meta name="date" content="2022-11-20" />
+<meta name="date" content="2023-03-31" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -840,11 +840,11 @@ mul.w   $r9,$r8,$r10</code></pre>
 <div id="本章小结-8" class="section level2" number="9.6">
 <h2><span class="header-section-number">9.6</span> 本章小结</h2>
 <p>本章从处理器的数据通路开始，先引入流水线技术，并逐渐增加设计复杂度，最终搭建出了5级静态流水线处理器。本章还简要介绍了一些提高流水线效率的方法。</p>
-<p>图<a href="指令流水线.html#fig:chapter9-LS3A2000">9.26</a>是龙芯3A2000处理器的流水线示意图。</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:chapter9-LS3A2000"></span>
-<img src="images/chapter9/LS3A2000.png" alt="龙芯3A2000流水线示意图" width="100%" />
+<p>图<a href="指令流水线.html#fig:chapter9-LS3A3000">9.26</a>是龙芯3A3000处理器的流水线示意图。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:chapter9-LS3A3000"></span>
+<img src="images/chapter9/LS3A3000.png" alt="龙芯3A3000流水线示意图" width="100%" />
 <p class="caption">
-图 9.26: 龙芯3A2000流水线示意图
+图 9.26: 龙芯3A3000流水线示意图
 </p>
 </div>
 <p>可以看出，现代处理器依然没有脱离教材中讲述的基础原理。图中左侧为PC级和译码级，并加入了分支预测、指令Cache和指令TLB；图的中间部分为重命名和提交单元，重命名后指令进入保留站，也称发射队列，并在就绪后发射并执行；图的右侧为访存执行单元，需要访问数据Cache和数据TLB，并有可能访问图下方的二级Cache。提交单元要负责将指令提交，提交后指令就可以退出流水线了。</p>

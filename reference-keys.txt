@@ -188,7 +188,7 @@ fig:chapter9-PHT
 fig:chapter9-cache
 fig:chapter9-cacheMap
 fig:chapter9-cacheMapStruct
-fig:chapter9-LS3A2000
+fig:chapter9-LS3A3000
 fig:programming
 fig:get-pi
 fig:get-martix-multi
