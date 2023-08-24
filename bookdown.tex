@@ -6091,7 +6091,7 @@ HyperTransport总线（简称HT总线）是AMD公司提出的一种高速系统�
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.5\linewidth]{images/chapter6/ht_two_chips} 
+{\centering \includegraphics[width=0.8\linewidth]{images/chapter6/ht_two_chips} 
 
 }
 
@@ -6102,7 +6102,7 @@ HyperTransport总线（简称HT总线）是AMD公司提出的一种高速系统�
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.5\linewidth]{images/chapter6/loongson_4way} 
+{\centering \includegraphics[width=0.8\linewidth]{images/chapter6/loongson_4way} 
 
 }
 
@@ -6111,7 +6111,7 @@ HyperTransport总线（简称HT总线）是AMD公司提出的一种高速系统�
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.5\linewidth]{images/chapter6/pci_interconnect} 
+{\centering \includegraphics[width=0.8\linewidth]{images/chapter6/pci_interconnect} 
 
 }
 
@@ -6185,6 +6185,9 @@ HT总线的软件架构与PCI总线协议基本相同，都采用配置空间、
 
 
 \end{longtable}
+
+可以看到，图\ref{fig:ht-interconnect}中两个芯片通过定义相同的信号进行相互传输。与上一节介绍的DDR内存总线所不同的是，HT总线上，用于数据传输的信号并非双向信号，而是由两组方向相反的单向信号各自传输。这种传输方式即通常所说的全双工传输。发送和接收两个方向的传输可以同时进行，互不干扰。而采用双向信号的总线，例如DDR内存总线或者PCI总线，只能进行半双工传输，其发送和接收不能同时进行。而且在较高频率下，发送和接收两种模式需要进行切换时，为了保证其数据传输的完整性，还需要在切换过程中增加专门的空闲周期，这样更加影响了总线传输效率。
+
 \begin{figure}
 
 {\centering \includegraphics[width=0.5\linewidth]{images/chapter6/ht_interconnect} 
@@ -6193,8 +6196,6 @@ HT总线的软件架构与PCI总线协议基本相同，都采用配置空间、
 
 \caption{HT总线连接}\label{fig:ht-interconnect}
 \end{figure}
-
-可以看到，图\ref{fig:ht-interconnect}中两个芯片通过定义相同的信号进行相互传输。与上一节介绍的DDR内存总线所不同的是，HT总线上，用于数据传输的信号并非双向信号，而是由两组方向相反的单向信号各自传输。这种传输方式即通常所说的全双工传输。发送和接收两个方向的传输可以同时进行，互不干扰。而采用双向信号的总线，例如DDR内存总线或者PCI总线，只能进行半双工传输，其发送和接收不能同时进行。而且在较高频率下，发送和接收两种模式需要进行切换时，为了保证其数据传输的完整性，还需要在切换过程中增加专门的空闲周期，这样更加影响了总线传输效率。
 
 PCI接口信号定义如图\ref{fig:pci-signals}所示。PCI总线上使用起始信号（FRAME\#）及相应的准备好信号（TRDY\#、IRDY\#）、停止信号（STOP\#）来进行总线的握手，控制总线传输。与PCI总线不同，HT总线信号定义看起来非常简单，没有类似PCI总线的握手信号。
 
