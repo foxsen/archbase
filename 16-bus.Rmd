@@ -271,16 +271,16 @@ HyperTransport总线（简称HT总线）是AMD公司提出的一种高速系统�
 
 图\@ref(fig:ht-two-chips)是采用HT总线连接处理器与桥片的结构示意图。
 
-```{r ht-two-chips, echo=FALSE, fig.align='center', fig.cap="CPU-南桥两片结构", out.width='50%'}
+```{r ht-two-chips, echo=FALSE, fig.align='center', fig.cap="CPU-南桥两片结构", out.width='80%'}
 knitr::include_graphics("images/chapter6/ht_two_chips.png")
 ```
 与并行总线不同的是，串行总线通常采用点对点传输形式，体现在计算机体系结构上，就是一组串行总线只能连接两个芯片。以龙芯3A2000/3A3000为例，在四路互连系统中，一共采用了7组HT互连总线，其中6组用于四个处理器间的全相联连接，1组用于处理器与桥片的连接，如图\@ref(fig:loongson-4way)所示。而作为对比，PCI总线则可以在同一组信号上连接多个不同的设备，如图\@ref(fig:pci-interconnect)所示。
 
-```{r loongson-4way, echo=FALSE, fig.align='center', fig.cap="龙芯3A2000/3A3000四路系统结构示意图", out.width='50%'}
+```{r loongson-4way, echo=FALSE, fig.align='center', fig.cap="龙芯3A2000/3A3000四路系统结构示意图", out.width='80%'}
 knitr::include_graphics("images/chapter6/loongson_4way.png")
 ```
 
-```{r pci-interconnect, echo=FALSE, fig.align='center', fig.cap="PCI总线设备连接", out.width='50%'}
+```{r pci-interconnect, echo=FALSE, fig.align='center', fig.cap="PCI总线设备连接", out.width='80%'}
 knitr::include_graphics("images/chapter6/pci_interconnect.png")
 ```
 
@@ -296,11 +296,12 @@ set_caption(caption="HT总线主要信号定义", autonum = autonum) %>%
 theme_box() %>%
 autofit()
 ```
+
+可以看到，图\@ref(fig:ht-interconnect)中两个芯片通过定义相同的信号进行相互传输。与上一节介绍的DDR内存总线所不同的是，HT总线上，用于数据传输的信号并非双向信号，而是由两组方向相反的单向信号各自传输。这种传输方式即通常所说的全双工传输。发送和接收两个方向的传输可以同时进行，互不干扰。而采用双向信号的总线，例如DDR内存总线或者PCI总线，只能进行半双工传输，其发送和接收不能同时进行。而且在较高频率下，发送和接收两种模式需要进行切换时，为了保证其数据传输的完整性，还需要在切换过程中增加专门的空闲周期，这样更加影响了总线传输效率。
+
 ```{r ht-interconnect, echo=FALSE, fig.align='center', fig.cap="HT总线连接", out.width='50%'}
 knitr::include_graphics("images/chapter6/ht_interconnect.png")
 ```
-
-可以看到，图\@ref(fig:ht-interconnect)中两个芯片通过定义相同的信号进行相互传输。与上一节介绍的DDR内存总线所不同的是，HT总线上，用于数据传输的信号并非双向信号，而是由两组方向相反的单向信号各自传输。这种传输方式即通常所说的全双工传输。发送和接收两个方向的传输可以同时进行，互不干扰。而采用双向信号的总线，例如DDR内存总线或者PCI总线，只能进行半双工传输，其发送和接收不能同时进行。而且在较高频率下，发送和接收两种模式需要进行切换时，为了保证其数据传输的完整性，还需要在切换过程中增加专门的空闲周期，这样更加影响了总线传输效率。
 
 PCI接口信号定义如图\@ref(fig:pci-signals)所示。PCI总线上使用起始信号（FRAME#）及相应的准备好信号（TRDY#、IRDY#）、停止信号（STOP#）来进行总线的握手，控制总线传输。与PCI总线不同，HT总线信号定义看起来非常简单，没有类似PCI总线的握手信号。
 
