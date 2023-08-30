@@ -219,7 +219,7 @@
 \providecommand{\subtitle}[1]{}
 \subtitle{第3版}
 \author{胡伟武~汪文祥~苏孟豪~张福新~王焕东~章隆兵~肖俊华~刘~苏~陈新科~吴瑞阳~李晓钰~高燕萍}
-\date{2023-08-24}
+\date{2023-08-30}
 
 \begin{document}
 \maketitle
@@ -8362,9 +8362,9 @@ MOS晶体管使用硅作为基本材料。在元素周期表中，硅是IV族元
 
 （1）并行进位逻辑
 
-假设两个N位数A和B相加，A记作a\textsubscript{N-1}a\textsubscript{N-2}\(\ldots\)a\textsubscript{i}a\textsubscript{i-1}\ldots a\textsubscript{1}a\textsubscript{0}，B记作b\textsubscript{N-1}b\textsubscript{N-2}\(\ldots\)b\textsubscript{i}b\textsubscript{i-1}\(\ldots\)b\textsubscript{1}b\textsubscript{0}。定义第i位的进位输入为c\textsubscript{i}，进位输出为c\textsubscript{i+1}，且将加法器的输入C\textsubscript{in}记作c\textsubscript{0}以方便后面描述的统一。每一位进位输出c\textsubscript{i+1}的计算为：\[c_{i+1}=a_{i}\ \&\ b_{i}\ |\ a_{i}\ \&\ c_{i}\ |\ b_{i}\ \&\ c_{i}=a_{i}\ \&\ b_{i}\ |\ (a_{i}\ |\ b_{i}）\ \&\ c_{i}\]
+假设两个N位数A和B相加，A记作a\textsubscript{N-1}a\textsubscript{N-2}\(\ldots\)a\textsubscript{i}a\textsubscript{i-1}\ldots a\textsubscript{1}a\textsubscript{0}，B记作b\textsubscript{N-1}b\textsubscript{N-2}\(\ldots\)b\textsubscript{i}b\textsubscript{i-1}\(\ldots\)b\textsubscript{1}b\textsubscript{0}。定义第i位的进位输入为c\textsubscript{i}，进位输出为c\textsubscript{i+1}，且将加法器的输入C\textsubscript{in}记作c\textsubscript{0}以方便后面描述的统一。每一位进位输出c\textsubscript{i+1}的计算为：\[c_{i+1}=a_{i}\ \&\ b_{i}\ |\ a_{i}\ \&\ c_{i}\ |\ b_{i}\ \&\ c_{i}=a_{i}\ \&\ b_{i}\ |\ (a_{i}\ |\ b_{i})\ \&\ c_{i}\]
 
-设\(g_{i} = a_{i} \ \&\ b_{i}，p_{i} = a_{i} \ |\ b_{i}\)，则c\textsubscript{i+1}的计算可以表达为：
+设\(g_{i} = a_{i} \ \&\ b_{i},\  p_{i} = a_{i} \ |\ b_{i}\)，则c\textsubscript{i+1}的计算可以表达为：
 
 \[c_{i+1}=g_{i} \ |\ p_{i} \ \& \ c_{i}\]
 
