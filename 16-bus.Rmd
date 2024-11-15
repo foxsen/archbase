@@ -385,7 +385,7 @@ border_outer(fp_border()) %>%
 border_inner(fp_border())
 ```
 
-### 设备总线
+## 设备总线
 
 设备总线用于计算机系统中与IO设备的连接。
 
