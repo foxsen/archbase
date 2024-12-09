@@ -9,8 +9,9 @@ on:
 name: renderbook
 
 permissions:
-  contents: read
+  contents: write
   pages: write
+  gh-pages: write
 
 jobs:
   bookdown:
