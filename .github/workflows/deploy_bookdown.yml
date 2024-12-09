@@ -8,6 +8,10 @@ on:
 
 name: renderbook
 
+permissions:
+  contents: read
+  pages: write
+
 jobs:
   bookdown:
     name: Render-Book
