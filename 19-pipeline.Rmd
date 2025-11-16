@@ -398,6 +398,14 @@ knitr::include_graphics('./images/chapter9/LS3A3000.png')
 ## 习题
 
 1.	请给出下列程序在多周期处理器（如图\@ref(fig:chapter9-multicycle)所示）上执行所需要的时钟周期数，并给出前三次循环执行的时空图。
+
+    ```
+        addi.w  t0, zero, 100
+    LOOP:
+        addi.w  t0, t0, -1
+        bnez    t0, LOOP
+    ```
+
 2.	请给出题1中的程序在单发射5级静态流水线处理器（如图\@ref(fig:chapter9-pipelinestruct)所示）上执行所需要的时钟周期数，并给出前三次循环执行的流水线时空图。
 3.	请给出题1中的程序在包含前递机制的单发射5级静态流水线处理器（如图\@ref(fig:chapter9-instHazardPipeline)所示）上执行所需要的时钟周期数，并给出前三次循环执行的流水线时空图。
 4.  请在图\@ref(fig:chapter9-instHazardPipeline)的基础上添加必要的逻辑，使其能够实现精确异常的功能。画出修改后的处理器结构图，并进行解释。
