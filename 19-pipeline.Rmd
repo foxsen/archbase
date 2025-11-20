@@ -398,6 +398,14 @@ knitr::include_graphics('./images/chapter9/LS3A3000.png')
 ## 习题
 
 1.	请给出下列程序在多周期处理器（如图\@ref(fig:chapter9-multicycle)所示）上执行所需要的时钟周期数，并给出前三次循环执行的时空图。
+
+    ```
+        addi.w  t0, zero, 100
+    LOOP:
+        addi.w  t0, t0, -1
+        bnez    t0, LOOP
+    ```
+
 2.	请给出题1中的程序在单发射5级静态流水线处理器（如图\@ref(fig:chapter9-pipelinestruct)所示）上执行所需要的时钟周期数，并给出前三次循环执行的流水线时空图。
 3.	请给出题1中的程序在包含前递机制的单发射5级静态流水线处理器（如图\@ref(fig:chapter9-instHazardPipeline)所示）上执行所需要的时钟周期数，并给出前三次循环执行的流水线时空图。
 4.  请在图\@ref(fig:chapter9-instHazardPipeline)的基础上添加必要的逻辑，使其能够实现精确异常的功能。画出修改后的处理器结构图，并进行解释。
@@ -413,7 +421,7 @@ knitr::include_graphics('./images/chapter9/LS3A3000.png')
           {…}
     ```
 
-计算分别使用一位BHT表和使用两位BHT表进行转移猜测时三重循环的转移猜测准确率，假设BHT表的初始值均为0。
+    计算分别使用一位BHT表和使用两位BHT表进行转移猜测时三重循环的转移猜测准确率，假设BHT表的初始值均为0。
 9.	在一个32位处理器中实现一个Cache块大小为64字节、总容量为32KB的数据Cache，该数据Cache仅使用32位物理地址访问。请问，当分别采用直接映射、两路组相联和四路组相联的组织结构时，Cache访问地址中Tag、Index和Offset三部分各自如何划分？
 10.	假设程序动态执行过程中load、store指令占40%。现在有两种数据Cache的设计方案，其中第一种方案的Cache容量小于第二种方案，因此采用第一种方案的Cache命中率为85%，第二种方案的Cache命中率为95%，但是采用第二种方案时处理器的主频会比第一种低10%。请问哪种设计方案性能更优？（假设Cache不命中情况下会阻塞流水线100个时钟周期。）
 
